@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase';
 
 export default async function sitemap() {
-  const baseUrl = 'https://geetanjalisoftwares.com';
+  const baseUrl = 'https://geetanjalisoftwares.in';
 
   // Fetch blogs from Supabase
   const { data: blogs } = await supabase
