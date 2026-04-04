@@ -44,9 +44,9 @@ export async function generateMetadata() {
 
   // Fallback for Bihar-focused SEO
   return {
-    title: "Geetanjali Softwares - Best Marketing Agency in Bihar",
-    description: "Geetanjali Softwares offers world-class web development, marketing and SEO services for Bihar-based businesses.",
-    keywords: "digital agency bihar, website development patna, seo services bihar, digital marketing patna",
+    title: "Geetanjali Softwares - Leading Digital Agency in Bihar",
+    description: "Premium website design, development, digital marketing, and branding services. Scaling businesses in Bihar and across India.",
+    keywords: "digital marketing, website design, development, branding, bihar digital agency, seo services",
     alternates: {
       canonical: 'https://geetanjalisoftwares.in',
     },
