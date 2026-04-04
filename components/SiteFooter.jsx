@@ -14,7 +14,7 @@ export default function SiteFooter() {
   return (
     <footer className="pb-10 pt-16 sm:pt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-md">
             <Link href="/" className="text-xl font-bold tracking-tight text-black sm:text-2xl">
               Geetanjali <span className="font-normal text-black/50">Softwares</span>
@@ -22,22 +22,22 @@ export default function SiteFooter() {
             <p className="mt-4 text-sm leading-7 text-black/60">
               Modern websites, performance-driven digital marketing, and unique branding for businesses that demand a stronger online presence.
             </p>
-            <div className="mt-6 space-y-3">
-              <ul className="mt-4 space-y-3">
+            <div className="mt-6">
+              <ul className="space-y-3 flex flex-col items-center lg:items-start">
                 <li className="flex items-center gap-3 text-sm text-black/50">
-                  <Mail size={16} className="text-orange-600" /> geetanjalisoftwares@gmail.com
+                  <Mail size={16} className="text-orange-600 shrink-0" /> geetanjalisoftwares@gmail.com
                 </li>
                 <li className="flex items-center gap-3 text-sm text-black/50">
-                  <Phone size={16} className="text-orange-600" /> +91 7508657479
+                  <Phone size={16} className="text-orange-600 shrink-0" /> +91 7508657479
                 </li>
                 <li className="flex items-center gap-3 text-sm text-black/50">
-                  <MapPin size={16} className="text-orange-600" /> Faridabad, Haryana, India
+                  <MapPin size={16} className="text-orange-600 shrink-0" /> Faridabad, Haryana, India
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-12 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 w-full lg:w-auto">
             <div>
               <h3 className="text-sm font-bold uppercase tracking-wider text-black/30">Company</h3>
               <nav className="mt-4 flex flex-col gap-3" aria-label="Footer navigation">
