@@ -43,6 +43,26 @@ h5,
 h6 {
   font-family: var(--font-vollkorn);
 }
+/* Mobile Friendliness Fixes */
+@media (max-width: 640px) {
+  html {
+    font-size: 16px; /* Base font size for mobile */
+  }
+  
+  p, span, li {
+    font-size: 0.95rem !important; /* Prevent tiny text */
+    line-height: 1.6;
+  }
+
+  button, a {
+    min-height: 44px; /* Minimum touch target height */
+    min-width: 44px;  /* Minimum touch target width */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .remove-background {
   filter: contrast(1.1) brightness(1.1) url(#chroma-key-white);
   mix-blend-mode: multiply; /* Keep multiply as a safe fallback for light backgrounds */

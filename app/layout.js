@@ -27,9 +27,12 @@ export async function generateMetadata() {
 
     if (data && data.site_title) {
       return {
-        title: data.site_title,
-        description: data.site_description,
+        title: data.site_title.slice(0, 60),
+        description: data.site_description.slice(0, 130),
         keywords: data.keywords,
+        alternates: {
+          canonical: 'https://geetanjalisoftwares.in',
+        },
         icons: {
           icon: "/favicon.ico",
         },
@@ -41,9 +44,12 @@ export async function generateMetadata() {
 
   // Fallback for Bihar-focused SEO
   return {
-    title: "Geetanjali Softwares - Leading Digital Agency in Bihar & Patna",
-    description: "Geetanjali Softwares offers world-class web development, marketing, and SEO services from Faridabad, specializing in scaling Bihar-based businesses.",
+    title: "Geetanjali Softwares - Best Marketing Agency in Bihar",
+    description: "Geetanjali Softwares offers world-class web development, marketing and SEO services for Bihar-based businesses.",
     keywords: "digital agency bihar, website development patna, seo services bihar, digital marketing patna",
+    alternates: {
+      canonical: 'https://geetanjalisoftwares.in',
+    },
     icons: {
       icon: "/favicon.ico",
     },
@@ -53,6 +59,28 @@ export async function generateMetadata() {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Geetanjali Softwares",
+              "url": "https://geetanjalisoftwares.in",
+              "logo": "https://geetanjalisoftwares.in/icon.png",
+              "sameAs": [
+                "https://www.instagram.com/geetanjalisoftwares/"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-7508657479",
+                "contactType": "customer service"
+              }
+            })
+          }}
+        />
+      </head>
       <body
         className={`${outfit.variable} ${vollkorn.variable} antialiased`}
       >

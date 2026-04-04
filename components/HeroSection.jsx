@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HeroSection() {
   return (
@@ -7,7 +8,7 @@ export default function HeroSection() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl">
-              Grow Your Business with High Converting Website & SEO
+              Grow Your Business with <span className="text-orange-500">Digital Marketing</span>, Web Design & SEO
             </h1>
 
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg">
@@ -33,9 +34,12 @@ export default function HeroSection() {
           <div className="flex flex-col items-center text-center lg:items-end lg:text-right">
             <div className="relative w-full max-w-sm lg:max-w-md">
               <div className="absolute inset-0 bg-orange-500/5 blur-[80px]" />
-              <img
+              <Image
                 src="/images/hero_main.png"
-                alt="Premium Digital Illustration"
+                alt="Digital Marketing and Web Development Illustration"
+                width={500}
+                height={500}
+                priority
                 className="relative h-auto w-full object-contain remove-background transition duration-700 hover:scale-105"
               />
             </div>
