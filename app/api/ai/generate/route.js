@@ -23,21 +23,34 @@ export async function POST(req) {
         });
 
         const prompt = `
-          You are a professional blog writer for "Geetanjali Softwares", a premium web development and digital marketing agency.
-          Write a high-quality, SEO-friendly blog post about the following topic: "${topic}".
+          You are a professional SEO copywriter for "Geetanjali Softwares", a premium digital agency specializing in website design, development, and marketing.
+          Write a high-quality, "Helpful Content" blog post for search engines like Google about the following topic: "${topic}".
           
-          Requirements:
-          1. Use a professional yet engaging tone.
-          2. The content should be in HTML format, suitable for a rich-text editor (use <h2>, <p>, <ul>, <li>, <strong>, etc.).
-          3. Include an introduction, at least 3 main sections with subheadings, and a conclusion.
-          4. Suggest a catchy title, a short excerpt (max 150 characters), and a suitable category.
+          Guidelines for Google SEO (E-E-A-T):
+          1. Tone: Professional, authoritative, and trustworthy. 
+          2. Structure: 
+             - Short, engaging introduction.
+             - At least 3 main sections using <h2> and <h3> tags.
+             - Use bullet points (<ul>, <li>) for better readability.
+             - Use <strong> for key terms.
+             - A strong conclusion with a subtle call-to-action for "Geetanjali Softwares".
+          3. Value: Focus on being helpful to the reader. Provide actionable insights.
+          4. Local Context: Where applicable, mention the business landscape in Bihar and across India to show local expertise.
+          5. Human-centric Content: 
+             - Style: Use a "Human" and "Natural" writing style. Avoid typical robotic AI-generated patterns and clichés.
+             - Tone: Consultative, friendly, and expert. Speak directly to the business owner as a trusted partner.
+             - Authenticity: Use conversational language, avoid overly complex words, and make it sound like a real person from Geetanjali Softwares wrote it.
+          6. Limits: 
+             - Title: 50-60 characters precisely.
+             - Excerpt: 100-130 characters precisely.
+             - Content: 800-1200 words precisely.
           
-          Respond WITH A JSON object:
+          Respond ONLY with a JSON object:
           {
-            "title": "Blog Title",
-            "excerpt": "Short summary of the blog",
-            "content": "Full HTML content...",
-            "category": "e.g., Web Development"
+            "title": "SEO Optimized Title (50-60 chars)",
+            "excerpt": "Compelling Meta Description (100-130 chars)",
+            "content": "Full HTML content starting with an intro...",
+            "category": "e.g., Business Strategy"
           }
         `;
 
