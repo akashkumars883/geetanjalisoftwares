@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export async function PUT(request, { params }) {
   try {
@@ -7,7 +12,7 @@ export async function PUT(request, { params }) {
     const body = await request.json();
     const { title, slug, excerpt, content, image_url, category, author, is_published } = body;
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('blogs')
       .update({ title, slug, excerpt, content, image_url, category, author, is_published })
       .eq('id', id)
@@ -29,7 +34,7 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = params;
 
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from('blogs')
       .delete()
       .eq('id', id);

@@ -1,11 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { Calendar, ArrowLeft, Share2, Globe, MessageCircle } from 'lucide-react';
+
+// Use a privileged client since this is a server component
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export async function generateMetadata({ params }) {
   const { slug } = params;
-  const { data: blog } = await supabase
+  const { data: blog } = await supabaseAdmin
     .from('blogs')
     .select('title, excerpt')
     .eq('slug', slug)
@@ -22,7 +28,7 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetailPage({ params }) {
   const { slug } = params;
 
-  const { data: blog, error } = await supabase
+  const { data: blog, error } = await supabaseAdmin
     .from('blogs')
     .select('*')
     .eq('slug', slug)

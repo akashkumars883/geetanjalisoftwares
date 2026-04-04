@@ -35,15 +35,24 @@ export async function POST(request) {
 
     const { data, error } = await supabaseAdmin
       .from('blogs')
-      .insert([{ title, slug, excerpt, content, image_url, category, author }])
+      .insert([{ 
+        title, 
+        slug, 
+        excerpt, 
+        content, 
+        image_url, 
+        category, 
+        author,
+        is_published: true // Mark as published by default for now
+      }])
       .select();
 
     if (error) {
-      console.error('Supabase admin error:', error);
+      console.error('Supabase admin insert error:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return NextResponse.json({ message: 'Blog created successfully', data }, { status: 201 });
+    return NextResponse.json({ message: 'Blog created successfully', data: data[0] }, { status: 201 });
   } catch (error) {
     console.error('API error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
