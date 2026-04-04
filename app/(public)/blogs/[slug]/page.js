@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const { data: blog } = await supabaseAdmin
     .from('blogs')
-    .select('title, excerpt, image_url, tags, created_at')
+    .select('*')
     .eq('slug', slug)
     .single();
 
@@ -126,11 +126,6 @@ export default async function BlogDetailPage({ params }) {
               src={blog.image_url} 
               alt={blog.title} 
               className="h-full w-full object-cover"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.parentElement.classList.add('flex', 'items-center', 'justify-center');
-                e.target.parentElement.innerHTML = '<div class="text-black/5"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>';
-              }}
             />
           </div>
         )}
