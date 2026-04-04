@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 import { Calendar, ArrowLeft, Share2, Globe, MessageCircle } from 'lucide-react';
 
+export const dynamic = "force-dynamic";
+
 // Use a privileged client since this is a server component
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -10,7 +12,7 @@ const supabaseAdmin = createClient(
 );
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const { data: blog } = await supabaseAdmin
     .from('blogs')
     .select('title, excerpt')
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogDetailPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const { data: blog, error } = await supabaseAdmin
     .from('blogs')

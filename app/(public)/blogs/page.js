@@ -8,6 +8,8 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: 'Blog | Geetanjali Softwares',
   description: 'Insights, guides, and updates from the team at Geetanjali Softwares.',

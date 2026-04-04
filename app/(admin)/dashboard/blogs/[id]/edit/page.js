@@ -7,7 +7,7 @@ import { ArrowLeft, Save, Loader2, Image as ImageIcon, Type, Layout, Tag, CheckC
 import RichTextEditor from '@/components/RichTextEditor';
 
 export default function EditBlogPage({ params }) {
-  const { id } = params;
+  const { id } = React.use(params);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

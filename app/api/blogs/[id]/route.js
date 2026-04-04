@@ -8,7 +8,7 @@ const supabaseAdmin = createClient(
 
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { data, error } = await supabaseAdmin
       .from('blogs')
       .select('*')
@@ -27,7 +27,7 @@ export async function GET(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     const { title, slug, excerpt, content, image_url, category, author, is_published } = body;
 
@@ -60,7 +60,7 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     const { error } = await supabaseAdmin
       .from('blogs')
