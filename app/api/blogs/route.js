@@ -1,9 +1,15 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
+// Admin-privileged client for server-side actions
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('blogs')
       .select('*')
       .order('created_at', { ascending: false });
@@ -27,13 +33,13 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('blogs')
       .insert([{ title, slug, excerpt, content, image_url, category, author }])
       .select();
 
     if (error) {
-      console.error('Supabase error:', error);
+      console.error('Supabase admin error:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 

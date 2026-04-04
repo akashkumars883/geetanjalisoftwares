@@ -80,10 +80,14 @@ export default function RichTextEditor({ value, onChange }) {
     <div className="rich-text-editor-container">
       <style jsx global>{`
         .ql-toolbar.ql-snow {
+          position: sticky;
+          top: 0;
+          z-index: 50;
           border-radius: 20px 20px 0 0;
           border: 1px solid rgba(0,0,0,0.05) !important;
           background: #fbfbfb;
           padding: 12px !important;
+          border-top-width: 1px !important;
         }
         .ql-container.ql-snow {
           border-radius: 0 0 20px 20px;
@@ -96,6 +100,14 @@ export default function RichTextEditor({ value, onChange }) {
           min-height: 350px;
           padding: 24px !important;
           line-height: 1.6;
+        }
+        .ql-editor img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 10px auto;
+          border-radius: 12px;
+          cursor: pointer;
         }
         .ql-editor.ql-blank::before {
           font-style: normal;
