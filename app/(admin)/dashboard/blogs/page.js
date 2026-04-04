@@ -90,25 +90,28 @@ export default function BlogsPage() {
                 </div>
               </div>
               
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 relative z-10">
                 <Link 
                   href={`/blogs/${blog.slug}`} 
                   target="_blank"
-                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-black/5 hover:text-black"
+                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-black/5 hover:text-black focus:ring-2 focus:ring-orange-500/20 outline-none"
                   title="View Live"
                 >
                   <ExternalLink size={18} />
                 </Link>
                 <Link 
                   href={`/dashboard/blogs/${blog.id}/edit`} 
-                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-black/5 hover:text-orange-600"
+                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-black/5 hover:text-orange-600 focus:ring-2 focus:ring-orange-500/20 outline-none"
                   title="Edit Blog"
                 >
                   <Edit2 size={18} />
                 </Link>
                 <button 
-                  onClick={() => handleDelete(blog.id)}
-                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-red-500/10 hover:text-red-600"
+                  onClick={() => {
+                    console.log('Deleting blog with ID:', blog.id);
+                    handleDelete(blog.id);
+                  }}
+                  className="rounded-xl p-2.5 text-black/40 transition hover:bg-red-500/10 hover:text-red-600 focus:ring-2 focus:ring-red-500/20 outline-none"
                   title="Delete Blog"
                 >
                   <Trash2 size={18} />
