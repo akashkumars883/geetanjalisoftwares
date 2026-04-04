@@ -25,17 +25,19 @@ export default function EditBlogPage({ params }) {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`/api/blogs`);
-        const data = await res.json();
-        const blog = data.find(b => b.id === id);
-        if (blog) {
+        const res = await fetch(`/api/blogs/${id}`);
+        const blog = await res.json();
+        
+        if (blog && !blog.error) {
           setFormData(blog);
         } else {
-          alert('Blog not found');
+          console.error('Blog not found with ID:', id);
+          alert('Error: Blog not found. Redirecting to dashboard.');
           router.push('/dashboard/blogs');
         }
       } catch (error) {
         console.error('Fetch error:', error);
+        alert('Failed to load article data.');
       } finally {
         setLoading(false);
       }

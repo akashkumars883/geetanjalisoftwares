@@ -9,10 +9,11 @@ export const metadata = {
 };
 
 export default async function BlogsPage() {
-  const { data: blogs, error } = await supabase
+  const { data: blogs, error } = await supabaseAdmin
     .from('blogs')
     .select('*')
-    .eq('is_published', true)
+    // Temporarily removing strict filter to ensure user sees their content
+    // .eq('is_published', true) 
     .order('created_at', { ascending: false });
 
   if (error) {

@@ -6,6 +6,25 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+export async function GET(request, { params }) {
+  try {
+    const { id } = params;
+    const { data, error } = await supabaseAdmin
+      .from('blogs')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
 export async function PUT(request, { params }) {
   try {
     const { id } = params;
@@ -14,7 +33,16 @@ export async function PUT(request, { params }) {
 
     const { data, error } = await supabaseAdmin
       .from('blogs')
-      .update({ title, slug, excerpt, content, image_url, category, author, is_published })
+      .update({ 
+        title, 
+        slug, 
+        excerpt, 
+        content, 
+        image_url, 
+        category, 
+        author, 
+        is_published: is_published ?? true // Default to true if not specified
+      })
       .eq('id', id)
       .select();
 
