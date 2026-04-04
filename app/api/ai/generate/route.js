@@ -50,7 +50,8 @@ export async function POST(req) {
             "title": "SEO Optimized Title (50-60 chars)",
             "excerpt": "Compelling Meta Description (100-130 chars)",
             "content": "Full HTML content starting with an intro...",
-            "category": "e.g., Business Strategy"
+            "category": "e.g., Business Strategy",
+            "tags": ["Tag1", "Tag2", "Tag3", "Tag4", "Tag5"]
           }
         `;
 

@@ -29,7 +29,7 @@ export async function PUT(request, { params }) {
   try {
     const { id } = await params;
     const body = await request.json();
-    const { title, slug, excerpt, content, image_url, category, author, is_published } = body;
+    const { title, slug, excerpt, content, image_url, category, author, is_published, tags } = body;
 
     const { data, error } = await supabaseAdmin
       .from('blogs')
@@ -41,6 +41,7 @@ export async function PUT(request, { params }) {
         image_url, 
         category, 
         author, 
+        tags: tags || [],
         is_published: is_published ?? true // Default to true if not specified
       })
       .eq('id', id)

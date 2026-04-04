@@ -19,7 +19,8 @@ export default function EditBlogPage({ params }) {
     image_url: '',
     category: '',
     author: 'Admin',
-    is_published: true
+    is_published: true,
+    tags: []
   });
 
   useEffect(() => {
@@ -132,18 +133,34 @@ export default function EditBlogPage({ params }) {
                required
              />
            </div>
-           <div className="space-y-2">
-             <label className="text-xs font-bold uppercase tracking-wider text-black/30 flex items-center gap-2">
-               <Tag size={14} /> Category
-             </label>
-             <input 
-               type="text" 
-               className="w-full rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
-               value={formData.category || ''}
-               onChange={(e) => setFormData({...formData, category: e.target.value})}
-             />
-           </div>
-        </div>
+         </div>
+
+         <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-black/30 flex items-center gap-2">
+                <Tag size={14} /> Category
+              </label>
+              <input 
+                type="text" 
+                placeholder="Business, Tech, etc."
+                className="w-full rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
+                value={formData.category || ''}
+                onChange={(e) => setFormData({...formData, category: e.target.value})}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-black/30 flex items-center gap-2">
+                <Tag size={14} /> Tags (Comma separated)
+              </label>
+              <input 
+                type="text" 
+                placeholder="web-design, seo, branding"
+                className="w-full rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
+                value={Array.isArray(formData.tags) ? formData.tags.join(', ') : formData.tags || ''}
+                onChange={(e) => setFormData({...formData, tags: e.target.value.split(',').map(t => t.trim()).filter(t => t !== '')})}
+              />
+            </div>
+         </div>
 
         <div className="space-y-2">
           <label className="text-xs font-bold uppercase tracking-wider text-black/30 flex items-center gap-2">
@@ -151,10 +168,24 @@ export default function EditBlogPage({ params }) {
           </label>
           <input 
             type="url" 
+            placeholder="https://images.unsplash.com/your-image-url"
             className="w-full rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
             value={formData.image_url || ''}
             onChange={(e) => setFormData({...formData, image_url: e.target.value})}
           />
+          {formData.image_url && (
+            <div className="mt-4 relative aspect-[21/9] rounded-2xl overflow-hidden border border-black/5 bg-stone-50">
+              <img 
+                src={formData.image_url} 
+                alt="Preview" 
+                className="h-full w-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-xs font-bold text-red-400 bg-red-50 uppercase tracking-wider">Invalid Image URL</div>';
+                }}
+              />
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">

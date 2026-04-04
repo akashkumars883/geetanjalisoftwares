@@ -27,7 +27,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { title, slug, excerpt, content, image_url, category, author } = body;
+    const { title, slug, excerpt, content, image_url, category, author, tags } = body;
 
     if (!title || !slug || !content) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -43,6 +43,7 @@ export async function POST(request) {
         image_url, 
         category, 
         author,
+        tags: tags || [],
         is_published: true // Mark as published by default for now
       }])
       .select();
