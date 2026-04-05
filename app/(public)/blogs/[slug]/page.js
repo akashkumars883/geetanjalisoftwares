@@ -4,20 +4,27 @@ import { createClient } from '@supabase/supabase-js';
 import { Calendar, ArrowLeft, Tag, Clock } from 'lucide-react';
 import BlogImage from '@/components/BlogImage';
 
-export const dynamic = "force-dynamic";
-
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const { data: blog } = await supabaseAdmin
+import { cache } from 'react';
+
+// Memoize the blog fetch to share between metadata and page
+const getBlog = cache(async (slug) => {
+  return await supabaseAdmin
     .from('blogs')
     .select('*')
     .eq('slug', slug)
     .single();
+});
+
+export const revalidate = 3600; // Revalidate every hour
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const { data: blog } = await getBlog(slug);
 
   if (!blog) return { title: 'Blog Not Found' };
 
@@ -53,18 +60,19 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetailPage({ params }) {
   const { slug } = await params;
 
-  const { data: blog, error } = await supabaseAdmin
-    .from('blogs')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+  // Fetch data in parallel
+  const [blogRes, recentBlogsRes] = await Promise.all([
+    getBlog(slug),
+    supabaseAdmin
+      .from('blogs')
+      .select('id, title, slug, image_url, created_at, category, excerpt')
+      .neq('slug', slug)
+      .order('created_at', { ascending: false })
+      .limit(5)
+  ]);
 
-  const { data: recentBlogs } = await supabaseAdmin
-    .from('blogs')
-    .select('id, title, slug, image_url, created_at, category, excerpt')
-    .neq('slug', slug)
-    .order('created_at', { ascending: false })
-    .limit(5);
+  const { data: blog, error } = blogRes;
+  const { data: recentBlogs } = recentBlogsRes;
 
   if (error || !blog) {
     return (

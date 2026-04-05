@@ -16,6 +16,7 @@ const vollkorn = Vollkorn({
 })      
 
 import { supabase } from "@/lib/supabase";
+import { Toaster } from "sonner";
 
 export async function generateMetadata() {
   try {
@@ -84,6 +85,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${outfit.variable} ${vollkorn.variable} antialiased`}
       >
+        <Toaster richColors position="top-right" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VYQ9HPXHVZ"
           strategy="afterInteractive"
