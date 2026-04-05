@@ -22,13 +22,13 @@ export default function BlogListing({ blogs }) {
     );
   }
 
-  // Split blogs for the new layout
-  const heroBlogs = blogs.slice(0, 5);
+  // Split blogs for the new layout (3 featured blogs)
+  const heroBlogs = blogs.slice(0, 3);
   const featuredMain = heroBlogs[0];
-  const featuredSide = heroBlogs.slice(1, 5);
+  const featuredSide = heroBlogs.slice(1, 3);
   
-  const trendingBlogs = blogs.slice(5, 9);
-  const recentBlogs = blogs.slice(9, visibleCount);
+  const trendingBlogs = blogs.slice(3, 7);
+  const recentBlogs = blogs.slice(7, visibleCount);
   const hasMore = visibleCount < blogs.length;
 
   return (
@@ -42,7 +42,7 @@ export default function BlogListing({ blogs }) {
             <div className="lg:col-span-2">
               <Link
                 href={`/blogs/${featuredMain.slug}`}
-                className="group relative flex h-[400px] sm:h-[500px] lg:h-[600px] w-full flex-col overflow-hidden rounded-lg bg-stone-900 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10"
+                className="group relative flex h-[400px] sm:h-[500px] lg:h-[600px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10"
               >
                 {featuredMain.image_url ? (
                   <img
@@ -88,7 +88,7 @@ export default function BlogListing({ blogs }) {
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group relative flex h-[180px] sm:h-[190px] lg:h-[139px] w-full flex-col overflow-hidden rounded-[24px] bg-stone-900"
+                className="group relative flex h-[200px] sm:h-[240px] lg:h-[288px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1"
               >
                 {blog.image_url && (
                   <img
@@ -98,11 +98,11 @@ export default function BlogListing({ blogs }) {
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="relative mt-auto p-5 space-y-1.5">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-orange-400">
+                <div className="relative mt-auto p-6 space-y-2">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
                         {blog.category || 'Insights'}
                     </span>
-                  <h3 className="text-sm sm:text-base font-bold leading-tight text-white line-clamp-2 group-hover:text-orange-100 transition">
+                  <h3 className="text-base sm:text-lg font-bold leading-snug text-white line-clamp-2 group-hover:text-orange-100 transition">
                     {blog.title}
                   </h3>
                 </div>
@@ -127,7 +127,7 @@ export default function BlogListing({ blogs }) {
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group relative aspect-[3/4] overflow-hidden rounded-[28px] bg-stone-100 transition-all duration-300 hover:-translate-y-1"
+                className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-stone-100 transition-all duration-300 hover:-translate-y-1"
               >
                 {blog.image_url ? (
                   <img
@@ -177,7 +177,7 @@ export default function BlogListing({ blogs }) {
                 href={`/blogs/${blog.slug}`}
                 className="group flex flex-col space-y-5"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-black/5 bg-stone-50">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] border border-black/5 bg-stone-50 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-orange-500/5">
                   {blog.image_url ? (
                     <img
                       src={blog.image_url}

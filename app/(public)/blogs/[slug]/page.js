@@ -97,74 +97,74 @@ export default async function BlogDetailPage({ params }) {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] gap-10 xl:gap-14 items-start">
 
         {/* ────── LEFT: ARTICLE ────── */}
-        <article className="min-w-0 flex flex-col">
-
-          {/* Cover image */}
-          {blog.image_url && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-black/5 bg-stone-50 mb-4 sm:mb-6 order-1 sm:order-2">
-              <BlogImage
-                src={blog.image_url}
-                alt={blog.title}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          )}
+        <article className="min-w-0">
 
           {/* Header */}
-          <header className="mb-4 sm:mb-6 space-y-3 sm:space-y-4 order-2 sm:order-1">
+          <header className="mb-6 sm:mb-10 space-y-4 sm:space-y-6">
 
             {/* Meta row */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-2">
-              <span className="hidden sm:inline-flex rounded-lg border border-black/8 bg-black/[0.04] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black/55">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <span className="rounded-lg border border-black/8 bg-black/[0.04] px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-black/55 shadow-sm">
                 {blog.category || 'Insights'}
               </span>
-              <span suppressHydrationWarning={true} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
-                <Calendar size={10} />
+              <span suppressHydrationWarning={true} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-black/30">
+                <Calendar size={12} strokeWidth={2} />
                 {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
-              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
-                <Clock size={10} />
+              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-black/30">
+                <Clock size={12} strokeWidth={2} />
                 {readTime} min read
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:text-4xl xl:text-5xl">
+            <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-4xl lg:text-5xl xl:text-6xl">
               {blog.title}
             </h1>
 
             {/* Excerpt */}
             {blog.excerpt && (
-              <p className="text-base text-black/50 leading-relaxed border-l-2 border-black/10 pl-4 sm:text-lg">
+              <p className="text-lg text-black/50 leading-relaxed border-l-[3px] border-orange-500/20 pl-6 sm:text-xl font-medium italic">
                 {blog.excerpt}
               </p>
             )}
 
             {/* Author */}
-            <div className="hidden sm:flex items-center gap-3 pt-1">
-              <div className="h-9 w-9 flex-shrink-0 rounded-full bg-black/6 border border-black/8 flex items-center justify-center text-xs font-black text-black/50 uppercase">
+            <div className="flex items-center gap-4 pt-2">
+              <div className="h-11 w-11 flex-shrink-0 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-sm font-black text-orange-600 uppercase shadow-sm">
                 {blog.author?.charAt(0) || 'A'}
               </div>
               <div>
-                <p className="text-sm font-bold text-black">{blog.author || 'Admin'}</p>
-                <p className="text-[10px] font-bold text-black/30 uppercase tracking-widest">Geetanjali Softwares Team</p>
+                <p className="text-base font-bold text-black leading-tight">{blog.author || 'Admin'}</p>
+                <p className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] mt-0.5">Geetanjali Softwares Team</p>
               </div>
             </div>
           </header>
 
+          {/* Cover image */}
+          {blog.image_url && (
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[32px] border border-black/5 bg-stone-50 mb-10 lg:mb-14 shadow-xl shadow-black/5">
+              <BlogImage
+                src={blog.image_url}
+                alt={blog.title}
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+          )}
+
           {/* Body content */}
           <div
-            className="prose prose-sm sm:prose-base lg:prose-lg max-w-none order-3
+            className="prose prose-sm sm:prose-base lg:prose-lg max-w-none 
               prose-headings:font-bold prose-headings:text-black prose-headings:tracking-tight
-              prose-headings:mt-8 prose-headings:mb-4
-              prose-p:text-black/70 prose-p:leading-relaxed prose-p:mt-3 prose-p:mb-3
+              prose-headings:mt-6 prose-headings:mb-2
+              prose-p:text-black/70 prose-p:leading-relaxed prose-p:mt-2 prose-p:mb-2
               prose-a:text-black prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-black/60
               prose-strong:text-black prose-strong:font-bold
               prose-blockquote:border-l-2 prose-blockquote:border-black/15 prose-blockquote:bg-black/[0.02] prose-blockquote:rounded-lg prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:not-italic
-              prose-img:rounded-lg prose-img:border prose-img:border-black/5
+              prose-img:rounded-[24px] prose-img:border prose-img:border-black/5 prose-img:shadow-lg prose-img:shadow-black/5
               prose-code:text-black prose-code:bg-black/5 prose-code:rounded prose-code:px-1
               prose-pre:rounded-lg prose-pre:bg-black/5 prose-pre:border prose-pre:border-black/8
-              prose-ul:text-black/70 prose-ol:text-black/70 prose-li:my-1
+              prose-ul:text-black/70 prose-ol:text-black/70 prose-li:my-0.5
               prose-hr:border-black/8"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
