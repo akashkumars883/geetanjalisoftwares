@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save, Loader2, Image as ImageIcon, Type, Layout, Tag } from 'lucide-react';
 import RichTextEditor from '@/components/RichTextEditor';
+import { processContentImages } from '@/utils/imageUtils';
 
 export default function NewBlogPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -112,11 +114,19 @@ export default function NewBlogPage() {
     }
 
     setLoading(true);
+    setIsProcessing(true);
     try {
+      // 1. Process and optimize all embedded/pasted images
+      const cleanedContent = await processContentImages(formData.content);
+      const submissionData = { ...formData, content: cleanedContent };
+      
+      setIsProcessing(false);
+
+      // 2. Submit the blog post
       const res = await fetch('/api/blogs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(submissionData)
       });
       
       const contentType = res.headers.get('content-type');
@@ -138,6 +148,7 @@ export default function NewBlogPage() {
       console.error('Submit error:', error);
       alert(`An unexpected error occurred: ${error.message}`);
     } finally {
+      setIsProcessing(false);
       setLoading(false);
     }
   };
@@ -162,11 +173,11 @@ export default function NewBlogPage() {
           </button>
           <button 
             onClick={handleSubmit}
-            disabled={loading || isGenerating}
+            disabled={loading || isGenerating || isProcessing}
             className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/30 transition hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />} 
-            Publish Article
+            {isProcessing ? 'Optimizing Images...' : 'Publish Article'}
           </button>
         </div>
       </div>
