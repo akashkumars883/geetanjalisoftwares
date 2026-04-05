@@ -20,18 +20,54 @@ export default function RichTextEditor({ value, onChange }) {
       const quill = new Quill(containerRef.current, {
         theme: 'snow',
         modules: {
-          toolbar: [
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            [{ font: [] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ color: [] }, { background: [] }],
-            [{ script: 'sub' }, { script: 'super' }],
-            ['blockquote', 'code-block'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
-            ['link', 'image', 'video'],
-            ['clean'],
-          ],
+          toolbar: {
+            container: [
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
+              [{ font: [] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ color: [] }, { background: [] }],
+              [{ script: 'sub' }, { script: 'super' }],
+              ['blockquote', 'code-block'],
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
+              ['link', 'image', 'video'],
+              ['clean'],
+            ],
+            handlers: {
+              image: () => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.click();
+
+                input.onchange = async () => {
+                  const file = input.files[0];
+                  if (!file) return;
+
+                  const formData = new FormData();
+                  formData.append('file', file);
+
+                  try {
+                    const res = await fetch('/api/upload', {
+                      method: 'POST',
+                      body: formData
+                    });
+
+                    if (!res.ok) throw new Error('Upload failed');
+
+                    const { url } = await res.json();
+                    
+                    const range = quill.getSelection(true);
+                    quill.insertEmbed(range.index, 'image', url);
+                    quill.setSelection(range.index + 1);
+                  } catch (error) {
+                    console.error('Quill image upload error:', error);
+                    alert('Failed to upload image. Please try again.');
+                  }
+                };
+              }
+            }
+          },
         },
       });
 
