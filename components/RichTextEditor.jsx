@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import 'quill/dist/quill.snow.css';
+import { compressImage } from '@/utils/imageUtils';
 
 export default function RichTextEditor({ value, onChange }) {
   const containerRef = useRef(null);
@@ -44,10 +45,15 @@ export default function RichTextEditor({ value, onChange }) {
                   const file = input.files[0];
                   if (!file) return;
 
-                  const formData = new FormData();
-                  formData.append('file', file);
-
                   try {
+                    // 1. Compress the image before uploading
+                    const compressedBlob = await compressImage(URL.createObjectURL(file));
+                    const fileName = `optimized-${Date.now()}-${Math.random().toString(36).substring(7)}.jpg`;
+                    const optimizedFile = new File([compressedBlob], fileName, { type: 'image/jpeg' });
+
+                    const formData = new FormData();
+                    formData.append('file', optimizedFile);
+
                     const res = await fetch('/api/upload', {
                       method: 'POST',
                       body: formData
