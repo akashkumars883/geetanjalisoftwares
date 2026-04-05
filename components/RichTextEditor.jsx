@@ -53,7 +53,12 @@ export default function RichTextEditor({ value, onChange }) {
                       body: formData
                     });
 
-                    if (!res.ok) throw new Error('Upload failed');
+                    if (!res.ok) {
+                      const errorData = await res.json();
+                      const specificError = errorData.error || 'Upload failed';
+                      const errorDetails = errorData.details || '';
+                      throw new Error(`${specificError}${errorDetails ? ' - ' + errorDetails : ''}`);
+                    }
 
                     const { url } = await res.json();
                     

@@ -29,7 +29,10 @@ export async function POST(request) {
 
     if (error) {
       console.error('Supabase storage upload error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return NextResponse.json({ 
+        error: error.message, 
+        details: error.details || 'No additional details' 
+      }, { status: 500 });
     }
 
     const { data: { publicUrl } } = supabaseAdmin.storage
@@ -39,6 +42,6 @@ export async function POST(request) {
     return NextResponse.json({ url: publicUrl }, { status: 200 });
   } catch (error) {
     console.error('Upload API error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error: ' + error.message }, { status: 500 });
   }
 }

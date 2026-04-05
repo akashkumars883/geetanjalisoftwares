@@ -99,6 +99,10 @@ export const processContentImages = async (htmlString) => {
             // Add native lazy loading for performance
             img.setAttribute('loading', 'lazy');
             hasChanges = true;
+          } else {
+            const errorData = await res.json();
+            console.error('Image optimization upload failed:', errorData.error, errorData.details);
+            // Fallback: leave it as base64 but log the specific error
           }
         } catch (error) {
           console.error('Error processing embedded image:', error);
