@@ -52,10 +52,15 @@ export async function PUT(request, { params }) {
        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return NextResponse.json({ message: 'Blog updated successfully', data });
+    if (!data || data.length === 0) {
+      console.error('Supabase update returned no data for ID:', id);
+      return NextResponse.json({ error: 'Failed to update blog entry' }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: 'Blog updated successfully', data: data[0] });
   } catch (error) {
-    console.error('API error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error('API error in PUT /api/blogs/[id]:', error);
+    return NextResponse.json({ error: 'Internal Server Error: ' + error.message }, { status: 500 });
   }
 }
 

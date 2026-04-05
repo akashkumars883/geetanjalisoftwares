@@ -53,9 +53,14 @@ export async function POST(request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    if (!data || data.length === 0) {
+      console.error('Supabase insert returned no data');
+      return NextResponse.json({ error: 'Failed to create blog entry' }, { status: 500 });
+    }
+
     return NextResponse.json({ message: 'Blog created successfully', data: data[0] }, { status: 201 });
   } catch (error) {
-    console.error('API error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error('API error in POST /api/blogs:', error);
+    return NextResponse.json({ error: 'Internal Server Error: ' + error.message }, { status: 500 });
   }
 }

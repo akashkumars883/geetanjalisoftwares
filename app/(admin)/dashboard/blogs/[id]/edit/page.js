@@ -78,6 +78,13 @@ export default function EditBlogPage({ params }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Basic validation
+    if (!formData.title || !formData.slug || !formData.content) {
+      alert('Please fill in the Title, Slug, and Content before updating.');
+      return;
+    }
+
     setSaving(true);
     try {
       const res = await fetch(`/api/blogs/${id}`, {
@@ -85,16 +92,25 @@ export default function EditBlogPage({ params }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+
+      const contentType = res.headers.get('content-type');
       if (res.ok) {
         router.push('/dashboard/blogs');
         router.refresh();
       } else {
-        const error = await res.json();
-        alert(`Error: ${error.error}`);
+        let errorMessage = 'An error occurred';
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await res.json();
+          errorMessage = errorData.error || errorMessage;
+        } else {
+          const textError = await res.text();
+          errorMessage = `Server Error (${res.status}): ${textError.slice(0, 100)}...`;
+        }
+        alert(`Error: ${errorMessage}`);
       }
     } catch (error) {
       console.error('Submit error:', error);
-      alert('An unexpected error occurred.');
+      alert(`An unexpected error occurred: ${error.message}`);
     } finally {
       setSaving(false);
     }
