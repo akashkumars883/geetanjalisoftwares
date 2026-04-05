@@ -81,7 +81,7 @@ export default function BlogsPage() {
                     <span className="rounded-full bg-orange-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-orange-600">
                       {blog.category || 'General'}
                     </span>
-                    <span className="text-[10px] font-medium text-black/30 flex items-center gap-1">
+                    <span suppressHydrationWarning={true} className="text-[10px] font-medium text-black/30 flex items-center gap-1">
                        <Calendar size={10} /> {new Date(blog.created_at).toLocaleDateString()}
                     </span>
                   </div>

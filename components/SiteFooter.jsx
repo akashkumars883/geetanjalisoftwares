@@ -12,7 +12,7 @@ const footerLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-black/5 pt-14 pb-8">
+    <footer className="border-t border-black/5 pt-10 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Main row — brand left, links right on desktop */}
@@ -23,10 +23,10 @@ export default function SiteFooter() {
             <Link href="/" className="text-xl font-bold tracking-tight text-black sm:text-2xl">
               Geetanjali  <span className="font-normal text-black/45">Softwares</span>
             </Link>
-            <p className="mt-4 text-sm leading-7 text-black/55">
+            <p className="mt-3 text-sm leading-relaxed text-black/55">
               Modern websites, performance-driven digital marketing, and unique branding for businesses that demand a stronger online presence.
             </p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 space-y-2.5">
               <li>
                 <a href="mailto:geetanjalisoftwares@gmail.com" className="flex items-start gap-2.5 text-sm text-black/50 hover:text-black transition">
                   <Mail size={15} className="text-orange-500 mt-0.5 shrink-0" />
@@ -47,12 +47,12 @@ export default function SiteFooter() {
           </div>
 
           {/* Links — 2 col on mobile (left-aligned), 3 col on desktop */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-3 sm:gap-x-16">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 sm:gap-x-16">
 
             {/* Company */}
             <div>
               <h3 className="text-xs font-black uppercase tracking-widest text-black/30">Company</h3>
-              <nav className="mt-5 flex flex-col items-start gap-3" aria-label="Footer company navigation">
+              <nav className="mt-4 flex flex-col items-start gap-2.5" aria-label="Footer company navigation">
                 {footerLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -68,7 +68,7 @@ export default function SiteFooter() {
             {/* Connect */}
             <div>
               <h3 className="text-xs font-black uppercase tracking-widest text-black/30">Connect</h3>
-              <nav className="mt-5 flex flex-col items-start gap-3" aria-label="Social links">
+              <nav className="mt-4 flex flex-col items-start gap-2.5" aria-label="Social links">
                 <a href="#" className="text-sm font-medium text-black/65 hover:text-black transition">LinkedIn</a>
                 <a href="https://www.instagram.com/geetanjalisoftwares/" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-black/65 hover:text-black transition">Instagram</a>
                 <a href="#" className="text-sm font-medium text-black/65 hover:text-black transition">X (Twitter)</a>
@@ -78,7 +78,7 @@ export default function SiteFooter() {
             {/* Legal */}
             <div>
               <h3 className="text-xs font-black uppercase tracking-widest text-black/30">Legal</h3>
-              <nav className="mt-5 flex flex-col items-start gap-3" aria-label="Legal links">
+              <nav className="mt-4 flex flex-col items-start gap-2.5" aria-label="Legal links">
                 <Link href="/privacy" className="text-sm font-medium text-black/65 hover:text-black transition">Privacy Policy</Link>
                 <Link href="/terms" className="text-sm font-medium text-black/65 hover:text-black transition">Terms of Service</Link>
               </nav>

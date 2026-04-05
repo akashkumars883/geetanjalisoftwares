@@ -65,7 +65,7 @@ export default function BlogListing({ blogs }) {
                     <span className="rounded-full bg-orange-500 px-4 py-1.5 text-[8px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-500/20">
                       Top Choice
                     </span>
-                    <span className="text-[8px] font-bold uppercase tracking-widest text-white/60">
+                    <span suppressHydrationWarning={true} className="text-[8px] font-bold uppercase tracking-widest text-white/60">
                       {new Date(featuredMain.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </span>
                   </div>
@@ -152,7 +152,7 @@ export default function BlogListing({ blogs }) {
                   <h3 className="text-lg font-bold leading-[1.2] text-white group-hover:text-orange-100 transition">
                     {blog.title}
                   </h3>
-                  <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-white/50">
+                  <div suppressHydrationWarning={true} className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-white/50">
                     <Calendar size={11} /> 
                     {new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}
                   </div>
@@ -199,7 +199,7 @@ export default function BlogListing({ blogs }) {
 
                 <div className="flex flex-col space-y-3 px-1">
                   <div className="flex items-center gap-3 text-[10px] font-bold text-black/30 uppercase tracking-widest">
-                    <span>{new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <span suppressHydrationWarning={true}>{new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     <span className="h-1 w-1 rounded-full bg-black/20" />
                     <span className="flex items-center gap-1"><Clock size={11} /> {readingTime(blog.content)} MIN</span>
                   </div>

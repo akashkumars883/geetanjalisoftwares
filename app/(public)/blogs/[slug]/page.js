@@ -93,15 +93,6 @@ export default async function BlogDetailPage({ params }) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
 
-      {/* Back link */}
-      <Link
-        href="/blogs"
-        className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-black/35 hover:text-black transition mb-8 group"
-      >
-        <ArrowLeft size={13} className="transition-transform group-hover:-translate-x-1" />
-        All articles
-      </Link>
-
       {/* ── PAGE GRID: article left, sidebar right ── */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] gap-10 xl:gap-14 items-start">
 
@@ -127,7 +118,7 @@ export default async function BlogDetailPage({ params }) {
               <span className="hidden sm:inline-flex rounded-lg border border-black/8 bg-black/[0.04] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black/55">
                 {blog.category || 'Insights'}
               </span>
-              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
+              <span suppressHydrationWarning={true} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
                 <Calendar size={10} />
                 {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
@@ -242,7 +233,7 @@ export default async function BlogDetailPage({ params }) {
                     <h3 className="text-sm font-bold text-black leading-snug line-clamp-2 group-hover:text-orange-600 transition">
                       {item.title}
                     </h3>
-                    <p className="text-[10px] text-black/30">
+                    <p suppressHydrationWarning={true} className="text-[10px] text-black/30">
                       {new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
                     </p>
                   </div>

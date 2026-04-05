@@ -14,6 +14,7 @@
   --color-primary: var(--primary);
   --font-sans: var(--font-outfit);
   --font-mono: var(--font-vollkorn);
+  --font-serif: var(--font-vollkorn);
 }
 
 * {
@@ -49,14 +50,15 @@ h6 {
     font-size: 16px; /* Base font size for mobile */
   }
   
-  p, span, li {
-    font-size: 0.95rem !important; /* Prevent tiny text */
+  p, li {
+    font-size: 0.95rem; /* Prevent tiny text */
     line-height: 1.6;
   }
 
-  button, a {
-    min-height: 44px; /* Minimum touch target height */
-    min-width: 44px;  /* Minimum touch target width */
+  /* Keep touch targets reasonable but don't force it on every tiny link */
+  button, a.touch-target {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 

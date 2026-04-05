@@ -6,25 +6,25 @@ export default function HeroSection() {
     <section className="relative mb-24 overflow-hidden pb-14 pt-2">
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
             <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl">
-              Grow Your Business with <span className="text-orange-500">Digital Marketing</span>, Web Design & SEO
+              Empowering Brands with scalable <span className="inline font-serif text-orange-500 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"> digital marketing </span> solutions
             </h1>
 
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg">
               From modern websites to digital marketing and branding, We design fast, SEO-friendly websites that help you attract more customers and increase your revenue.
             </p>
 
-            <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/#contact-form"
-                className="inline-flex w-full items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:w-auto sm:px-8 sm:text-base"
+                className="inline-flex items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:px-8 sm:text-base"
               >
                 Get Free Consultation
               </Link>
               <Link
                 href="/#portfolio"
-                className="inline-flex w-full items-center justify-center rounded-full border border-black/15 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-black/5 sm:w-auto sm:px-8 sm:text-base"
+                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-black/5 sm:px-8 sm:text-base"
               >
                 View Portfolio
               </Link>
