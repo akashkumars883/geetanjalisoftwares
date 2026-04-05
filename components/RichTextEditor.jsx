@@ -67,7 +67,7 @@ export default function RichTextEditor({ value, onChange }) {
                     quill.setSelection(range.index + 1);
                   } catch (error) {
                     console.error('Quill image upload error:', error);
-                    alert('Failed to upload image. Please try again.');
+                    alert(`Failed to upload image: ${error.message}`);
                   }
                 };
               }
