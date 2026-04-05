@@ -57,9 +57,6 @@ h6 {
   button, a {
     min-height: 44px; /* Minimum touch target height */
     min-width: 44px;  /* Minimum touch target width */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 

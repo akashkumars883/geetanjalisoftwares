@@ -32,18 +32,23 @@ export default function TestimonialsSection() {
           </h2>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((item) => (
             <article
               key={item.name}
-              className="rounded-[28px] border border-black/10 bg-white/78 p-5 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-6"
+              className="flex flex-col rounded-lg border border-black/10 bg-white/80 p-5 shadow-sm backdrop-blur-xl sm:p-6"
             >
-              <p className="text-sm leading-7 text-black/72">
+              <p className="flex-1 text-sm leading-7 text-black/72">
                 &quot;{item.quote}&quot;
               </p>
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold text-primary">{item.name}</h3>
-                <p className="text-sm text-black/55">{item.role}</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-black/5 pt-5">
+                <div className="h-9 w-9 flex-shrink-0 rounded-full bg-orange-500/10 flex items-center justify-center text-xs font-black text-orange-600 uppercase">
+                  {item.name.charAt(0)}
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-black">{item.name}</h3>
+                  <p className="text-xs text-black/45">{item.role}</p>
+                </div>
               </div>
             </article>
           ))}

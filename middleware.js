@@ -4,8 +4,8 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
   const adminSession = request.cookies.get('admin_session');
 
-  // Protect /dashboard and /leads
-  if (pathname.startsWith('/dashboard') || pathname.startsWith('/leads')) {
+  // Protect /dashboard, /leads and /settings
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/leads') || pathname.startsWith('/settings')) {
     if (!adminSession || adminSession.value !== 'true') {
       const loginUrl = new URL('/login', request.url);
       return NextResponse.redirect(loginUrl);
@@ -22,5 +22,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/leads/:path*', '/login'],
+  matcher: ['/dashboard/:path*', '/leads/:path*', '/settings/:path*', '/login'],
 };

@@ -84,7 +84,7 @@ function GenericServicePage({ service }) {
 
   return (
     <>
-      <section className="pb-16 pt-24 sm:pb-20 sm:pt-28 lg:pt-32">
+      <section className="pb-16 pt-4 sm:pb-20 sm:pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className={`flex flex-col items-center text-center lg:items-start lg:text-left ${!service.detail.hero.image ? "lg:col-span-2 mx-auto" : ""}`}>
@@ -244,7 +244,7 @@ function WebsiteDesignDevelopmentPage({ service }) {
 
   return (
     <>
-      <section className="pb-16 pt-24 sm:pb-20 sm:pt-28 lg:pt-32">
+      <section className="pb-16 pt-4 sm:pb-20 sm:pt-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className={`flex flex-col items-center text-center lg:items-start lg:text-left ${!service.detail.hero.image ? "lg:col-span-2 mx-auto" : ""}`}>

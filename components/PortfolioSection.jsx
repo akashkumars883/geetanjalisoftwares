@@ -37,13 +37,13 @@ export default function PortfolioSection() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {portfolioItems.map((item) => (
             <article
               key={item.title}
-              className="group overflow-hidden rounded-[28px] border border-black/10 bg-white/78 p-5 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.3)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 sm:p-6"
+              className="group overflow-hidden rounded-lg border border-black/10 bg-white/80 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md backdrop-blur-xl sm:p-6"
             >
-              <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-stone-50">
+              <div className="relative mb-5 h-44 w-full overflow-hidden rounded-lg bg-stone-50">
                 <div className="absolute inset-0 bg-orange-500/5 blur-3xl opacity-50" />
                 <img
                   src={`/images/portfolio_${item.category.toLowerCase().includes("website") ? "web" : item.category.toLowerCase().includes("marketing") ? "marketing" : "branding"}.png`}
@@ -51,10 +51,10 @@ export default function PortfolioSection() {
                   className="h-full w-full object-contain remove-background transition duration-700 group-hover:scale-105"
                 />
               </div>
-              <span className="inline-flex rounded-full border border-black/10 bg-stone-100 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-black/55">
+              <span className="inline-flex rounded-lg border border-black/10 bg-stone-100 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-black/55">
                 {item.category}
               </span>
-              <h3 className="mt-5 text-2xl font-semibold tracking-tight text-black">
+              <h3 className="mt-4 text-xl font-semibold tracking-tight text-black sm:text-2xl">
                 {item.title}
               </h3>
               <p className="mt-3 text-sm leading-7 text-black/70">

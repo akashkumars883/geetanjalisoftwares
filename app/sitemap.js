@@ -6,12 +6,12 @@ export default async function sitemap() {
   // Fetch blogs from Supabase
   const { data: blogs } = await supabase
     .from('blogs')
-    .select('slug, updated_at')
-    .eq('status', 'published');
+    .select('slug, updated_at, created_at')
+    .eq('is_published', true);
 
   const blogUrls = (blogs || []).map((blog) => ({
     url: `${baseUrl}/blogs/${blog.slug}`,
-    lastModified: new Date(blog.updated_at),
+    lastModified: new Date(blog.updated_at || blog.created_at),
     changeFrequency: 'weekly',
     priority: 0.6,
   }));

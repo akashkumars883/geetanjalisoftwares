@@ -11,6 +11,7 @@ export default function EditBlogPage({ params }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -22,6 +23,35 @@ export default function EditBlogPage({ params }) {
     is_published: true,
     tags: []
   });
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: uploadData
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+
+      const { url } = await res.json();
+      setFormData(prev => ({ ...prev, image_url: url }));
+    } catch (error) {
+      console.error('Upload error:', error);
+      alert(`Upload failed: ${error.message}`);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -164,26 +194,56 @@ export default function EditBlogPage({ params }) {
 
         <div className="space-y-2">
           <label className="text-xs font-bold uppercase tracking-wider text-black/30 flex items-center gap-2">
-            <ImageIcon size={14} /> Cover Image URL
+            <ImageIcon size={14} /> Blog Cover Image
           </label>
-          <input 
-            type="url" 
-            placeholder="https://images.unsplash.com/your-image-url"
-            className="w-full rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
-            value={formData.image_url || ''}
-            onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-          />
+          <div className="flex flex-col sm:flex-row gap-3">
+             <input 
+               type="url" 
+               placeholder="Paste image URL (Unsplash, etc.)"
+               className="flex-1 rounded-2xl border border-black/5 bg-[#fcfcfc] px-5 py-3 text-sm font-medium text-black outline-none transition focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5"
+               value={formData.image_url || ''}
+               onChange={(e) => setFormData({...formData, image_url: e.target.value})}
+             />
+             <div className="relative">
+                <input 
+                  type="file" 
+                  id="image-upload"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                />
+                <label 
+                  htmlFor="image-upload"
+                  className={`inline-flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold transition cursor-pointer whitespace-nowrap justify-center w-full sm:w-auto ${
+                    isUploading 
+                    ? 'bg-black/5 text-black/20 cursor-not-allowed' 
+                    : 'bg-black text-white hover:bg-orange-600'
+                  }`}
+                >
+                  {isUploading ? <Loader2 size={16} className="animate-spin" /> : <ImageIcon size={16} />}
+                  {isUploading ? 'Uploading...' : 'Computer Upload'}
+                </label>
+             </div>
+          </div>
           {formData.image_url && (
-            <div className="mt-4 relative aspect-[21/9] rounded-2xl overflow-hidden border border-black/5 bg-stone-50">
+            <div className="mt-4 relative aspect-[21/9] rounded-2xl overflow-hidden border border-black/5 bg-stone-50 group">
               <img 
                 src={formData.image_url} 
                 alt="Preview" 
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-xs font-bold text-red-400 bg-red-50 uppercase tracking-wider">Invalid Image URL</div>';
                 }}
               />
+              <button 
+                type="button"
+                onClick={() => setFormData({...formData, image_url: ''})}
+                className="absolute top-4 right-4 h-8 w-8 rounded-full bg-black/50 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition hover:bg-red-500 shadow-xl"
+              >
+                ✕
+              </button>
             </div>
           )}
         </div>
@@ -206,7 +266,7 @@ export default function EditBlogPage({ params }) {
           </label>
           <RichTextEditor 
             value={formData.content}
-            onChange={(content) => setFormData({...formData, content})}
+            onChange={(val) => setFormData({...formData, content: val})}
           />
         </div>
       </form>

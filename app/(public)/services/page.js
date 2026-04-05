@@ -3,7 +3,7 @@ import { services } from "@/lib/services";
 
 export default function ServicesPage() {
   return (
-    <section className="relative pb-20 pt-24 sm:pt-28 lg:pt-32">
+    <section className="relative pb-20 pt-4 sm:pt-8">
       <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-orange-400/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

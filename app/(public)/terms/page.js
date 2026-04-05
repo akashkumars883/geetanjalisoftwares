@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TermsOfService() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="mx-auto max-w-4xl px-4 pt-4 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <h1 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">Terms of Service</h1>
       <p className="mt-4 text-black/50">Last Updated: April 2026</p>
       

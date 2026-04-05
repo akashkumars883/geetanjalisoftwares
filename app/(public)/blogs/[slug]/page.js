@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
-import { Calendar, ArrowLeft, Share2, Globe, MessageCircle } from 'lucide-react';
+import { Calendar, ArrowLeft, Tag, Clock } from 'lucide-react';
+import BlogImage from '@/components/BlogImage';
 
 export const dynamic = "force-dynamic";
 
-// Use a privileged client since this is a server component
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -26,14 +26,12 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${blog.title} | Geetanjali Softwares`,
-    description: description,
-    alternates: {
-      canonical: url,
-    },
+    description,
+    alternates: { canonical: url },
     openGraph: {
       title: blog.title,
-      description: description,
-      url: url,
+      description,
+      url,
       siteName: 'Geetanjali Softwares',
       images: blog.image_url ? [{ url: blog.image_url, width: 1200, height: 630 }] : [],
       locale: 'en_US',
@@ -45,7 +43,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: 'summary_large_image',
       title: blog.title,
-      description: description,
+      description,
       images: blog.image_url ? [blog.image_url] : [],
     },
     keywords: blog.tags?.join(', ') || 'software development, web design, digital marketing',
@@ -61,23 +59,19 @@ export default async function BlogDetailPage({ params }) {
     .eq('slug', slug)
     .single();
 
-  // Fetch latest articles for the "Read More" section
-  const { data: latestBlogs } = await supabaseAdmin
+  const { data: recentBlogs } = await supabaseAdmin
     .from('blogs')
-    .select('id, title, slug, image_url, created_at, category')
-    .neq('slug', slug) // Exclude current blog
+    .select('id, title, slug, image_url, created_at, category, excerpt')
+    .neq('slug', slug)
     .order('created_at', { ascending: false })
-    .limit(3);
+    .limit(5);
 
   if (error || !blog) {
     return (
-      <div className="flex h-screen flex-col items-center justify-center space-y-4">
-        <h1 className="text-4xl font-bold text-black">Article Not Found</h1>
-        <p className="text-black/40 text-lg">The article you're looking for might have been removed or moved.</p>
-        <Link 
-          href="/blogs" 
-          className="rounded-xl bg-orange-500 px-8 py-3 font-bold text-white shadow-lg shadow-orange-500/30 transition hover:bg-orange-600"
-        >
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 text-center">
+        <h1 className="text-3xl font-bold text-black">Article Not Found</h1>
+        <p className="text-black/40">The article you&apos;re looking for might have been removed.</p>
+        <Link href="/blogs" className="rounded-lg bg-black px-6 py-3 text-sm font-bold text-white transition hover:bg-black/80">
           Back to Insights
         </Link>
       </div>
@@ -85,126 +79,179 @@ export default async function BlogDetailPage({ params }) {
   }
 
   const tags = blog.tags || [];
+  const wordCount = blog.content?.replace(/<[^>]*>/g, '').split(/\s+/).length || 0;
+  const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <article className="py-12 sm:py-20 max-w-4xl mx-auto">
-        <Link 
-          href="/blogs" 
-          className="inline-flex items-center gap-2 text-sm font-bold text-black/40 transition hover:text-black mb-12 group"
-        >
-          <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" /> Back to Insights
-        </Link>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
 
-        <div className="space-y-6 mb-12">
-          <div className="flex items-center gap-3">
-            <span className="rounded-full bg-orange-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-orange-600">
-              {blog.category || 'Insights'}
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-black/30 flex items-center gap-1.5">
-              <Calendar size={12} /> {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-            </span>
-          </div>
-          <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl leading-[1.1]">
-            {blog.title}
-          </h1>
-          
-          <div className="flex items-center gap-3 pt-4 border-t border-black/5">
-             <div className="h-10 w-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs uppercase shadow-sm">
-               {blog.author?.charAt(0) || 'A'}
-             </div>
-             <div>
-                <p className="text-sm font-bold text-black leading-none">{blog.author || 'Admin'}</p>
-                <p className="text-[10px] font-bold text-black/30 uppercase tracking-wider mt-1">Written by Geetanjali Expert</p>
-             </div>
-          </div>
-        </div>
+      {/* Back link */}
+      <Link
+        href="/blogs"
+        className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-black/35 hover:text-black transition mb-8 group"
+      >
+        <ArrowLeft size={13} className="transition-transform group-hover:-translate-x-1" />
+        All articles
+      </Link>
 
-        {blog.image_url && (
-          <div className="relative aspect-video overflow-hidden rounded-[40px] border border-black/5 mb-16 shadow-2xl shadow-black/5 bg-stone-50">
-            <img 
-              src={blog.image_url} 
-              alt={blog.title} 
-              className="h-full w-full object-cover"
-            />
-          </div>
-        )}
+      {/* ── PAGE GRID: article left, sidebar right ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] gap-10 xl:gap-14 items-start">
 
-        <div className="grid lg:grid-cols-[1fr_80px] gap-12">
-          <div 
-            className="prose prose-orange prose-lg max-w-none text-black/80 prose-headings:font-bold prose-a:text-orange-500 hover:prose-a:text-orange-600 prose-img:rounded-3xl prose-img:shadow-xl prose-li:marker:text-orange-500"
+        {/* ────── LEFT: ARTICLE ────── */}
+        <article className="min-w-0 flex flex-col">
+
+          {/* Cover image */}
+          {blog.image_url && (
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-black/5 bg-stone-50 mb-4 sm:mb-6 order-1 sm:order-2">
+              <BlogImage
+                src={blog.image_url}
+                alt={blog.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* Header */}
+          <header className="mb-4 sm:mb-6 space-y-3 sm:space-y-4 order-2 sm:order-1">
+
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-2">
+              <span className="hidden sm:inline-flex rounded-lg border border-black/8 bg-black/[0.04] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black/55">
+                {blog.category || 'Insights'}
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
+                <Calendar size={10} />
+                {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30">
+                <Clock size={10} />
+                {readTime} min read
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:text-4xl xl:text-5xl">
+              {blog.title}
+            </h1>
+
+            {/* Excerpt */}
+            {blog.excerpt && (
+              <p className="text-base text-black/50 leading-relaxed border-l-2 border-black/10 pl-4 sm:text-lg">
+                {blog.excerpt}
+              </p>
+            )}
+
+            {/* Author */}
+            <div className="hidden sm:flex items-center gap-3 pt-1">
+              <div className="h-9 w-9 flex-shrink-0 rounded-full bg-black/6 border border-black/8 flex items-center justify-center text-xs font-black text-black/50 uppercase">
+                {blog.author?.charAt(0) || 'A'}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-black">{blog.author || 'Admin'}</p>
+                <p className="text-[10px] font-bold text-black/30 uppercase tracking-widest">Geetanjali Softwares Team</p>
+              </div>
+            </div>
+          </header>
+
+          {/* Body content */}
+          <div
+            className="prose prose-sm sm:prose-base lg:prose-lg max-w-none order-3
+              prose-headings:font-bold prose-headings:text-black prose-headings:tracking-tight
+              prose-headings:mt-8 prose-headings:mb-4
+              prose-p:text-black/70 prose-p:leading-relaxed prose-p:mt-3 prose-p:mb-3
+              prose-a:text-black prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-black/60
+              prose-strong:text-black prose-strong:font-bold
+              prose-blockquote:border-l-2 prose-blockquote:border-black/15 prose-blockquote:bg-black/[0.02] prose-blockquote:rounded-lg prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:not-italic
+              prose-img:rounded-lg prose-img:border prose-img:border-black/5
+              prose-code:text-black prose-code:bg-black/5 prose-code:rounded prose-code:px-1
+              prose-pre:rounded-lg prose-pre:bg-black/5 prose-pre:border prose-pre:border-black/8
+              prose-ul:text-black/70 prose-ol:text-black/70 prose-li:my-1
+              prose-hr:border-black/8"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
 
-          <div className="hidden lg:flex flex-col gap-6 sticky top-32 h-fit">
-             <div className="text-[10px] font-bold uppercase tracking-wider text-black/30 mb-2">Share</div>
-             <button className="h-12 w-12 rounded-2xl border border-black/5 bg-white flex items-center justify-center text-black/40 transition hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/30">
-                <MessageCircle size={20} />
-             </button>
-             <button className="h-12 w-12 rounded-2xl border border-black/5 bg-white flex items-center justify-center text-black/40 transition hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/30">
-                <Globe size={20} />
-             </button>
-             <button className="h-12 w-12 rounded-2xl border border-black/5 bg-white flex items-center justify-center text-black/40 transition hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/30">
-                <Share2 size={20} />
-             </button>
-          </div>
-        </div>
-
-        {tags.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-black/5">
-             <div className="flex flex-wrap gap-2">
-                <span className="text-sm font-bold text-black/30 mr-2 self-center">Tags:</span>
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div className="mt-10 pt-7 border-t border-black/5">
+              <div className="flex flex-wrap items-center gap-2">
+                <Tag size={12} className="text-black/25" />
                 {tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-stone-100 px-4 py-1.5 text-xs font-bold text-black/50 transition hover:bg-orange-500/10 hover:text-orange-600">
+                  <span
+                    key={tag}
+                    className="rounded-lg border border-black/8 bg-black/[0.03] px-3 py-1 text-xs font-bold text-black/45"
+                  >
                     #{tag}
                   </span>
                 ))}
-             </div>
-          </div>
-        )}
-      </article>
-
-      {/* Latest Articles Section */}
-      {latestBlogs && latestBlogs.length > 0 && (
-        <section className="py-20 border-t border-black/5">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-black">Read <span className="text-orange-500">Latest Articles</span></h2>
-              <Link href="/blogs" className="text-sm font-bold text-black/40 hover:text-orange-500 transition">View All Insights</Link>
+              </div>
             </div>
-            
-            <div className="grid gap-8 md:grid-cols-3">
-              {latestBlogs.map((item) => (
-                <Link 
-                  key={item.id} 
+          )}
+        </article>
+
+        {/* ────── RIGHT: SIDEBAR ────── */}
+        <aside className="lg:sticky lg:top-24 space-y-5">
+
+          {/* Sidebar header */}
+          <div className="pb-4 border-b border-black/6">
+            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-black/30 mb-0.5">
+              Recent Articles
+            </p>
+            <h2 className="text-base font-bold text-black">More to read</h2>
+          </div>
+
+          {/* Article list */}
+          <div className="divide-y divide-black/5">
+            {(recentBlogs || []).length === 0 ? (
+              <p className="py-4 text-sm text-black/30">No other articles yet.</p>
+            ) : (
+              (recentBlogs || []).map((item) => (
+                <Link
+                  key={item.id}
                   href={`/blogs/${item.slug}`}
-                  className="group flex flex-col gap-4"
+                  className="group flex gap-3 py-4 transition"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] border border-black/5 bg-black/5">
+                  {/* Thumbnail */}
+                  <div className="flex-shrink-0 h-[60px] w-[60px] sm:h-16 sm:w-16 rounded-lg overflow-hidden border border-black/5 bg-stone-50">
                     {item.image_url ? (
-                      <img 
-                        src={item.image_url} 
-                        alt={item.title} 
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                      <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-black/10">
-                        <Tag size={32} />
+                        <Tag size={18} strokeWidth={1.5} />
                       </div>
                     )}
                   </div>
-                  <div className="px-1 space-y-2">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-orange-600">{item.category || 'Insights'}</p>
-                    <h3 className="text-lg font-bold text-black leading-tight group-hover:text-orange-500 transition line-clamp-2">
+
+                  {/* Text */}
+                  <div className="flex flex-col justify-center gap-0.5 min-w-0">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-black/25">
+                      {item.category || 'Insights'}
+                    </p>
+                    <h3 className="text-sm font-bold text-black leading-snug line-clamp-2 group-hover:text-orange-600 transition">
                       {item.title}
                     </h3>
+                    <p className="text-[10px] text-black/30">
+                      {new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
                   </div>
                 </Link>
-              ))}
-            </div>
+              ))
+            )}
           </div>
-        </section>
-      )}
+
+          {/* View all */}
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-black/35 hover:text-orange-600 transition"
+          >
+            View all articles →
+          </Link>
+        </aside>
+      </div>
     </div>
   );
 }

@@ -4,8 +4,8 @@ import FinalCtaSection from "@/components/FinalCtaSection";
 
 export default function AboutPage() {
   return (
-    <div className="pt-8 sm:pt-12">
-      <section className="relative pb-16 pt-12 sm:pb-24 sm:pt-16 lg:pt-20">
+    <div className="pt-0">
+      <section className="relative pb-16 pt-4 sm:pb-24 sm:pt-8">
         <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-orange-400/10 blur-[120px] -z-10" />
         
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

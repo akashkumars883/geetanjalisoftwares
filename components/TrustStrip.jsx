@@ -10,16 +10,16 @@ const logos = [
 
 export default function TrustStrip() {
   return (
-    <section className="py-12 mb-20 bg-stone-50/30">
+    <section className="py-10 mb-16 sm:mb-20 bg-stone-50/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-black/40 mb-10">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-black/35 mb-8">
           Trusted by Businesses for Modern Solutions
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-12 opacity-50 grayscale transition-all hover:grayscale-0 sm:gap-20">
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 lg:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
           {logos.map((logo) => (
-            <div key={logo.name} className="flex items-center gap-2">
-              <div className={`h-8 w-8 rounded-lg bg-${logo.hue}-500/20`} />
-              <span className="text-lg font-bold tracking-tight text-black/70">
+            <div key={logo.name} className="flex items-center gap-2 shrink-0">
+              <div className={`h-7 w-7 rounded-lg bg-${logo.hue}-500/20`} />
+              <span className="text-base font-bold tracking-tight text-black/70">
                 {logo.name}
               </span>
             </div>

@@ -69,7 +69,7 @@ export default function BlogsPage() {
               <div className="flex items-center gap-5">
                 <div className="h-16 w-16 overflow-hidden rounded-2xl bg-black/5">
                    {blog.image_url ? (
-                     <img src={blog.image_url} alt={blog.title} className="h-full w-full object-cover" />
+                     <img src={blog.image_url} alt={blog.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                    ) : (
                      <div className="flex h-full w-full items-center justify-center text-black/10">
                         <Tag size={24} />

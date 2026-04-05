@@ -171,18 +171,18 @@ export default function Navbar() {
         }`}
       >
         <nav
-          className="mx-auto flex w-full max-w-8xl flex-col px-4 py-4 sm:px-6"
+          className="flex w-full flex-col items-start px-4 py-4 sm:px-6 text-left"
           aria-label="Mobile navigation"
         >
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="rounded-xl px-3 py-3 text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+            className="w-full rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
           >
             Home
           </Link>
 
-          <div className="rounded-xl">
+          <div className="w-full rounded-xl">
             <button
               type="button"
               onClick={() => setIsServicesMobileOpen((prev) => !prev)}
@@ -203,13 +203,13 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div className={`${isServicesMobileOpen ? 'block' : 'hidden'} px-2 pb-2`}>
+            <div className={`${isServicesMobileOpen ? 'block' : 'hidden'} px-2 pb-2 ml-4 border-l border-black/5`}>
               {SERVICE_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="block rounded-xl px-3 py-3 text-sm font-medium text-black/72 transition hover:bg-black/5 hover:text-black"
+                  className="block w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-black/72 transition hover:bg-black/5 hover:text-black"
                 >
                   {link.label}
                 </Link>
@@ -222,7 +222,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={closeMobileMenu}
-              className="rounded-xl px-3 py-3 text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+              className="w-full rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
             >
               {link.label}
             </Link>

@@ -78,7 +78,7 @@ export default function RichTextEditor({ value, onChange }) {
 
   return (
     <div className="rich-text-editor-container">
-      <style jsx global>{`
+      <style>{`
         .ql-toolbar.ql-snow {
           position: sticky;
           top: 0;
