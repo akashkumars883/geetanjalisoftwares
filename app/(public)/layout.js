@@ -13,8 +13,8 @@ export default function PublicLayout({ children }) {
         <Navbar />
         <Breadcrumbs />
         {children}
-        <FloatingWhatsApp />
         <div className="mt-20">
+
           <ServiceAreaStrip />
         </div>
         <SiteFooter />

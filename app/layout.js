@@ -17,6 +17,10 @@ const vollkorn = Vollkorn({
 
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
+import AIConsultant from "@/components/AIConsultant";
+
+
+
 
 export async function generateMetadata() {
   try {
@@ -45,9 +49,9 @@ export async function generateMetadata() {
 
   // Fallback for Bihar-focused SEO
   return {
-    title: "Geetanjali Softwares - Leading Digital Agency in Bihar",
-    description: "Premium website design, development, digital marketing, and branding services. Scaling businesses in Bihar and across India.",
-    keywords: "digital marketing, website design, development, branding, bihar digital agency, seo services",
+    title: "Geetanjali Softwares - Leading Website Development & Digital Marketing Company",
+    description: "Scale your business with Geetanjali Softwares. We specialize in high-performance web development, SEO, and customsoftware designed to scale your brand online. ",
+    keywords: "digital marketing, website design, development, branding, bihar digital agency, seo services ",
     alternates: {
       canonical: 'https://geetanjalisoftwares.in',
     },
@@ -86,6 +90,8 @@ export default function RootLayout({ children }) {
         className={`${outfit.variable} ${vollkorn.variable} antialiased`}
       >
         <Toaster richColors position="top-right" />
+        <AIConsultant />
+
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VYQ9HPXHVZ"
           strategy="afterInteractive"

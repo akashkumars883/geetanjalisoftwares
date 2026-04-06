@@ -86,17 +86,20 @@ export default function SettingsPage() {
         body: JSON.stringify(settings),
       });
 
+      const data = await res.json();
+
       if (res.ok) {
         setMessage('Settings saved successfully! Changes will reflect on live site.');
       } else {
-        throw new Error('Failed to save settings');
+        throw new Error(data.error || 'Failed to save settings');
       }
     } catch (error) {
-      setMessage('Error saving settings. Please try again.');
+      setMessage(`Error: ${error.message}`);
     } finally {
       setSaving(false);
     }
   };
+
 
   if (loading) {
     return <div className="flex h-64 items-center justify-center text-black/30 font-medium">Loading SEO Settings...</div>;

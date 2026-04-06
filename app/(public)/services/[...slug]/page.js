@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, services } from "@/lib/services";
+import { createClient } from '@supabase/supabase-js';
+
+// Server-side admin client for metadata
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export function generateStaticParams() {
   return services.map((service) => ({
@@ -17,11 +24,21 @@ export async function generateMetadata({ params }) {
     return {};
   }
 
+  // Fetch city from DB
+  const { data: settings } = await supabaseAdmin
+    .from('settings')
+    .select('local_focus')
+    .eq('id', 1)
+    .single();
+
+  const city = settings?.local_focus || "Bihar";
+
   return {
-    title: `${service.title} | Geetanjali Softwares`,
-    description: service.description,
+    title: `${service.title} Services in ${city} | Geetanjali Softwares`,
+    description: `${service.description}. Best ${service.title} services in ${city} with Geetanjali Softwares.`,
   };
 }
+
 
 function SpecializedSolutions({ parentSlug }) {
   const subServices = services.filter((s) => s.slug.startsWith(`${parentSlug}/`));
