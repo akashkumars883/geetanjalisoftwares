@@ -72,7 +72,7 @@ export default function PortfolioSection() {
             <motion.article
               key={item.title}
               variants={itemVariants}
-              className="group overflow-hidden rounded-3xl border border-black/[0.03] bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
+              className="group overflow-hidden rounded-[32px] border border-black/[0.03] bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
             >
               <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-stone-50">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent blur-3xl opacity-50" />

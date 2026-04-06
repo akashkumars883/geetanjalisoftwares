@@ -36,7 +36,7 @@ export default function PricingSection() {
           {pricingPlans.map((plan) => (
             <article
               key={plan.name}
-              className="group rounded-[28px] border border-black/10 bg-white/78 p-5 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.3)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 sm:p-6"
+              className="group rounded-[32px] border border-black/10 bg-white/78 p-5 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.3)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 sm:p-6"
             >
               <div className="relative mb-6 h-32 w-full overflow-hidden rounded-2xl bg-stone-50">
                 <div className="absolute inset-0 bg-orange-500/5 blur-2xl" />

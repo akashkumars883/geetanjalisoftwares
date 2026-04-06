@@ -36,24 +36,24 @@ export default function HeroSection() {
 
             <motion.p 
               variants={fadeInUp}
-              className="mt-5 max-w-2xl text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg"
+              className="mt-6 max-w-2xl text-sm leading-relaxed text-black/60 sm:text-base lg:text-lg"
             >
-              From modern websites to digital marketing and branding, We design fast, SEO-friendly websites that help you attract more customers and increase your revenue.
+              From modern websites to digital marketing and branding, we design fast, SEO-friendly solutions that help you attract more customers and increase your revenue.
             </motion.p>
 
             <motion.div 
               variants={fadeInUp}
-              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+              className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
             >
               <Link
                 href="/#contact-form"
-                className="inline-flex items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:scale-105 active:scale-95 sm:px-8 sm:text-base"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-orange-500 px-10 py-5 text-sm font-bold text-white shadow-xl shadow-orange-500/20 transition hover:bg-orange-600 hover:scale-105 active:scale-95 sm:w-auto"
               >
                 Get Free Consultation
               </Link>
               <Link
                 href="/#portfolio"
-                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-black/5 hover:scale-105 active:scale-95 sm:px-8 sm:text-base"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-10 py-5 text-sm font-bold text-black transition hover:bg-black/5 hover:scale-105 active:scale-95 sm:w-auto"
               >
                 View Portfolio
               </Link>

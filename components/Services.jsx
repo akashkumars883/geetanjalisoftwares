@@ -69,7 +69,7 @@ export default function Services() {
               id={service.slug}
               key={service.slug}
               variants={itemVariants}
-              className="group relative scroll-mt-28 overflow-hidden rounded-3xl border border-black/[0.03] bg-white p-5 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
+              className="group relative scroll-mt-28 overflow-hidden rounded-[32px] border border-black/[0.03] bg-white p-6 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
             >
               <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-orange-300/10 blur-2xl transition duration-500 group-hover:bg-orange-300/20" />
               <div className="relative">

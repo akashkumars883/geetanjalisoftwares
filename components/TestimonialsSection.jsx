@@ -1,3 +1,7 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 const testimonials = [
   {
     quote:
@@ -17,41 +21,82 @@ const testimonials = [
     name: 'Karan Mehta',
     role: 'Founder',
   },
+  {
+    quote:
+      'Working with Geetanjali Softwares was a game-changer for our online presence. Highly recommended!',
+    name: 'Sonal Singh',
+    role: 'E-commerce Manager',
+  },
 ];
 
 export default function TestimonialsSection() {
-  return (
-    <section id="testimonials" className="scroll-mt-28 pb-16 sm:pb-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-orange-700 sm:text-sm">
-            Testimonials
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
-            What clients value most in the work.
-          </h2>
-        </div>
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  };
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((item) => (
-            <article
-              key={item.name}
-              className="flex flex-col rounded-lg border border-black/10 bg-white/80 p-5 shadow-sm backdrop-blur-xl sm:p-6"
-            >
-              <p className="flex-1 text-sm leading-7 text-black/72">
-                &quot;{item.quote}&quot;
-              </p>
-              <div className="mt-5 flex items-center gap-3 border-t border-black/5 pt-5">
-                <div className="h-9 w-9 flex-shrink-0 rounded-full bg-orange-500/10 flex items-center justify-center text-xs font-black text-orange-600 uppercase">
-                  {item.name.charAt(0)}
+  return (
+    <section id="testimonials" className="scroll-mt-28 pb-16 sm:pb-20 overflow-hidden">
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none !important;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none !important;
+          scrollbar-width: none !important;
+        }
+      `}</style>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          className="max-w-2xl"
+        >
+          <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-[0.3em] text-orange-700 sm:text-sm">
+            Testimonials
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="mt-4 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl leading-[1.1]">
+            What clients value <span className="text-black/40">most in the work.</span>
+          </motion.h2>
+        </motion.div>
+
+        {/* Scrollable Container */}
+        <div className="relative mt-12">
+          <div className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            {testimonials.map((item, idx) => (
+              <motion.article
+                key={item.name}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="flex min-w-[300px] flex-col rounded-[32px] border border-black/[0.03] bg-white p-8 shadow-xl shadow-black/[0.02] backdrop-blur-xl sm:min-w-[400px] lg:min-w-[450px] snap-center hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="mb-6 text-orange-500 text-3xl select-none opacity-20 group-hover:opacity-100 transition-opacity">“</div>
+                <p className="flex-1 text-base italic leading-relaxed text-black/70">
+                  {item.quote}
+                </p>
+                <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-8">
+                  <div className="h-10 w-10 flex-shrink-0 rounded-2xl bg-orange-500/10 flex items-center justify-center text-xs font-black text-orange-600 uppercase">
+                    {item.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-black">{item.name}</h3>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-black/30">{item.role}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-black">{item.name}</h3>
-                  <p className="text-xs text-black/45">{item.role}</p>
-                </div>
-              </div>
-            </article>
-          ))}
+              </motion.article>
+            ))}
+          </div>
+          
+          {/* Subtle Indicator */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="h-1 w-8 rounded-full bg-orange-500/20" />
+            <div className="h-1 w-2 rounded-full bg-orange-500/10" />
+            <div className="h-1 w-2 rounded-full bg-orange-500/10" />
+          </div>
         </div>
       </div>
     </section>

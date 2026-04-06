@@ -67,6 +67,15 @@ h6 {
   mix-blend-mode: multiply; /* Keep multiply as a safe fallback for light backgrounds */
 }
 
+/* Utility to hide scrollbars while keeping functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
 /* Dark background specific removal */
 .bg-\[\#111111\] .remove-background,
 .bg-black .remove-background {

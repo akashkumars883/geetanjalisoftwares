@@ -103,7 +103,7 @@ export default function Navbar() {
                 </Link>
 
                 <div className="pointer-events-none absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                  <div className="rounded-[24px] border border-black/10 bg-[#f5f5f5]/92 p-2 shadow-[0_24px_60px_-34px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+                  <div className="rounded-[32px] border border-black/10 bg-[#f5f5f5]/92 p-2 shadow-[0_24px_60px_-34px_rgba(0,0,0,0.3)] backdrop-blur-xl">
                     {SERVICE_LINKS.map((link) => (
                       <Link
                         key={link.href}
@@ -134,7 +134,7 @@ export default function Navbar() {
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               onClick={handleToggleMenu}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white/70 text-black backdrop-blur-xl md:hidden"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/15 bg-white/70 text-black backdrop-blur-xl md:hidden"
             >
               <span className="sr-only">Toggle navigation menu</span>
               <span
@@ -177,16 +177,16 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="w-full rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+            className="w-full rounded-2xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
           >
             Home
           </Link>
 
-          <div className="w-full rounded-xl">
+          <div className="w-full rounded-2xl">
             <button
               type="button"
               onClick={() => setIsServicesMobileOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+              className="flex w-full items-center justify-between rounded-2xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
             >
               <span>Services</span>
               <svg
