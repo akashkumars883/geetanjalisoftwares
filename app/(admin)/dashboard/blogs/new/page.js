@@ -1,14 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save, Loader2, Image as ImageIcon, Type, Layout, Tag } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
 import RichTextEditor from '@/components/RichTextEditor';
 import { processContentImages } from '@/utils/imageUtils';
 
-export default function NewBlogPage() {
+function NewBlogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -335,5 +334,17 @@ export default function NewBlogPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function NewBlogPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex h-96 w-full items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-orange-500" />
+      </div>
+    }>
+      <NewBlogContent />
+    </Suspense>
   );
 }

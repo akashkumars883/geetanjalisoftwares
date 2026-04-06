@@ -38,15 +38,6 @@ export default function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="scroll-mt-28 pb-16 sm:pb-20 overflow-hidden">
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none !important;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none !important;
-          scrollbar-width: none !important;
-        }
-      `}</style>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial="initial"
@@ -74,7 +65,7 @@ export default function TestimonialsSection() {
                 viewport={{ once: true }}
                 className="flex min-w-[300px] flex-col rounded-[32px] border border-black/[0.03] bg-white p-8 shadow-xl shadow-black/[0.02] backdrop-blur-xl sm:min-w-[400px] lg:min-w-[450px] snap-center hover:shadow-2xl transition-all duration-500"
               >
-                <div className="mb-6 text-orange-500 text-3xl select-none opacity-20 group-hover:opacity-100 transition-opacity">“</div>
+                <div className="mb-6 text-orange-500 text-3xl select-none opacity-20 group-hover:opacity-100 transition-opacity">&ldquo;</div>
                 <p className="flex-1 text-base italic leading-relaxed text-black/70">
                   {item.quote}
                 </p>

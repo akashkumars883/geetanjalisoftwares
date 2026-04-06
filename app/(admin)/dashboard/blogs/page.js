@@ -174,7 +174,6 @@ export default function BlogsPage() {
                 </Link>
                 <button 
                   onClick={() => {
-                    console.log('Deleting blog with ID:', blog.id);
                     handleDelete(blog.id);
                   }}
                   className="rounded-xl p-2.5 text-black/40 transition hover:bg-red-500/10 hover:text-red-600 focus:ring-2 focus:ring-red-500/20 outline-none"

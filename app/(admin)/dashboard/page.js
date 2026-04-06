@@ -53,7 +53,7 @@ export default function DashboardPage() {
               icon: "/favicon.ico"
             });
             const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3");
-            audio.play().catch(e => console.log("Audio play failed:", e));
+            audio.play().catch(e => {}); // Audio play failure handled silently in production
           }
         }
 
@@ -73,7 +73,7 @@ export default function DashboardPage() {
           viewsData: views 
         }));
       } catch (error) {
-        console.error('Fetch error:', error);
+        // Fetch error handled silently
       } finally {
         setLoading(false);
       }
