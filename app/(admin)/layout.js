@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Home, LogOut, Settings, FileText } from 'lucide-react';
+import Head from 'next/head';
+import { LayoutDashboard, Users, Home, LogOut, Settings, FileText, Bell } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -34,12 +35,15 @@ export default function AdminLayout({ children }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#fcfcfc]">
+    <div className="flex min-h-screen bg-[#f8f9fa]">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       {/* Sidebar */}
       <aside 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`fixed inset-y-0 left-0 border-r border-black/5 bg-white/80 backdrop-blur-xl z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 border-r border-black/[0.03] bg-white/70 backdrop-blur-2xl z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[1px_0_10px_rgba(0,0,0,0.01)] ${
           isHovered ? 'w-64' : 'w-20'
         }`}
       >
@@ -106,8 +110,8 @@ export default function AdminLayout({ children }) {
       </aside>
 
       {/* Main Content */}
-      <div className={`flex-1 transition-all duration-300 ${isHovered ? 'ml-64' : 'ml-20'}`}>
-        <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-black/5 bg-white/60 px-8 backdrop-blur-xl">
+      <div className={`flex-1 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isHovered ? 'ml-64' : 'ml-20'}`}>
+        <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-black/[0.02] bg-white/40 px-10 backdrop-blur-2xl transition-all duration-300">
           <div>
             <h1 className="text-xl font-bold tracking-tight text-black">
               {navItems.find((item) => pathname === item.href)?.label || 'Admin'}
@@ -120,12 +124,10 @@ export default function AdminLayout({ children }) {
           </div>
         </header>
 
-        <main className="p-8">
-          <div className="rounded-[32px] border border-black/5 bg-white p-1 shadow-sm">
-            <div className="rounded-[28px] border border-black/[0.03] bg-[#fcfcfc] p-6 lg:p-10">
+        <main className="p-10 max-w-[1400px] mx-auto w-full">
+           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               {children}
-            </div>
-          </div>
+           </div>
         </main>
       </div>
     </div>

@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/', '/api/', '/diag/'],
+      disallow: ['/dashboard/', '/leads/', '/settings/', '/api/', '/diag/', '/login'],
     },
     sitemap: 'https://geetanjalisoftwares.com/sitemap.xml',
   }

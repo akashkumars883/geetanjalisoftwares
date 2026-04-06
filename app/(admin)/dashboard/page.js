@@ -94,58 +94,64 @@ export default function DashboardPage() {
   }, [stats.totalLeads]);
 
   const cards = [
-    { label: 'Total Leads', value: stats.totalLeads, icon: <Users className="text-blue-600" />, color: 'bg-blue-50' },
-    { label: 'Total Views', value: stats.totalViews, icon: <MousePointer2 className="text-orange-600" />, color: 'bg-orange-50' },
-    { label: 'Popular Service', value: stats.popularService, icon: <TrendingUp className="text-green-600" />, color: 'bg-green-50' },
-    { label: 'Top Performing Page', value: stats.topPage, icon: <BarChart3 className="text-purple-600" />, color: 'bg-purple-50' },
+    { label: 'Total Leads', value: stats.totalLeads, icon: <Users size={20} />, color: 'text-blue-600', bg: 'bg-blue-500/5' },
+    { label: 'Total Views', value: stats.totalViews, icon: <MousePointer2 size={20} />, color: 'text-orange-600', bg: 'bg-orange-500/5' },
+    { label: 'Popular Service', value: stats.popularService, icon: <TrendingUp size={20} />, color: 'text-green-600', bg: 'bg-green-500/5' },
+    { label: 'Top Performance', value: stats.topPage, icon: <BarChart3 size={20} />, color: 'text-purple-600', bg: 'bg-purple-500/5' },
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       {/* Overview Cards */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
-          <div key={card.label} className="rounded-xl border border-black/5 bg-white p-6 shadow-sm group hover:border-orange-500/20 transition-all">
-            <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${card.color}`}>
+          <div key={card.label} className="group relative rounded-[32px] border border-black/[0.03] bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-orange-500/20 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
+            <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${card.bg} ${card.color} transition-all duration-500 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white`}>
               {card.icon}
             </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-black/30">{card.label}</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-black">
-              {loading ? '...' : card.value}
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-black/30">{card.label}</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-black flex items-baseline gap-1">
+              {loading ? <span className="h-8 w-12 animate-pulse bg-black/5 rounded" /> : card.value}
+              {typeof card.value === 'number' && <span className="text-xs font-medium text-black/20">pts</span>}
             </h2>
           </div>
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-10 lg:grid-cols-2">
         {/* Real Traffic Insights */}
-        <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold tracking-tight text-black">Traffic Insights</h3>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-black/20 bg-black/5 px-2 py-1 rounded-md">Live Data</span>
+        <div className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm overflow-hidden relative group">
+          <div className="absolute top-0 right-0 p-10 text-6xl opacity-[0.02] transition-transform duration-700 group-hover:scale-125 group-hover:rotate-12">📈</div>
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h3 className="text-xl font-bold tracking-tight text-black">Traffic Distribution</h3>
+              <p className="text-xs text-black/30 mt-1">Live website performance data</p>
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-500 bg-orange-500/5 px-3 py-1.5 rounded-full border border-orange-500/10">Active</span>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-8">
              {stats.viewsData && stats.viewsData.length > 0 ? (
                stats.viewsData.slice(0, 5).map((page, idx) => {
                  const percentage = ((page.view_count / stats.totalViews) * 100).toFixed(0);
                  return (
-                   <div key={page.page_path} className="space-y-2">
-                     <div className="flex justify-between text-xs font-bold transition-all">
-                       <span className="text-black/60">{page.page_path}</span>
-                       <span className="text-black/30">{page.view_count} views ({percentage}%)</span>
+                   <div key={page.page_path} className="space-y-3">
+                     <div className="flex justify-between text-[11px] font-bold transition-all">
+                       <span className="text-black/50 hover:text-black transition-colors">{page.page_path}</span>
+                       <span className="text-black/30 tracking-tighter">{page.view_count} <span className="font-medium text-black/10">views</span> ({percentage}%)</span>
                      </div>
-                     <div className="h-2 w-full bg-black/5 rounded-full overflow-hidden">
+                     <div className="h-2 w-full bg-black/[0.03] rounded-full overflow-hidden">
                        <div 
-                         className="h-full bg-orange-500 rounded-full transition-all duration-1000" 
-                         style={{ width: `${percentage}%`, opacity: 1 - (idx * 0.15) }}
+                         className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(249,115,22,0.2)]" 
+                         style={{ width: `${percentage}%`, opacity: 1 - (idx * 0.1) }}
                        />
                      </div>
                    </div>
                  );
                })
              ) : (
-               <div className="h-40 flex items-center justify-center text-xs text-black/20 font-bold border border-dashed border-black/5 rounded-xl uppercase tracking-widest">
+               <div className="h-48 flex flex-col items-center justify-center text-[10px] text-black/20 font-bold border-2 border-dashed border-black/[0.02] rounded-[32px] uppercase tracking-[0.3em] gap-4">
+                 <div className="h-10 w-10 rounded-full bg-black/[0.02] animate-pulse flex items-center justify-center">?</div>
                  No Traffic Data Yet
                </div>
              )}
@@ -153,25 +159,31 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-bold tracking-tight text-black mb-6">Quick Tools</h3>
-          <div className="grid gap-4">
-             <button className="flex items-center justify-between rounded-xl border border-black/5 p-5 text-sm font-bold text-black group hover:bg-black/5 transition">
-               <span className="flex items-center gap-3">
-                 <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                   📊
+        <div className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm">
+          <h3 className="text-xl font-bold tracking-tight text-black mb-10">Strategic Tools</h3>
+          <div className="grid gap-5">
+             <button className="flex items-center justify-between rounded-3xl border border-black/[0.02] p-6 text-sm font-bold text-black group hover:bg-black/[0.01] hover:border-orange-500/10 transition-all duration-300">
+               <span className="flex items-center gap-4">
+                 <div className="h-12 w-12 rounded-2xl bg-blue-500/5 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm">
+                   <Users size={20} />
                  </div>
-                 Export All Leads
+                 <div className="text-left">
+                   <p className="font-bold text-black group-hover:text-orange-600 transition-colors">Export Intelligence</p>
+                   <p className="text-[10px] text-black/30 font-medium tracking-tight">Generate full lead CSV report</p>
+                 </div>
                </span>
-               <span className="text-[10px] font-bold text-black/30 uppercase tracking-widest border border-black/10 px-2 py-1 rounded">CSV</span>
+               <span className="text-[9px] font-bold text-black/30 uppercase tracking-[0.2em] border border-black/5 px-3 py-1.5 rounded-xl group-hover:border-orange-500/20 transition-colors">CSV</span>
              </button>
              
-             <button className="flex items-center justify-between rounded-xl border border-black/10 p-5 text-sm font-bold text-black group hover:bg-red-500 transition">
-               <span className="flex items-center gap-3 group-hover:text-white">
-                 <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-600 transition-all">
-                   ⚠️
+             <button className="flex items-center justify-between rounded-3xl border border-black/[0.02] p-6 text-sm font-bold text-black group hover:bg-red-500/5 hover:border-red-500/10 transition-all duration-300">
+               <span className="flex items-center gap-4">
+                 <div className="h-12 w-12 rounded-2xl bg-red-500/5 flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-500">
+                   <TrendingUp size={20} />
                  </div>
-                 Reset Dashboard Layout
+                 <div className="text-left">
+                   <p className="font-bold text-black group-hover:text-red-700 transition-colors">Cleanse Cache</p>
+                   <p className="text-[10px] text-black/30 font-medium tracking-tight">Reset dashboard live metrics</p>
+                 </div>
                </span>
              </button>
           </div>
@@ -179,29 +191,33 @@ export default function DashboardPage() {
       </div>
 
       {/* AI Agency Growth Hub */}
-      <div className="rounded-[32px] border border-purple-500/10 bg-purple-500/[0.02] p-8 lg:p-12 shadow-sm relative overflow-hidden group border border-white">
-        <div className="absolute top-0 right-0 p-8 text-[120px] opacity-[0.03] select-none pointer-events-none group-hover:scale-110 transition-all">✨</div>
-        <div className="relative z-10 space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-purple-500 flex items-center gap-2">
-                <span className="h-1.5 w-1.5 bg-purple-500 rounded-full animate-pulse"></span>
-                AI Agency Growth Hub
+      <div className="rounded-[48px] border-4 border-white bg-gradient-to-br from-purple-600/5 via-white to-orange-500/5 p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
+        <div className="absolute -top-24 -right-24 h-64 w-64 bg-purple-500/10 rounded-full blur-[100px] transition-all duration-1000 group-hover:bg-orange-500/20" />
+        <div className="absolute top-10 right-10 p-8 text-[140px] opacity-[0.03] select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-all duration-1000">✨</div>
+        
+        <div className="relative z-10 space-y-10">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-purple-600 flex items-center gap-3">
+                <span className="h-2 w-2 bg-purple-600 rounded-full animate-pulse shadow-[0_0_10px_rgba(147,51,234,0.5)]"></span>
+                AI Agency Growth Engine
               </span>
-              <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-black">Mastering the Digital Agency Game</h3>
+              <h3 className="text-3xl lg:text-4xl font-bold tracking-tighter text-black max-w-xl leading-[1.1]">Skyrocket your agency with AI-driven insights.</h3>
             </div>
             <button 
               onClick={fetchGrowthTip}
               disabled={isTipLoading}
-              className="flex items-center gap-2 rounded-2xl bg-white border border-purple-100 px-6 py-3 text-sm font-bold text-purple-600 shadow-sm hover:shadow-md transition disabled:opacity-50"
+              className="group flex items-center gap-3 rounded-[24px] bg-black px-8 py-5 text-sm font-bold text-white shadow-2xl shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-500 disabled:opacity-50"
             >
-              {isTipLoading ? '...' : '✨ Next Secret Tip'}
+              <span className="transition-transform group-hover:rotate-12">✨</span>
+              {isTipLoading ? 'Processing...' : 'Next Strategic Insight'}
             </button>
           </div>
           
-          <div className="p-8 rounded-[24px] bg-white border border-purple-500/5 shadow-xl shadow-purple-500/5">
-            <p className="text-lg lg:text-xl font-medium text-purple-900 leading-relaxed italic whitespace-pre-line">
-              {stats.aiTip}
+          <div className="p-10 lg:p-14 rounded-[40px] bg-white border border-black/[0.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] relative">
+            <div className="absolute top-0 left-10 -translate-y-1/2 px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">Pro Tip</div>
+            <p className="text-xl lg:text-2xl font-medium text-black leading-relaxed italic whitespace-pre-line selection:bg-orange-500/20">
+              "{stats.aiTip}"
             </p>
           </div>
         </div>

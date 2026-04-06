@@ -1,8 +1,10 @@
 import React from 'react';
 
 const cities = [
+  'Delhi NCR', 'Noida', 'Gurgaon', 'Lucknow', 'Kanpur', 'Varanasi', 'Prayagraj', 'Meerut', 
   'Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga', 
-  'Arrah', 'Begusarai', 'Bihar Sharif', 'Munger', 'Purnia'
+  'Arrah', 'Begusarai', 'Bihar Sharif', 'Munger', 'Purnia',
+  'Mumbai', 'Bangalore', 'Kolkata', 'Hyderabad'
 ];
 
 export default function ServiceAreaStrip() {

@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save, Loader2, Image as ImageIcon, Type, Layout, Tag } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import RichTextEditor from '@/components/RichTextEditor';
 import { processContentImages } from '@/utils/imageUtils';
 
 export default function NewBlogPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -23,6 +25,19 @@ export default function NewBlogPage() {
     author: 'Admin',
     tags: []
   });
+
+  React.useEffect(() => {
+    const title = searchParams.get('title');
+    const category = searchParams.get('category');
+    if (title) {
+      setFormData(prev => ({
+        ...prev,
+        title: title,
+        slug: title.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '-'),
+        category: category || prev.category
+      }));
+    }
+  }, [searchParams]);
 
   const handleFileUpload = async (e) => {
     const file = e.target.files?.[0];
