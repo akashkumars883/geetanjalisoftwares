@@ -1,37 +1,71 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  };
+
+  const stagger = {
+    animate: { transition: { staggerChildren: 0.1 } }
+  };
+
   return (
-    <section className="relative mb-24 overflow-hidden pb-14 pt-2">
+    <motion.section 
+      initial="initial"
+      animate="animate"
+      className="relative mb-24 overflow-hidden pb-14 pt-2"
+    >
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
-            <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl">
+          <motion.div 
+            variants={stagger}
+            className="flex flex-col items-start text-left lg:items-start lg:text-left"
+          >
+            <motion.h1 
+              variants={fadeInUp}
+              className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl"
+            >
               Empowering Brands with scalable <span className="inline font-serif text-orange-500 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"> digital marketing </span> solutions
-            </h1>
+            </motion.h1>
 
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg">
+            <motion.p 
+              variants={fadeInUp}
+              className="mt-5 max-w-2xl text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg"
+            >
               From modern websites to digital marketing and branding, We design fast, SEO-friendly websites that help you attract more customers and increase your revenue.
-            </p>
+            </motion.p>
 
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <motion.div 
+              variants={fadeInUp}
+              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+            >
               <Link
                 href="/#contact-form"
-                className="inline-flex items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:px-8 sm:text-base"
+                className="inline-flex items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:scale-105 active:scale-95 sm:px-8 sm:text-base"
               >
                 Get Free Consultation
               </Link>
               <Link
                 href="/#portfolio"
-                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-black/5 sm:px-8 sm:text-base"
+                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-black/5 hover:scale-105 active:scale-95 sm:px-8 sm:text-base"
               >
                 View Portfolio
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="flex flex-col items-center text-center lg:items-end lg:text-right">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col items-center text-center lg:items-end lg:text-right"
+          >
             <div className="relative w-full max-w-sm lg:max-w-md">
               <div className="absolute inset-0 bg-orange-500/5 blur-[80px]" />
               <Image
@@ -40,14 +74,19 @@ export default function HeroSection() {
                 width={500}
                 height={500}
                 priority
-                className="relative h-auto w-full object-contain remove-background transition duration-700 hover:scale-105"
+                className="relative h-auto w-full object-contain remove-background transition duration-700 hover:rotate-2 hover:scale-110"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 text-orange-500 sm:bottom-1">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 text-orange-500 sm:bottom-1"
+      >
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"
@@ -60,7 +99,7 @@ export default function HeroSection() {
         >
           <path d="m6 13 6 6 6-6" />
         </svg>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

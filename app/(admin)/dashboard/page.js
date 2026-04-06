@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { MousePointer2, Users, TrendingUp, BarChart3 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -29,7 +30,6 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
-    // Request notification permission
     if ("Notification" in window && Notification.permission === "default") {
       Notification.requestPermission();
     }
@@ -44,31 +44,24 @@ export default function DashboardPage() {
         const leads = await leadsRes.json();
         const views = await viewsRes.json();
 
-        // Calculate stats
         const totalLeads = leads.length || 0;
         
-        // Push Notification Logic
         if (stats.totalLeads > 0 && totalLeads > stats.totalLeads) {
           if (Notification.permission === "granted") {
             new Notification("🚀 New Lead Received!", {
               body: `${leads[0].name} is interested in ${leads[0].service}.`,
               icon: "/favicon.ico"
             });
-            // Play a ding sound
             const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3");
             audio.play().catch(e => console.log("Audio play failed:", e));
           }
         }
 
         const totalViews = views.reduce((acc, curr) => acc + curr.view_count, 0) || 0;
-        
-        // Find popular service
         const services = leads.map(l => l.service);
         const popularService = services.sort((a,b) =>
           services.filter(v => v===a).length - services.filter(v => v===b).length
         ).pop() || 'N/A';
-
-        // Top Page
         const topPage = views[0]?.page_path || '/';
 
         setStats(prev => ({ 
@@ -87,8 +80,7 @@ export default function DashboardPage() {
     };
 
     fetchData();
-    fetchGrowthTip(); // Get tip once on mount
-    // Poll every 30 seconds for new leads
+    fetchGrowthTip();
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
   }, [stats.totalLeads]);
@@ -100,12 +92,38 @@ export default function DashboardPage() {
     { label: 'Top Performance', value: stats.topPage, icon: <BarChart3 size={20} />, color: 'text-purple-600', bg: 'bg-purple-500/5' },
   ];
 
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
   return (
-    <div className="space-y-12">
+    <motion.div 
+      initial="initial"
+      animate="animate"
+      variants={containerVariants}
+      className="space-y-12"
+    >
       {/* Overview Cards */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
-          <div key={card.label} className="group relative rounded-[32px] border border-black/[0.03] bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-orange-500/20 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
+          <motion.div 
+            key={card.label} 
+            variants={itemVariants}
+            className="group relative rounded-[32px] border border-black/[0.03] bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-orange-500/20 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
+          >
             <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${card.bg} ${card.color} transition-all duration-500 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white`}>
               {card.icon}
             </div>
@@ -114,13 +132,16 @@ export default function DashboardPage() {
               {loading ? <span className="h-8 w-12 animate-pulse bg-black/5 rounded" /> : card.value}
               {typeof card.value === 'number' && <span className="text-xs font-medium text-black/20">pts</span>}
             </h2>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Real Traffic Insights */}
-        <div className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm overflow-hidden relative group">
+        <motion.div 
+          variants={itemVariants}
+          className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm overflow-hidden relative group"
+        >
           <div className="absolute top-0 right-0 p-10 text-6xl opacity-[0.02] transition-transform duration-700 group-hover:scale-125 group-hover:rotate-12">📈</div>
           <div className="flex items-center justify-between mb-10">
             <div>
@@ -141,9 +162,12 @@ export default function DashboardPage() {
                        <span className="text-black/30 tracking-tighter">{page.view_count} <span className="font-medium text-black/10">views</span> ({percentage}%)</span>
                      </div>
                      <div className="h-2 w-full bg-black/[0.03] rounded-full overflow-hidden">
-                       <div 
-                         className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(249,115,22,0.2)]" 
-                         style={{ width: `${percentage}%`, opacity: 1 - (idx * 0.1) }}
+                       <motion.div 
+                         initial={{ width: 0 }}
+                         animate={{ width: `${percentage}%` }}
+                         transition={{ duration: 1.5, delay: 0.5 + (idx * 0.1), ease: "easeOut" }}
+                         className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.2)]" 
+                         style={{ opacity: 1 - (idx * 0.1) }}
                        />
                      </div>
                    </div>
@@ -156,10 +180,10 @@ export default function DashboardPage() {
                </div>
              )}
           </div>
-        </div>
+        </motion.div>
 
         {/* Quick Actions */}
-        <div className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm">
+        <motion.div variants={itemVariants} className="rounded-[40px] border border-black/[0.03] bg-white p-10 shadow-sm">
           <h3 className="text-xl font-bold tracking-tight text-black mb-10">Strategic Tools</h3>
           <div className="grid gap-5">
              <button className="flex items-center justify-between rounded-3xl border border-black/[0.02] p-6 text-sm font-bold text-black group hover:bg-black/[0.01] hover:border-orange-500/10 transition-all duration-300">
@@ -187,11 +211,11 @@ export default function DashboardPage() {
                </span>
              </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* AI Agency Growth Hub */}
-      <div className="rounded-[48px] border-4 border-white bg-gradient-to-br from-purple-600/5 via-white to-orange-500/5 p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
+      <motion.div variants={itemVariants} className="rounded-[48px] border-4 border-white bg-gradient-to-br from-purple-600/5 via-white to-orange-500/5 p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.03)] relative overflow-hidden group">
         <div className="absolute -top-24 -right-24 h-64 w-64 bg-purple-500/10 rounded-full blur-[100px] transition-all duration-1000 group-hover:bg-orange-500/20" />
         <div className="absolute top-10 right-10 p-8 text-[140px] opacity-[0.03] select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-all duration-1000">✨</div>
         
@@ -204,24 +228,31 @@ export default function DashboardPage() {
               </span>
               <h3 className="text-3xl lg:text-4xl font-bold tracking-tighter text-black max-w-xl leading-[1.1]">Skyrocket your agency with AI-driven insights.</h3>
             </div>
-            <button 
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={fetchGrowthTip}
               disabled={isTipLoading}
-              className="group flex items-center gap-3 rounded-[24px] bg-black px-8 py-5 text-sm font-bold text-white shadow-2xl shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-500 disabled:opacity-50"
+              className="group flex items-center gap-3 rounded-[24px] bg-black px-8 py-5 text-sm font-bold text-white shadow-2xl shadow-black/20 transition-all duration-500 disabled:opacity-50"
             >
               <span className="transition-transform group-hover:rotate-12">✨</span>
               {isTipLoading ? 'Processing...' : 'Next Strategic Insight'}
-            </button>
+            </motion.button>
           </div>
           
-          <div className="p-10 lg:p-14 rounded-[40px] bg-white border border-black/[0.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="p-10 lg:p-14 rounded-[40px] bg-white border border-black/[0.02] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] relative"
+          >
             <div className="absolute top-0 left-10 -translate-y-1/2 px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">Pro Tip</div>
             <p className="text-xl lg:text-2xl font-medium text-black leading-relaxed italic whitespace-pre-line selection:bg-orange-500/20">
               "{stats.aiTip}"
             </p>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
