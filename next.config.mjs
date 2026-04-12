@@ -30,6 +30,17 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'geetanjalisoftwares.in' }],
+        destination: 'https://www.geetanjalisoftwares.in/:path*',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
