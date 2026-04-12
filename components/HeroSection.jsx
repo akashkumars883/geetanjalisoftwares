@@ -6,33 +6,31 @@ import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 1, y: 10 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
   };
 
   const stagger = {
-    animate: { transition: { staggerChildren: 0.1 } }
+    animate: { transition: { staggerChildren: 0.05 } }
   };
 
   return (
-    <motion.section 
-      initial="initial"
-      animate="animate"
-      className="relative mb-24 overflow-hidden pb-14 pt-2"
-    >
+    <section className="relative mb-24 overflow-hidden pb-14 pt-2">
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <motion.div 
+            initial="initial"
+            animate="animate"
             variants={stagger}
             className="flex flex-col items-start text-left lg:items-start lg:text-left"
           >
-            <motion.h1 
-              variants={fadeInUp}
+            {/* H1 is now standard HTML for instant LCP visibility */}
+            <h1 
               className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl"
             >
               Empowering Brands with scalable <span className="inline font-serif text-orange-500 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"> digital marketing </span> solutions
-            </motion.h1>
+            </h1>
 
             <motion.p 
               variants={fadeInUp}
@@ -100,6 +98,6 @@ export default function HeroSection() {
           <path d="m6 13 6 6 6-6" />
         </svg>
       </motion.div>
-    </motion.section>
+    </section>
   );
 }

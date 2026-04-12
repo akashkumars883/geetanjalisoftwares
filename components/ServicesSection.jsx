@@ -5,14 +5,14 @@ import React from "react";
 import { services } from "@/lib/services";
 import { motion } from "framer-motion";
 
-export default function Services() {
+export default function ServicesSection() {
   const containerVariants = {
     initial: { opacity: 0 },
     whileInView: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.05,
+        delayChildren: 0.05
       }
     }
   };
@@ -33,7 +33,7 @@ export default function Services() {
       <motion.div 
         initial="initial"
         whileInView="whileInView"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "0px" }}
         variants={containerVariants}
         className="relative mx-auto max-w-7xl"
       >

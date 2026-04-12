@@ -19,9 +19,6 @@ import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
 import AIConsultant from "@/components/AIConsultant";
 
-
-
-
 export async function generateMetadata() {
   try {
     const { data } = await supabase
