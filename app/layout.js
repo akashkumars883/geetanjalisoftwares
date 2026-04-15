@@ -4,6 +4,19 @@ import Script from "next/script";
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
 import AIConsultant from "@/components/AIConsultant";
+import { Outfit, Vollkorn } from "next/font/google";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const vollkorn = Vollkorn({
+  subsets: ["latin"],
+  variable: "--font-vollkorn",
+  display: "swap",
+});
 
 export async function generateMetadata() {
   try {
@@ -58,7 +71,7 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${outfit.variable} ${vollkorn.variable}`}>
       <head>
         <script
           type="application/ld+json"

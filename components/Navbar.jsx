@@ -231,7 +231,8 @@ export default function Navbar() {
               </svg>
             </button>
 
-              <div className="grid gap-1 px-2 pb-4 pt-2">
+            {isServicesMobileOpen && (
+              <div className="grid gap-1 px-2 pb-4 pt-2 border-l border-black/5 ml-4">
                 {SERVICE_LINKS.map((link) => (
                   <Link
                     key={link.href}
@@ -249,6 +250,7 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
+            )}
           </div>
 
           {NAV_LINKS.slice(1).map((link) => (
