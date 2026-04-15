@@ -12,9 +12,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --font-sans: var(--font-outfit);
-  --font-mono: var(--font-vollkorn);
-  --font-serif: var(--font-vollkorn);
+  --font-sans: "Outfit", ui-sans-serif, system-ui;
+  --font-serif: "Vollkorn", ui-serif, Georgia;
 }
 
 * {
@@ -33,7 +32,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-outfit);
+  font-family: var(--font-sans);
 }
 
 h1,
@@ -42,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-vollkorn);
+  font-family: var(--font-serif);
 }
 /* Mobile Friendliness Fixes */
 @media (max-width: 640px) {

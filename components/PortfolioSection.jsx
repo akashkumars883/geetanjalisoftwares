@@ -6,11 +6,11 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 
 const portfolioItems = [
   {
-    title: 'Automixa: Instagram SaaS',
-    category: 'SaaS / AI Automation',
-    description: 'A Meta-integrated platform for automating Instagram engagement and lead generation.',
-    tech: ['Next.js', 'Meta API', 'Supabase'],
-    link: 'https://automixa.in',
+    title: 'Modern Living: Furniture E-commerce',
+    category: 'E-commerce / UI Design',
+    description: 'High-speed online shopping experience with optimized checkout flow and premium product showcases.',
+    tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
+    link: '#',
     imageType: 'web'
   },
   {

@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className="antialiased"
+        className={`${outfit.className} ${vollkorn.variable} antialiased`}
       >
         <Toaster richColors position="top-right" />
         <AIConsultant />

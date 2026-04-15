@@ -99,7 +99,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 w-full max-w-8xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-semibold tracking-tight text-black sm:text-x"
+            className="flex items-center gap-2 text-lg font-bold tracking-tight text-black sm:text-xl"
           >
             <Logo size={28} className="text-orange-500" />
             <span>

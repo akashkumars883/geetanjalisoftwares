@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { services } from '@/lib/services';
 
 export default async function sitemap() {
   const baseUrl = 'https://www.geetanjalisoftwares.in';
@@ -16,14 +17,23 @@ export default async function sitemap() {
     priority: 0.6,
   }));
 
+  // Map services to URLs
+  const serviceUrls = services.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
   const staticUrls = [
     '',
-    '/automixa',
     '/about',
     '/services',
     '/contact',
     '/portfolio',
     '/blogs',
+    '/privacy',
+    '/terms',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -31,5 +41,5 @@ export default async function sitemap() {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  return [...staticUrls, ...blogUrls];
+  return [...staticUrls, ...serviceUrls, ...blogUrls];
 }
