@@ -3,16 +3,36 @@
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { services } from "@/lib/services";
+import { Monitor, TrendingUp, Palette, ChevronDown } from 'lucide-react';
+
+const SERVICE_INFO = {
+  "website-design-development": {
+    label: "Web Design & Development",
+    description: "Custom, fast, and responsive websites.",
+    icon: <Monitor size={20} className="text-blue-500" />
+  },
+  "digital-marketing": {
+    label: "Digital Marketing & SEO",
+    description: "ROI-driven growth and visibility.",
+    icon: <TrendingUp size={20} className="text-orange-500" />
+  },
+  "branding": {
+    label: "Brand Identity & Design",
+    description: "Professional branding and logos.",
+    icon: <Palette size={20} className="text-purple-500" />
+  }
+};
 
 const SERVICE_LINKS = services
   .filter((service) => !service.slug.includes("/"))
   .map((service) => ({
-    label: service.title,
+    ...SERVICE_INFO[service.slug],
     href: `/services/${service.slug}`,
   }));
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
+  { label: 'Automixa', href: '/automixa' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Contact', href: '/contact' },
   { label: 'About', href: '/about' },
@@ -97,22 +117,31 @@ export default function Navbar() {
               <div className="group relative">
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-black/85 transition hover:text-black"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-black/85 transition hover:text-black group-hover:text-orange-600"
                 >
                   Services
+                  <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                 </Link>
 
-                <div className="pointer-events-none absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                  <div className="rounded-[32px] border border-black/10 bg-[#f5f5f5]/92 p-2 shadow-[0_24px_60px_-34px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-                    {SERVICE_LINKS.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="block rounded-2xl px-4 py-3 text-sm font-medium text-black/82 transition hover:bg-black/5 hover:text-black"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                <div className="pointer-events-none absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:opacity-100">
+                  <div className="overflow-hidden rounded-[32px] border border-black/10 bg-white/95 p-2 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] backdrop-blur-xl">
+                    <div className="grid gap-1">
+                      {SERVICE_LINKS.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="flex items-start gap-4 rounded-2xl p-4 transition hover:bg-black/[0.03]"
+                        >
+                          <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-black/[0.03] text-black">
+                            {link.icon}
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-sm font-bold text-black">{link.label}</span>
+                            <span className="text-[11px] font-medium text-black/40 leading-tight">{link.description}</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -203,18 +232,24 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div className={`${isServicesMobileOpen ? 'block' : 'hidden'} px-2 pb-2 ml-4 border-l border-black/5`}>
-              {SERVICE_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMobileMenu}
-                  className="block w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-black/72 transition hover:bg-black/5 hover:text-black"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+              <div className="grid gap-1 px-2 pb-4 pt-2">
+                {SERVICE_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-black/5"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-black/[0.03] text-black">
+                      {link.icon}
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-black">{link.label}</span>
+                      <span className="text-[10px] font-medium text-black/40">{link.description}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
           </div>
 
           {NAV_LINKS.slice(1).map((link) => (

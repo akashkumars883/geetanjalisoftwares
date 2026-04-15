@@ -92,6 +92,12 @@ export default function AutomixaSection() {
                 Launch Automixa Now
                 <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
+              <a
+                href="/automixa"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-black/10 bg-white px-8 py-5 text-sm font-bold text-black transition hover:bg-black/5 hover:scale-[1.02] active:scale-95 sm:w-auto"
+              >
+                View Plans & Promo Codes
+              </a>
               <span className="text-xs font-bold text-black/30">Free trial available for new creators</span>
             </motion.div>
           </motion.div>

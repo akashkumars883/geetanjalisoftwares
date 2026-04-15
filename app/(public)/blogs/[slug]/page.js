@@ -21,6 +21,16 @@ const getBlog = cache(async (slug) => {
 });
 
 export const revalidate = 3600; // Revalidate every hour
+ 
+ export async function generateStaticParams() {
+   const { data: blogs } = await supabaseAdmin
+     .from('blogs')
+     .select('slug');
+ 
+   return blogs?.map((blog) => ({
+     slug: blog.slug,
+   })) || [];
+ }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -29,14 +39,15 @@ export async function generateMetadata({ params }) {
   if (!blog) return { title: 'Blog Not Found' };
 
   const url = `https://www.geetanjalisoftwares.in/blogs/${slug}`;
-  const description = blog.excerpt || 'Read the latest insights from Geetanjali Softwares.';
+  const title = (blog.title || '').slice(0, 60);
+  const description = (blog.excerpt || blog.content?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Read the latest insights from Geetanjali Softwares.').slice(0, 160);
 
   return {
-    title: `${blog.title} | Geetanjali Softwares`,
+    title: `${title} | Geetanjali Softwares`,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: blog.title,
+      title: title,
       description,
       url,
       siteName: 'Geetanjali Softwares',

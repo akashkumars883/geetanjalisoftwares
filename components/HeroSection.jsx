@@ -1,103 +1,94 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import SaasDashboardVisual from './SaasDashboardVisual';
 
 export default function HeroSection() {
   const fadeInUp = {
-    initial: { opacity: 1, y: 10 },
+    initial: { opacity: 0, y: 18 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   };
 
   const stagger = {
-    animate: { transition: { staggerChildren: 0.05 } }
+    animate: { transition: { staggerChildren: 0.08 } },
   };
 
   return (
-    <section className="relative mb-24 overflow-hidden pb-14 pt-2">
+    <section className="relative overflow-hidden pb-16 pt-4 sm:pb-24 sm:pt-8">
+      <div className="absolute left-1/2 top-0 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-blue-500/12 blur-[140px]" />
+      <div className="absolute right-[-8rem] top-[8rem] h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <motion.div 
+        <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+          <motion.div
             initial="initial"
             animate="animate"
             variants={stagger}
-            className="flex flex-col items-start text-left lg:items-start lg:text-left"
+            className="flex flex-col items-start text-left"
           >
-            {/* H1 is now standard HTML for instant LCP visibility */}
-            <h1 
-              className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl"
-            >
-              Empowering Brands with scalable <span className="inline font-serif text-orange-500 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"> digital marketing </span> solutions
-            </h1>
-
-            <motion.p 
+            <motion.div
               variants={fadeInUp}
-              className="mt-6 max-w-2xl text-sm leading-relaxed text-black/60 sm:text-base lg:text-lg"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/85 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-blue-700 shadow-sm sm:text-xs"
             >
-              From modern websites to digital marketing and branding, we design fast, SEO-friendly solutions that help you attract more customers and increase your revenue.
+              <span className="h-2 w-2 rounded-full bg-blue-600" />
+              SaaS automation platform
+            </motion.div>
+
+            <motion.h1
+              variants={fadeInUp}
+              className="mt-6 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.02]"
+            >
+              Build, automate, and scale your Instagram SaaS from one unified dashboard.
+            </motion.h1>
+
+            <motion.p
+              variants={fadeInUp}
+              className="mt-6 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base lg:text-lg"
+            >
+              Launch an AI-driven automation stack with plan-based features, promo code discounts, live usage tracking, influencer workflows, and a mobile-first control panel.
             </motion.p>
 
-            <motion.div 
-              variants={fadeInUp}
-              className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
-            >
+            <motion.div variants={fadeInUp} className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/#contact-form"
-                className="inline-flex w-full items-center justify-center rounded-2xl bg-orange-500 px-10 py-5 text-sm font-bold text-white shadow-xl shadow-orange-500/20 transition hover:bg-orange-600 hover:scale-105 active:scale-95 sm:w-auto"
+                href="/automixa"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-blue-600 px-8 py-4 text-sm font-bold text-white shadow-[0_20px_50px_rgba(37,99,235,0.25)] transition hover:bg-blue-700 hover:scale-[1.02] active:scale-95 sm:w-auto"
               >
-                Get Free Consultation
+                Explore Automixa
               </Link>
               <Link
-                href="/#portfolio"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-10 py-5 text-sm font-bold text-black transition hover:bg-black/5 hover:scale-105 active:scale-95 sm:w-auto"
+                href="/#features"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-blue-200 bg-white/85 px-8 py-4 text-sm font-bold text-slate-900 transition hover:bg-blue-50 hover:scale-[1.02] active:scale-95 sm:w-auto"
               >
-                View Portfolio
+                See Main Features
               </Link>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-8 grid w-full gap-3 sm:grid-cols-3">
+              {[
+                ['Plan gating', 'Unlock features per plan'],
+                ['Promo codes', 'Discounts with validation'],
+                ['Live visuals', 'Code-made dashboard previews'],
+              ].map(([title, text]) => (
+                <div key={title} className="glass-panel rounded-[24px] p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-blue-700">{title}</p>
+                  <p className="mt-2 text-sm text-slate-600">{text}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center text-center lg:items-end lg:text-right"
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
           >
-            <div className="relative w-full max-w-sm lg:max-w-md">
-              <div className="absolute inset-0 bg-orange-500/5 blur-[80px]" />
-              <Image
-                src="/images/hero_main.png"
-                alt="Digital Marketing and Web Development Illustration"
-                width={500}
-                height={500}
-                priority
-                className="relative h-auto w-full object-contain remove-background transition duration-700 hover:rotate-2 hover:scale-110"
-              />
-            </div>
+            <SaasDashboardVisual />
           </motion.div>
         </div>
       </div>
-
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 text-orange-500 sm:bottom-1"
-      >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          className="h-6 w-6 animate-bounce"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="m6 13 6 6 6-6" />
-        </svg>
-      </motion.div>
     </section>
   );
 }

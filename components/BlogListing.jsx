@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Tag, ArrowRight, Calendar, Clock, ChevronRight } from 'lucide-react';
+import BlogImage from '@/components/BlogImage';
 
 function readingTime(content) {
   const words = content?.replace(/<[^>]*>/g, '').split(/\s+/).length || 0;
@@ -45,10 +46,11 @@ export default function BlogListing({ blogs }) {
                 className="group relative flex h-[400px] sm:h-[500px] lg:h-[600px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10"
               >
                 {featuredMain.image_url ? (
-                  <img
+                  <BlogImage
                     src={featuredMain.image_url}
                     alt={featuredMain.title}
-                    className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-1000 group-hover:scale-105 group-hover:opacity-60"
+                    className="absolute inset-0 h-full w-full opacity-80 transition duration-1000 group-hover:scale-105 group-hover:opacity-60"
+                    priority={true}
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center text-white/5 opacity-50">
@@ -91,10 +93,10 @@ export default function BlogListing({ blogs }) {
                 className="group relative flex h-[200px] sm:h-[240px] lg:h-[288px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1"
               >
                 {blog.image_url && (
-                  <img
+                  <BlogImage
                     src={blog.image_url}
                     alt={blog.title}
-                    className="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-700 group-hover:scale-105 group-hover:opacity-40"
+                    className="absolute inset-0 h-full w-full opacity-60 transition duration-700 group-hover:scale-105 group-hover:opacity-40"
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -130,10 +132,10 @@ export default function BlogListing({ blogs }) {
                 className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-stone-100 transition-all duration-300 hover:-translate-y-1"
               >
                 {blog.image_url ? (
-                  <img
+                  <BlogImage
                     src={blog.image_url}
                     alt={blog.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                    className="h-full w-full transition duration-700 group-hover:scale-110"
                   />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center text-black/5">
@@ -179,10 +181,10 @@ export default function BlogListing({ blogs }) {
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] border border-black/5 bg-stone-50 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-orange-500/5">
                   {blog.image_url ? (
-                    <img
+                    <BlogImage
                       src={blog.image_url}
                       alt={blog.title}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      className="h-full w-full transition duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center text-black/5">

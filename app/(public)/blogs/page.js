@@ -7,17 +7,22 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Revalidate every hour
 
 export const metadata = {
-  title: 'Blog | Geetanjali Softwares',
-  description: 'Insights, guides, and updates from the team at Geetanjali Softwares.',
+  title: 'Insights & Guides | Geetanjali Softwares Blog',
+  description: 'Expert guides on web development, SEO strategies, and digital growth from the Geetanjali Softwares team.',
+  openGraph: {
+    title: 'Geetanjali Softwares Blog | Digital Growth Insights',
+    description: 'Master web development and SEO with our expert guides.',
+    images: ['https://www.geetanjalisoftwares.in/icon.png'],
+  }
 };
 
 export default async function BlogsPage() {
   const { data: blogs, error } = await supabaseAdmin
     .from('blogs')
-    .select('*')
+    .select('id, title, slug, image_url, created_at, category, excerpt, author')
     .order('created_at', { ascending: false });
 
   if (error) {

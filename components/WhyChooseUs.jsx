@@ -6,21 +6,21 @@ import { motion } from "framer-motion";
 
 const whyChooseUs = [
   {
-    icon: <Zap className="h-6 w-6 text-orange-600" />,
+    icon: <Zap className="h-6 w-6 text-blue-600" />,
     title: '10x Faster Deployment',
     benefit: 'Get your business live in days, not months.',
     proof: 'Trusted by 50+ businesses for rapid scaling.',
     ctaLabel: 'Start Scaling',
   },
   {
-    icon: <Target className="h-6 w-6 text-orange-600" />,
+    icon: <Target className="h-6 w-6 text-blue-600" />,
     title: 'Data-Driven Marketing',
     benefit: 'Every click is tracked, every lead verified.',
     proof: 'Average 45% increase in conversion rates.',
     ctaLabel: 'See Strategy',
   },
   {
-    icon: <TrendingUp className="h-6 w-6 text-orange-600" />,
+    icon: <TrendingUp className="h-6 w-6 text-blue-600" />,
     title: 'ROI-Focused Growth',
     benefit: 'Systems that generate revenue automatically.',
     proof: '100% Client satisfaction with long-term ROAS.',
@@ -60,7 +60,7 @@ export default function WhyChooseUs() {
       >
         <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
           <div className="max-w-2xl">
-            <motion.p variants={itemVariants} className="text-xs font-medium uppercase tracking-[0.28em] text-orange-700 sm:text-sm">
+            <motion.p variants={itemVariants} className="text-xs font-medium uppercase tracking-[0.28em] text-blue-700 sm:text-sm">
               Why Choose Us
             </motion.p>
             <motion.h2 variants={itemVariants} className="mt-3 text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             className="relative hidden lg:block"
           >
-            <div className="absolute inset-0 bg-orange-500/5 blur-[80px]" />
+            <div className="absolute inset-0 bg-blue-500/10 blur-[80px]" />
             <img
               src="/images/why_choose_us_new.png"
               alt="Premium 3D Success Illustration"
@@ -90,25 +90,25 @@ export default function WhyChooseUs() {
               variants={itemVariants}
               className="group flex flex-col rounded-[32px] border border-black/[0.03] bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/5 transition-all duration-500 group-hover:bg-orange-500 group-hover:text-white">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/5 transition-all duration-500 group-hover:bg-blue-500 group-hover:text-white">
                 <div className="group-hover:scale-110 transition-transform duration-500">
                   {item.icon}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold tracking-tight text-black sm:text-2xl group-hover:text-orange-600 transition-colors">
+                <h3 className="text-xl font-bold tracking-tight text-black sm:text-2xl group-hover:text-blue-600 transition-colors">
                 {item.title}
               </h3>
 
               <div className="mt-6 flex flex-col gap-4 flex-1">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-500">Primary Benefit</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Primary Benefit</p>
                   <p className="mt-2 text-sm leading-relaxed text-black/60">
                     {item.benefit}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-black/[0.02] bg-stone-50/50 p-4 transition-colors group-hover:bg-orange-500/[0.02]">
+                <div className="rounded-2xl border border-black/[0.02] bg-stone-50/50 p-4 transition-colors group-hover:bg-blue-500/[0.02]">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/30">Verified Result</p>
@@ -121,7 +121,7 @@ export default function WhyChooseUs() {
 
               <Link
                 href="/services"
-                className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-black px-6 py-4 text-sm font-bold text-white transition hover:bg-orange-600 hover:scale-[1.02] active:scale-95 sm:w-auto"
+                className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-blue-600 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-700 hover:scale-[1.02] active:scale-95 sm:w-auto"
               >
                 {item.ctaLabel}
               </Link>
