@@ -25,6 +25,7 @@ export default function AdminLayout({ children }) {
 
   const navItems = [
     { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={20} /> },
+    { label: 'Automixa', href: '/dashboard/automixa', icon: <Bell size={20} /> },
     { label: 'Leads', href: '/leads', icon: <Users size={20} /> },
     { label: 'Blogs', href: '/dashboard/blogs', icon: <FileText size={20} /> },
     { label: 'SEO Settings', href: '/settings', icon: <Settings size={20} /> },

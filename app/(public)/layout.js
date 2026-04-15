@@ -20,6 +20,8 @@ export default function PublicLayout({ children }) {
         <SiteFooter />
       </main>
 
+      <FloatingWhatsApp />
+
       <svg width="0" height="0" className="absolute pointer-events-none invisible">
         <filter id="chroma-key-white" colorInterpolationFilters="sRGB">
           <feColorMatrix type="matrix" values="1 0 0 0 0

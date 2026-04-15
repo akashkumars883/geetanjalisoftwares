@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/dashboard/', '/leads/', '/settings/', '/api/', '/diag/', '/login'],
     },
-    sitemap: 'https://geetanjalisoftwares.com/sitemap.xml',
+    sitemap: 'https://www.geetanjalisoftwares.in/sitemap.xml',
   }
 }

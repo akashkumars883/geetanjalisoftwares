@@ -96,7 +96,7 @@ export default function BlogsPage() {
             ) : (
               <div className="animate-in fade-in slide-in-from-left-4 duration-500">
                 <h3 className="text-2xl font-bold tracking-tight text-black leading-tight selection:bg-orange-500/20 italic">
-                  "{aiTopic?.title || 'Loading next big thing...'}"
+                  &ldquo;{aiTopic?.title || 'Loading next big thing...'}&rdquo;
                 </h3>
                 <p className="text-sm text-black/50 mt-2 font-medium">
                   {aiTopic?.description || 'AI is searching for high-traffic trends for your agency...'}

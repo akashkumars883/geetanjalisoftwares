@@ -1,19 +1,5 @@
-import { Outfit, Vollkorn } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-})
-const vollkorn = Vollkorn({
-  subsets: ["latin"],
-  variable: "--font-vollkorn",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-})      
 
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
@@ -33,7 +19,7 @@ export async function generateMetadata() {
         description: data.site_description.slice(0, 130),
         keywords: data.keywords,
         alternates: {
-          canonical: 'https://geetanjalisoftwares.in',
+          canonical: 'https://www.geetanjalisoftwares.in',
         },
         icons: {
           icon: "/favicon.ico",
@@ -46,11 +32,23 @@ export async function generateMetadata() {
 
   // Fallback for Bihar-focused SEO
   return {
-    title: "Geetanjali Softwares - Leading Website Development & Digital Marketing Company",
-    description: "Scale your business with Geetanjali Softwares. We specialize in high-performance web development, SEO, and customsoftware designed to scale your brand online. ",
-    keywords: "digital marketing, website design, development, branding, bihar digital agency, seo services ",
     alternates: {
-      canonical: 'https://geetanjalisoftwares.in',
+      canonical: 'https://www.geetanjalisoftwares.in',
+    },
+    openGraph: {
+      title: "Geetanjali Softwares - Website Development & SEO Company",
+      description: "Scale your brand with a leading digital agency. High-performance web development, SEO, and custom software.",
+      url: 'https://www.geetanjalisoftwares.in',
+      siteName: 'Geetanjali Softwares',
+      images: [{ url: 'https://www.geetanjalisoftwares.in/icon.png', width: 512, height: 512 }],
+      locale: 'en_IN',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Geetanjali Softwares",
+      description: "Expert Website Development & SEO Services.",
+      images: ['https://www.geetanjalisoftwares.in/icon.png'],
     },
     icons: {
       icon: "/favicon.ico",
@@ -69,10 +67,12 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Geetanjali Softwares",
-              "url": "https://geetanjalisoftwares.in",
-              "logo": "https://geetanjalisoftwares.in/icon.png",
+              "url": "https://www.geetanjalisoftwares.in",
+              "logo": "https://www.geetanjalisoftwares.in/icon.png",
+              "description": "Geetanjali Softwares is a leading website development and digital marketing agency.",
               "sameAs": [
-                "https://www.instagram.com/geetanjalisoftwares/"
+                "https://www.instagram.com/geetanjalisoftwares/",
+                "https://www.facebook.com/geetanjalisoftwares/"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${outfit.variable} ${vollkorn.variable} antialiased`}
+        className="antialiased"
       >
         <Toaster richColors position="top-right" />
         <AIConsultant />

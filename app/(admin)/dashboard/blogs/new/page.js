@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save, Loader2, Image as ImageIcon, Type, Layout, Tag } from 'lucide-react';
 import RichTextEditor from '@/components/RichTextEditor';
-import { processContentImages } from '@/utils/imageUtils';
+import { processContentImages, compressImage } from '@/utils/imageUtils';
 
 function NewBlogContent() {
   const router = useRouter();
@@ -42,19 +42,29 @@ function NewBlogContent() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setIsUploading(true);
-    const uploadData = new FormData();
-    uploadData.append('file', file);
-
     try {
+      // 1. Compress the image before uploading to avoid "Request Entity Too Large" errors
+      const compressedBlob = await compressImage(URL.createObjectURL(file));
+      const fileName = `optimized-${Date.now()}-${file.name.replace(/[^a-z0-9.]/gi, '_')}`;
+      const optimizedFile = new File([compressedBlob], fileName, { type: 'image/jpeg' });
+
+      const uploadData = new FormData();
+      uploadData.append('file', optimizedFile);
+
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: uploadData
       });
 
       if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.error || 'Upload failed');
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || 'Upload failed');
+        } else {
+          const textError = await res.text();
+          throw new Error(`Server Error (${res.status}): ${textError.slice(0, 50)}...`);
+        }
       }
 
       const { url } = await res.json();
