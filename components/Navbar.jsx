@@ -32,7 +32,6 @@ const SERVICE_LINKS = services
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Automixa', href: '/automixa' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Contact', href: '/contact' },
   { label: 'About', href: '/about' },
