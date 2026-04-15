@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase';
 
 export default async function sitemap() {
-  const baseUrl = 'https://www.geetanjalisoftwares.in';
+  const baseUrl = 'https://geetanjalisoftwares.in';
 
   // Fetch blogs from Supabase
   const { data: blogs } = await supabase
@@ -18,7 +18,6 @@ export default async function sitemap() {
 
   const staticUrls = [
     '',
-    '/automixa',
     '/about',
     '/services',
     '/contact',

@@ -68,7 +68,7 @@ export default function ContactFormSection() {
             viewport={{ once: true }}
             transition={{ staggerChildren: 0.1 }}
           >
-              <motion.p variants={fadeInUp} className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-600 sm:text-xs">
+            <motion.p variants={fadeInUp} className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-600 sm:text-xs">
               Contact Form
             </motion.p>
             <motion.h2 variants={fadeInUp} className="mt-4 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl leading-[1.2]">
@@ -81,11 +81,11 @@ export default function ContactFormSection() {
             {/* Contact info */}
             <motion.div variants={fadeInUp} className="mt-10 space-y-4">
               <a href="tel:+917508657479" className="group flex items-center gap-4 text-sm font-bold text-black/60 hover:text-black transition-all duration-300">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/5 text-blue-600 text-lg shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">📞</span>
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-500/5 text-orange-600 text-lg shrink-0 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">📞</span>
                 +91 7508657479
               </a>
               <a href="mailto:geetanjalisoftwares@gmail.com" className="group flex items-center gap-4 text-sm font-bold text-black/60 hover:text-black transition-all duration-300">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/5 text-blue-600 text-lg shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">✉️</span>
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-500/5 text-orange-600 text-lg shrink-0 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">✉️</span>
                 geetanjalisoftwares@gmail.com
               </a>
             </motion.div>
@@ -156,13 +156,13 @@ export default function ContactFormSection() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={status === 'loading'}
-              className="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-blue-600 px-8 py-5 text-sm font-bold text-white shadow-xl shadow-blue-500/20 transition-all hover:bg-blue-700 disabled:opacity-50 sm:w-fit"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-orange-500 px-8 py-5 text-sm font-bold text-white shadow-xl shadow-orange-500/20 transition-all hover:bg-orange-600 disabled:opacity-50 sm:w-fit"
             >
               {status === 'loading' ? 'Sending Enquiry...' : 'Start Your Journey'}
             </motion.button>
 
             {status === 'success' && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm font-bold text-blue-700 bg-blue-50 p-4 rounded-xl border border-blue-100 italic">✨ Enquiry sent successfully! We&apos;ll be in touch soon.</motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm font-bold text-green-600 bg-green-50 p-4 rounded-xl border border-green-100 italic">✨ Enquiry sent successfully! We&apos;ll be in touch soon.</motion.p>
             )}
             {status === 'error' && (
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm font-bold text-red-600 bg-red-50 p-4 rounded-xl border border-red-100 italic">❌ Something went wrong. Please try again.</motion.p>

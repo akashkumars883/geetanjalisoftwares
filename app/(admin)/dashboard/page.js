@@ -248,7 +248,7 @@ export default function DashboardPage() {
           >
             <div className="absolute top-0 left-10 -translate-y-1/2 px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">Pro Tip</div>
             <p className="text-xl lg:text-2xl font-medium text-black leading-relaxed italic whitespace-pre-line selection:bg-orange-500/20">
-              &ldquo;{stats.aiTip}&rdquo;
+              "{stats.aiTip}"
             </p>
           </motion.div>
         </div>

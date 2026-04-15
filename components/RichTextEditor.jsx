@@ -60,14 +60,10 @@ export default function RichTextEditor({ value, onChange }) {
                     });
 
                     if (!res.ok) {
-                      const contentType = res.headers.get('content-type');
-                      if (contentType && contentType.includes('application/json')) {
-                        const errorData = await res.json();
-                        throw new Error(errorData.error || 'Upload failed');
-                      } else {
-                        const textError = await res.text();
-                        throw new Error(`Server Error (${res.status}): ${textError.slice(0, 50)}...`);
-                      }
+                      const errorData = await res.json();
+                      const specificError = errorData.error || 'Upload failed';
+                      const errorDetails = errorData.details || '';
+                      throw new Error(`${specificError}${errorDetails ? ' - ' + errorDetails : ''}`);
                     }
 
                     const { url } = await res.json();

@@ -11,7 +11,7 @@ export async function GET() {
   try {
     const { data, error } = await supabaseAdmin
       .from('blogs')
-      .select('id, title, slug, image_url, created_at, category, excerpt, author, is_published')
+      .select('*')
       .order('created_at', { ascending: false });
 
     if (error) {
