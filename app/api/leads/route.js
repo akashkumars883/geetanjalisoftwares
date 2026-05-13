@@ -24,8 +24,12 @@ export async function POST(request) {
     // Trigger auto-reply and admin notification (don't block the main response)
     const newLead = { name, email, service, message };
     (async () => {
-       await sendLeadAutoReply(newLead);
-       await sendAdminNotification(newLead);
+       try {
+         await sendLeadAutoReply(newLead);
+         await sendAdminNotification(newLead);
+       } catch (err) {
+         console.error("Lead email dispatches failed:", err);
+       }
     })();
 
     return NextResponse.json({ message: 'Lead saved successfully', data: insertedData }, { status: 201 });
@@ -49,5 +53,55 @@ export async function GET() {
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const body = await request.json();
+    const { id, status } = body;
+
+    if (!id || !status) {
+      return NextResponse.json({ error: 'Missing lead ID or status' }, { status: 400 });
+    }
+
+    const { error } = await supabase
+      .from('leads')
+      .update({ status })
+      .eq('id', id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, message: 'Lead status updated successfully.' });
+  } catch (err) {
+    console.error("PUT Lead Error:", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json({ error: 'Missing lead ID' }, { status: 400 });
+    }
+
+    const { error } = await supabase
+      .from('leads')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, message: 'Lead purged successfully.' });
+  } catch (err) {
+    console.error("DELETE Lead Error:", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

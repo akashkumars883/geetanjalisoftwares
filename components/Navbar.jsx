@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { services } from "@/lib/services";
-import { Monitor, TrendingUp, Palette, ChevronDown } from 'lucide-react';
+import { Monitor, TrendingUp, Palette, ChevronDown, Sparkles } from 'lucide-react';
 
 const SERVICE_INFO = {
   "website-design-development": {
@@ -31,13 +31,10 @@ const SERVICE_LINKS = services
   }));
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blogs' },
+  { label: 'Contact', href: '/#contact-form' },
 ];
-
-import Logo from './Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,20 +96,13 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 w-full max-w-8xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-bold tracking-tight text-black sm:text-xl"
+            className="flex items-center gap-2"
           >
-            <Logo size={28} className="text-orange-500" />
-            <span>
-              Geetanjali <span className="font-normal text-black/60">Softwares</span>
-            </span>
+            <img src="/images/logo.jpg" alt="Geetanjali Softwares Logo" className="h-8 w-auto object-contain mix-blend-multiply" />
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-5 lg:gap-8">
             <nav className="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
-              <Link href="/" className="text-sm font-medium text-black/85 transition hover:text-black">
-                Home
-              </Link>
-
               <div className="group relative">
                 <Link
                   href="/services"
@@ -129,13 +119,13 @@ export default function Navbar() {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="flex items-start gap-4 rounded-2xl p-4 transition hover:bg-black/[0.03]"
+                          className="flex items-start gap-4 rounded-2xl p-4 transition hover:bg-white/[0.03]"
                         >
-                          <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-black/[0.03] text-black">
+                          <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.03] text-black">
                             {link.icon}
                           </div>
                           <div className="flex flex-col gap-0.5">
-                            <span className="text-sm font-bold text-black">{link.label}</span>
+                            <span className="text-sm font-semibold text-black">{link.label}</span>
                             <span className="text-[11px] font-medium text-black/40 leading-tight">{link.description}</span>
                           </div>
                         </Link>
@@ -145,7 +135,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {NAV_LINKS.slice(1).map((link) => (
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -155,6 +145,12 @@ export default function Navbar() {
                 </Link>
               ))}
             </nav>
+            <Link
+              href="/free-website"
+              className="group hidden items-center justify-center gap-2 rounded-xl bg-orange-600 px-5 py-2.5 text-xs font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-orange-600/30 active:scale-95 md:inline-flex"
+            >
+              Try Free Website Builder
+            </Link>
 
             <button
               type="button"
@@ -187,7 +183,7 @@ export default function Navbar() {
 
       <div
         onClick={closeMobileMenu}
-        className={`fixed inset-0 z-40 bg-black/10 backdrop-blur-[2px] transition-opacity duration-200 md:hidden ${
+        className={`fixed inset-0 z-40 bg-white/10 backdrop-blur-[2px] transition-opacity duration-200 md:hidden ${
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       />
@@ -202,19 +198,11 @@ export default function Navbar() {
           className="flex w-full flex-col items-start px-4 py-4 sm:px-6 text-left"
           aria-label="Mobile navigation"
         >
-          <Link
-            href="/"
-            onClick={closeMobileMenu}
-            className="w-full rounded-2xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
-          >
-            Home
-          </Link>
-
           <div className="w-full rounded-2xl">
             <button
               type="button"
               onClick={() => setIsServicesMobileOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between rounded-2xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+              className="flex w-full items-center justify-between rounded-2xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-white/5 hover:text-black"
             >
               <span>Services</span>
               <svg
@@ -238,13 +226,13 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={closeMobileMenu}
-                    className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-black/5"
+                    className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-white/5"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-black/[0.03] text-black">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.03] text-black">
                       {link.icon}
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold text-black">{link.label}</span>
+                      <span className="text-sm font-semibold text-black">{link.label}</span>
                       <span className="text-[10px] font-medium text-black/40">{link.description}</span>
                     </div>
                   </Link>
@@ -253,16 +241,24 @@ export default function Navbar() {
             )}
           </div>
 
-          {NAV_LINKS.slice(1).map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={closeMobileMenu}
-              className="w-full rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-black/5 hover:text-black"
+              className="w-full rounded-xl px-3 py-3 text-left text-base font-medium text-black/85 transition hover:bg-white/5 hover:text-black"
             >
               {link.label}
             </Link>
           ))}
+
+          <Link
+            href="/free-website"
+            onClick={closeMobileMenu}
+            className="group mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 px-4 py-3.5 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-orange-600/30 active:scale-95"
+          >
+            Try Free Website Builder
+          </Link>
         </nav>
       </div>
     </>

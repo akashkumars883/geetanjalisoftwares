@@ -1,9 +1,8 @@
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
-import ServiceAreaStrip from "@/components/ServiceAreaStrip";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import AIConsultant from "@/components/AIConsultant";
 
 export default function PublicLayout({ children }) {
   return (
@@ -13,14 +12,10 @@ export default function PublicLayout({ children }) {
         <Navbar />
         <Breadcrumbs />
         {children}
-        <div className="mt-20">
-
-          <ServiceAreaStrip />
-        </div>
-        <SiteFooter />
       </main>
+      <SiteFooter />
 
-      <FloatingWhatsApp />
+      <AIConsultant />
 
       <svg width="0" height="0" className="absolute pointer-events-none invisible">
         <filter id="chroma-key-white" colorInterpolationFilters="sRGB">

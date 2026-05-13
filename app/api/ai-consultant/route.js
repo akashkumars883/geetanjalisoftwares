@@ -15,7 +15,7 @@ export async function POST(req) {
     const { messages } = await req.json();
     
     // 1. Fetch current settings with admin privileges
-    let city = "Delhi NCR & Bihar";
+    let city = "Global";
     let siteTitle = "Geetanjali Softwares";
 
     try {

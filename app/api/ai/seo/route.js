@@ -31,10 +31,9 @@ export async function POST(req) {
           1. Suggested Site Title: Catchy, High-CTR, between 50-60 characters.
           2. Meta Description: Compelling, includes a call to action, between 150-160 characters.
           3. Suggested Keywords: Provide a list of 15 high-ranking keywords. 
-             - Mix Strategy: 70% Global/General Tech Industry terms (e.g., custom software, web design agency) 
-             - Mix Strategy: 30% Localized terms based on "${local_focus}" (e.g., in Patna, Bihar).
+             - Mix Strategy: 100% Global/General Tech Industry terms (e.g., custom software, enterprise web design agency, SaaS development, premium digital marketing).
           
-          Exclusion: Do NOT only focus on Bihar. Ensure a broad global/national appeal as well.
+          Exclusion: Ensure a broad global/worldwide appeal. Do NOT suggest hyper-local keywords or regional cities unless explicitly specified in the Local Focus Area.
           
           Respond WITH A JSON object:
           {

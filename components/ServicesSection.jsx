@@ -1,119 +1,141 @@
 'use client';
 
-import Link from "next/link";
-import React from "react";
-import { services } from "@/lib/services";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+
+const servicesList = [
+  {
+    id: "website-design-development",
+    label: "Website Development",
+    description: "Custom websites built for growth. We design and develop business websites that are clear, responsive, fast, and focused on helping your brand look more trustworthy online.",
+    features: ["Custom Business Website", "Mobile Responsive Design", "Fast Loading & SEO Friendly"]
+  },
+  {
+    id: "digital-marketing",
+    label: "Digital Marketing & SEO",
+    description: "ROI-driven growth and visibility. Expand your brand's reach with data-driven digital marketing strategies. We help you increase online visibility, generate quality leads, and scale your brand.",
+    features: ["SEO Support", "Lead Generation Strategy", "Growth-Focused Campaigns"]
+  },
+  {
+    id: "branding",
+    label: "Brand Identity & Design",
+    description: "Professional branding and logos. Build a consistent and professional brand identity that stands out. We help you define your brand messaging and visual presentation across all platforms.",
+    features: ["Brand Direction", "Visual Identity Support", "Consistent Brand Presentation"]
+  }
+];
 
 export default function ServicesSection() {
-  const containerVariants = {
-    initial: { opacity: 0 },
-    whileInView: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.05
-      }
-    }
-  };
-
-  const itemVariants = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="services" className="relative scroll-mt-28 pb-16 sm:pb-20">
-      <div className="absolute left-1/2 top-20 h-56 w-56 -translate-x-1/2 rounded-full bg-orange-400/15 blur-3xl" />
-
-      <motion.div 
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: true, margin: "0px" }}
-        variants={containerVariants}
-        className="relative mx-auto max-w-7xl"
-      >
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <motion.p variants={itemVariants} className="text-xs font-medium uppercase tracking-[0.28em] text-orange-700 sm:text-sm">
+    <section id="services" className="relative scroll-mt-28 pt-8 pb-6 sm:pt-12 sm:pb-10 bg-transparent">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
+          {/* Left Side: Heading */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1"
+          >
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+              Our Expertise
+            </span>
+            <h2 className="mt-4 text-4xl font-normal leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
               Services
-            </motion.p>
-            <motion.h2 variants={itemVariants} className="mt-3 text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
-              We Build, Market &amp; Scale Your Business Online
-            </motion.h2>
-            <motion.p variants={itemVariants} className="mt-4 text-sm leading-7 text-black/70 sm:text-base">
-              From building your website to generating leads, we handle
-              everything so you can focus on your business.
-            </motion.p>
-          </div>
+            </h2>
+          </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <Link
-              href="/services"
-              className="inline-flex w-full items-center justify-center rounded-lg border border-black/15 bg-white/80 px-6 py-3 text-sm font-semibold text-black transition hover:bg-black/5 sm:w-auto"
-            >
-              View All Services
-            </Link>
+          {/* Right Side: Description */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1 lg:max-w-xl"
+          >
+            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+              We provide end-to-end digital solutions designed to elevate your brand. From custom web platforms to targeted marketing campaigns, our services are built to deliver measurable results.
+            </p>
           </motion.div>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8">
-          {services
-            .filter((service) => !service.slug.includes("/"))
-            .map((service) => (
-            <motion.article
-              id={service.slug}
-              key={service.slug}
-              variants={itemVariants}
-              className="group relative scroll-mt-28 overflow-hidden rounded-[32px] border border-black/[0.03] bg-white p-6 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 backdrop-blur-xl sm:p-8"
-            >
-              <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-orange-300/10 blur-2xl transition duration-500 group-hover:bg-orange-300/20" />
-              <div className="relative">
-                <div className="relative mb-6 h-32 w-full overflow-hidden rounded-2xl bg-stone-50">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent blur-2xl" />
-                  <img
-                    src={`/images/${service.slug.split("/").pop().replace("website-design-development", "web").replace("digital-marketing", "marketing")}_icon.png`}
-                    alt={service.title}
-                    className="h-full w-full object-contain remove-background transition duration-700 group-hover:scale-110 group-hover:rotate-2"
-                  />
-                </div>
-                <span className="inline-flex rounded-lg border border-black/5 bg-stone-100 px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-black/40">
-                  {service.number}
-                </span>
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-black sm:text-2xl group-hover:text-orange-600 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-black/60 line-clamp-3">
-                  {service.description}
-                </p>
+        {/* Bottom Accordion Section */}
+        <div className="mt-12 flex flex-col">
+          {servicesList.map((service, index) => {
+            const isOpen = openIndex === index;
 
-                <div className="mt-6 space-y-2">
-                  {service.points.slice(0, 3).map((point) => (
-                    <div
-                      key={point}
-                      className="rounded-xl border border-black/[0.02] bg-stone-50/50 px-4 py-3 text-xs font-medium text-black/70 flex items-center gap-3 transition-colors group-hover:bg-orange-500/5 group-hover:border-orange-500/10"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-orange-500/30" />
-                      {point}
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-black px-6 py-4 text-sm font-bold text-white transition hover:bg-orange-600 hover:scale-[1.02] active:scale-95 sm:w-auto"
+            return (
+              <motion.div 
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  className="group flex w-full items-center justify-between py-6 text-left sm:py-10"
                 >
-                  Explore Service
-                </Link>
-              </div>
-            </motion.article>
-          ))}
+                  <div className="flex items-center gap-6 sm:gap-10">
+                    <span className="text-sm font-semibold text-slate-400 transition-colors group-hover:text-orange-600 sm:text-xl">
+                      0{index + 1}
+                    </span>
+                    <h3 className="text-2xl font-normal tracking-tight text-slate-900 transition-colors group-hover:text-orange-600 sm:text-5xl">
+                      {service.label}
+                    </h3>
+                  </div>
+                  <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? 'rotate-180 bg-orange-600 border-orange-600 text-white' : 'border-black/10 bg-transparent text-slate-900 group-hover:border-orange-600 group-hover:text-orange-600'}`}>
+                    <ChevronDown size={24} />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="pb-10 pl-12 sm:pb-12 sm:pl-20 lg:pl-[88px]">
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
+                          <div className="lg:col-span-7">
+                            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+                              {service.description}
+                            </p>
+                            <Link 
+                              href={`/services/${service.id}`}
+                              className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:border-orange-600 hover:bg-orange-600 hover:text-white"
+                            >
+                              Explore Service <ArrowRight size={16} />
+                            </Link>
+                          </div>
+                          <div className="lg:col-span-5">
+                            <ul className="flex flex-col gap-4 border-l border-black/10 pl-6">
+                              {service.features.map((feature, i) => (
+                                <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-800 sm:text-base">
+                                  <div className="h-1.5 w-1.5 rounded-full bg-orange-600" />
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
-      </motion.div>
+
+      </div>
     </section>
   );
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import Head from 'next/head';
-import { LayoutDashboard, Users, Home, LogOut, Settings, FileText, Bell } from 'lucide-react';
+import { LayoutDashboard, Users, Home, LogOut, Settings, FileText, Bell, Briefcase } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -27,6 +27,7 @@ export default function AdminLayout({ children }) {
     { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={20} /> },
     { label: 'Leads', href: '/leads', icon: <Users size={20} /> },
     { label: 'Blogs', href: '/dashboard/blogs', icon: <FileText size={20} /> },
+    { label: 'Manage Careers', href: '/dashboard/careers', icon: <Briefcase size={20} /> },
     { label: 'SEO Settings', href: '/settings', icon: <Settings size={20} /> },
   ];
 

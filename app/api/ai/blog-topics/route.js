@@ -10,7 +10,7 @@ export async function GET() {
       You are a Digital Marketing Expert. Suggest ONE trending and high-traffic blog topic for a digital marketing agency called "Geetanjali Softwares".
       
       The agency provides services like: SEO, Web Development, Social Media Marketing, PPC, and Branding.
-      Focus on the Indian market (Bihar, Delhi, etc.) but also global trends.
+      Focus on global digital marketing, SaaS growth, and technology trends for businesses worldwide.
       
       Return the response in EXACTLY this JSON format:
       {

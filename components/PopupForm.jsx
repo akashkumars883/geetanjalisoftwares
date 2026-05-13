@@ -77,7 +77,7 @@ export default function PopupForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm"
           />
 
           {/* Popup Container */}
@@ -91,18 +91,18 @@ export default function PopupForm() {
             <div className="relative h-32 w-full overflow-hidden bg-orange-500">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600" />
               <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-black/10 blur-3xl" />
+              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
               
               <button
                 onClick={handleClose}
-                className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition hover:bg-white/30"
+                className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-slate-900 backdrop-blur-md transition hover:bg-white/30"
               >
                 <X size={18} />
               </button>
 
-              <div className="relative flex h-full flex-col justify-center px-8 text-white">
-                <h3 className="text-2xl font-bold tracking-tight">Get a Quote!</h3>
-                <p className="text-sm font-medium text-white/80">Let&apos;s build something amazing together.</p>
+              <div className="relative flex h-full flex-col justify-center px-8 text-slate-900">
+                <h3 className="text-2xl font-semibold tracking-tight">Get a Quote!</h3>
+                <p className="text-sm font-medium text-slate-900/80">Let&apos;s build something amazing together.</p>
               </div>
             </div>
 
@@ -110,7 +110,7 @@ export default function PopupForm() {
             <div className="p-8">
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-black/30 ml-1">Full Name</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
                   <input
                     type="text"
                     name="name"
@@ -118,12 +118,12 @@ export default function PopupForm() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="John Doe"
-                    className="w-full rounded-2xl border border-black/[0.05] bg-stone-50 px-5 py-4 text-sm text-black outline-none placeholder:text-black/30 focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5 transition-all"
+                    className="w-full rounded-2xl border border-black/5 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-black/30 ml-1">Email or WhatsApp</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 ml-1">Email or WhatsApp</label>
                   <input
                     type="text"
                     name="contact"
@@ -131,12 +131,12 @@ export default function PopupForm() {
                     value={formData.contact}
                     onChange={handleChange}
                     placeholder="example@mail.com / +91..."
-                    className="w-full rounded-2xl border border-black/[0.05] bg-stone-50 px-5 py-4 text-sm text-black outline-none placeholder:text-black/30 focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5 transition-all"
+                    className="w-full rounded-2xl border border-black/5 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-black/30 ml-1">How can we help?</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 ml-1">How can we help?</label>
                   <textarea
                     name="message"
                     required
@@ -144,14 +144,14 @@ export default function PopupForm() {
                     onChange={handleChange}
                     rows={3}
                     placeholder="Briefly tell us about your project..."
-                    className="w-full resize-none rounded-2xl border border-black/[0.05] bg-stone-50 px-5 py-4 text-sm text-black outline-none placeholder:text-black/30 focus:border-orange-500/20 focus:ring-4 focus:ring-orange-500/5 transition-all"
+                    className="w-full resize-none rounded-2xl border border-black/5 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="mt-2 flex w-full items-center justify-center gap-3 rounded-2xl bg-orange-500 py-5 text-sm font-bold text-white shadow-xl shadow-orange-500/20 transition hover:bg-orange-600 active:scale-95 disabled:opacity-50"
+                  className="mt-2 flex w-full items-center justify-center gap-3 rounded-2xl bg-orange-600 py-5 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 active:scale-95 disabled:opacity-50"
                 >
                   {status === 'loading' ? (
                     'Sending...'
@@ -164,10 +164,10 @@ export default function PopupForm() {
                 </button>
 
                 {status === 'success' && (
-                  <p className="text-center text-xs font-bold text-green-600 italic">Redirecting to WhatsApp...</p>
+                  <p className="text-center text-xs font-semibold text-emerald-700 italic">Redirecting to WhatsApp...</p>
                 )}
                 {status === 'error' && (
-                  <p className="text-center text-xs font-bold text-red-600 italic">Oops! Please try again.</p>
+                  <p className="text-center text-xs font-semibold text-rose-700 italic">Oops! Please try again.</p>
                 )}
               </form>
             </div>

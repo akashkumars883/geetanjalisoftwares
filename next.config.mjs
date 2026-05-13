@@ -2,31 +2,45 @@
 const nextConfig = {
   reactCompiler: true,
   images: {
+    domains: [
+      'juvkrpmrmjhhbnhxuwmd.supabase.co',
+      'images.unsplash.com',
+    ],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.supabase.co',
-        pathname: '/storage/v1/object/public/**',
+        hostname: 'juvkrpmrmjhhbnhxuwmd.supabase.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.unsplash.com',
+        hostname: '*.unsplash.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.googleusercontent.com',
+        hostname: '*.googleusercontent.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.cloudinary.com',
+        hostname: '*.cloudinary.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.imgur.com',
+        hostname: '*.imgur.com',
+        pathname: '/**',
       },
     ],
   },

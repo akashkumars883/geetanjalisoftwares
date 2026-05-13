@@ -4,17 +4,11 @@ import Script from "next/script";
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
 import AIConsultant from "@/components/AIConsultant";
-import { Outfit, Vollkorn } from "next/font/google";
+import { Outfit } from "next/font/google";
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  display: "swap",
-});
-
-const vollkorn = Vollkorn({
-  subsets: ["latin"],
-  variable: "--font-vollkorn",
   display: "swap",
 });
 
@@ -29,7 +23,7 @@ export async function generateMetadata() {
     if (data && data.site_title) {
       return {
         title: data.site_title.slice(0, 60),
-        description: data.site_description.slice(0, 130),
+        description: data.site_description.slice(0, 160),
         keywords: data.keywords,
         alternates: {
           canonical: 'https://www.geetanjalisoftwares.in',
@@ -71,7 +65,7 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${vollkorn.variable}`}>
+    <html lang="en" className={`${outfit.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -97,7 +91,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${outfit.className} ${vollkorn.variable} antialiased`}
+        className={`${outfit.className} antialiased`}
       >
         <Toaster richColors position="top-right" />
         <AIConsultant />

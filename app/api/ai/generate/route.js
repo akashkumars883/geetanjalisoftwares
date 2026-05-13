@@ -35,7 +35,7 @@ export async function POST(req) {
              - Use <strong> for key terms.
              - A strong conclusion with a subtle call-to-action for "Geetanjali Softwares".
           3. Value: Focus on being helpful to the reader. Provide actionable insights.
-          4. Local Context: Where applicable, mention the business landscape in Bihar and across India to show local expertise.
+          4. Global Context: Mention global market trends, SaaS metrics, international standards, and global industry best practices to show high-level expertise.
           5. Human-centric Content: 
              - Style: Use a "Human" and "Natural" writing style. Avoid typical robotic AI-generated patterns and clichés.
              - Tone: Consultative, friendly, and expert. Speak directly to the business owner as a trusted partner.

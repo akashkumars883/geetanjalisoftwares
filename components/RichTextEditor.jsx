@@ -8,9 +8,17 @@ export default function RichTextEditor({ value, onChange }) {
   const containerRef = useRef(null);
   const quillRef = useRef(null);
   const isUpdatingRef = useRef(false);
+  const onChangeRef = useRef(onChange);
+  const initialValueRef = useRef(value);
+
+  // Keep onChangeRef updated with the latest prop
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !containerRef.current || quillRef.current) return;
+    const container = containerRef.current;
+    if (typeof window === 'undefined' || !container || quillRef.current) return;
 
     // Dynamically import Quill only on the client
     const initQuill = async () => {
@@ -89,16 +97,16 @@ export default function RichTextEditor({ value, onChange }) {
       quillRef.current = quill;
 
       // Set initial content
-      if (value) {
-        quill.root.innerHTML = value;
+      if (initialValueRef.current) {
+        quill.root.innerHTML = initialValueRef.current;
       }
 
       // Listen for text changes
       quill.on('text-change', () => {
         if (!isUpdatingRef.current) {
           const html = quill.root.innerHTML;
-          if (onChange) {
-            onChange(html === '<p><br></p>' ? '' : html);
+          if (onChangeRef.current) {
+            onChangeRef.current(html === '<p><br></p>' ? '' : html);
           }
         }
       });
@@ -109,7 +117,7 @@ export default function RichTextEditor({ value, onChange }) {
     return () => {
       if (quillRef.current) {
         // Quill doesn't have a formal destroy method in v2, but we can clear the container
-        const toolbar = containerRef.current?.previousSibling;
+        const toolbar = container?.previousSibling;
         if (toolbar && toolbar.nodeType === 1 && toolbar.classList.contains('ql-toolbar')) {
           toolbar.remove();
         }

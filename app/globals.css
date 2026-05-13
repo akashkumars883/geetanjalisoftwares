@@ -13,7 +13,12 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --font-sans: "Outfit", ui-sans-serif, system-ui;
-  --font-serif: "Vollkorn", ui-serif, Georgia;
+  --animate-marquee: marquee 120s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 * {
@@ -23,7 +28,7 @@
 html,
 body {
   min-height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 7rem;
 }
@@ -33,15 +38,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif);
 }
 /* Mobile Friendliness Fixes */
 @media (max-width: 640px) {

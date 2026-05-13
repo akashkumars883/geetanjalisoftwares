@@ -17,13 +17,13 @@ export async function GET() {
 
         const prompt = `
           You are a professional Business Growth Consultant for "Geetanjali Softwares", a premium web development and digital marketing agency based in India.
-          Provide ONE powerful, actionable "Daily Secret Tip" to help the agency grow.
+          Provide ONE powerful, actionable "Daily Secret Tip" to help the agency grow globally.
           
           Categories to choose from (pick one randomly):
-          1. Local SEO: How to rank higher in Patna/Bihar/India.
-          2. Client Trust: How to get more reviews or high-ticket clients.
-          3. Tech Advantage: A new service (like AI integration) to offer clients.
-          4. Content Strategy: How to use blogs to get leads.
+          1. Global SEO: How to rank higher worldwide.
+          2. Client Trust: How to get more reviews or high-ticket enterprise clients.
+          3. Tech Advantage: A new service (like AI integration) to offer global clients.
+          4. Content Strategy: How to use blogs to get global leads.
           
           Requirements:
           - Keep it short, professional, and inspiring (max 3-4 sentences).

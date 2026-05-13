@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const testimonials = [
@@ -30,32 +31,45 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  };
-
   return (
-    <section id="testimonials" className="scroll-mt-28 pb-16 sm:pb-20 overflow-hidden">
+    <section id="testimonials" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true }}
-          className="max-w-2xl"
-        >
-          <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-[0.3em] text-orange-700 sm:text-sm">
-            Testimonials
-          </motion.p>
-          <motion.h2 variants={fadeInUp} className="mt-4 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl leading-[1.1]">
-            What clients value <span className="text-black/40">most in the work.</span>
-          </motion.h2>
-        </motion.div>
+
+        {/* Top Header Section */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
+          {/* Left Side: Heading */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1"
+          >
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+              Client Praise
+            </span>
+            <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
+              Voices of Success
+            </h2>
+          </motion.div>
+
+          {/* Right Side: Description */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1 lg:max-w-xl"
+          >
+            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+              Hear from the founders, marketing directors, and business owners who partnered with us to elevate their digital presence.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Scrollable Container */}
-        <div className="relative mt-12">
-          <div className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div className="relative mt-8 lg:mt-12">
+          <div className="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             {testimonials.map((item, idx) => (
               <motion.article
                 key={item.name}
@@ -63,32 +77,35 @@ export default function TestimonialsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="flex min-w-[300px] flex-col rounded-[32px] border border-black/[0.03] bg-white p-8 shadow-xl shadow-black/[0.02] backdrop-blur-xl sm:min-w-[400px] lg:min-w-[450px] snap-center hover:shadow-2xl transition-all duration-500"
+                className="group flex min-w-[300px] flex-col p-6 sm:min-w-[400px] lg:min-w-[450px] snap-center relative overflow-hidden flex-1 justify-between"
               >
-                <div className="mb-6 text-orange-500 text-3xl select-none opacity-20 group-hover:opacity-100 transition-opacity">&ldquo;</div>
-                <p className="flex-1 text-base italic leading-relaxed text-black/70">
-                  {item.quote}
-                </p>
-                <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-8">
-                  <div className="h-10 w-10 flex-shrink-0 rounded-2xl bg-orange-500/10 flex items-center justify-center text-xs font-black text-orange-600 uppercase">
+                <div>
+                  <div className="mb-4 text-orange-600 font-serif text-5xl select-none opacity-20 group-hover:opacity-100 transition-opacity duration-300">&ldquo;</div>
+                  <p className="text-base leading-relaxed text-slate-600 relative z-10">
+                    {item.quote}
+                  </p>
+                </div>
+                <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-6 relative z-10">
+                  <div className="h-12 w-12 flex-shrink-0 rounded-2xl bg-orange-500/10 flex items-center justify-center text-sm font-semibold text-orange-600 uppercase border border-orange-500/10 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300">
                     {item.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-black">{item.name}</h3>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-black/30">{item.role}</p>
+                    <h3 className="text-base font-semibold text-slate-900">{item.name}</h3>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-0.5">{item.role}</p>
                   </div>
                 </div>
               </motion.article>
             ))}
           </div>
           
-          {/* Subtle Indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            <div className="h-1 w-8 rounded-full bg-orange-500/20" />
-            <div className="h-1 w-2 rounded-full bg-orange-500/10" />
-            <div className="h-1 w-2 rounded-full bg-orange-500/10" />
+          {/* Indicator */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="h-1.5 w-8 rounded-full bg-orange-600 transition-all" />
+            <div className="h-1.5 w-2 rounded-full bg-orange-600/20" />
+            <div className="h-1.5 w-2 rounded-full bg-orange-600/20" />
           </div>
         </div>
+
       </div>
     </section>
   );

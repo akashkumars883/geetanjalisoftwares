@@ -2,181 +2,140 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const portfolioItems = [
   {
-    title: 'Modern Living: Furniture E-commerce',
-    category: 'E-commerce / UI Design',
-    description: 'High-speed online shopping experience with optimized checkout flow and premium product showcases.',
+    title: 'Automixa: AI Marketing Platform',
+    category: 'AI Platform / Web Application',
+    description: 'Autonomous AI marketing platform engineered to automate multi-channel campaigns, verify leads, and scale conversions with precision analytics.',
+    tech: ['Next.js', 'AI Logic', 'Tailwind'],
+    link: 'https://automixa.in',
+    image: '/images/automixa_ui.png',
+    imageClassName: 'h-full w-full scale-[1.2] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.25]'
+  },
+  {
+    title: 'Modern Living: Luxury E-Commerce',
+    category: 'E-Commerce / UI/UX Design',
+    description: 'High-speed immersive online shopping experience with an optimized checkout flow, premium product showcases, and seamless payment integration.',
     tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
     link: '#',
-    imageType: 'web'
-  },
-  {
-    title: 'Fluxy: Ads Management',
-    category: 'Marketing Tools',
-    description: 'High-performance dashboard for managing complex Meta ad campaigns and analytics.',
-    tech: ['React', 'D3.js', 'Node.js'],
-    link: '#',
-    imageType: 'marketing'
-  },
-  {
-    title: 'LeadStream: Real Estate',
-    category: 'Lead Generation',
-    description: 'A conversion-focused portal for premium property listings and automated lead tracking.',
-    tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
-    link: '#',
-    imageType: 'marketing'
-  },
-  {
-    title: 'ShopVerse: E-commerce',
-    category: 'Online Commerce',
-    description: 'Luxury shopping experience with optimized checkout flow and high-speed page loads.',
-    tech: ['Shopify', 'Next.js', 'Sanity'],
-    link: '#',
-    imageType: 'web'
-  },
-  {
-    title: 'BrandCore: Identity',
-    category: 'Branding',
-    description: 'Complete visual refresh and brand guidelines for a global consulting firm.',
-    tech: ['Figma', 'Illustrator', 'Strategy'],
-    link: '#',
-    imageType: 'branding'
-  },
-  {
-    title: 'NextFit: Wellness App',
-    category: 'Mobile / Web App',
-    description: 'Comprehensive fitness tracking platform with real-time data syncing.',
-    tech: ['React Native', 'Firebase', 'AWS'],
-    link: '#',
-    imageType: 'branding'
-  },
+    image: '/images/modern_living_ui.png',
+    imageClassName: 'h-full w-full scale-[1.25] -translate-y-3 lg:scale-[1.3] lg:-translate-y-8 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.35]'
+  }
 ];
 
 export default function PortfolioSection() {
-  const containerVariants = {
-    initial: { opacity: 0 },
-    whileInView: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
-
   return (
-    <section id="portfolio" className="scroll-mt-28 py-20 sm:py-32">
-      <motion.div 
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-      >
-        {/* Header */}
-        <div className="max-w-2xl mb-10">
-          <motion.p variants={itemVariants} className="text-xs font-medium uppercase tracking-[0.28em] text-orange-700 sm:text-sm">
-            Our Portfolio
-          </motion.p>
-          <motion.h2 variants={itemVariants} className="mt-3 text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
-            Selected Masterpieces
-          </motion.h2>
-        </div>
-        {/* Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolioItems.map((item, idx) => (
-            <motion.article
-              key={item.title}
-              variants={itemVariants}
-              className="group flex flex-col overflow-hidden rounded-[32px] border border-black/[0.03] bg-white shadow-xl shadow-black/[0.02] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5"
-            >
-              {/* Image Showcase */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-50">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-50" />
-                <img
-                  src={`/images/portfolio_${item.imageType}.png`}
-                  alt={item.title}
-                  className="h-full w-full object-contain p-6 transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <a 
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-orange-500 hover:text-white"
-                  >
-                    View Project
-                    <ExternalLink size={14} />
-                  </a>
-                </div>
-              </div>
+    <section id="portfolio" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-              {/* Content */}
-              <div className="flex flex-1 flex-col p-8">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600">
+        {/* Top Header Section */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
+          {/* Left Side: Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1"
+          >
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+              Our Work
+            </span>
+            <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
+              Selected Masterpieces
+            </h2>
+          </motion.div>
+
+          {/* Right Side: Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1 lg:max-w-xl"
+          >
+            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+              We partner with ambitious brands to create digital platforms that captivate users and drive growth. Here are two of our benchmark case studies.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* 2-Column Portfolio Showcase */}
+        <div className="mt-12 grid grid-cols-1 gap-12 lg:mt-16 lg:grid-cols-2 lg:gap-16">
+          {portfolioItems.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group flex flex-col"
+            >
+              <a
+                href={item.link}
+                target={item.link.startsWith('http') ? '_blank' : '_self'}
+                rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                className="relative block w-full overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] lg:aspect-[16/10]"
+              >
+                {/* Image */}
+                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={item.imageClassName}
+                  />
+                </div>
+
+                {/* Hover Arrow Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-orange-600 text-white shadow-2xl transition-transform duration-500 scale-50 group-hover:scale-100">
+                    <ArrowUpRight className="h-8 w-8 sm:h-9 sm:w-9" strokeWidth={2} />
+                  </div>
+                </div>
+              </a>
+
+              {/* Item Details */}
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
+                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
                     {item.category}
                   </span>
-                  <div className="flex gap-2">
-                    {item.tech.slice(0, 2).map(t => (
-                      <span key={t} className="rounded-md border border-black/5 bg-stone-50 px-2 py-0.5 text-[8px] font-bold text-black/40 uppercase">
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.tech.map(t => (
+                      <span key={t} className="rounded-full border border-black/10 px-3 py-1 text-[10px] font-semibold text-slate-600 uppercase tracking-wider sm:text-xs">
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-black transition-colors group-hover:text-orange-600 sm:text-2xl">
+                <h3 className="text-xl font-normal tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-black/60">
-                  {item.description}
-                </p>
-
-                <div className="mt-auto pt-8">
-                  <a 
-                    href={item.link}
-                    className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black/90 transition hover:text-orange-600"
-                  >
-                    Explore Case Study
-                    <ArrowRight size={14} />
-                  </a>
-                </div>
               </div>
-            </motion.article>
+
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-lg">
+                {item.description}
+              </p>
+
+            </motion.div>
           ))}
         </div>
-        
-        {/* Footer CTA */}
-        <motion.div 
-          variants={itemVariants}
-          className="mt-20 flex flex-col items-center border-t border-black/5 pt-16 text-center"
-        >
-          <p className="text-xl font-medium text-black/70">
-            Have a project in mind representing your vision?
-          </p>
-          <a
-            href="#contact-form"
-            className="mt-8 inline-flex items-center justify-center rounded-2xl bg-orange-500 px-10 py-5 text-sm font-bold text-white shadow-xl shadow-orange-500/20 transition hover:bg-orange-600 hover:scale-[1.05] active:scale-95"
+
+        {/* Footer View All CTA */}
+        <div className="mt-16 flex justify-center sm:mt-20">
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-8 py-4 text-sm font-semibold text-slate-900 transition-colors hover:border-orange-600 hover:bg-orange-600 hover:text-white shadow-sm"
           >
-            Start Your Project Now
-          </a>
-        </motion.div>
-      </motion.div>
+            View All Masterpieces <ArrowUpRight size={18} />
+          </Link>
+        </div>
+
+      </div>
     </section>
   );
 }

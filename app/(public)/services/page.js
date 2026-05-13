@@ -17,8 +17,6 @@ export default function ServicesPage() {
 
   return (
     <section className="relative pb-20 pt-4 sm:pt-8">
-      <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-orange-400/15 blur-3xl" />
-
       <motion.div 
         initial="initial"
         whileInView="whileInView"
@@ -26,36 +24,35 @@ export default function ServicesPage() {
         variants={stagger}
         className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="max-w-3xl">
-          <motion.p variants={fadeInUp} className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-700 sm:text-sm">
+        <div className="max-w-3xl py-12 sm:py-20">
+          <motion.p variants={fadeInUp} className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
             Services
           </motion.p>
-          <motion.h1 variants={fadeInUp} className="mt-3 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-7xl leading-[1.1]">
+          <motion.h1 variants={fadeInUp} className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl leading-[1.15]">
             Services built around how modern businesses grow online.
           </motion.h1>
-          <motion.p variants={fadeInUp} className="mt-5 max-w-2xl text-sm leading-relaxed text-black/60 sm:text-lg">
+          <motion.p variants={fadeInUp} className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             Explore our specialized services and choose the one that matches your next business goal.
           </motion.p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-4 grid gap-6 md:grid-cols-3">
           {services
             .filter((service) => !service.slug.includes("/"))
             .map((service) => (
             <motion.article
               key={service.slug}
               variants={fadeInUp}
-              className="group relative overflow-hidden rounded-[40px] border border-black/[0.03] bg-white p-6 shadow-xl shadow-black/[0.02] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/[0.05] sm:p-8"
+              className="group relative overflow-hidden rounded-[32px] border border-black/5 bg-slate-50 p-6 transition duration-500 hover:-translate-y-1 sm:p-8"
             >
-              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-orange-300/10 blur-3xl transition duration-500 group-hover:bg-orange-300/20" />
               <div className="relative">
-                <span className="inline-flex rounded-full border border-black/5 bg-stone-100 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-black/40">
+                <span className="inline-flex rounded-full border border-black/5 bg-white px-4 py-1.5 text-[10px] font-semibold tracking-wider text-slate-500">
                   {service.number}
                 </span>
-                <h2 className="mt-6 text-2xl font-bold tracking-tight text-black group-hover:text-orange-600 transition-colors">
+                <h2 className="mt-6 text-2xl font-normal tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
                   {service.title}
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-black/60">
+                <p className="mt-4 text-sm leading-relaxed text-slate-600">
                   {service.description}
                 </p>
 
@@ -63,9 +60,9 @@ export default function ServicesPage() {
                   {service.points.map((point) => (
                     <div
                       key={point}
-                      className="rounded-2xl border border-black/[0.02] bg-stone-50/50 px-4 py-3 text-xs font-medium text-black/70 flex items-center gap-3 transition-colors group-hover:bg-orange-500/5 group-hover:border-orange-500/10"
+                      className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-xs font-medium text-slate-700 flex items-center gap-3"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-orange-500/30" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-orange-500 shrink-0" />
                       {point}
                     </div>
                   ))}
@@ -73,7 +70,7 @@ export default function ServicesPage() {
 
                 <Link
                   href={`/services/${service.slug}`}
-                  className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-black px-8 py-4 text-sm font-bold text-white transition hover:bg-orange-600 hover:scale-[1.02] active:scale-95 sm:w-auto"
+                  className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-slate-900 px-8 py-4 text-sm font-semibold text-white transition hover:bg-orange-600 active:scale-95 sm:w-auto"
                 >
                   Explore Service
                 </Link>

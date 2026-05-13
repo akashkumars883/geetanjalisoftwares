@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Tag, ArrowRight, Calendar, Clock, ChevronRight } from 'lucide-react';
+import { Search, Clock, ArrowRight, BookOpen } from 'lucide-react';
 import BlogImage from '@/components/BlogImage';
 
 function readingTime(content) {
@@ -11,234 +11,288 @@ function readingTime(content) {
 }
 
 export default function BlogListing({ blogs }) {
-  const [visibleCount, setVisibleCount] = useState(15);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(9);
 
-  if (!blogs || blogs.length === 0) {
-    return (
-      <div className="flex h-80 flex-col items-center justify-center rounded-2xl border border-black/5 bg-[#fcfcfc] text-black/30 space-y-3">
-        <Tag size={40} strokeWidth={1} />
-        <p className="font-bold text-lg">No articles discovered yet.</p>
-        <p className="text-sm opacity-60">Our writers are working on something special.</p>
-      </div>
-    );
-  }
+  // Dynamically extract unique categories from actual blog data
+  const categories = useMemo(() => {
+    const list = new Set(['All']);
+    blogs.forEach((blog) => {
+      if (blog.category) {
+        list.add(blog.category.charAt(0).toUpperCase() + blog.category.slice(1).toLowerCase());
+      }
+    });
+    return Array.from(list);
+  }, [blogs]);
 
-  // Split blogs for the new layout (3 featured blogs)
-  const heroBlogs = blogs.slice(0, 3);
-  const featuredMain = heroBlogs[0];
-  const featuredSide = heroBlogs.slice(1, 3);
-  
-  const trendingBlogs = blogs.slice(3, 7);
-  const recentBlogs = blogs.slice(7, visibleCount);
-  const hasMore = visibleCount < blogs.length;
+  // Filter blogs based on search query and category
+  const filteredBlogs = useMemo(() => {
+    if (!blogs) return [];
+    return blogs.filter((blog) => {
+      const titleMatch = blog.title?.toLowerCase().includes(searchQuery.toLowerCase());
+      const excerptMatch = blog.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+      const contentMatch = blog.content?.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesSearch = titleMatch || excerptMatch || contentMatch;
+
+      if (activeCategory === 'All') {
+        return matchesSearch;
+      }
+      return matchesSearch && blog.category?.toLowerCase() === activeCategory.toLowerCase();
+    });
+  }, [blogs, searchQuery, activeCategory]);
+
+  const featuredBlog = useMemo(() => {
+    if (searchQuery !== '' || activeCategory !== 'All') return null;
+    return filteredBlogs[0];
+  }, [filteredBlogs, searchQuery, activeCategory]);
+
+  const gridBlogs = useMemo(() => {
+    if (featuredBlog) {
+      return filteredBlogs.slice(1, visibleCount + 1);
+    }
+    return filteredBlogs.slice(0, visibleCount);
+  }, [filteredBlogs, featuredBlog, visibleCount]);
+
+  const hasMore = filteredBlogs.length > (featuredBlog ? gridBlogs.length + 1 : gridBlogs.length);
 
   return (
-    <div className="space-y-16 lg:space-y-24 pb-20">
-      
-      {/* ── SECTION 1: HERO GRID ── */}
-      <section className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Large Card (Left) */}
-          {featuredMain && (
-            <div className="lg:col-span-2">
-              <Link
-                href={`/blogs/${featuredMain.slug}`}
-                className="group relative flex h-[400px] sm:h-[500px] lg:h-[600px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10"
-              >
-                {featuredMain.image_url ? (
-                  <BlogImage
-                    src={featuredMain.image_url}
-                    alt={featuredMain.title}
-                    className="absolute inset-0 h-full w-full opacity-80 transition duration-1000 group-hover:scale-105 group-hover:opacity-60"
-                    priority={true}
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-white/5 opacity-50">
-                    <Tag size={120} strokeWidth={0.5} />
-                  </div>
-                )}
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                
-                {/* Content */}
-                <div className="relative mt-auto p-6 sm:p-10 lg:p-12 space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full bg-orange-500 px-4 py-1.5 text-[8px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-500/20">
-                      Top Choice
-                    </span>
-                    <span suppressHydrationWarning={true} className="text-[8px] font-bold uppercase tracking-widest text-white/60">
-                      {new Date(featuredMain.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                    </span>
-                  </div>
-                  
-                  <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-white transition duration-300 group-hover:translate-x-1">
-                    {featuredMain.title}
-                  </h1>
-                  
-                  <div className="flex items-center gap-2 pt-2 text-xs font-black uppercase tracking-widest text-white/50 group-hover:text-white transition">
-                    Explore Article <ArrowRight size={16} className="transition-transform group-hover:translate-x-2" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          )}
+    <div className="space-y-12 sm:space-y-16 pb-20 pt-4">
+      {/* ── HEADER INTRO ── */}
+      <header className="max-w-3xl text-left relative pt-8 sm:pt-12">
+        <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
+          Knowledge Base
+        </span>
+        <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl leading-[1.15]">
+          Ideas & Guides to <br className="hidden sm:block" /> 
+          <span className="text-slate-500 font-normal">grow your business.</span>
+        </h1>
+        <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Master custom website design, modern software engineering, conversion SEO, and ROI-driven marketing with our latest insights.
+        </p>
+      </header>
 
-          {/* Side Grid (Right - 2x2) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
-            {featuredSide.map((blog) => (
-              <Link
-                key={blog.id}
-                href={`/blogs/${blog.slug}`}
-                className="group relative flex h-[200px] sm:h-[240px] lg:h-[288px] w-full flex-col overflow-hidden rounded-[32px] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1"
+      {/* ── FILTER & SEARCH ROW ── */}
+      <section className="flex flex-col gap-6 border-b border-black/5 pb-8 lg:flex-row lg:items-center lg:justify-between">
+        {/* Category Pills */}
+        <div className="flex flex-wrap items-center gap-2" aria-label="Filter by category">
+          {categories.map((category) => {
+            const isActive = activeCategory.toLowerCase() === category.toLowerCase();
+            return (
+              <button
+                key={category}
+                onClick={() => {
+                  setActiveCategory(category);
+                  setVisibleCount(9);
+                }}
+                className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 active:scale-95 ${
+                  isActive
+                    ? 'bg-slate-900 text-white shadow-md shadow-black/10'
+                    : 'border border-black/5 bg-slate-50 text-slate-600 hover:border-black/15 hover:text-slate-900'
+                }`}
               >
-                {blog.image_url && (
-                  <BlogImage
-                    src={blog.image_url}
-                    alt={blog.title}
-                    className="absolute inset-0 h-full w-full opacity-60 transition duration-700 group-hover:scale-105 group-hover:opacity-40"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="relative mt-auto p-6 space-y-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
-                        {blog.category || 'Insights'}
-                    </span>
-                  <h3 className="text-base sm:text-lg font-bold leading-snug text-white line-clamp-2 group-hover:text-orange-100 transition">
-                    {blog.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+                {category}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Search Input */}
+        <div className="relative w-full max-w-sm">
+          <Search size={16} className="absolute left-4.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            placeholder="Search articles..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setVisibleCount(9);
+            }}
+            className="w-full rounded-full border border-black/5 bg-slate-50 py-3.5 pl-11 pr-5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-orange-500 focus:bg-white"
+          />
         </div>
       </section>
 
-      {/* ── SECTION 2: TRENDING (4 Column Overlay Grid) ── */}
-      {trendingBlogs.length > 0 && (
-        <section className="space-y-8">
-          <div className="flex items-center justify-between border-b border-black/5 pb-6">
-            <div className="flex items-center gap-4">
-                <div className="h-2 w-12 bg-orange-500 rounded-full" />
-                <h2 className="text-2xl sm:text-3xl font-bold text-black tracking-tight uppercase">Trending</h2>
+      {/* ── FEATURED BLOG CARD ── */}
+      {featuredBlog && (
+        <section className="animate-fade-in">
+          <Link
+            href={`/blogs/${featuredBlog.slug}`}
+            className="group grid grid-cols-1 gap-8 rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-8 transition-all duration-500 hover:border-black/10 lg:grid-cols-12 lg:gap-12 lg:p-12"
+          >
+            {/* Image Box */}
+            <div className="relative overflow-hidden rounded-[24px] border border-black/5 bg-white lg:col-span-7 aspect-[16/10] lg:aspect-auto lg:h-[400px]">
+              {featuredBlog.image_url ? (
+                <BlogImage
+                  src={featuredBlog.image_url}
+                  alt={featuredBlog.title}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-[1.03]"
+                  priority={true}
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-slate-200">
+                  <BookOpen size={96} strokeWidth={0.5} />
+                </div>
+              )}
+              {/* Category tag */}
+              <div className="absolute left-5 top-5">
+                <span className="rounded-xl bg-white/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-900 shadow-sm">
+                  {featuredBlog.category || 'Featured'}
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trendingBlogs.map((blog) => (
-              <Link
-                key={blog.id}
-                href={`/blogs/${blog.slug}`}
-                className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-stone-100 transition-all duration-300 hover:-translate-y-1"
-              >
-                {blog.image_url ? (
-                  <BlogImage
-                    src={blog.image_url}
-                    alt={blog.title}
-                    className="h-full w-full transition duration-700 group-hover:scale-110"
-                  />
-                ) : (
-                    <div className="flex h-full w-full items-center justify-center text-black/5">
-                        <Tag size={64} strokeWidth={0.5} />
-                    </div>
-                )}
-                
-                {/* Visual Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
-                
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <span className="mb-2 text-[9px] font-black uppercase tracking-widest text-orange-400">
-                    {blog.category || 'Analysis'}
-                  </span>
-                  <h3 className="text-lg font-bold leading-[1.2] text-white group-hover:text-orange-100 transition">
-                    {blog.title}
-                  </h3>
-                  <div suppressHydrationWarning={true} className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-white/50">
-                    <Calendar size={11} /> 
-                    {new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}
+            {/* Content Box */}
+            <div className="flex flex-col justify-center lg:col-span-5 py-4 space-y-4 lg:space-y-5">
+              <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                <span suppressHydrationWarning={true}>
+                  {new Date(featuredBlog.created_at).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </span>
+                <span className="h-1 w-1 rounded-full bg-slate-200" />
+                <span className="flex items-center gap-1">
+                  <Clock size={11} /> {readingTime(featuredBlog.content)} MIN READ
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-[1.15]">
+                {featuredBlog.title}
+              </h2>
+
+              <p className="text-sm leading-relaxed text-slate-600 font-normal">
+                {featuredBlog.excerpt ||
+                  featuredBlog.content?.substring(0, 150).replace(/<[^>]*>/g, '') + '…'}
+              </p>
+
+              <div className="pt-4 border-t border-black/5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-orange-500/10 flex items-center justify-center text-xs font-semibold text-orange-600 border border-orange-500/10">
+                    {featuredBlog.author?.charAt(0) || 'G'}
+                  </div>
+                  <div>
+                    <span className="block text-xs font-semibold text-slate-900">{featuredBlog.author || 'Geetanjali Team'}</span>
+                    <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Author</span>
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
+
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 border border-black/5 group-hover:bg-orange-600 group-hover:text-white group-hover:border-transparent transition-all duration-300">
+                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </div>
+          </Link>
         </section>
       )}
 
-      {/* ── SECTION 3: RECENT (Standard Cards) ── */}
-      {recentBlogs.length > 0 && (
-        <section className="space-y-10">
-          <div className="flex items-center justify-between border-b border-black/5 pb-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-black/40 tracking-widest uppercase">Latest Updates</h2>
+      {/* ── ALL POSTS GRID ── */}
+      <section className="space-y-12">
+        {filteredBlogs.length === 0 ? (
+          <div className="flex min-h-80 flex-col items-center justify-center rounded-[32px] border border-black/5 bg-slate-50 p-8 text-center space-y-4">
+            <div className="h-12 w-12 rounded-full bg-white border border-black/5 flex items-center justify-center text-slate-400">
+              <BookOpen size={20} />
+            </div>
+            <div>
+              <p className="font-semibold text-lg text-slate-900">No articles found</p>
+              <p className="text-sm text-slate-500 mt-1">We couldn&apos;t find any articles matching your search query.</p>
+            </div>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setActiveCategory('All');
+              }}
+              className="rounded-full bg-white border border-black/5 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-900 transition hover:bg-slate-50"
+            >
+              Clear Filters
+            </button>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {recentBlogs.map((blog) => (
+        ) : (
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {gridBlogs.map((blog) => (
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group flex flex-col space-y-5"
+                className="group flex flex-col rounded-[32px] border border-black/5 bg-slate-50 p-6 transition-all duration-500 hover:border-black/10 hover:-translate-y-1"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] border border-black/5 bg-stone-50 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-orange-500/5">
+                {/* Thumbnail */}
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-black/5 bg-white mb-5">
                   {blog.image_url ? (
                     <BlogImage
                       src={blog.image_url}
                       alt={blog.title}
-                      className="h-full w-full transition duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center text-black/5">
-                      <Tag size={48} strokeWidth={1} />
+                    <div className="flex h-full w-full items-center justify-center text-slate-200">
+                      <BookOpen size={48} strokeWidth={0.75} />
                     </div>
                   )}
-                  {/* Category */}
-                  <div className="absolute top-4 left-4">
-                    <span className="rounded-lg bg-white/90 backdrop-blur-md px-3 py-1 text-[9px] font-black uppercase tracking-widest text-black shadow-sm">
+                  {/* Category Pill */}
+                  <div className="absolute left-4 top-4">
+                    <span className="rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-[9px] font-semibold uppercase tracking-wider text-slate-900 shadow-sm">
                       {blog.category || 'Insights'}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex flex-col space-y-3 px-1">
-                  <div className="flex items-center gap-3 text-[10px] font-bold text-black/30 uppercase tracking-widest">
-                    <span suppressHydrationWarning={true}>{new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    <span className="h-1 w-1 rounded-full bg-black/20" />
-                    <span className="flex items-center gap-1"><Clock size={11} /> {readingTime(blog.content)} MIN</span>
+                {/* Content */}
+                <div className="flex flex-col flex-1 justify-between space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                      <span suppressHydrationWarning={true}>
+                        {new Date(blog.created_at).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </span>
+                      <span className="h-1 w-1 rounded-full bg-slate-200" />
+                      <span className="flex items-center gap-1">
+                        <Clock size={10} /> {readingTime(blog.content)} MIN READ
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-normal tracking-tight leading-[1.25] text-slate-900 group-hover:text-orange-600 transition-colors duration-300 line-clamp-2">
+                      {blog.title}
+                    </h3>
+
+                    <p className="text-xs leading-relaxed text-slate-600 line-clamp-2 font-normal">
+                      {blog.excerpt ||
+                        blog.content?.substring(0, 110).replace(/<[^>]*>/g, '') + '…'}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl font-bold leading-tight text-black group-hover:text-orange-600 transition duration-300">
-                    {blog.title}
-                  </h3>
-
-                  <p className="text-sm leading-relaxed text-black/60 line-clamp-2 font-medium">
-                    {blog.excerpt || blog.content?.substring(0, 140).replace(/<[^>]*>/g, '') + '…'}
-                  </p>
-                  
-                  <div className="pt-2 flex items-center justify-between">
+                  <div className="pt-4 border-t border-black/5 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <div className="h-7 w-7 rounded-full bg-orange-100 flex items-center justify-center text-[10px] font-black text-orange-600">
-                            {blog.author?.charAt(0) || 'G'}
-                        </div>
-                        <span className="text-xs font-bold text-black/80">{blog.author || 'Geetanjali Team'}</span>
+                      <div className="h-7 w-7 rounded-full bg-orange-500/10 flex items-center justify-center text-[10px] font-semibold text-orange-600 border border-orange-500/10">
+                        {blog.author?.charAt(0) || 'G'}
+                      </div>
+                      <span className="text-xs font-semibold text-slate-700">{blog.author || 'Geetanjali Team'}</span>
                     </div>
-                    <ChevronRight size={18} className="text-black/20 transition-transform group-hover:translate-x-1 group-hover:text-orange-500" />
+
+                    <div className="h-8 w-8 rounded-full bg-white border border-black/5 flex items-center justify-center text-slate-900 group-hover:bg-orange-600 group-hover:text-white group-hover:border-transparent transition-all duration-300">
+                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </div>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* ── LOAD MORE ── */}
       {hasMore && (
-        <div className="flex justify-center pt-10">
+        <div className="flex justify-center pt-6">
           <button
-            onClick={() => setVisibleCount(prev => prev + 9)}
-            className="flex items-center gap-3 rounded-full border-2 border-black/5 bg-white px-10 py-4 text-xs font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-black hover:text-white hover:scale-105 active:scale-95 shadow-xl shadow-black/5"
+            onClick={() => setVisibleCount((prev) => prev + 6)}
+            className="flex items-center gap-2.5 rounded-full border border-black/5 bg-slate-50 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-slate-900 transition-all hover:border-black/10 hover:scale-105 active:scale-95 shadow-sm"
           >
             Show More Stories
-            <ArrowRight size={18} />
+            <ArrowRight size={15} />
           </button>
         </div>
       )}

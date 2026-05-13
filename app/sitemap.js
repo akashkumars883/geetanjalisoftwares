@@ -41,5 +41,20 @@ export default async function sitemap() {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  return [...staticUrls, ...serviceUrls, ...blogUrls];
+  // Programmatic Cities list for Multi-City Local SEO Indexing
+  const targetCities = [
+    'patna', 'delhi', 'mumbai', 'bangalore', 'lucknow', 
+    'jaipur', 'pune', 'noida', 'gurgaon', 'kolkata', 
+    'chennai', 'hyderabad', 'ahmedabad', 'chandigarh', 
+    'ranchi', 'bhopal', 'indore', 'kanpur', 'surat', 'guwahati'
+  ];
+
+  const locationUrls = targetCities.map((city) => ({
+    url: `${baseUrl}/locations/${city}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
+  return [...staticUrls, ...serviceUrls, ...blogUrls, ...locationUrls];
 }
