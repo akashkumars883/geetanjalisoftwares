@@ -34,11 +34,12 @@ export default async function sitemap() {
     '/blogs',
     '/privacy',
     '/terms',
+    '/free-website',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
-    priority: route === '' ? 1 : 0.8,
+    priority: route === '' || route === '/free-website' ? 1 : 0.8,
   }));
 
   // Programmatic Cities list for Multi-City Local SEO Indexing

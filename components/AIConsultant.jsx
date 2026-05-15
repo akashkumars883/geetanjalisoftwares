@@ -13,10 +13,16 @@ export default function AIConsultant() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
+  const [isSubdomain, setIsSubdomain] = useState(false);
+  
   const scrollRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
+    // Check if we are on a subdomain (to hide this consultant on client sites)
+    const host = window.location.hostname;
+    const isMainSite = host === 'localhost' || host === 'www.geetanjalisoftwares.in' || host === 'geetanjalisoftwares.in';
+    setIsSubdomain(!isMainSite);
   }, []);
 
   useEffect(() => {
@@ -54,7 +60,7 @@ export default function AIConsultant() {
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted || isSubdomain) return null;
 
   if (!isOpen) {
     return (

@@ -39,27 +39,40 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesMobileOpen, setIsServicesMobileOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
+    let lastScrollY = window.scrollY || document.documentElement.scrollTop;
 
-      if (currentY <= 20) {
-        setIsVisible(true);
-      } else if (currentY > lastScrollY.current && currentY > 80 && !isOpen) {
-        setIsVisible(false);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+
+      if (currentScrollY > 20) {
+        setIsScrolled(true);
       } else {
-        setIsVisible(true);
+        setIsScrolled(false);
       }
 
-      lastScrollY.current = currentY;
+      if (currentScrollY <= 60) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100 && !isOpen) {
+        setIsVisible(false); // Scrolling down
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true); // Scrolling up
+      }
+
+      lastScrollY = currentScrollY;
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -89,8 +102,12 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b border-black/8 bg-[#f5f5f5]/72 backdrop-blur-xl transition-transform duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${
+          isScrolled
+            ? 'bg-[#f5f5f5]/80 backdrop-blur-xl border-b border-black/8 shadow-sm py-0 sm:py-0.5'
+            : 'bg-transparent border-b-0 py-2 sm:py-3.5'
         }`}
       >
         <div className="mx-auto flex h-16 w-full max-w-8xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -145,12 +162,6 @@ export default function Navbar() {
                 </Link>
               ))}
             </nav>
-            <Link
-              href="/free-website"
-              className="group hidden items-center justify-center gap-2 rounded-xl bg-orange-600 px-5 py-2.5 text-xs font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-orange-600/30 active:scale-95 md:inline-flex"
-            >
-              Try Free Website Builder
-            </Link>
 
             <button
               type="button"
@@ -252,13 +263,6 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link
-            href="/free-website"
-            onClick={closeMobileMenu}
-            className="group mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 px-4 py-3.5 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-orange-600/30 active:scale-95"
-          >
-            Try Free Website Builder
-          </Link>
         </nav>
       </div>
     </>

@@ -9,6 +9,8 @@ export function middleware(request) {
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/static') ||
+    pathname.startsWith('/site') ||
+    pathname.startsWith('/_sites') ||
     pathname.includes('.')
   ) {
     return NextResponse.next();
@@ -32,8 +34,8 @@ export function middleware(request) {
     }
   }
 
-  // Prevent direct raw access to /free-website on the main domain or other subdomains
-  if (pathname.startsWith('/free-website') && subdomain !== 'freesite') {
+  // Prevent direct raw access to /free-website or /builder on the main domain or other subdomains
+  if ((pathname.startsWith('/free-website') || pathname.startsWith('/builder')) && subdomain !== 'freesite') {
     const redirectUrl = request.nextUrl.clone();
     if (hostname.includes('localhost:3000')) {
       redirectUrl.hostname = 'freesite.localhost';
@@ -41,19 +43,33 @@ export function middleware(request) {
     } else {
       redirectUrl.hostname = 'freesite.geetanjalisoftwares.in';
     }
-    // Set path to root, as the builder page is served at the root of freesite subdomain
-    redirectUrl.pathname = pathname.replace('/free-website', '') || '/';
+    // Maintain the path correctly
+    if (pathname.startsWith('/builder')) {
+      redirectUrl.pathname = '/builder';
+    } else {
+      redirectUrl.pathname = '/';
+    }
     return NextResponse.redirect(redirectUrl);
   }
 
   // Handle specific subdomain routing configurations
   if (subdomain) {
     if (subdomain === 'freesite') {
-      // If user opens freesite.geetanjalisoftwares.in, internally route to our No-Code builder page!
-      return NextResponse.rewrite(new URL(`/free-website${pathname}`, request.url));
+      if (pathname.startsWith('/builder')) {
+        // If user opens freesite.../builder, route to the actual builder app
+        return NextResponse.rewrite(new URL(`/builder${pathname.replace('/builder', '')}`, request.url));
+      }
+      if (pathname === '/free-website') {
+        const cleanUrl = request.nextUrl.clone();
+        cleanUrl.pathname = '/';
+        return NextResponse.redirect(cleanUrl);
+      }
+      // If user opens freesite.geetanjalisoftwares.in, internally route to our landing page!
+      const targetPath = pathname === '/' ? '/free-website' : `/free-website${pathname}`;
+      return NextResponse.rewrite(new URL(targetPath, request.url));
     }
     // For all other client subdomains (e.g. doctorverma), render their saved Supabase profile
-    return NextResponse.rewrite(new URL(`/_sites/${subdomain}${pathname}`, request.url));
+    return NextResponse.rewrite(new URL(`/site/${subdomain}${pathname}`, request.url));
   }
 
   // Protect /dashboard, /leads and /settings
