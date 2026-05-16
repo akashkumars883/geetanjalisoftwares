@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ArrowRight,
-  Zap,
-  Layout,
-  Search,
-  Smartphone,
+import { 
+  ArrowRight, 
+  Zap, 
+  Layout, 
+  Search, 
+  Smartphone, 
   CheckCircle,
   ShieldCheck,
   Gauge,
@@ -134,135 +134,92 @@ export default function FreeWebsiteLandingPage() {
           })
         }}
       />
-      <div className="flex flex-col min-h-screen bg-white">
+      <div className="flex flex-col min-h-screen bg-transparent">
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-10 pb-16 sm:pt-20 sm:pb-24">
+      <section className="relative overflow-hidden pt-6 pb-8 sm:pt-12 sm:pb-12 bg-transparent">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Animated Background Accents */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.03, 0.08, 0.03] 
-            }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-24 -right-24 w-[800px] h-[800px] bg-orange-500/10 blur-[150px] rounded-full pointer-events-none -z-10" 
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.03, 0.06, 0.03] 
-            }}
-            transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-            className="absolute -bottom-24 -left-24 w-[600px] h-[600px] bg-purple-500/10 blur-[120px] rounded-full pointer-events-none -z-10" 
-          />
+          {/* Mesh Gradient Background Accent */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-          <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 rounded-full bg-orange-50 border border-orange-100 px-4 py-1.5 text-[10px] sm:text-xs font-bold text-orange-600 mb-8 tracking-[0.2em] uppercase"
-            >
-              <Zap size={14} className="fill-orange-600" />
-              Next-Gen AI Website Builder
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl sm:text-8xl font-semibold leading-[0.95] tracking-tight text-stone-950"
-            >
-              Build your professional <br/> 
-              <span className="text-orange-600 italic font-serif">business presence</span> in 60s
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="mt-10 max-w-2xl text-lg sm:text-2xl leading-relaxed text-stone-500 font-medium"
-            >
-              Ab har business ki hogi apni pehchan. Create a premium, mobile-ready website for free. No coding. No complex design tools. Just AI magic.
-            </motion.p>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-12 flex flex-col w-full sm:w-auto sm:flex-row gap-5"
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-start text-left lg:col-span-12 max-w-4xl"
             >
-              <Link
-                href="/builder"
-                className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-stone-950 px-10 py-5 text-base font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:-translate-y-1 active:scale-95 shadow-2xl shadow-black/20"
-              >
-                Create My Free Website
-                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="#how-it-works"
-                className="inline-flex items-center justify-center rounded-full border border-stone-200 bg-white/50 backdrop-blur-md px-10 py-5 text-base font-semibold text-stone-900 transition-all duration-300 hover:bg-white hover:-translate-y-1 active:scale-95 border-stone-300"
-              >
-                See Demo
-              </Link>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white border border-stone-200 shadow-sm px-5 py-2 text-[11px] font-semibold text-stone-500 mb-8 tracking-wider">
+                <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                PREMIUM AI WEBSITE ENGINE
+              </div>
+
+              <h1 className="text-4xl sm:text-7xl font-semibold leading-[1.05] tracking-tight text-stone-950">
+                The Best <span className="text-orange-600">Free AI Website Builder</span> for Local Businesses
+              </h1>
+
+              <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-stone-500 font-medium">
+                Scale your digital presence instantly. Our <strong>automated website maker</strong> uses AI to generate premium, mobile-ready business websites in 60 seconds.
+              </p>
+
+              <div className="mt-10 flex flex-col w-full sm:w-auto sm:flex-row gap-4">
+                <Link
+                  href="/builder"
+                  className="group inline-flex items-center justify-center gap-2 rounded-[32px] bg-orange-600 px-10 py-5 text-sm font-semibold text-white shadow-2xl shadow-orange-600/30 transition-all duration-300 hover:bg-orange-700 hover:-translate-y-1 active:scale-95 text-center"
+                >
+                  Start Building For Free
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="#how-it-works"
+                  className="inline-flex items-center justify-center rounded-[32px] border border-stone-200 bg-white px-10 py-5 text-sm font-semibold text-stone-900 shadow-sm transition-all duration-300 hover:bg-stone-50 hover:-translate-y-1 active:scale-95 text-center"
+                >
+                  Explore How It Works
+                </Link>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="mt-8 pt-6 border-t border-black/5 w-full max-w-2xl flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center text-stone-500 font-medium">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1 text-amber-500">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={14} fill="currentColor" />
+                    ))}
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">5.0 CLIENT RATING</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={16} className="text-emerald-500" />
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">SECURE CLOUD HOSTING</span>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="mt-16 flex flex-wrap justify-center gap-8 text-stone-400 font-bold text-[10px] tracking-[0.2em] uppercase"
-            >
-              <div className="flex items-center gap-2 border-r border-stone-200 pr-8 last:border-0">
-                <CheckCircle size={14} className="text-emerald-500" />
-                No Credit Card
-              </div>
-              <div className="flex items-center gap-2 border-r border-stone-200 pr-8 last:border-0">
-                <CheckCircle size={14} className="text-emerald-500" />
-                Free Subdomain
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle size={14} className="text-emerald-500" />
-                AI Content Included
-              </div>
-            </motion.div>
           </div>
+
+          {/* Premium Hero Visual Display */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-12 relative block w-full overflow-hidden rounded-[32px] bg-stone-100 aspect-[16/9] shadow-2xl border border-stone-200"
+          >
+            <div className="absolute inset-0 overflow-hidden rounded-[32px]">
+              <img
+                src="/images/freesite-hero-image.png"
+                alt="Free Website Builder Preview Mockup"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* Professional Visual Display */}
-      <section className="relative px-6 pb-24">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-4xl relative group"
-        >
-          <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-purple-600 rounded-[40px] blur opacity-10 group-hover:opacity-20 transition duration-1000" />
-          <div className="relative overflow-hidden rounded-[38px] bg-stone-100 border border-stone-200 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)]">
-            <img
-              src="/images/studio-mockup.png"
-              alt="Free Website Builder Preview Mockup"
-              className="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-[1.02]"
-            />
-            
-            {/* Floating Trust Badge */}
-            <div className="absolute bottom-8 left-8 hidden sm:flex items-center gap-4 bg-white/80 backdrop-blur-xl border border-white/50 p-4 rounded-2xl shadow-xl">
-              <div className="w-12 h-12 rounded-full bg-orange-600 flex items-center justify-center text-white">
-                <Zap size={24} />
-              </div>
-              <div>
-                <div className="text-sm font-bold text-stone-950">AI Engine Active</div>
-                <div className="text-xs font-semibold text-stone-500">Live deployment in <span className="text-orange-600">60s</span></div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
       {/* Features Section */}
-      <section id="features" className="relative w-full bg-stone-50/50 py-24">
+      <section id="features" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col gap-4 sm:gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-8 sm:pb-12">
@@ -294,373 +251,373 @@ export default function FreeWebsiteLandingPage() {
             </motion.div>
           </div>
 
-            <div className="mt-8 sm:mt-16 grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
-              {featuresList.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex flex-col group"
-                  >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/5 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-500">
-                      <Icon size={24} strokeWidth={2} />
-                    </div>
-                    <h3 className="mt-8 text-2xl font-semibold tracking-tight text-stone-950">
-                      {item.title}
-                    </h3>
-                    <p className="mt-4 text-base leading-relaxed text-stone-500 font-medium">
-                      {item.description}
-                    </p>
-                    <div className="mt-8 pt-6 border-t border-stone-100">
-                      <div className="flex items-center gap-3">
-                        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
-                        <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-widest">
-                          {item.proof}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-          </div>
-        </section>
-
-        {/* How It Works Section */}
-        <section id="how-it-works" className="relative w-full bg-transparent pt-12 pb-10 sm:pt-20 sm:pb-16">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12 border-t border-stone-100 pt-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1"
-              >
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
-                  Simple Execution
-                </span>
-                <h2 className="mt-4 text-3xl sm:text-6xl font-semibold tracking-tight text-stone-950 leading-tight">
-                  How It Works
-                </h2>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1 lg:max-w-xl"
-              >
-                <p className="text-lg text-stone-500 font-medium leading-relaxed">
-                  Going live takes less than 60 seconds. Follow our streamlined workflow to establish your verified business presence online instantly.
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-3">
-              {stepsList.map((item, index) => (
+          <div className="mt-8 sm:mt-16 grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
+            {featuresList.map((item, index) => {
+              const Icon = item.icon;
+              return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col pt-8 border-l border-stone-200 pl-8 relative"
+                  className="flex flex-col group"
                 >
-                  <div className="absolute top-8 -left-[5px] w-[9px] h-[9px] rounded-full bg-stone-200" />
-                  <span className="text-sm font-semibold text-stone-400 uppercase tracking-widest">
-                    STEP {item.number}
-                  </span>
-                  <h3 className="mt-6 text-2xl font-semibold tracking-tight text-stone-950">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/5 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-500">
+                    <Icon size={24} strokeWidth={2} />
+                  </div>
+                  <h3 className="mt-8 text-2xl font-semibold tracking-tight text-stone-950">
                     {item.title}
                   </h3>
                   <p className="mt-4 text-base leading-relaxed text-stone-500 font-medium">
                     {item.description}
                   </p>
-                  <div className="mt-8 flex items-center gap-3">
-                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
-                    <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-widest">
-                      {item.proof}
-                    </span>
+                  <div className="mt-8 pt-6 border-t border-stone-100">
+                    <div className="flex items-center gap-3">
+                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
+                      <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-widest">
+                        {item.proof}
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-
+              );
+            })}
           </div>
-        </section>
 
-        {/* Pricing Options Section */}
-        <section id="pricing" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        </div>
+      </section>
 
-            <div className="flex flex-col gap-4 sm:gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-8 sm:pb-12 border-t border-black/5 pt-8 sm:pt-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1"
-              >
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
-                  Transparent Plans
-                </span>
-                <h2 className="mt-3 sm:mt-4 text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] tracking-tight text-slate-900">
-                  Pricing
-                </h2>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1 lg:max-w-xl"
-              >
-                <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-                  Start completely free to establish your presence. When your business is ready to scale, upgrade to custom branding and dedicated domain connection.
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-              {/* Free Plan */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col pt-6 sm:pt-8 border border-black/10 rounded-3xl p-6 sm:p-10 bg-white"
-              >
-                <div className="mb-6 sm:mb-8 overflow-hidden rounded-xl bg-slate-100 aspect-[16/9] border border-black/5">
-                  <img src="/images/pricing_free.png" alt="Free Starter Setup" className="h-full w-full object-cover object-center" />
-                </div>
-
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-400">Starter Plan</span>
-                <h3 className="mt-3 sm:mt-4 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
-                  ₹0 <span className="text-base sm:text-lg text-slate-500 font-normal">/forever</span>
-                </h3>
-                <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600">
-                  Perfect for independent service providers and local businesses starting out online.
-                </p>
-
-                <div className="my-6 sm:my-8 h-px w-full bg-black/5" />
-
-                <ul className="flex flex-col gap-3.5 sm:gap-4 mb-8 sm:mb-10">
-                  {[
-                    "Free .geetanjalisoftwares.in subdomain",
-                    "Curated premium design themes",
-                    "100% Mobile responsive layout",
-                    "Direct WhatsApp chat integration",
-                    "Geetanjali Softwares verification badge"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm sm:text-base text-slate-700">
-                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/builder"
-                  className="mt-auto inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:-translate-y-0.5 active:scale-95 text-center"
-                >
-                  Launch Free Site
-                </Link>
-              </motion.div>
-
-              {/* Pro Plan */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col pt-6 sm:pt-8 border-2 border-orange-600 rounded-3xl p-6 sm:p-10 bg-white shadow-xl shadow-orange-600/5 relative"
-              >
-                <div className="absolute top-0 right-6 sm:right-10 -translate-y-1/2 bg-orange-600 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full">
-                  Best Value
-                </div>
-
-                <div className="mb-6 sm:mb-8 overflow-hidden rounded-xl bg-orange-50 aspect-[16/9] border border-orange-600/20 shadow-inner">
-                  <img src="/images/pricing_pro.png" alt="Professional Domain Setup" className="h-full w-full object-cover object-center" />
-                </div>
-
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">Growth Plan</span>
-                <h3 className="mt-3 sm:mt-4 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
-                  ₹199 <span className="text-base sm:text-lg text-slate-500 font-normal">/month</span>
-                </h3>
-                <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600">
-                  The most affordable way to get a professional .com or .in domain for your business.
-                </p>
-
-                <div className="my-6 sm:my-8 h-px w-full bg-black/5" />
-
-                <ul className="flex flex-col gap-3.5 sm:gap-4 mb-8 sm:mb-10">
-                  {[
-                    "Connect your own .com or .in Domain",
-                    "Complete removal of Geetanjali branding",
-                    "Advanced technical SEO configuration",
-                    "Google Search Console indexing setup",
-                    "Full Technical Support for domain setup"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-900">
-                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mb-8 text-[11px] font-semibold text-slate-400 italic">
-                  *Note: Domain must be purchased by user separately. We provide complete setup support.
-                </p>
-
-                <a
-                  href="https://wa.me/917508657479?text=Hi%20Geetanjali%20Softwares,%20I%20want%20to%20upgrade%20to%20the%20199/month%20Growth%20Plan."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center justify-center rounded-2xl bg-orange-600 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 hover:-translate-y-0.5 active:scale-95 text-center"
-                >
-                  Upgrade to Growth Plan
-                </a>
-              </motion.div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Frequently Asked Questions (FAQ) Section */}
-        <section id="faq" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-            <div className="flex flex-col gap-4 sm:gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-8 sm:pb-12 border-t border-black/5 pt-8 sm:pt-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1"
-              >
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
-                  Got Questions?
-                </span>
-                <h2 className="mt-3 sm:mt-4 text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] tracking-tight text-slate-900">
-                  FAQs
-                </h2>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1 lg:max-w-xl"
-              >
-                <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-                  Find clear answers on hosting, custom domains, and search visibility. Everything is transparent and structured for your success.
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="mt-8 sm:mt-12 flex flex-col">
-              {faqList.map((faq, index) => {
-                const isOpen = openFaqIndex === index;
-
-                return (
-                  <motion.div
-                    key={faq.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="overflow-hidden border-b border-black/5 last:border-0"
-                  >
-                    <button
-                      onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
-                      className="group flex w-full items-center justify-between py-5 sm:py-8 text-left"
-                    >
-                      <div className="flex items-center gap-4 sm:gap-8 pr-4">
-                        <span className="text-xs sm:text-sm font-semibold text-slate-400 transition-colors group-hover:text-orange-600 sm:text-xl">
-                          0{index + 1}
-                        </span>
-                        <h3 className="text-xl sm:text-2xl font-normal tracking-tight text-slate-900 transition-colors group-hover:text-orange-600 sm:text-4xl">
-                          {faq.question}
-                        </h3>
-                      </div>
-                      <div className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? 'rotate-180 bg-orange-600 border-orange-600 text-white' : 'border-black/10 bg-transparent text-slate-900 group-hover:border-orange-600 group-hover:text-orange-600'}`}>
-                        <ChevronDown size={20} className="sm:w-6 sm:h-6" />
-                      </div>
-                    </button>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                          <div className="pb-8 pl-8 sm:pb-10 sm:pl-16 lg:pl-[88px]">
-                            <p className="text-sm sm:text-base leading-relaxed text-slate-600 sm:text-lg max-w-4xl">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="pt-8 pb-12 sm:pt-12 sm:pb-16 bg-transparent">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      {/* How It Works Section */}
+      <section id="how-it-works" className="relative w-full bg-transparent pt-12 pb-10 sm:pt-20 sm:pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12 border-t border-stone-100 pt-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden py-8 sm:py-14 border-t border-black/5 mt-8 sm:mt-12"
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1"
             >
-              <div className="flex flex-col gap-6 sm:gap-10 lg:flex-row lg:items-end lg:justify-between relative z-10">
-                <div className="max-w-2xl">
-                  <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
-                    Instant Launch
-                  </span>
-                  <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-6xl leading-[1.15]">
-                    Ready to get your business online?
-                  </h2>
-                  <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600 sm:text-lg max-w-xl">
-                    Join hundreds of businesses that have established their official online identity using our free builder.
-                  </p>
-                </div>
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
+                Simple Execution
+              </span>
+              <h2 className="mt-4 text-3xl sm:text-6xl font-semibold tracking-tight text-stone-950 leading-tight">
+                How It Works
+              </h2>
+            </motion.div>
 
-                <div className="flex w-full flex-col gap-3 sm:gap-4 sm:w-auto sm:flex-row">
-                  <Link
-                    href="/builder"
-                    className="inline-flex w-full items-center justify-center rounded-2xl bg-orange-600 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition active:scale-95 sm:w-auto hover:bg-orange-700 hover:-translate-y-0.5 text-center"
-                  >
-                    Start Building Now
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-slate-900 transition active:scale-95 sm:w-auto hover:bg-slate-50 hover:-translate-y-0.5 text-center"
-                  >
-                    Contact Support
-                  </Link>
-                </div>
-              </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1 lg:max-w-xl"
+            >
+              <p className="text-lg text-stone-500 font-medium leading-relaxed">
+                Going live takes less than 60 seconds. Follow our streamlined workflow to establish your verified business presence online instantly.
+              </p>
             </motion.div>
           </div>
-        </section>
 
-      </div>
+          <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-3">
+            {stepsList.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col pt-8 border-l border-stone-200 pl-8 relative"
+              >
+                <div className="absolute top-8 -left-[5px] w-[9px] h-[9px] rounded-full bg-stone-200" />
+                <span className="text-sm font-semibold text-stone-400 uppercase tracking-widest">
+                  STEP {item.number}
+                </span>
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-stone-950">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-stone-500 font-medium">
+                  {item.description}
+                </p>
+                <div className="mt-8 flex items-center gap-3">
+                  <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
+                  <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-widest">
+                    {item.proof}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Pricing Options Section */}
+      <section id="pricing" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col gap-4 sm:gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-8 sm:pb-12 border-t border-black/5 pt-8 sm:pt-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1"
+            >
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
+                Transparent Plans
+              </span>
+              <h2 className="mt-3 sm:mt-4 text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] tracking-tight text-slate-900">
+                Pricing
+              </h2>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1 lg:max-w-xl"
+            >
+              <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+                Start completely free to establish your presence. When your business is ready to scale, upgrade to custom branding and dedicated domain connection.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+            {/* Free Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col pt-6 sm:pt-8 border border-black/10 rounded-3xl p-6 sm:p-10 bg-white"
+            >
+              <div className="mb-6 sm:mb-8 overflow-hidden rounded-xl bg-slate-100 aspect-[16/9] border border-black/5">
+                <img src="/images/pricing_free.png" alt="Free Starter Setup" className="h-full w-full object-cover object-center" />
+              </div>
+
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-400">Starter Plan</span>
+              <h3 className="mt-3 sm:mt-4 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
+                ₹0 <span className="text-base sm:text-lg text-slate-500 font-normal">/forever</span>
+              </h3>
+              <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600">
+                Perfect for independent service providers and local businesses starting out online.
+              </p>
+
+              <div className="my-6 sm:my-8 h-px w-full bg-black/5" />
+
+              <ul className="flex flex-col gap-3.5 sm:gap-4 mb-8 sm:mb-10">
+                {[
+                  "Free .geetanjalisoftwares.in subdomain",
+                  "Curated premium design themes",
+                  "100% Mobile responsive layout",
+                  "Direct WhatsApp chat integration",
+                  "Geetanjali Softwares verification badge"
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm sm:text-base text-slate-700">
+                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/builder"
+                className="mt-auto inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:-translate-y-0.5 active:scale-95 text-center"
+              >
+                Launch Free Site
+              </Link>
+            </motion.div>
+
+            {/* Pro Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col pt-6 sm:pt-8 border-2 border-orange-600 rounded-3xl p-6 sm:p-10 bg-white shadow-xl shadow-orange-600/5 relative"
+            >
+              <div className="absolute top-0 right-6 sm:right-10 -translate-y-1/2 bg-orange-600 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full">
+                Best Value
+              </div>
+
+              <div className="mb-6 sm:mb-8 overflow-hidden rounded-xl bg-orange-50 aspect-[16/9] border border-orange-600/20 shadow-inner">
+                <img src="/images/pricing_pro.png" alt="Professional Domain Setup" className="h-full w-full object-cover object-center" />
+              </div>
+
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">Growth Plan</span>
+              <h3 className="mt-3 sm:mt-4 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
+                ₹199 <span className="text-base sm:text-lg text-slate-500 font-normal">/month</span>
+              </h3>
+              <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600">
+                The most affordable way to get a professional .com or .in domain for your business.
+              </p>
+
+              <div className="my-6 sm:my-8 h-px w-full bg-black/5" />
+
+              <ul className="flex flex-col gap-3.5 sm:gap-4 mb-8 sm:mb-10">
+                {[
+                  "Connect your own .com or .in Domain",
+                  "Complete removal of Geetanjali branding",
+                  "Advanced technical SEO configuration",
+                  "Google Search Console indexing setup",
+                  "Full Technical Support for domain setup"
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-900">
+                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-600" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <p className="mb-8 text-[11px] font-semibold text-slate-400 italic">
+                *Note: Domain must be purchased by user separately. We provide complete setup support.
+              </p>
+
+              <a
+                href="https://wa.me/917508657479?text=Hi%20Geetanjali%20Softwares,%20I%20want%20to%20upgrade%20to%20the%20199/month%20Growth%20Plan."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto inline-flex items-center justify-center rounded-2xl bg-orange-600 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 hover:-translate-y-0.5 active:scale-95 text-center"
+              >
+                Upgrade to Growth Plan
+              </a>
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Frequently Asked Questions (FAQ) Section */}
+      <section id="faq" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col gap-4 sm:gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-8 sm:pb-12 border-t border-black/5 pt-8 sm:pt-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1"
+            >
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
+                Got Questions?
+              </span>
+              <h2 className="mt-3 sm:mt-4 text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] tracking-tight text-slate-900">
+                FAQs
+              </h2>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1 lg:max-w-xl"
+            >
+              <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+                Find clear answers on hosting, custom domains, and search visibility. Everything is transparent and structured for your success.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="mt-8 sm:mt-12 flex flex-col">
+            {faqList.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+
+              return (
+                <motion.div 
+                  key={faq.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="overflow-hidden border-b border-black/5 last:border-0"
+                >
+                  <button
+                    onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
+                    className="group flex w-full items-center justify-between py-5 sm:py-8 text-left"
+                  >
+                    <div className="flex items-center gap-4 sm:gap-8 pr-4">
+                      <span className="text-xs sm:text-sm font-semibold text-slate-400 transition-colors group-hover:text-orange-600 sm:text-xl">
+                        0{index + 1}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-normal tracking-tight text-slate-900 transition-colors group-hover:text-orange-600 sm:text-4xl">
+                        {faq.question}
+                      </h3>
+                    </div>
+                    <div className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? 'rotate-180 bg-orange-600 border-orange-600 text-white' : 'border-black/10 bg-transparent text-slate-900 group-hover:border-orange-600 group-hover:text-orange-600'}`}>
+                      <ChevronDown size={20} className="sm:w-6 sm:h-6" />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <div className="pb-8 pl-8 sm:pb-10 sm:pl-16 lg:pl-[88px]">
+                          <p className="text-sm sm:text-base leading-relaxed text-slate-600 sm:text-lg max-w-4xl">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="pt-8 pb-12 sm:pt-12 sm:pb-16 bg-transparent">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            className="relative overflow-hidden py-8 sm:py-14 border-t border-black/5 mt-8 sm:mt-12"
+          >
+            <div className="flex flex-col gap-6 sm:gap-10 lg:flex-row lg:items-end lg:justify-between relative z-10">
+              <div className="max-w-2xl">
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-orange-600">
+                  Instant Launch
+                </span>
+                <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-6xl leading-[1.15]">
+                  Ready to get your business online?
+                </h2>
+                <p className="mt-3 sm:mt-4 text-base leading-relaxed text-slate-600 sm:text-lg max-w-xl">
+                  Join hundreds of businesses that have established their official online identity using our free builder.
+                </p>
+              </div>
+
+              <div className="flex w-full flex-col gap-3 sm:gap-4 sm:w-auto sm:flex-row">
+                <Link
+                  href="/builder"
+                  className="inline-flex w-full items-center justify-center rounded-2xl bg-orange-600 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition active:scale-95 sm:w-auto hover:bg-orange-700 hover:-translate-y-0.5 text-center"
+                >
+                  Start Building Now
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-slate-900 transition active:scale-95 sm:w-auto hover:bg-slate-50 hover:-translate-y-0.5 text-center"
+                >
+                  Contact Support
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+    </div>
     </>
   );
 }
