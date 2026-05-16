@@ -69,7 +69,7 @@ export default async function SubdomainPage({ params }) {
         <header className="py-6 border-b border-black/[0.05] bg-white">
           <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
             <span className="font-extrabold text-lg tracking-tight text-orange-600">Geetanjali Softwares</span>
-            <Link href="https://www.geetanjalisoftwares.in/free-website" className="text-xs font-bold text-stone-600 hover:text-black">
+            <Link href="https://www.geetanjalisoftwares.in/studio" className="text-xs font-bold text-stone-600 hover:text-black">
               Create a Site
             </Link>
           </div>
@@ -88,7 +88,7 @@ export default async function SubdomainPage({ params }) {
           </p>
           <div className="mt-8">
             <Link 
-              href="https://www.geetanjalisoftwares.in/free-website"
+              href="https://www.geetanjalisoftwares.in/studio"
               className="inline-flex items-center gap-2 rounded-2xl bg-orange-600 text-white px-6 py-4 text-sm font-bold shadow-lg hover:bg-orange-700 transition-all duration-200"
             >
               Build Your Website For Free

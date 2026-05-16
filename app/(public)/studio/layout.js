@@ -5,7 +5,7 @@ export const metadata = {
   openGraph: {
     title: "Free AI Website Builder - Launch Your Business Online Fast",
     description: "Answer 4 questions and get a premium business website in 60 seconds. Hosted for free with SSL security.",
-    url: "https://www.geetanjalisoftwares.in/free-website",
+    url: "https://www.geetanjalisoftwares.in/studio",
     siteName: "Geetanjali Softwares",
     images: [
       {
@@ -18,7 +18,7 @@ export const metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://www.geetanjalisoftwares.in/free-website",
+    canonical: "https://www.geetanjalisoftwares.in/studio",
   },
 };
 

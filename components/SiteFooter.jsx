@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 const companyLinks = [
   { label: 'About Us', href: '/about' },
   { label: 'Our Portfolio', href: '/portfolio' },
-  { label: 'AI Website Builder', href: '/free-website' },
+  { label: 'AI Website Builder', href: '/studio' },
   { label: 'Careers', href: '/careers', isHiring: true },
   { label: 'Latest Blogs', href: '/blogs' },
   { label: 'Contact Desk', href: '/contact' },
