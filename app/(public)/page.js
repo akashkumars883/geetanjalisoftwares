@@ -112,6 +112,7 @@ export default function Home() {
       <MarqueeSection />
       <WhoWeAreSection />
       <ServicesSection />
+      <WebsiteBuilderCTA />
       <WhyChooseUs />
       <PortfolioSection />
       <SEOSimulator />

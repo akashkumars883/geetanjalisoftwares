@@ -106,8 +106,8 @@ export default function RootLayout({ children }) {
                   {
                     "@type": "SiteNavigationElement",
                     "position": 1,
-                    "name": "Free AI Website Builder",
-                    "url": "https://www.geetanjalisoftwares.in/free-website"
+                    "name": "AI Studio Website Builder",
+                    "url": "https://www.geetanjalisoftwares.in/studio"
                   },
                   {
                     "@type": "SiteNavigationElement",

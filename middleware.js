@@ -34,14 +34,14 @@ export function middleware(request) {
     }
   }
 
-  // Prevent direct raw access to /free-website or /builder on the main domain or other subdomains
-  if ((pathname.startsWith('/free-website') || pathname.startsWith('/builder')) && subdomain !== 'freesite') {
+  // Prevent direct raw access to /studio or /builder on the main domain or other subdomains
+  if ((pathname.startsWith('/studio') || pathname.startsWith('/builder')) && subdomain !== 'studio') {
     const redirectUrl = request.nextUrl.clone();
     if (hostname.includes('localhost:3000')) {
-      redirectUrl.hostname = 'freesite.localhost';
+      redirectUrl.hostname = 'studio.localhost';
       redirectUrl.port = '3000';
     } else {
-      redirectUrl.hostname = 'freesite.geetanjalisoftwares.in';
+      redirectUrl.hostname = 'studio.geetanjalisoftwares.in';
     }
     // Maintain the path correctly
     if (pathname.startsWith('/builder')) {
@@ -54,18 +54,18 @@ export function middleware(request) {
 
   // Handle specific subdomain routing configurations
   if (subdomain) {
-    if (subdomain === 'freesite') {
+    if (subdomain === 'studio') {
       if (pathname.startsWith('/builder')) {
-        // If user opens freesite.../builder, route to the actual builder app
+        // If user opens studio.../builder, route to the actual builder app
         return NextResponse.rewrite(new URL(`/builder${pathname.replace('/builder', '')}`, request.url));
       }
-      if (pathname === '/free-website') {
+      if (pathname === '/studio') {
         const cleanUrl = request.nextUrl.clone();
         cleanUrl.pathname = '/';
         return NextResponse.redirect(cleanUrl);
       }
-      // If user opens freesite.geetanjalisoftwares.in, internally route to our landing page!
-      const targetPath = pathname === '/' ? '/free-website' : `/free-website${pathname}`;
+      // If user opens studio.geetanjalisoftwares.in, internally route to our landing page!
+      const targetPath = pathname === '/' ? '/studio' : `/studio${pathname}`;
       return NextResponse.rewrite(new URL(targetPath, request.url));
     }
     // For all other client subdomains (e.g. doctorverma), render their saved Supabase profile

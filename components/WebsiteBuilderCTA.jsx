@@ -1,98 +1,106 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, Layout, Zap, Search } from 'lucide-react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, Zap, Layout, Search, Globe } from 'lucide-react';
 
 export default function WebsiteBuilderCTA() {
   return (
-    <section className="relative overflow-hidden bg-transparent pt-10 pb-8 sm:pt-16 sm:pb-12">
-      {/* Abstract Background Elements */}
+    <section id="ai-builder" className="relative scroll-mt-28 pt-8 pb-6 sm:pt-12 sm:pb-10 bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[40px] border border-black/5 bg-slate-50/50 backdrop-blur-2xl p-8 sm:p-12 lg:p-16 shadow-2xl shadow-black/5">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-12 items-center">
+        
+        {/* Header Style matching ServicesSection */}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1"
+          >
+            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+              AI Innovation
+            </span>
+            <h2 className="mt-4 text-4xl font-normal leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
+              AI Website <br/> Builder
+            </h2>
+          </motion.div>
 
-            <div className="max-w-2xl text-left">
-              <span className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 border border-orange-500/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-600">
-                <Sparkles size={14} className="animate-pulse" />
-                New Product Launch
-              </span>
-              <h2 className="mt-6 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl leading-[1.2]">
-                Build Your Website For <span className="text-orange-600 italic font-serif">Free</span> in 60 Seconds.
-              </h2>
-              <p className="mt-6 text-base text-slate-600 sm:text-lg leading-relaxed max-w-xl">
-                Experience our AI-driven No-Code SaaS Builder. Whether you&apos;re a clinic, agency, or local business, launch a highly converting SEO-optimized website directly on our premium subdomains. No credit card required.
-              </p>
-
-              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="flex items-center gap-3 bg-white/60 p-3.5 rounded-2xl border border-black/5 shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 border border-orange-100">
-                    <Zap size={18} />
-                  </div>
-                  <span className="text-sm font-semibold text-slate-700">Instant Preview</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/60 p-3.5 rounded-2xl border border-black/5 shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 border border-orange-100">
-                    <Layout size={18} />
-                  </div>
-                  <span className="text-sm font-semibold text-slate-700">Premium Themes</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/60 p-3.5 rounded-2xl border border-black/5 shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 border border-orange-100">
-                    <Search size={18} />
-                  </div>
-                  <span className="text-sm font-semibold text-slate-700">SEO Optimized</span>
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/free-website"
-                  className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 px-8 py-5 text-sm font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 hover:-translate-y-0.5 active:scale-95 sm:w-auto"
-                >
-                  Launch Free Builder
-                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Visual Showcase */}
-            <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-              <div className="relative w-full rounded-[32px] border border-black/5 bg-white/80 p-3 backdrop-blur-xl shadow-2xl shadow-black/5">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-inner">
-                  {/* Decorative elements representing the builder interface */}
-                  <div className="absolute inset-0 flex flex-col">
-                    <div className="h-12 border-b border-black/5 bg-white flex items-center px-5 gap-3">
-                      <div className="flex gap-1.5">
-                        <div className="h-3 w-3 rounded-full bg-rose-400" />
-                        <div className="h-3 w-3 rounded-full bg-amber-400" />
-                        <div className="h-3 w-3 rounded-full bg-emerald-400" />
-                      </div>
-                      <div className="ml-4 h-6 w-56 rounded-md bg-slate-100" />
-                    </div>
-                    <div className="flex flex-1">
-                      <div className="w-1/3 border-r border-black/5 bg-white p-5 flex flex-col gap-4">
-                        <div className="h-4 w-24 bg-slate-200 rounded" />
-                        <div className="h-10 w-full bg-white rounded-lg border border-slate-100 shadow-sm" />
-                        <div className="h-4 w-32 bg-slate-200 rounded mt-2" />
-                        <div className="h-10 w-full bg-white rounded-lg border border-slate-100 shadow-sm" />
-                        <div className="mt-auto h-12 w-full bg-orange-600 rounded-xl shadow-md shadow-orange-600/20" />
-                      </div>
-                      <div className="w-2/3 p-6 flex flex-col justify-center items-center relative overflow-hidden bg-gradient-to-b from-orange-50/50 to-white">
-                        <div className="h-10 w-3/4 bg-slate-200 rounded-lg mb-5 shadow-sm" />
-                        <div className="h-4 w-1/2 bg-slate-100 rounded-md mb-10" />
-                        <div className="flex gap-4 w-full px-6">
-                          <div className="h-28 flex-1 bg-white rounded-2xl shadow-md border border-slate-100" />
-                          <div className="h-28 flex-1 bg-white rounded-2xl shadow-md border border-slate-100" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1 lg:max-w-xl"
+          >
+            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+              Launch your professional business presence in 60 seconds. Our AI-driven studio handles the design, copywriting, and SEO automatically. Experience premium no-code development.
+            </p>
+          </motion.div>
         </div>
+
+        {/* Content Section - Minimalist Split */}
+        <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+          
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="flex flex-col gap-8">
+              {[
+                { title: "Instant Deployment", desc: "Your site is live on a custom subdomain instantly.", icon: Zap },
+                { title: "SEO Optimized Content", desc: "AI writes high-ranking copy for your business.", icon: Search },
+                { title: "Mobile Responsive", desc: "Perfect viewing experience on every device.", icon: Globe }
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex gap-6 border-l border-black/10 pl-8 transition-colors hover:border-orange-600 group"
+                >
+                  <div className="mt-1 text-orange-600 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <item.icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-normal text-slate-900">{item.title}</h4>
+                    <p className="mt-2 text-slate-500">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-12">
+                <Link
+                  href="/studio"
+                  className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-orange-600 hover:-translate-y-1"
+                >
+                  Start Building For Free <ArrowRight size={18} />
+                </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 order-1 lg:order-2 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="max-w-md w-full"
+            >
+              <div className="relative overflow-hidden rounded-[32px] bg-stone-100 border border-stone-200 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)]">
+                <img
+                  src="/images/studio-mockup.png"
+                  alt="Free Website Builder Preview Mockup"
+                  className="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-[1.02]"
+                />
+                <div className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg text-orange-600 border border-black/5">
+                  <Sparkles size={18} className="animate-pulse" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
