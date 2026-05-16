@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       'juvkrpmrmjhhbnhxuwmd.supabase.co',
       'images.unsplash.com',
+      'pixabay.com',
     ],
     remotePatterns: [
       {
@@ -40,6 +41,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '*.imgur.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pixabay.com',
         pathname: '/**',
       },
     ],
