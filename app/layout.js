@@ -70,23 +70,72 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Geetanjali Softwares",
-              "url": "https://www.geetanjalisoftwares.in",
-              "logo": "https://www.geetanjalisoftwares.in/icon.png",
-              "description": "Geetanjali Softwares is a leading website development and digital marketing agency.",
-              "sameAs": [
-                "https://www.instagram.com/geetanjalisoftwares/",
-                "https://www.facebook.com/geetanjalisoftwares/"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+91-7508657479",
-                "contactType": "customer service"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Geetanjali Softwares",
+                "url": "https://www.geetanjalisoftwares.in",
+                "logo": "https://www.geetanjalisoftwares.in/icon.png",
+                "description": "Geetanjali Softwares is a leading website development and digital marketing agency.",
+                "sameAs": [
+                  "https://www.instagram.com/geetanjalisoftwares/",
+                  "https://www.facebook.com/geetanjalisoftwares/"
+                ],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+91-7508657479",
+                  "contactType": "customer service"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Geetanjali Softwares",
+                "url": "https://www.geetanjalisoftwares.in",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://www.geetanjalisoftwares.in/?s={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 1,
+                    "name": "About Us",
+                    "url": "https://www.geetanjalisoftwares.in/about"
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 2,
+                    "name": "Services",
+                    "url": "https://www.geetanjalisoftwares.in/services"
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 3,
+                    "name": "Portfolio",
+                    "url": "https://www.geetanjalisoftwares.in/portfolio"
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 4,
+                    "name": "Blogs",
+                    "url": "https://www.geetanjalisoftwares.in/blogs"
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 5,
+                    "name": "Contact",
+                    "url": "https://www.geetanjalisoftwares.in/contact"
+                  }
+                ]
               }
-            })
+            ])
           }}
         />
       </head>
