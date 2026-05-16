@@ -22,7 +22,7 @@ export const metadata = {
 export default async function BlogsPage() {
   const { data: blogs, error } = await supabaseAdmin
     .from('blogs')
-    .select('id, title, slug, image_url, created_at, category, excerpt, author')
+    .select('id, title, slug, image_url, created_at, category, excerpt, author, content')
     .order('created_at', { ascending: false });
 
   if (error) {
