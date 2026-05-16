@@ -57,5 +57,17 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticUrls, ...serviceUrls, ...blogUrls, ...locationUrls];
+  // Fetch all generated user websites from Supabase
+  const { data: userWebsites } = await supabase
+    .from('user_websites')
+    .select('subdomain, updated_at, created_at');
+
+  const userWebsiteUrls = (userWebsites || []).map((site) => ({
+    url: `https://${site.subdomain}.geetanjalisoftwares.in`,
+    lastModified: new Date(site.updated_at || site.created_at),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
+
+  return [...staticUrls, ...serviceUrls, ...blogUrls, ...locationUrls, ...userWebsiteUrls];
 }
