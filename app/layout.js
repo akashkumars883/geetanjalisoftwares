@@ -106,8 +106,8 @@ export default function RootLayout({ children }) {
                   {
                     "@type": "SiteNavigationElement",
                     "position": 1,
-                    "name": "About Us",
-                    "url": "https://www.geetanjalisoftwares.in/about"
+                    "name": "Free AI Website Builder",
+                    "url": "https://www.geetanjalisoftwares.in/free-website"
                   },
                   {
                     "@type": "SiteNavigationElement",
@@ -118,18 +118,24 @@ export default function RootLayout({ children }) {
                   {
                     "@type": "SiteNavigationElement",
                     "position": 3,
+                    "name": "About Us",
+                    "url": "https://www.geetanjalisoftwares.in/about"
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 4,
                     "name": "Portfolio",
                     "url": "https://www.geetanjalisoftwares.in/portfolio"
                   },
                   {
                     "@type": "SiteNavigationElement",
-                    "position": 4,
+                    "position": 5,
                     "name": "Blogs",
                     "url": "https://www.geetanjalisoftwares.in/blogs"
                   },
                   {
                     "@type": "SiteNavigationElement",
-                    "position": 5,
+                    "position": 6,
                     "name": "Contact",
                     "url": "https://www.geetanjalisoftwares.in/contact"
                   }
