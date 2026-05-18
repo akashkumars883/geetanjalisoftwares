@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-export default function ConsultationScheduler() {
+export default function ConsultationScheduler({ isModal = false }) {
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
   
@@ -104,27 +104,27 @@ Client Phone: ${phone}`;
   };
 
   return (
-    <section id="scheduler" className="py-24 relative overflow-hidden bg-transparent">
+    <section id={isModal ? undefined : "scheduler"} className={`${isModal ? 'py-2 sm:py-4' : 'py-24'} relative overflow-hidden bg-transparent`}>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.02),transparent_50%)]" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         
         {/* Title Bar */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className={`text-center max-w-3xl mx-auto ${isModal ? 'mb-6 sm:mb-8' : 'mb-16'}`}>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-600">
             <Calendar size={13} />
             Consultation Booking
           </span>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-black sm:text-4xl text-center">
+          <h2 className={`mt-4 ${isModal ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'} font-semibold tracking-tight text-black text-center`}>
             Book a 1-on-1 Consultation Call
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-stone-500 max-w-xl mx-auto leading-relaxed text-center">
+          <p className="mt-2 text-xs sm:text-sm text-stone-500 max-w-xl mx-auto leading-relaxed text-center">
             Pick a convenient date and time to lock in a dedicated strategy call with our expert product engineering leads.
           </p>
         </div>
 
         {/* Calendar Scheduler Board */}
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch rounded-[40px] border border-black/[0.03] bg-white p-6 sm:p-10 shadow-xl shadow-stone-100">
+        <div className={`max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch rounded-[32px] sm:rounded-[40px] border border-black/[0.03] bg-white ${isModal ? 'p-4 sm:p-6 shadow-none border-none' : 'p-6 sm:p-10 shadow-xl shadow-stone-100'}`}>
           
           {/* Left Columns - Date/Time Selectors */}
           <div className="md:col-span-7 space-y-8 flex flex-col justify-between">

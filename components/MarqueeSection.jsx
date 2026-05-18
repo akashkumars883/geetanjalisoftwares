@@ -1,34 +1,54 @@
 'use client';
 
+import React from 'react';
+import { 
+  Sparkles,
+  Search,
+  Code,
+  Smartphone,
+  Layers,
+  ShoppingBag,
+  Cpu
+} from 'lucide-react';
 
 export default function MarqueeSection() {
   const items = [
-    "Website Development",
-    "SEO Optimization",
-    "UI/UX Design",
-    "Digital Marketing",
-    "Brand Strategy",
-    "E-Commerce Solutions",
-    "Custom Software"
+    { text: "Website Development", icon: Code },
+    { text: "SEO Optimization", icon: Search },
+    { text: "UI/UX Design", icon: Layers },
+    { text: "Digital Marketing", icon: Sparkles },
+    { text: "Brand Strategy", icon: Cpu },
+    { text: "E-Commerce Solutions", icon: ShoppingBag },
+    { text: "Custom Software", icon: Smartphone }
   ];
 
-  // Duplicate items heavily to ensure a seamless infinite scroll on ultra-wide monitors
+  // Duplicate heavily for a seamless loop
   const marqueeItems = [...items, ...items, ...items, ...items];
 
   return (
-    <section className="relative w-full bg-transparent py-4 sm:py-6">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex w-max animate-marquee items-center">
-            {marqueeItems.map((item, index) => (
-              <div key={index} className="flex shrink-0 items-center px-4 sm:px-8">
-                <span className="text-xl font-semibold uppercase tracking-wider text-slate-900/60 transition-colors hover:text-orange-600 sm:text-2xl">
-                  {item}
+    <section className="relative w-full overflow-hidden bg-transparent py-4 border-y border-black/[0.02]">
+      {/* Sleek edge fading mask to seamlessly fade pills at screen boundaries */}
+      <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+      <div className="relative flex overflow-x-hidden">
+        {/* Infinite Scrolling Track */}
+        <div className="flex w-max animate-marquee items-center py-1.5 [animation-play-state:running] hover:[animation-play-state:paused] cursor-default transition-all duration-300">
+          {marqueeItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <div 
+                key={index} 
+                className="flex shrink-0 items-center mx-2 sm:mx-3 bg-slate-50/80 backdrop-blur-sm border border-black/5 hover:border-orange-500/20 hover:bg-orange-50/40 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 transition-all duration-300 select-none shadow-[0_1px_2px_rgba(0,0,0,0.02)] group cursor-pointer"
+              >
+                {/* Micro Service-specific Icon */}
+                <Icon size={14} className="text-orange-600 shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" />
+                <span className="ml-2 text-xs sm:text-sm font-semibold tracking-wide text-slate-800 group-hover:text-orange-600 transition-colors duration-300">
+                  {item.text}
                 </span>
-                <span className="ml-8 text-xl text-orange-500/30 sm:ml-16 sm:text-2xl">•</span>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -13,7 +13,12 @@ const portfolioItems = [
     tech: ['Next.js', 'AI Logic', 'Tailwind'],
     link: 'https://automixa.in',
     image: '/images/automixa_ui.png',
-    imageClassName: 'h-full w-full scale-[1.2] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.25]'
+    imageClassName: 'h-full w-full scale-[1.2] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.25]',
+    metrics: [
+      { label: 'Conversion Growth', value: '+180%' },
+      { label: 'Google Page Speed', value: '99/100' },
+      { label: 'Campaigns Automated', value: '15k+' }
+    ]
   },
   {
     title: 'Modern Living: Luxury E-Commerce',
@@ -22,7 +27,12 @@ const portfolioItems = [
     tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
     link: '#',
     image: '/images/modern_living_ui.png',
-    imageClassName: 'h-full w-full scale-[1.25] -translate-y-3 lg:scale-[1.3] lg:-translate-y-8 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.35]'
+    imageClassName: 'h-full w-full scale-[1.25] -translate-y-3 lg:scale-[1.3] lg:-translate-y-8 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.35]',
+    metrics: [
+      { label: 'Sales Uplift', value: '+240%' },
+      { label: 'Page Load Speed', value: '0.8s' },
+      { label: 'Monthly Revenue', value: '₹45L+' }
+    ]
   }
 ];
 
@@ -39,7 +49,7 @@ export default function PortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1"
+            className="flex-1 text-left"
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
               Our Work
@@ -55,7 +65,7 @@ export default function PortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 lg:max-w-xl"
+            className="flex-1 lg:max-w-xl text-left"
           >
             <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
               We partner with ambitious brands to create digital platforms that captivate users and drive growth. Here are two of our benchmark case studies.
@@ -72,7 +82,7 @@ export default function PortfolioSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group flex flex-col"
+              className="group flex flex-col text-left"
             >
               <a
                 href={item.link}
@@ -120,6 +130,20 @@ export default function PortfolioSection() {
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-lg">
                 {item.description}
               </p>
+
+              {/* Client Metrics stats grid */}
+              <div className="mt-6 grid grid-cols-3 gap-4 border-t border-black/5 pt-6">
+                {item.metrics.map((metric, mIdx) => (
+                  <div key={mIdx}>
+                    <span className="block text-2xl font-bold tracking-tight text-orange-600 sm:text-3xl">
+                      {metric.value}
+                    </span>
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mt-1">
+                      {metric.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
             </motion.div>
           ))}

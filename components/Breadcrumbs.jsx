@@ -11,8 +11,36 @@ const Breadcrumbs = () => {
 
   if (segments.length === 0) return null;
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.geetanjalisoftwares.in"
+      },
+      ...segments.map((s, i) => {
+        const title = s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, ' ');
+        const href = 'https://www.geetanjalisoftwares.in/' + segments.slice(0, i + 1).join('/');
+        return {
+          "@type": "ListItem",
+          "position": i + 2,
+          "name": title,
+          "item": href
+        };
+      })
+    ]
+  };
+
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 hidden sm:flex items-center h-4 overflow-hidden text-black/30">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <nav aria-label="Breadcrumb" className="mb-6 hidden sm:flex items-center h-4 overflow-hidden text-black/30">
       {/* Home Section */}
       <Link href="/" className="flex items-center hover:text-black transition flex-shrink-0">
         <Home size={12} strokeWidth={2} className="relative mt-[-1px]" />
@@ -48,6 +76,7 @@ const Breadcrumbs = () => {
         );
       })}
     </nav>
+    </>
   );
 };
 

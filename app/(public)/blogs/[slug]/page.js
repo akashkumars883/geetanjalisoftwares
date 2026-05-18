@@ -102,6 +102,23 @@ export default async function BlogDetailPage({ params }) {
   const wordCount = blog.content?.replace(/<[^>]*>/g, '').split(/\s+/).length || 0;
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
+  // Extract FAQs from blog content dynamically
+  let mainContent = blog.content || '';
+  const faqItems = [];
+  const faqHeadingIndex = mainContent.search(/<h2[^>]*>(?:Frequently Asked Questions|FAQ)<\/h2>/i);
+  if (faqHeadingIndex !== -1) {
+    mainContent = blog.content.substring(0, faqHeadingIndex);
+    const faqHtml = blog.content.substring(faqHeadingIndex);
+    const faqRegex = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+    let match;
+    while ((match = faqRegex.exec(faqHtml)) !== null) {
+      faqItems.push({
+        question: match[1].replace(/<[^>]*>/g, '').trim(),
+        answer: match[2].trim()
+      });
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-24">
       
@@ -191,8 +208,50 @@ export default async function BlogDetailPage({ params }) {
               prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:text-white prose-pre:border prose-pre:border-black/10
               prose-ul:text-slate-600 prose-ol:text-slate-600 prose-li:my-1.5
               prose-hr:border-black/5"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: mainContent }}
           />
+
+          {/* Dynamic Interactive FAQ Accordion */}
+          {faqItems.length > 0 && (
+            <div className="mt-16 pt-10 border-t border-black/5">
+              <div className="max-w-2xl mb-8">
+                <p className="text-xs font-semibold uppercase tracking-wider text-orange-600">Got Questions?</p>
+                <h2 className="mt-3 text-2xl font-normal text-slate-900 tracking-tight sm:text-3xl text-left">
+                  Frequently Asked Questions
+                </h2>
+              </div>
+              
+              <div className="rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-8 space-y-5">
+                {faqItems.map((item, index) => (
+                  <details 
+                    key={index} 
+                    className="group border-b border-black/5 pb-5 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden"
+                  >
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                      <h3 className="text-base font-semibold text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                        {item.question}
+                      </h3>
+                      <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                        <svg
+                          className="h-2.5 w-2.5 transition duration-300 group-open:-rotate-180"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </summary>
+                    <div 
+                      className="mt-3 text-sm leading-relaxed text-slate-600 text-left pl-1 pr-4 prose-p:my-1"
+                      dangerouslySetInnerHTML={{ __html: item.answer }}
+                    />
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Tags */}
           {tags.length > 0 && (
@@ -272,6 +331,51 @@ export default async function BlogDetailPage({ params }) {
           {/* 2. Embedded Dynamic Strategy Lead Form */}
           <div className="pt-2">
             <SidebarLeadForm />
+          </div>
+
+          {/* 3. Related Services Widget for Interconnected Linking */}
+          <div className="space-y-4 pt-6 border-t border-black/5">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">
+                Need Support?
+              </p>
+              <h2 className="text-lg font-semibold text-slate-900">Our Services</h2>
+            </div>
+            
+            <div className="flex flex-col gap-2.5">
+              <Link 
+                href="/services/website-design-development" 
+                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
+              >
+                <div className="text-left">
+                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">Web Development</span>
+                  <span className="block text-[10px] text-slate-400">Custom business applications</span>
+                </div>
+                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
+              </Link>
+
+              <Link 
+                href="/services/digital-marketing/seo" 
+                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
+              >
+                <div className="text-left">
+                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">SEO & Search Growth</span>
+                  <span className="block text-[10px] text-slate-400">Rank #1 on Google results</span>
+                </div>
+                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
+              </Link>
+
+              <Link 
+                href="/services/website-design-development/website-redesign" 
+                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
+              >
+                <div className="text-left">
+                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">UI/UX Redesigning</span>
+                  <span className="block text-[10px] text-slate-400">Modern layout & UI refresh</span>
+                </div>
+                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
 
           {/* All articles button */}

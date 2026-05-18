@@ -8,6 +8,7 @@ export default function SidebarLeadForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     service: 'SEO & Digital Marketing',
     message: '',
   });
@@ -22,7 +23,12 @@ export default function SidebarLeadForm() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: `Phone: ${formData.phone}\n\nGoal: ${formData.message}`
+        }),
       });
 
       const data = await res.json();
@@ -30,7 +36,7 @@ export default function SidebarLeadForm() {
       if (res.ok) {
         setSuccess(true);
         toast.success('Strategy request sent successfully! We will connect shortly.');
-        setFormData({ name: '', email: '', service: 'SEO & Digital Marketing', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: 'SEO & Digital Marketing', message: '' });
       } else {
         toast.error(data.error || 'Failed to submit request.');
       }
@@ -97,6 +103,18 @@ export default function SidebarLeadForm() {
             placeholder="Email address"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <input
+            type="tel"
+            required
+            placeholder="Phone number"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
           />
         </div>

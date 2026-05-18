@@ -3,7 +3,6 @@ import Script from "next/script";
 
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
-import AIConsultant from "@/components/AIConsultant";
 import { Outfit } from "next/font/google";
 
 const outfit = Outfit({
@@ -149,7 +148,6 @@ export default function RootLayout({ children }) {
         className={`${outfit.className} antialiased`}
       >
         <Toaster richColors position="top-right" />
-        <AIConsultant />
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VYQ9HPXHVZ"

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
   Mail, 
+  Phone,
   Briefcase, 
   Calendar, 
   Info, 
@@ -42,6 +43,18 @@ export default function LeadsPage() {
   // AI Email draft states
   const [aiDraft, setAiDraft] = useState('');
   const [isDrafting, setIsDrafting] = useState(false);
+
+  // Helper to parse phone prefix from message
+  const parseLeadMessage = (messageStr) => {
+    if (!messageStr) return { phone: '', message: '' };
+    const phoneMatch = messageStr.match(/^Phone:\s*([^\n]+)/);
+    if (phoneMatch) {
+      const phone = phoneMatch[1].trim();
+      const message = messageStr.replace(/^Phone:\s*[^\n]+\n*/, '').replace(/^Message:\s*/, '').trim();
+      return { phone, message };
+    }
+    return { phone: '', message: messageStr };
+  };
 
   // Fetch leads from db
   const fetchLeads = async () => {
@@ -353,9 +366,16 @@ www.geetanjalisoftwares.com`;
                           </div>
                           <div>
                             <h4 className="font-semibold text-sm text-black">{lead.name}</h4>
-                            <p className="text-xs text-black/40 flex items-center gap-1 mt-0.5">
-                              <Mail size={10} /> {lead.email}
-                            </p>
+                            <div className="flex flex-col gap-0.5 mt-1">
+                              <p className="text-xs text-black/45 flex items-center gap-1">
+                                <Mail size={10} className="text-black/30 shrink-0" /> {lead.email}
+                              </p>
+                              {parseLeadMessage(lead.message).phone && (
+                                <p className="text-xs text-orange-600 font-semibold flex items-center gap-1">
+                                  <Phone size={10} className="text-orange-500 shrink-0" /> {parseLeadMessage(lead.message).phone}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -437,19 +457,32 @@ www.geetanjalisoftwares.com`;
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-3 pt-2 text-xs border-t border-black/[0.04]">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 text-xs border-t border-black/[0.04]">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-black/35">Client Email</p>
-                    <a href={`mailto:${selectedLead.email}`} className="font-semibold text-black hover:text-orange-600 transition mt-0.5 inline-block">
+                    <a href={`mailto:${selectedLead.email}`} className="font-semibold text-black hover:text-orange-600 transition mt-0.5 inline-block break-all">
                       {selectedLead.email}
                     </a>
                   </div>
+                  {parseLeadMessage(selectedLead.message).phone ? (
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-black/35">Phone Number</p>
+                      <a href={`tel:${parseLeadMessage(selectedLead.message).phone}`} className="font-bold text-orange-600 hover:text-orange-700 transition mt-0.5 inline-block">
+                        {parseLeadMessage(selectedLead.message).phone}
+                      </a>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-black/35">Contact Status</p>
+                      <span className="font-semibold text-black/45 mt-0.5 inline-block">No phone listed</span>
+                    </div>
+                  )}
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-black/35">Pipeline Stage</p>
                     <select
                       value={selectedLead.status || 'new'}
                       onChange={(e) => updateLeadStatus(selectedLead.id, e.target.value)}
-                      className="text-xs font-bold text-orange-600 bg-white border border-black/5 rounded-lg py-1 px-2 mt-0.5 outline-none cursor-pointer"
+                      className="text-xs font-bold text-orange-600 bg-white border border-black/5 rounded-lg py-1 px-2 mt-0.5 outline-none cursor-pointer w-full"
                     >
                       <option value="new">New Enquiry</option>
                       <option value="discussion">In Discussion</option>
@@ -467,7 +500,7 @@ www.geetanjalisoftwares.com`;
                   <MessageSquare size={12} className="text-orange-500" /> Client Query Requirements
                 </h5>
                 <div className="rounded-2xl border border-black/5 bg-stone-50 p-5 text-xs text-black/75 leading-relaxed font-mono whitespace-pre-line shadow-inner max-h-48 overflow-y-auto">
-                  &ldquo;{selectedLead.message}&rdquo;
+                  &ldquo;{parseLeadMessage(selectedLead.message).message}&rdquo;
                 </div>
               </div>
 

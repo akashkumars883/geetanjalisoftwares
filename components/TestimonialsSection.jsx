@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 
 const testimonials = [
   {
@@ -43,7 +44,7 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1"
+            className="flex-1 text-left"
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
               Client Praise
@@ -51,6 +52,20 @@ export default function TestimonialsSection() {
             <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
               Voices of Success
             </h2>
+            
+            {/* Google Reviews Trust Badge */}
+            <div className="mt-4 flex flex-wrap items-center gap-2.5">
+              <div className="flex items-center gap-0.5 text-amber-500">
+                <Star size={16} fill="currentColor" className="text-amber-500" />
+                <Star size={16} fill="currentColor" className="text-amber-500" />
+                <Star size={16} fill="currentColor" className="text-amber-500" />
+                <Star size={16} fill="currentColor" className="text-amber-500" />
+                <Star size={16} fill="currentColor" className="text-amber-500" />
+              </div>
+              <span className="text-xs font-bold text-slate-700 tracking-wider">
+                4.9/5 stars based on 120+ Google Reviews
+              </span>
+            </div>
           </motion.div>
 
           {/* Right Side: Description */}
@@ -59,7 +74,7 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 lg:max-w-xl"
+            className="flex-1 lg:max-w-xl text-left"
           >
             <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
               Hear from the founders, marketing directors, and business owners who partnered with us to elevate their digital presence.
@@ -77,11 +92,11 @@ export default function TestimonialsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="group flex min-w-[300px] flex-col p-6 sm:min-w-[400px] lg:min-w-[450px] snap-center relative overflow-hidden flex-1 justify-between"
+                className="group flex min-w-[300px] flex-col rounded-[32px] border border-black/5 bg-slate-50/50 hover:bg-slate-50 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300 p-8 sm:min-w-[400px] lg:min-w-[450px] snap-center relative overflow-hidden flex-1 justify-between text-left"
               >
                 <div>
                   <div className="mb-4 text-orange-600 font-serif text-5xl select-none opacity-20 group-hover:opacity-100 transition-opacity duration-300">&ldquo;</div>
-                  <p className="text-base leading-relaxed text-slate-600 relative z-10">
+                  <p className="text-base leading-relaxed text-slate-600 relative z-10 font-normal">
                     {item.quote}
                   </p>
                 </div>

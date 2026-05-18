@@ -157,7 +157,7 @@ function ServiceCta({ detail }) {
   );
 }
 
-function GenericServicePage({ service }) {
+function GenericServicePage({ service, latestBlogs }) {
   const { detail } = service;
 
   return (
@@ -194,26 +194,50 @@ function GenericServicePage({ service }) {
       </section>
 
       <section className={sectionClass}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={headingClass}>{detail.faq.title}</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className={eyebrowClass}>Got Questions?</p>
+            <h2 className={`mt-3 ${headingClass}`}>{detail.faq.title}</h2>
+          </div>
+          <div className="rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-10 space-y-6">
             {detail.faq.items.map((item) => (
-              <article key={item.question} className={cardClass}>
-                <h3 className="text-xl font-normal tracking-tight text-slate-900">{item.question}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.answer}</p>
-              </article>
+              <details 
+                key={item.question} 
+                className="group border-b border-black/5 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden"
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                  <h3 className="text-lg font-medium text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                    {item.question}
+                  </h3>
+                  <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                    <svg
+                      className="h-3 w-3 transition duration-300 group-open:-rotate-180"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-slate-600 text-left pl-1">
+                  {item.answer}
+                </p>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
       <SpecializedSolutions parentSlug={service.slug} />
+      <RelatedInsights blogs={latestBlogs} />
       <ServiceCta detail={detail} />
     </>
   );
 }
 
-function WebsiteDesignDevelopmentPage({ service }) {
+function WebsiteDesignDevelopmentPage({ service, latestBlogs }) {
   const { detail } = service;
 
   return (
@@ -312,21 +336,71 @@ function WebsiteDesignDevelopmentPage({ service }) {
       </section>
 
       <section className={sectionClass}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={headingClass}>{detail.faq.title}</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className={eyebrowClass}>Got Questions?</p>
+            <h2 className={`mt-3 ${headingClass}`}>{detail.faq.title}</h2>
+          </div>
+          <div className="rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-10 space-y-6">
             {detail.faq.items.map((item) => (
-              <article key={item.question} className={cardClass}>
-                <h3 className="text-xl font-normal tracking-tight text-slate-900">{item.question}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.answer}</p>
-              </article>
+              <details 
+                key={item.question} 
+                className="group border-b border-black/5 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden"
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                  <h3 className="text-lg font-medium text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                    {item.question}
+                  </h3>
+                  <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                    <svg
+                      className="h-3 w-3 transition duration-300 group-open:-rotate-180"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-slate-600 text-left pl-1">
+                  {item.answer}
+                </p>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
+      <RelatedInsights blogs={latestBlogs} />
       <ServiceCta detail={detail} />
     </>
+  );
+}
+
+function RelatedInsights({ blogs }) {
+  if (!blogs || blogs.length === 0) return null;
+  return (
+    <section className="pb-16 sm:pb-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-8">
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">Insights</p>
+          <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl text-left">Related Articles & Insights</h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {blogs.map((blog) => (
+            <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group flex flex-col rounded-3xl border border-black/5 bg-slate-50 p-5 transition hover:-translate-y-1 hover:shadow-md hover:shadow-orange-500/5 duration-300">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-white mb-4 shadow-sm">
+                <img src={blog.image_url} alt={blog.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              </div>
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-orange-600 block text-left">{blog.category || 'Insights'}</span>
+              <h3 className="mt-2 text-base font-semibold leading-snug text-slate-900 group-hover:text-orange-600 transition duration-300 line-clamp-2 text-left">{blog.title}</h3>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -337,9 +411,43 @@ export default async function ServiceDetailPage({ params }) {
 
   if (!service) notFound();
 
-  if (service.slug === "website-design-development") {
-    return <WebsiteDesignDevelopmentPage service={service} />;
+  // Dynamic FAQ Page Schema Injection
+  let faqJsonLd = null;
+  if (service.detail?.faq?.items) {
+    faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": service.detail.faq.items.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    };
   }
 
-  return <GenericServicePage service={service} />;
+  // Fetch latest blogs for interlinking
+  const { data: latestBlogs } = await supabaseAdmin
+    .from('blogs')
+    .select('id, title, slug, image_url, created_at, category')
+    .order('created_at', { ascending: false })
+    .limit(3);
+
+  const pageContent = service.slug === "website-design-development" 
+    ? <WebsiteDesignDevelopmentPage service={service} latestBlogs={latestBlogs || []} />
+    : <GenericServicePage service={service} latestBlogs={latestBlogs || []} />;
+
+  return (
+    <>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+      {pageContent}
+    </>
+  );
 }

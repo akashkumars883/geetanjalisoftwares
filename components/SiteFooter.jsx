@@ -149,6 +149,36 @@ export default function SiteFooter() {
           </div>
         </div>
 
+        {/* Popular Locations We Serve Strip (Multi-City SEO Booster) */}
+        <div className="mt-16 border-t border-white/10 pt-8">
+          <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+            Popular Locations We Serve
+          </h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-2.5 text-xs text-stone-400">
+            {[
+              'faridabad', 'delhi-ncr', 'patna', 'delhi', 'mumbai', 'bangalore', 'lucknow', 
+              'jaipur', 'pune', 'noida', 'gurgaon', 'kolkata', 
+              'chennai', 'hyderabad', 'ahmedabad', 'chandigarh', 
+              'ranchi', 'bhopal', 'indore', 'kanpur', 'surat', 'guwahati'
+            ].map((city, idx, arr) => {
+              const cityName = city.charAt(0).toUpperCase() + city.slice(1).replace(/-/g, ' ');
+              return (
+                <div key={city} className="flex items-center">
+                  <Link
+                    href={`/locations/${city}`}
+                    className="hover:text-orange-500 transition duration-150 font-medium"
+                  >
+                    {cityName}
+                  </Link>
+                  {idx < arr.length - 1 && (
+                    <span className="ml-4 text-stone-700 font-light select-none">|</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Bottom bar */}
         <div className="mt-12 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-xs text-stone-400">

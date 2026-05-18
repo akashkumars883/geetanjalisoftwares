@@ -163,6 +163,15 @@ export default function Navbar() {
               ))}
             </nav>
 
+            {/* Desktop Premium CTA Button */}
+            <Link 
+              href="/#contact-form"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-orange-600 hover:shadow-[0_8px_20px_-6px_rgba(234,88,12,0.3)] transition-all duration-300 active:scale-95 border border-transparent"
+            >
+              <Sparkles size={12} className="text-orange-400 animate-pulse shrink-0" />
+              <span>Get Free Quote</span>
+            </Link>
+
             <button
               type="button"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
@@ -191,7 +200,7 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-
+ 
       <div
         onClick={closeMobileMenu}
         className={`fixed inset-0 z-40 bg-white/10 backdrop-blur-[2px] transition-opacity duration-200 md:hidden ${
@@ -262,6 +271,18 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          {/* Mobile CTA Button */}
+          <div className="w-full px-3 pt-4 mt-2 border-t border-black/5">
+            <Link
+              href="/#contact-form"
+              onClick={closeMobileMenu}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-orange-700 transition active:scale-[0.98]"
+            >
+              <Sparkles size={14} className="text-orange-200" />
+              <span>Get Free Quote</span>
+            </Link>
+          </div>
 
         </nav>
       </div>

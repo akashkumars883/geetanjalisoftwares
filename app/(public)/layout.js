@@ -2,7 +2,9 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import AIConsultant from "@/components/AIConsultant";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingConsultation from "@/components/FloatingConsultation";
+import PopupForm from "@/components/PopupForm";
 
 export default function PublicLayout({ children }) {
   return (
@@ -15,7 +17,10 @@ export default function PublicLayout({ children }) {
       </main>
       <SiteFooter />
 
-      <AIConsultant />
+      {/* Floating Conversion CTAs */}
+      <FloatingWhatsApp />
+      <FloatingConsultation />
+      <PopupForm />
 
       <svg width="0" height="0" className="absolute pointer-events-none invisible">
         <filter id="chroma-key-white" colorInterpolationFilters="sRGB">

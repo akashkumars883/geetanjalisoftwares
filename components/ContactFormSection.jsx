@@ -8,6 +8,7 @@ export default function ContactFormSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     service: '',
     message: '',
   });
@@ -26,18 +27,23 @@ export default function ContactFormSection() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: `Phone: ${formData.phone}\n\nMessage: ${formData.message}`
+        }),
       });
 
       if (!res.ok) throw new Error('Failed to send enquiry');
 
-      const whatsappMsg = `Hi Team, I just submitted an inquiry on your website. \n\n*Name:* ${formData.name}\n*Service:* ${formData.service}\n*Message:* ${formData.message}\n\nLooking forward to hearing from you!`;
+      const whatsappMsg = `Hi Team, I just submitted an inquiry on your website. \n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Service:* ${formData.service}\n*Message:* ${formData.message}\n\nLooking forward to hearing from you!`;
       const waUrl = `https://wa.me/917508657479?text=${encodeURIComponent(whatsappMsg)}`;
 
       setTimeout(() => { window.open(waUrl, '_blank'); }, 1000);
 
       setStatus('success');
-      setFormData({ name: '', email: '', service: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     } catch (error) {
       console.error(error);
       setStatus('error');
@@ -162,17 +168,31 @@ export default function ContactFormSection() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Required Service</label>
-                  <input
-                    type="text"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    placeholder="e.g. Website & SEO Package"
-                    required
-                    className={inputClass}
-                  />
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="e.g. +91 98765 43210"
+                      required
+                      className={inputClass}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 ml-1">Required Service</label>
+                    <input
+                      type="text"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      placeholder="e.g. Website & SEO Package"
+                      required
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-2">

@@ -41,14 +41,44 @@ export default async function LocationPage({ params }) {
         "name": `Geetanjali Softwares ${cityName}`,
         "image": "https://www.geetanjalisoftwares.in/images/logo.png",
         "url": `https://www.geetanjalisoftwares.in/locations/${city}`,
-        "telephone": "+91-XXXXXXXXXX",
+        "telephone": "+917508657479",
         "priceRange": "₹₹",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "IN",
-          "addressRegion": cityName === "Patna" ? "Bihar" : "State",
+          "addressRegion": cityName === "Patna" ? "Bihar" : (cityName === "Faridabad" ? "Haryana" : (cityName === "Delhi NCR" ? "Delhi" : "State")),
           "addressLocality": cityName
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `https://www.geetanjalisoftwares.in/locations/${city}#faq`,
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": `Can you develop custom websites for businesses in ${cityName}?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `Yes! Although we operate globally, we have a dedicated digital project delivery model for businesses in ${cityName}. All communication, reviews, and revisions are carried out online via Google Meet/Zoom, phone calls, and direct WhatsApp updates.`
+            }
+          },
+          {
+            "@type": "Question",
+            "name": `How long will it take to rank on Google for localized searches in ${cityName}?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `For localized terms (e.g. "website designer in ${city}"), you can expect to see Page-1 results within 60 to 90 days of launch, thanks to our pre-optimized SEO page structures and structured data setups.`
+            }
+          },
+          {
+            "@type": "Question",
+            "name": `Do you offer support and maintenance services after launching the website?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `Absolutely. We provide dedicated support and maintenance packages (including monthly updates, security patch updates, and continuous optimization metrics) starting from ₹1,500/month.`
+            }
+          }
+        ]
       }
     ]
   };
@@ -158,32 +188,79 @@ export default async function LocationPage({ params }) {
 
       {/* Localized FAQ Section */}
       <section className="py-20 bg-transparent">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-normal text-slate-900 text-center mb-10">Frequently Asked Questions in {cityName}</h2>
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-orange-600">Got Questions?</p>
+            <h2 className="mt-3 text-2xl font-normal text-slate-900 text-center sm:text-3xl">Frequently Asked Questions in {cityName}</h2>
+          </div>
           
-          <div className="space-y-6 max-w-3xl mx-auto text-left">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-black/5 text-left">
-              <h4 className="text-xs font-semibold text-slate-900">Can you develop custom websites for businesses in {cityName}?</h4>
-              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+          <div className="rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-10 space-y-6 max-w-3xl mx-auto">
+            <details className="group border-b border-black/5 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                <h3 className="text-sm font-semibold text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                  Can you develop custom websites for businesses in {cityName}?
+                </h3>
+                <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                  <svg
+                    className="h-3 w-3 transition duration-300 group-open:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="mt-4 text-xs leading-relaxed text-slate-500 text-left pl-1">
                 Yes! Although we operate globally, we have a dedicated digital project delivery model for businesses in {cityName}. All communication, reviews, and revisions are carried out online via Google Meet/Zoom, phone calls, and direct WhatsApp updates.
               </p>
-            </div>
+            </details>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-black/5 text-left">
-              <h4 className="text-xs font-semibold text-slate-900">How long will it take to rank on Google for localized searches in {cityName}?</h4>
-              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                For localized terms (e.g. "website designer in {city}"), you can expect to see Page-1 results within 60 to 90 days of launch, thanks to our pre-optimized SEO page structures and structured data setups.
+            <details className="group border-b border-black/5 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                <h3 className="text-sm font-semibold text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                  How long will it take to rank on Google for localized searches in {cityName}?
+                </h3>
+                <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                  <svg
+                    className="h-3 w-3 transition duration-300 group-open:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="mt-4 text-xs leading-relaxed text-slate-500 text-left pl-1">
+                For localized terms (e.g. &quot;website designer in {city}&quot;), you can expect to see Page-1 results within 60 to 90 days of launch, thanks to our pre-optimized SEO page structures and structured data setups.
               </p>
-            </div>
+            </details>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-black/5 text-left">
-              <h4 className="text-xs font-semibold text-slate-900">Do you offer support and maintenance services after launching the website?</h4>
-              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+            <details className="group border-b border-black/5 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
+                <h3 className="text-sm font-semibold text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
+                  Do you offer support and maintenance services after launching the website?
+                </h3>
+                <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
+                  <svg
+                    className="h-3 w-3 transition duration-300 group-open:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="mt-4 text-xs leading-relaxed text-slate-500 text-left pl-1">
                 Absolutely. We provide dedicated support and maintenance packages (including monthly updates, security patch updates, and continuous optimization metrics) starting from ₹1,500/month.
               </p>
-            </div>
+            </details>
           </div>
-
         </div>
       </section>
     </>
