@@ -43,6 +43,11 @@ export default async function LocationPage({ params }) {
         "url": `https://www.geetanjalisoftwares.in/locations/${city}`,
         "telephone": "+917508657479",
         "priceRange": "₹₹",
+        "founder": {
+          "@type": "Person",
+          "name": "Akash",
+          "url": "https://www.geetanjalisoftwares.in/about"
+        },
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "IN",
@@ -162,7 +167,7 @@ export default async function LocationPage({ params }) {
                 <span className="text-[10px] uppercase font-semibold text-emerald-600 tracking-wider">The Solution</span>
                 <h2 className="text-xl font-normal text-slate-900 text-left">The Geetanjali Softwares Advantage</h2>
                 <p className="text-xs text-slate-500 leading-relaxed text-left">
-                  We build custom, ultra-fast websites using modern frameworks (React & Next.js) that load in under 1.5 seconds. Coupled with localized SEO parameters, we rank your business on Google's Page 1 to capture high-intent inquiries.
+                  We build custom, ultra-fast websites using modern frameworks (React & Next.js) that load in under 1.5 seconds. Coupled with localized SEO parameters, we rank your business on Google&apos;s Page 1 to capture high-intent inquiries.
                 </p>
               </div>
             </div>

@@ -1,5 +1,31 @@
 import React from 'react';
 
+export const metadata = {
+  title: "Privacy Policy | Geetanjali Softwares",
+  description:
+    "Read the Privacy Policy for Geetanjali Softwares: what data we collect, how we use it, and how we protect it.",
+  alternates: {
+    canonical: "https://www.geetanjalisoftwares.in/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Geetanjali Softwares",
+    description:
+      "Read the Privacy Policy for Geetanjali Softwares: what data we collect, how we use it, and how we protect it.",
+    url: "https://www.geetanjalisoftwares.in/privacy",
+    siteName: "Geetanjali Softwares",
+    images: [{ url: "https://www.geetanjalisoftwares.in/icon.png", width: 512, height: 512 }],
+    locale: "en_IN",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Geetanjali Softwares",
+    description:
+      "Read the Privacy Policy for Geetanjali Softwares: what data we collect, how we use it, and how we protect it.",
+    images: ["https://www.geetanjalisoftwares.in/icon.png"],
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="mx-auto max-w-4xl px-4 pt-4 pb-20">

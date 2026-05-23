@@ -12,6 +12,11 @@ const outfit = Outfit({
 });
 
 export async function generateMetadata() {
+  const metadataBase = new URL("https://www.geetanjalisoftwares.in");
+  const owner = {
+    name: "Akash",
+    url: "https://www.geetanjalisoftwares.in/about",
+  };
   try {
     const { data } = await supabase
       .from('settings')
@@ -21,12 +26,16 @@ export async function generateMetadata() {
 
     if (data && data.site_title) {
       return {
-        title: data.site_title.slice(0, 60),
-        description: data.site_description.slice(0, 160),
-        keywords: data.keywords,
-        alternates: {
-          canonical: 'https://www.geetanjalisoftwares.in',
+        metadataBase,
+        title: {
+          default: data.site_title.slice(0, 60),
+          template: `%s | ${data.site_title.slice(0, 60)}`,
         },
+        description: (data.site_description || "").slice(0, 160),
+        keywords: data.keywords,
+        authors: [owner],
+        creator: owner.name,
+        publisher: "Geetanjali Softwares",
         icons: {
           icon: "/favicon.ico",
         },
@@ -38,9 +47,15 @@ export async function generateMetadata() {
 
   // Fallback for Bihar-focused SEO
   return {
-    alternates: {
-      canonical: 'https://www.geetanjalisoftwares.in',
+    metadataBase,
+    title: {
+      default: "Geetanjali Softwares - Website Development & SEO Company",
+      template: "%s | Geetanjali Softwares",
     },
+    description: "Scale your brand with a leading digital agency. High-performance web development, SEO, and custom software.",
+    authors: [owner],
+    creator: owner.name,
+    publisher: "Geetanjali Softwares",
     openGraph: {
       title: "Geetanjali Softwares - Website Development & SEO Company",
       description: "Scale your brand with a leading digital agency. High-performance web development, SEO, and custom software.",
@@ -77,6 +92,11 @@ export default function RootLayout({ children }) {
                 "url": "https://www.geetanjalisoftwares.in",
                 "logo": "https://www.geetanjalisoftwares.in/icon.png",
                 "description": "Geetanjali Softwares is a leading website development and digital marketing agency.",
+                "founder": {
+                  "@type": "Person",
+                  "name": "Akash",
+                  "url": "https://www.geetanjalisoftwares.in/about"
+                },
                 "sameAs": [
                   "https://www.instagram.com/geetanjalisoftwares/",
                   "https://www.facebook.com/geetanjalisoftwares/"

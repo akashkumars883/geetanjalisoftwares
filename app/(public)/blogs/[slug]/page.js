@@ -22,6 +22,16 @@ const getBlog = cache(async (slug) => {
 });
 
 export const revalidate = 3600; // Revalidate every hour
+
+function shouldSkipNextImageOptimization(src) {
+  if (!src) return true;
+  if (src.startsWith("/")) return true;
+  return (
+    src.includes("supabase.co") ||
+    src.includes("unsplash.com") ||
+    src.includes("pixabay.com")
+  );
+}
  
 export async function generateStaticParams() {
   const { data: blogs } = await supabaseAdmin
@@ -302,6 +312,7 @@ export default async function BlogDetailPage({ params }) {
                           width={60}
                           height={60}
                           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          unoptimized={shouldSkipNextImageOptimization(item.image_url)}
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center text-slate-300">

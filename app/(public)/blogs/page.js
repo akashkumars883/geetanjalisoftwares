@@ -12,17 +12,30 @@ export const dynamic = 'force-dynamic';
 export const metadata = {
   title: 'Insights & Guides | Geetanjali Softwares Blog',
   description: 'Expert guides on web development, SEO strategies, and digital growth from the Geetanjali Softwares team.',
+  alternates: {
+    canonical: 'https://www.geetanjalisoftwares.in/blogs',
+  },
   openGraph: {
     title: 'Geetanjali Softwares Blog | Digital Growth Insights',
     description: 'Master web development and SEO with our expert guides.',
+    url: 'https://www.geetanjalisoftwares.in/blogs',
+    siteName: 'Geetanjali Softwares',
     images: ['https://www.geetanjalisoftwares.in/icon.png'],
-  }
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Insights & Guides | Geetanjali Softwares Blog',
+    description: 'Expert guides on web development, SEO strategies, and digital growth from the Geetanjali Softwares team.',
+    images: ['https://www.geetanjalisoftwares.in/icon.png'],
+  },
 };
 
 export default async function BlogsPage() {
   const { data: blogs, error } = await supabaseAdmin
     .from('blogs')
-    .select('id, title, slug, image_url, created_at, category, excerpt, author, content')
+    .select('id, title, slug, image_url, created_at, category, excerpt, author')
     .order('created_at', { ascending: false });
 
   if (error) {

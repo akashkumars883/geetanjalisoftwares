@@ -3,6 +3,7 @@ import { services } from '@/lib/services';
 
 export default async function sitemap() {
   const baseUrl = 'https://www.geetanjalisoftwares.in';
+  const studioUrl = 'https://studio.geetanjalisoftwares.in';
 
   // Fetch blogs from Supabase
   const { data: blogs } = await supabase
@@ -32,15 +33,23 @@ export default async function sitemap() {
     '/contact',
     '/portfolio',
     '/blogs',
+    '/locations',
+    '/careers',
     '/privacy',
     '/terms',
-    '/studio',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
-    priority: route === '' || route === '/studio' ? 1 : 0.8,
+    priority: route === '' ? 1 : 0.8,
   }));
+
+  const studioEntry = {
+    url: studioUrl,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 1,
+  };
 
   // Programmatic Cities list for Multi-City Local SEO Indexing
   const targetCities = [
@@ -69,5 +78,5 @@ export default async function sitemap() {
     priority: 0.9,
   }));
 
-  return [...staticUrls, ...serviceUrls, ...blogUrls, ...locationUrls, ...userWebsiteUrls];
+  return [...staticUrls, studioEntry, ...serviceUrls, ...blogUrls, ...locationUrls, ...userWebsiteUrls];
 }

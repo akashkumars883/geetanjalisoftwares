@@ -23,7 +23,8 @@ export default function BlogImage({ src, alt, className = '', priority = false }
   const isExternal = src.startsWith('http') || src.startsWith('//');
   const isSupabase = src.includes('supabase.co');
   const isUnsplash = src.includes('unsplash.com');
-  const shouldSkipOptimization = !isExternal || isSupabase || isUnsplash;
+  const isPixabay = src.includes('pixabay.com');
+  const shouldSkipOptimization = !isExternal || isSupabase || isUnsplash || isPixabay;
 
   return (
     <div className={`relative overflow-hidden ${className}`}>

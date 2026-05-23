@@ -11,6 +11,11 @@ const Breadcrumbs = () => {
 
   if (segments.length === 0) return null;
 
+  const baseUrl =
+    typeof window !== 'undefined' && window.location?.origin
+      ? window.location.origin
+      : 'https://www.geetanjalisoftwares.in';
+
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -19,11 +24,11 @@ const Breadcrumbs = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.geetanjalisoftwares.in"
+        "item": baseUrl
       },
       ...segments.map((s, i) => {
         const title = s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, ' ');
-        const href = 'https://www.geetanjalisoftwares.in/' + segments.slice(0, i + 1).join('/');
+        const href = baseUrl + '/' + segments.slice(0, i + 1).join('/');
         return {
           "@type": "ListItem",
           "position": i + 2,

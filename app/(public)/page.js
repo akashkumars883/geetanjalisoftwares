@@ -26,6 +26,11 @@ export default function Home() {
         "name": "Geetanjali Softwares",
         "url": "https://www.geetanjalisoftwares.in",
         "logo": "https://www.geetanjalisoftwares.in/images/logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Akash",
+          "url": "https://www.geetanjalisoftwares.in/about"
+        },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+917508657479",
@@ -42,14 +47,6 @@ export default function Home() {
         "description": "Expert Web Design, Custom Software & SEO Solutions",
         "publisher": {
           "@id": "https://www.geetanjalisoftwares.in/#organization"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://www.geetanjalisoftwares.in/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
         }
       },
       {

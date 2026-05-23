@@ -30,10 +30,29 @@ export async function generateMetadata({ params }) {
   const city = settings?.local_focus;
   const isGlobal = !city || city.trim().toLowerCase() === "global" || city.trim().toLowerCase() === "worldwide" || city.trim().toLowerCase() === "bihar" || city.trim().toLowerCase() === "patna";
   const titleSuffix = isGlobal ? "" : ` in ${city}`;
+  const url = `https://www.geetanjalisoftwares.in/services/${fullSlug}`;
+  const title = `${service.title} Services${titleSuffix} | Geetanjali Softwares`;
+  const description = `${service.description}. Premium ${service.title} solutions with Geetanjali Softwares.`.slice(0, 160);
 
   return {
-    title: `${service.title} Services${titleSuffix} | Geetanjali Softwares`,
-    description: `${service.description}. Premium ${service.title} solutions with Geetanjali Softwares.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Geetanjali Softwares",
+      images: [{ url: "https://www.geetanjalisoftwares.in/icon.png", width: 512, height: 512 }],
+      locale: "en_IN",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://www.geetanjalisoftwares.in/icon.png"],
+    },
   };
 }
 

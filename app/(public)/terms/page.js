@@ -1,5 +1,31 @@
 import React from 'react';
 
+export const metadata = {
+  title: "Terms of Service | Geetanjali Softwares",
+  description:
+    "Read the Terms of Service for Geetanjali Softwares for web development, digital marketing, and branding services.",
+  alternates: {
+    canonical: "https://www.geetanjalisoftwares.in/terms",
+  },
+  openGraph: {
+    title: "Terms of Service | Geetanjali Softwares",
+    description:
+      "Read the Terms of Service for Geetanjali Softwares for web development, digital marketing, and branding services.",
+    url: "https://www.geetanjalisoftwares.in/terms",
+    siteName: "Geetanjali Softwares",
+    images: [{ url: "https://www.geetanjalisoftwares.in/icon.png", width: 512, height: 512 }],
+    locale: "en_IN",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | Geetanjali Softwares",
+    description:
+      "Read the Terms of Service for Geetanjali Softwares for web development, digital marketing, and branding services.",
+    images: ["https://www.geetanjalisoftwares.in/icon.png"],
+  },
+};
+
 export default function TermsOfService() {
   return (
     <div className="mx-auto max-w-4xl px-4 pt-4 pb-20">
