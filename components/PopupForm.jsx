@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Phone, User, Mail, MessageSquare } from 'lucide-react';
+import { X, Send, Phone, User, Mail, MessageSquare, Sparkles } from 'lucide-react';
 
 export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,16 +15,31 @@ export default function PopupForm() {
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
-    const handleOpenEnquiry = () => {
+    const openTimer = window.setTimeout(() => {
+      setIsOpen(true);
+    }, 1400);
+
+    const handleOpenEnquiry = (event) => {
+      const selectedService = event?.detail?.service;
+      if (selectedService) {
+        setFormData((prev) => ({
+          ...prev,
+          message: prev.message || `I am interested in ${selectedService}.`,
+        }));
+      }
       setIsOpen(true);
     };
 
     window.addEventListener('open-enquiry-popup', handleOpenEnquiry);
-    return () => window.removeEventListener('open-enquiry-popup', handleOpenEnquiry);
+    return () => {
+      window.clearTimeout(openTimer);
+      window.removeEventListener('open-enquiry-popup', handleOpenEnquiry);
+    };
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
+    setStatus('idle');
   };
 
   const handleChange = (e) => {
@@ -85,37 +100,34 @@ export default function PopupForm() {
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 30 }}
-            className="fixed inset-x-4 bottom-4 z-[10001] mx-auto max-w-[480px] overflow-hidden rounded-[36px] border border-black/5 bg-slate-50 shadow-2xl shadow-black/25 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+            className="fixed inset-x-3 top-1/2 z-[10001] mx-auto max-h-[calc(100vh-24px)] max-w-[520px] -translate-y-1/2 overflow-y-auto rounded-2xl border border-white/10 bg-white shadow-2xl shadow-black/25"
           >
-            {/* Header with Luxury Brand Gradient */}
-            <div className="relative h-36 w-full overflow-hidden bg-orange-600">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-red-600" />
-              <div className="absolute -bottom-16 -left-16 h-44 w-44 rounded-full bg-white/10 blur-3xl" />
-              <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-white/10 blur-3xl" />
-              
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-all hover:bg-white/25 hover:scale-105 active:scale-95"
-                aria-label="Close form"
-              >
-                <X size={16} />
-              </button>
+            <button
+              onClick={handleClose}
+              className="fixed right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-slate-900 shadow-lg shadow-black/10 transition hover:bg-slate-100 active:scale-95"
+              aria-label="Close form"
+            >
+              <X size={17} />
+            </button>
 
-              <div className="relative flex h-full flex-col justify-center px-8 text-white text-left">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-orange-200">Start your project</span>
-                <h3 className="text-2xl font-bold tracking-tight mt-1 text-white">Let&apos;s Build Masterpiece!</h3>
-                <p className="text-xs text-orange-100 mt-1">Get an instant customized quote for your business.</p>
+            <div className="relative border-b border-black/5 bg-slate-950 px-6 py-6 text-white sm:px-8">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-orange-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-orange-200">
+                <Sparkles size={12} />
+                Free Consultation
               </div>
+              <h3 className="mt-4 max-w-sm text-2xl font-semibold tracking-tight text-white">Tell us what you want to build.</h3>
+              <p className="mt-2 max-w-sm text-xs leading-relaxed text-white/60">
+                Share your website, SEO, or marketing requirement. We will respond with the next steps.
+              </p>
             </div>
 
             {/* Form Content */}
-            <div className="p-6 sm:p-8 bg-white">
+            <div className="p-5 sm:p-7 bg-white">
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 
                 {/* 1. Full Name Input */}
                 <div className="space-y-1 text-left">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
                   <div className="relative flex items-center">
                     <User size={15} className="absolute left-4 text-slate-400" />
                     <input
@@ -125,14 +137,14 @@ export default function PopupForm() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your full name"
-                      className="w-full rounded-2xl border border-black/5 bg-slate-50/70 pl-11 pr-4 py-3.5 text-xs text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
+                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
                     />
                   </div>
                 </div>
 
                 {/* 2. Email Address Input */}
                 <div className="space-y-1 text-left">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
                   <div className="relative flex items-center">
                     <Mail size={15} className="absolute left-4 text-slate-400" />
                     <input
@@ -142,14 +154,14 @@ export default function PopupForm() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="e.g. name@company.com"
-                      className="w-full rounded-2xl border border-black/5 bg-slate-50/70 pl-11 pr-4 py-3.5 text-xs text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
+                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
                     />
                   </div>
                 </div>
 
                 {/* 3. Phone Number Input (New Separate Field) */}
                 <div className="space-y-1 text-left">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-slate-500 ml-1">Contact Number (WhatsApp)</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Contact Number (WhatsApp)</label>
                   <div className="relative flex items-center">
                     <Phone size={15} className="absolute left-4 text-slate-400" />
                     <input
@@ -159,14 +171,14 @@ export default function PopupForm() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="e.g. +91 98765 43210"
-                      className="w-full rounded-2xl border border-black/5 bg-slate-50/70 pl-11 pr-4 py-3.5 text-xs text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
+                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
                     />
                   </div>
                 </div>
 
                 {/* 4. Project Goal Textarea */}
                 <div className="space-y-1 text-left">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-slate-500 ml-1">Project Details</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Project Details</label>
                   <div className="relative flex items-start">
                     <MessageSquare size={15} className="absolute left-4 top-4 text-slate-400" />
                     <textarea
@@ -176,7 +188,7 @@ export default function PopupForm() {
                       onChange={handleChange}
                       rows={3}
                       placeholder="Briefly describe your website or marketing goals..."
-                      className="w-full resize-none rounded-2xl border border-black/5 bg-slate-50/70 pl-11 pr-4 py-3.5 text-xs text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500/30 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all duration-300"
+                      className="w-full resize-none rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -185,7 +197,7 @@ export default function PopupForm() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-600 py-4 text-xs font-semibold text-white shadow-xl shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 hover:shadow-orange-600/30 active:scale-[0.98] disabled:opacity-50"
+                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 py-4 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 active:scale-[0.98] disabled:opacity-50"
                 >
                   {status === 'loading' ? (
                     'Submitting details...'

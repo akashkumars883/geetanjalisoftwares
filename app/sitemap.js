@@ -32,7 +32,10 @@ export default async function sitemap() {
     '/services',
     '/contact',
     '/portfolio',
+    '/pricing',
+    '/tools',
     '/blogs',
+    '/authors/akash',
     '/locations',
     '/careers',
     '/privacy',
@@ -53,10 +56,7 @@ export default async function sitemap() {
 
   // Programmatic Cities list for Multi-City Local SEO Indexing
   const targetCities = [
-    'faridabad', 'delhi-ncr', 'patna', 'delhi', 'mumbai', 'bangalore', 'lucknow', 
-    'jaipur', 'pune', 'noida', 'gurgaon', 'kolkata', 
-    'chennai', 'hyderabad', 'ahmedabad', 'chandigarh', 
-    'ranchi', 'bhopal', 'indore', 'kanpur', 'surat', 'guwahati'
+    'faridabad', 'delhi-ncr', 'delhi', 'noida', 'gurgaon'
   ];
 
   const locationUrls = targetCities.map((city) => ({

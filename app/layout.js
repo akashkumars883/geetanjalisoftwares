@@ -4,6 +4,16 @@ import Script from "next/script";
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
 import { Outfit } from "next/font/google";
+import CookieConsent from "@/components/CookieConsent";
+import {
+  BUSINESS_NAME,
+  BUSINESS_PHONE,
+  SITE_URL,
+  SOCIAL_LINKS,
+  founder,
+  localBusinessSchema,
+  organizationSchema,
+} from "@/lib/seo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -12,10 +22,10 @@ const outfit = Outfit({
 });
 
 export async function generateMetadata() {
-  const metadataBase = new URL("https://www.geetanjalisoftwares.in");
+  const metadataBase = new URL(SITE_URL);
   const owner = {
-    name: "Akash",
-    url: "https://www.geetanjalisoftwares.in/about",
+    name: founder.name,
+    url: founder.url,
   };
   try {
     const { data } = await supabase
@@ -29,13 +39,13 @@ export async function generateMetadata() {
         metadataBase,
         title: {
           default: data.site_title.slice(0, 60),
-          template: `%s | ${data.site_title.slice(0, 60)}`,
+          template: "%s",
         },
         description: (data.site_description || "").slice(0, 160),
         keywords: data.keywords,
         authors: [owner],
         creator: owner.name,
-        publisher: "Geetanjali Softwares",
+        publisher: BUSINESS_NAME,
         icons: {
           icon: "/favicon.ico",
         },
@@ -50,18 +60,18 @@ export async function generateMetadata() {
     metadataBase,
     title: {
       default: "Geetanjali Softwares - Website Development & SEO Company",
-      template: "%s | Geetanjali Softwares",
+      template: "%s",
     },
     description: "Scale your brand with a leading digital agency. High-performance web development, SEO, and custom software.",
     authors: [owner],
     creator: owner.name,
-    publisher: "Geetanjali Softwares",
+    publisher: BUSINESS_NAME,
     openGraph: {
       title: "Geetanjali Softwares - Website Development & SEO Company",
       description: "Scale your brand with a leading digital agency. High-performance web development, SEO, and custom software.",
-      url: 'https://www.geetanjalisoftwares.in',
-      siteName: 'Geetanjali Softwares',
-      images: [{ url: 'https://www.geetanjalisoftwares.in/icon.png', width: 512, height: 512 }],
+      url: SITE_URL,
+      siteName: BUSINESS_NAME,
+      images: [{ url: `${SITE_URL}/icon.png`, width: 512, height: 512 }],
       locale: 'en_IN',
       type: 'website',
     },
@@ -69,7 +79,7 @@ export async function generateMetadata() {
       card: 'summary_large_image',
       title: "Geetanjali Softwares",
       description: "Expert Website Development & SEO Services.",
-      images: ['https://www.geetanjalisoftwares.in/icon.png'],
+      images: [`${SITE_URL}/icon.png`],
     },
     icons: {
       icon: "/favicon.ico",
@@ -87,34 +97,21 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify([
               {
                 "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Geetanjali Softwares",
-                "url": "https://www.geetanjalisoftwares.in",
-                "logo": "https://www.geetanjalisoftwares.in/icon.png",
-                "description": "Geetanjali Softwares is a leading website development and digital marketing agency.",
-                "founder": {
-                  "@type": "Person",
-                  "name": "Akash",
-                  "url": "https://www.geetanjalisoftwares.in/about"
-                },
-                "sameAs": [
-                  "https://www.instagram.com/geetanjalisoftwares/",
-                  "https://www.facebook.com/geetanjalisoftwares/"
-                ],
-                "contactPoint": {
-                  "@type": "ContactPoint",
-                  "telephone": "+91-7508657479",
-                  "contactType": "customer service"
-                }
+                ...organizationSchema(),
+                "description": "Geetanjali Softwares is a website development, SEO, and digital marketing studio based in Faridabad, Haryana."
+              },
+              {
+                "@context": "https://schema.org",
+                ...localBusinessSchema()
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Geetanjali Softwares",
-                "url": "https://www.geetanjalisoftwares.in",
+                "name": BUSINESS_NAME,
+                "url": SITE_URL,
                 "potentialAction": {
                   "@type": "SearchAction",
-                  "target": "https://www.geetanjalisoftwares.in/?s={search_term_string}",
+                  "target": `${SITE_URL}/blogs?search={search_term_string}`,
                   "query-input": "required name=search_term_string"
                 }
               },
@@ -126,39 +123,54 @@ export default function RootLayout({ children }) {
                     "@type": "SiteNavigationElement",
                     "position": 1,
                     "name": "AI Studio Website Builder",
-                    "url": "https://www.geetanjalisoftwares.in/studio"
+                    "url": `${SITE_URL}/studio`
                   },
                   {
                     "@type": "SiteNavigationElement",
                     "position": 2,
-                    "name": "Services",
-                    "url": "https://www.geetanjalisoftwares.in/services"
+                    "name": "Website Development",
+                    "url": `${SITE_URL}/services/website-design-development`
                   },
                   {
                     "@type": "SiteNavigationElement",
                     "position": 3,
-                    "name": "About Us",
-                    "url": "https://www.geetanjalisoftwares.in/about"
+                    "name": "Digital Marketing",
+                    "url": `${SITE_URL}/services/digital-marketing`
                   },
                   {
                     "@type": "SiteNavigationElement",
                     "position": 4,
                     "name": "Portfolio",
-                    "url": "https://www.geetanjalisoftwares.in/portfolio"
+                    "url": `${SITE_URL}/portfolio`
                   },
                   {
                     "@type": "SiteNavigationElement",
                     "position": 5,
-                    "name": "Blogs",
-                    "url": "https://www.geetanjalisoftwares.in/blogs"
+                    "name": "Tools",
+                    "url": `${SITE_URL}/tools`
                   },
                   {
                     "@type": "SiteNavigationElement",
                     "position": 6,
+                    "name": "Blogs",
+                    "url": `${SITE_URL}/blogs`
+                  },
+                  {
+                    "@type": "SiteNavigationElement",
+                    "position": 7,
                     "name": "Contact",
-                    "url": "https://www.geetanjalisoftwares.in/contact"
+                    "url": `${SITE_URL}/contact`
                   }
                 ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "ContactPoint",
+                "telephone": BUSINESS_PHONE,
+                "contactType": "sales",
+                "areaServed": "IN",
+                "availableLanguage": ["en", "hi"],
+                "url": SOCIAL_LINKS.googleBusiness
               }
             ])
           }}
@@ -182,6 +194,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

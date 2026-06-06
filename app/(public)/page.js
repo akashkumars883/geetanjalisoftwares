@@ -9,97 +9,94 @@ import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import SEOSimulator from "@/components/SEOSimulator";
+import { SITE_URL, localBusinessSchema, organizationSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Website Development & SEO Company in Faridabad | Geetanjali Softwares",
-  description: "Geetanjali Softwares is the leading website development company and SEO agency in Faridabad & Delhi NCR. We provide custom web design, custom software development, and ROI-driven SEO solutions.",
-  keywords: "website development company in faridabad, seo company in faridabad, web design company in delhi ncr, digital marketing agency faridabad, ai website builder india, seo optimized business websites",
+  description:
+    "Geetanjali Softwares is the leading website development company and SEO agency in Faridabad & Delhi NCR. We provide custom web design, custom software development, and ROI-driven SEO solutions.",
+  keywords:
+    "website development company in faridabad, seo company in faridabad, web design company in delhi ncr, digital marketing agency faridabad, ai website builder india, seo optimized business websites",
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: "Website Development & SEO Company in Faridabad | Geetanjali Softwares",
+    description:
+      "Custom website development, SEO, digital marketing, and branding services for businesses in Faridabad, Delhi NCR, and India.",
+    url: SITE_URL,
+    siteName: "Geetanjali Softwares",
+    images: [{ url: `${SITE_URL}/icon.png`, width: 512, height: 512 }],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Website Development & SEO Company in Faridabad | Geetanjali Softwares",
+    description:
+      "Fast websites, SEO, digital marketing, and lead generation services by Geetanjali Softwares.",
+    images: [`${SITE_URL}/icon.png`],
+  },
 };
 
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.geetanjalisoftwares.in/#organization",
-        "name": "Geetanjali Softwares",
-        "url": "https://www.geetanjalisoftwares.in",
-        "logo": "https://www.geetanjalisoftwares.in/images/logo.png",
-        "founder": {
-          "@type": "Person",
-          "name": "Akash",
-          "url": "https://www.geetanjalisoftwares.in/about"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+917508657479",
-          "contactType": "sales",
-          "areaServed": "IN",
-          "availableLanguage": ["en", "hi"]
-        }
-      },
+      organizationSchema(),
       {
         "@type": "WebSite",
-        "@id": "https://www.geetanjalisoftwares.in/#website",
-        "url": "https://www.geetanjalisoftwares.in",
-        "name": "Geetanjali Softwares",
-        "description": "Expert Web Design, Custom Software & SEO Solutions",
-        "publisher": {
-          "@id": "https://www.geetanjalisoftwares.in/#organization"
-        }
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "Geetanjali Softwares",
+        description: "Expert Web Design, Custom Software & SEO Solutions",
+        publisher: {
+          "@id": `${SITE_URL}/#organization`,
+        },
       },
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://www.geetanjalisoftwares.in/#service",
-        "name": "Geetanjali Softwares",
-        "image": "https://www.geetanjalisoftwares.in/images/logo.png",
-        "priceRange": "₹₹",
-        "telephone": "+917508657479",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "IN",
-          "addressRegion": "Haryana",
-          "addressLocality": "Faridabad"
-        }
-      },
+      localBusinessSchema(),
       {
         "@type": "ItemList",
-        "@id": "https://www.geetanjalisoftwares.in/#sitelinks-list",
-        "name": "Geetanjali Softwares Core Features",
-        "itemListElement": [
+        "@id": `${SITE_URL}/#sitelinks-list`,
+        name: "Geetanjali Softwares Core Features",
+        itemListElement: [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "Web Design & Development",
-            "url": "https://www.geetanjalisoftwares.in/services"
+            position: 1,
+            name: "Web Design & Development",
+            url: `${SITE_URL}/services/website-design-development`,
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "SEO & Digital Marketing",
-            "url": "https://www.geetanjalisoftwares.in/services"
+            position: 2,
+            name: "SEO & Digital Marketing",
+            url: `${SITE_URL}/services/digital-marketing/seo`,
           },
           {
             "@type": "ListItem",
-            "position": 3,
-            "name": "Instant SEO Speed Scanner",
-            "url": "https://www.geetanjalisoftwares.in/#seo-scanner"
+            position: 3,
+            name: "Instant SEO Speed Scanner",
+            url: `${SITE_URL}/#seo-scanner`,
           },
           {
             "@type": "ListItem",
-            "position": 4,
-            "name": "Our Work Portfolio",
-            "url": "https://www.geetanjalisoftwares.in/portfolio"
-          }
-        ]
-      }
-    ]
+            position: 4,
+            name: "Pricing",
+            url: `${SITE_URL}/pricing`,
+          },
+          {
+            "@type": "ListItem",
+            position: 5,
+            name: "Our Work Portfolio",
+            url: `${SITE_URL}/portfolio`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <>
-      {/* Search Engine Optimization Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

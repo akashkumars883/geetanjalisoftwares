@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { GOOGLE_BUSINESS_URL } from '@/lib/seo';
 
 const testimonials = [
   {
@@ -54,7 +55,12 @@ export default function TestimonialsSection() {
             </h2>
             
             {/* Google Reviews Trust Badge */}
-            <div className="mt-4 flex flex-wrap items-center gap-2.5">
+            <a
+              href={GOOGLE_BUSINESS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 transition hover:border-amber-300"
+            >
               <div className="flex items-center gap-0.5 text-amber-500">
                 <Star size={16} fill="currentColor" className="text-amber-500" />
                 <Star size={16} fill="currentColor" className="text-amber-500" />
@@ -63,9 +69,9 @@ export default function TestimonialsSection() {
                 <Star size={16} fill="currentColor" className="text-amber-500" />
               </div>
               <span className="text-xs font-bold text-slate-700 tracking-wider">
-                4.9/5 stars based on 120+ Google Reviews
+                See our Google reviews
               </span>
-            </div>
+            </a>
           </motion.div>
 
           {/* Right Side: Description */}

@@ -15,15 +15,21 @@ import SEOSimulator from "@/components/SEOSimulator";
 import ConsultationScheduler from "@/components/ConsultationScheduler";
 import ContactFormSection from "@/components/ContactFormSection";
 
+const priorityCities = new Set(["faridabad", "delhi-ncr", "delhi", "noida", "gurgaon"]);
+
 // 1. Dynamic Meta Title & Description generation for every city
 export async function generateMetadata({ params }) {
   const { city } = await params;
   const cityName = city.charAt(0).toUpperCase() + city.slice(1).replace(/-/g, ' ');
+  const isPriorityCity = priorityCities.has(city);
 
   return {
     title: `Best Web Development & SEO Company in ${cityName} | Geetanjali Softwares`,
     description: `Looking for top website design, custom software, or dynamic SEO services in ${cityName}, India? Partner with Geetanjali Softwares for high-performance responsive web setups.`,
     keywords: `web development in ${city}, website designers ${city}, seo agency ${city}, custom software development ${city}, digital marketing ${city}`,
+    robots: isPriorityCity
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
   };
 }
 

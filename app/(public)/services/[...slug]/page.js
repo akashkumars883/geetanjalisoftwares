@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, services } from "@/lib/services";
 import { createClient } from '@supabase/supabase-js';
+import { SITE_URL, BUSINESS_PHONE, founder } from "@/lib/seo";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }) {
   const city = settings?.local_focus;
   const isGlobal = !city || city.trim().toLowerCase() === "global" || city.trim().toLowerCase() === "worldwide" || city.trim().toLowerCase() === "bihar" || city.trim().toLowerCase() === "patna";
   const titleSuffix = isGlobal ? "" : ` in ${city}`;
-  const url = `https://www.geetanjalisoftwares.in/services/${fullSlug}`;
+  const url = `${SITE_URL}/services/${fullSlug}`;
   const title = `${service.title} Services${titleSuffix} | Geetanjali Softwares`;
   const description = `${service.description}. Premium ${service.title} solutions with Geetanjali Softwares.`.slice(0, 160);
 
@@ -446,6 +447,31 @@ export default async function ServiceDetailPage({ params }) {
       }))
     };
   }
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${SITE_URL}/services/${fullSlug}#service`,
+    "name": service.title,
+    "description": service.description,
+    "url": `${SITE_URL}/services/${fullSlug}`,
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Geetanjali Softwares",
+      "url": SITE_URL,
+      "telephone": BUSINESS_PHONE,
+      "founder": {
+        "@type": "Person",
+        "name": founder.name,
+        "url": founder.url
+      }
+    },
+    "areaServed": ["Faridabad", "Delhi NCR", "India"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Geetanjali Softwares service packages",
+      "url": `${SITE_URL}/pricing`
+    }
+  };
 
   // Fetch latest blogs for interlinking
   const { data: latestBlogs } = await supabaseAdmin
@@ -466,6 +492,10 @@ export default async function ServiceDetailPage({ params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {pageContent}
     </>
   );

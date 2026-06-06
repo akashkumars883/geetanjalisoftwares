@@ -6,6 +6,7 @@ import BlogImage from '@/components/BlogImage';
 import SidebarLeadForm from '@/components/SidebarLeadForm';
 import Image from 'next/image';
 import { cache } from 'react';
+import { SITE_URL, founder } from '@/lib/seo';
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -66,7 +67,7 @@ export async function generateMetadata({ params }) {
       locale: 'en_US',
       type: 'article',
       publishedTime: blog.created_at,
-      authors: ['Geetanjali Softwares'],
+      authors: [founder.name],
       tags: blog.tags || [],
     },
     twitter: {
@@ -111,6 +112,31 @@ export default async function BlogDetailPage({ params }) {
   const tags = blog.tags || [];
   const wordCount = blog.content?.replace(/<[^>]*>/g, '').split(/\s+/).length || 0;
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
+  const updatedAt = blog.updated_at || blog.created_at;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.excerpt || undefined,
+    image: blog.image_url ? [blog.image_url] : undefined,
+    datePublished: blog.created_at,
+    dateModified: updatedAt,
+    wordCount,
+    author: {
+      "@type": "Person",
+      name: founder.name,
+      url: founder.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Geetanjali Softwares",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon.png`,
+      },
+    },
+    mainEntityOfPage: `${SITE_URL}/blogs/${slug}`,
+  };
 
   // Extract FAQs from blog content dynamically
   let mainContent = blog.content || '';
@@ -131,6 +157,10 @@ export default async function BlogDetailPage({ params }) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       
       {/* ── BACK NAVIGATION BREADCRUMB ── */}
       <nav className="mb-10 sm:mb-12" aria-label="Breadcrumbs">
@@ -160,11 +190,13 @@ export default async function BlogDetailPage({ params }) {
               {/* Author details */}
               <div className="flex items-center gap-3">
                 <div className="h-9 w-9 flex-shrink-0 rounded-full bg-orange-500/10 border border-orange-500/10 flex items-center justify-center text-xs font-semibold text-orange-600 uppercase shadow-sm">
-                  {blog.author?.charAt(0) || 'G'}
+                  {founder.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-900 leading-none">{blog.author || 'Geetanjali Team'}</p>
-                  <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1">Author</p>
+                  <Link href="/authors/akash" className="text-xs font-semibold text-slate-900 leading-none hover:text-orange-600">
+                    {founder.name}
+                  </Link>
+                  <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1">Founder Review</p>
                 </div>
               </div>
 
@@ -176,6 +208,9 @@ export default async function BlogDetailPage({ params }) {
                 <span suppressHydrationWarning={true} className="flex items-center gap-1">
                   <Calendar size={11} />
                   {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+                <span suppressHydrationWarning={true}>
+                  Updated {new Date(updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </span>
                 <span className="h-1 w-1 rounded-full bg-slate-200" />
                 <span className="flex items-center gap-1">

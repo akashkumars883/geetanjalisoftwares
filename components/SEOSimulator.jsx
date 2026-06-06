@@ -153,7 +153,7 @@ Candidate Phone: ${phone}`;
             className="flex-1 lg:max-w-xl"
           >
             <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-              Input your current corporate URL to inspect meta alignment indices, responsive layout fidelity, and loading speeds in real-time.
+              Enter your URL for a quick audit preview, then request a manual SEO review from our team.
             </p>
           </motion.div>
         </div>
@@ -178,7 +178,7 @@ Candidate Phone: ${phone}`;
                     Enter your URL to begin
                   </h3>
                   <p className="mt-2 text-base leading-relaxed text-slate-600">
-                    We will execute a simulated audit of your Core Web Vitals, metadata parameters, and security criteria.
+                    This preview highlights common SEO checks. Submit your details after the scan for a real manual review.
                   </p>
                 </div>
 
@@ -214,7 +214,7 @@ Candidate Phone: ${phone}`;
 
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-normal tracking-tight text-slate-900">
-                  Analyzing Web Indices
+                  Preparing Audit Preview
                 </h3>
                 <p className="text-sm font-semibold text-orange-600 sm:text-base">{scanStage}</p>
               </div>
@@ -267,13 +267,13 @@ Candidate Phone: ${phone}`;
               <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
 
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-2">Technical Checklist</h4>
+                  <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-2">Preview Checklist</h4>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-black/5 flex items-start gap-4">
                     <ShieldCheck className="text-emerald-600 shrink-0 mt-0.5" size={20} />
                     <div className="flex flex-col gap-1">
                       <h5 className="text-sm font-semibold text-slate-900">SSL Security Validation</h5>
-                      <p className="text-xs leading-relaxed text-slate-600">HTTPS certificate verification key validated successfully.</p>
+                      <p className="text-xs leading-relaxed text-slate-600">We will verify HTTPS configuration during the manual audit.</p>
                     </div>
                   </div>
 
@@ -281,7 +281,7 @@ Candidate Phone: ${phone}`;
                     <Zap className="text-emerald-600 shrink-0 mt-0.5" size={20} />
                     <div className="flex flex-col gap-1">
                       <h5 className="text-sm font-semibold text-slate-900">Core Web Vitals Performance</h5>
-                      <p className="text-xs leading-relaxed text-slate-600">LCP dynamic pre-render scales resolved within 1.2s.</p>
+                      <p className="text-xs leading-relaxed text-slate-600">We will review Core Web Vitals and loading bottlenecks manually.</p>
                     </div>
                   </div>
 
@@ -289,7 +289,7 @@ Candidate Phone: ${phone}`;
                     <Smartphone className="text-emerald-600 shrink-0 mt-0.5" size={20} />
                     <div className="flex flex-col gap-1">
                       <h5 className="text-sm font-semibold text-slate-900">Mobile Layout Optimization</h5>
-                      <p className="text-xs leading-relaxed text-slate-600">Fluid viewport and media criteria matched perfectly.</p>
+                      <p className="text-xs leading-relaxed text-slate-600">We will check mobile layout, tap targets, and responsive sections.</p>
                     </div>
                   </div>
 
@@ -297,7 +297,7 @@ Candidate Phone: ${phone}`;
                     <AlertTriangle className="text-amber-500 shrink-0 mt-0.5" size={20} />
                     <div className="flex flex-col gap-1">
                       <h5 className="text-sm font-semibold text-slate-900">Structured Meta Schema</h5>
-                      <p className="text-xs leading-relaxed text-slate-600">JSON-LD data structures missing. Needs search engine optimization.</p>
+                      <p className="text-xs leading-relaxed text-slate-600">We will inspect metadata, schema, headings, and crawl readiness.</p>
                     </div>
                   </div>
                 </div>

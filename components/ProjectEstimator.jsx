@@ -157,10 +157,10 @@ export default function ProjectEstimator() {
       tagline: 'Launch your complete brand online',
       timeline: '10 - 14 Days',
       features: [
-        'Starter Website Plan (₹8,000 value)',
-        'Professional Logo Design (₹2,500 value)',
+        'Starter Website Plan (Rs 8,000 value)',
+        'Professional Logo Design (Rs 2,500 value)',
         'Google Business profile optimization',
-        '1 Month Local SEO Strategy setup (₹5,000 value)'
+        '1 Month Local SEO Strategy setup (Rs 5,000 value)'
       ]
     },
     {
@@ -171,9 +171,9 @@ export default function ProjectEstimator() {
       tagline: 'Accelerate business growth and rankings',
       timeline: '20 - 25 Days',
       features: [
-        'Growth Website Plan (₹15,000 value)',
+        'Growth Website Plan (Rs 15,000 value)',
         'Brand Identity Kit (Concepts + Cards)',
-        '2 Months Growth SEO Campaign (₹16,000 value)',
+        '2 Months Growth SEO Campaign (Rs 16,000 value)',
         'Complete Social Media Kit files'
       ]
     },
@@ -185,7 +185,7 @@ export default function ProjectEstimator() {
       tagline: 'Dominate search markets & captures leads',
       timeline: '28 - 35 Days',
       features: [
-        'Premium Website Plan (₹25,000 value)',
+        'Premium Website Plan (Rs 25,000 value)',
         'Complete Executive Brand Guidelines Package',
         '3 Months Full Digital Marketing Campaign',
         'Lead Capture Funnel architecture setup'
@@ -205,8 +205,8 @@ export default function ProjectEstimator() {
   // Price calculations including custom addons
   const getTotals = () => {
     let basePrice = plan.price;
-    let extraPagesCost = extraPagesCount * 1500; // mid-range of ₹1,000 - ₹2,000
-    let logoCost = includeLogo ? 3500 : 0; // mid-range of ₹2,500 - ₹5,000
+    let extraPagesCost = extraPagesCount * 1500; // mid-range of Rs 1,000 - Rs 2,000
+    let logoCost = includeLogo ? 3500 : 0; // mid-range of Rs 2,500 - Rs 5,000
     let maintenanceCost = maintenanceMonths * 1500; // standard maintenance rate
 
     // Addons are only applicable to web/combo tracks
@@ -356,7 +356,7 @@ Client Mobile Contact: ${phone}`;
                   }`}
                 >
                   <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === wp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
-                    ₹{wp.price.toLocaleString('en-IN')}
+                    Rs {wp.price.toLocaleString('en-IN')}
                   </span>
                   <h4 className="font-semibold text-sm mt-3 text-left">{wp.name}</h4>
                   <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === wp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
@@ -377,7 +377,7 @@ Client Mobile Contact: ${phone}`;
                   }`}
                 >
                   <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === sp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
-                    ₹{sp.price.toLocaleString('en-IN')}/mo
+                    Rs {sp.price.toLocaleString('en-IN')}/mo
                   </span>
                   <h4 className="font-semibold text-sm mt-3 text-left">{sp.name}</h4>
                   <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === sp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
@@ -398,7 +398,7 @@ Client Mobile Contact: ${phone}`;
                   }`}
                 >
                   <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === cp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
-                    ₹{cp.price.toLocaleString('en-IN')}
+                    Rs {cp.price.toLocaleString('en-IN')}
                   </span>
                   <h4 className="font-semibold text-sm mt-3 text-left">{cp.name}</h4>
                   <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === cp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
@@ -420,7 +420,7 @@ Client Mobile Contact: ${phone}`;
                   
                   {/* Extra pages */}
                   <div className="space-y-2 text-left">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Add Extra Pages (₹1500/pg)</span>
+                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Add Extra Pages (Rs 1500/pg)</span>
                     <div className="flex items-center gap-3">
                       <button
                         type="button"
@@ -442,7 +442,7 @@ Client Mobile Contact: ${phone}`;
 
                   {/* Logo Design inclusion */}
                   <div className="space-y-2 text-left flex flex-col justify-center">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Logo Design Concept (+₹3,500)</span>
+                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Logo Design Concept (+Rs 3,500)</span>
                     <div className="flex items-center gap-2 mt-1">
                       <input
                         type="checkbox"
@@ -459,7 +459,7 @@ Client Mobile Contact: ${phone}`;
 
                   {/* Maintenance Support months */}
                   <div className="space-y-2 text-left">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Support/Maintenance (₹1500/mo)</span>
+                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Support/Maintenance (Rs 1500/mo)</span>
                     <select
                       value={maintenanceMonths}
                       onChange={(e) => setMaintenanceMonths(Number(e.target.value))}
@@ -495,24 +495,24 @@ Client Mobile Contact: ${phone}`;
           </div>
 
           {/* Right panel: Summary, Price displays, & Lead form */}
-          <div className="lg:col-span-4 rounded-[40px] bg-slate-900 border border-black/5 text-slate-900 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-4 rounded-[40px] bg-slate-900 border border-black/5 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(249,115,22,0.15),transparent_60%)]" />
             
             <div className="relative space-y-6 text-left">
               <div>
-                <span className="inline-flex items-center gap-1 rounded bg-orange-600 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-900">
+                <span className="inline-flex items-center gap-1 rounded bg-orange-600 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white">
                   {plan.period === 'Month' ? 'Monthly Plan' : plan.period === 'Saver Package' ? 'Saver Bundle' : 'Fixed Cost'}
                 </span>
-                <h3 className="text-lg font-semibold text-slate-900 mt-2 text-left">{plan.name}</h3>
-                <p className="text-[11px] text-slate-900/50 mt-0.5 text-left">{plan.tagline}</p>
+                <h3 className="text-lg font-semibold text-white mt-2 text-left">{plan.name}</h3>
+                <p className="text-[11px] text-white/55 mt-0.5 text-left">{plan.tagline}</p>
               </div>
 
               {/* Exact pricing summary */}
               <div className="py-5 border-y border-white/10 space-y-1.5 text-left">
-                <span className="text-[10px] uppercase text-slate-900/40 tracking-wider block text-left">Your Estimated Quotation</span>
-                <div className="text-3xl font-semibold text-slate-900 text-left">
-                  ₹{totalEstimate.toLocaleString('en-IN')}
-                  {plan.period === 'Month' && <span className="text-sm text-slate-900/40 font-medium"> / Month</span>}
+                <span className="text-[10px] uppercase text-white/45 tracking-wider block text-left">Your Estimated Quotation</span>
+                <div className="text-3xl font-semibold text-white text-left">
+                  Rs {totalEstimate.toLocaleString('en-IN')}
+                  {plan.period === 'Month' && <span className="text-sm text-white/45 font-medium"> / Month</span>}
                 </div>
                 <div className="text-[10px] text-orange-400 font-semibold flex items-center gap-1.5 text-left pt-1">
                   <Clock size={11} /> Est. Delivery: {plan.timeline}
@@ -523,8 +523,8 @@ Client Mobile Contact: ${phone}`;
               {!submitted ? (
                 <form onSubmit={handleLeadSubmit} className="space-y-3 pt-2">
                   <div className="text-left">
-                    <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider text-left">Request Rates Copy</h4>
-                    <p className="text-[10px] text-slate-900/40 mt-0.5 text-left">Get a detailed PDF brochure sent to your phone!</p>
+                    <h4 className="text-xs font-semibold text-white uppercase tracking-wider text-left">Request Rates Copy</h4>
+                    <p className="text-[10px] text-white/45 mt-0.5 text-left">Get a detailed PDF brochure sent to your phone!</p>
                   </div>
 
                   <input
@@ -533,7 +533,7 @@ Client Mobile Contact: ${phone}`;
                     placeholder="Full Name *"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/5 py-2.5 px-3.5 text-xs text-slate-900 outline-none focus:border-orange-500/30 placeholder-white/30"
+                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
                   />
 
                   <input
@@ -542,7 +542,7 @@ Client Mobile Contact: ${phone}`;
                     placeholder="Email Address *"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/5 py-2.5 px-3.5 text-xs text-slate-900 outline-none focus:border-orange-500/30 placeholder-white/30"
+                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
                   />
 
                   <input
@@ -551,13 +551,13 @@ Client Mobile Contact: ${phone}`;
                     placeholder="Mobile Contact *"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/5 py-2.5 px-3.5 text-xs text-slate-900 outline-none focus:border-orange-500/30 placeholder-white/30"
+                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
                   />
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full rounded-xl bg-orange-600 hover:bg-orange-700 py-3 px-4 text-xs font-semibold text-slate-900 shadow-lg transition active:scale-[0.98] disabled:opacity-50"
+                    className="w-full rounded-xl bg-orange-600 hover:bg-orange-700 py-3 px-4 text-xs font-semibold text-white shadow-lg transition active:scale-[0.98] disabled:opacity-50"
                   >
                     {submitting ? 'Processing quote...' : 'Confirm Quote & Contact'}
                   </button>
@@ -568,9 +568,9 @@ Client Mobile Contact: ${phone}`;
                     <CheckCircle size={20} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-900 text-center">Quote successfully registered!</h4>
-                    <p className="text-[10px] text-slate-900/50 max-w-xs mx-auto mt-1 leading-relaxed text-center">
-                      Our growth executive has received your specific package configurations and will reach out on **{phone}** to finalize!
+                    <h4 className="text-xs font-semibold text-white text-center">Quote successfully registered!</h4>
+                    <p className="text-[10px] text-white/55 max-w-xs mx-auto mt-1 leading-relaxed text-center">
+                      Our growth executive has received your specific package configurations and will reach out on {phone} to finalize!
                     </p>
                   </div>
                 </div>
@@ -578,7 +578,7 @@ Client Mobile Contact: ${phone}`;
             </div>
 
             {/* Trust disclaimer */}
-            <div className="pt-6 border-t border-white/5 text-[10px] text-slate-900/40 leading-relaxed text-left flex items-start gap-2">
+            <div className="pt-6 border-t border-white/10 text-[10px] text-white/45 leading-relaxed text-left flex items-start gap-2">
               <Lock size={12} className="text-orange-500 shrink-0 mt-0.5" />
               <span className="text-left">
                 50% advance to begin. Rest 50% on delivery before handover. Google citation results dynamic in 60-90 days.

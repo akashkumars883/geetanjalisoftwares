@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -217,6 +218,12 @@ export default function ContactFormSection() {
                 >
                   {status === 'loading' ? 'Sending Enquiry...' : 'Submit Project Brief'}
                 </button>
+                <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-500">
+                  By submitting this form, you agree that Geetanjali Softwares may contact you about your enquiry. Read our{" "}
+                  <Link href="/privacy" className="font-semibold text-slate-700 underline underline-offset-4">
+                    Privacy Policy
+                  </Link>.
+                </p>
 
                 {status === 'success' && (
                   <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm font-semibold text-emerald-800 shadow-sm">

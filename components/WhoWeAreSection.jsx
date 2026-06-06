@@ -33,7 +33,7 @@ export default function WhoWeAreSection() {
             className="flex-1 lg:max-w-xl lg:pt-10"
           >
             <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-              At Geetanjali Softwares, we don't just build websites; we create digital ecosystems. 
+              At Geetanjali Softwares, we don&apos;t just build websites; we create digital ecosystems. 
               By combining cutting-edge web development, intuitive UX/UI design, and data-driven SEO strategies, 
               we help businesses scale faster, attract better clients, and dominate their industry online.
             </p>
@@ -44,8 +44,8 @@ export default function WhoWeAreSection() {
               </div>
               <div className="h-10 w-px bg-black/10"></div>
               <div className="flex flex-col">
-                <span className="text-3xl font-semibold text-slate-900">200+</span>
-                <span className="text-sm font-medium text-slate-500 mt-1">Projects Delivered</span>
+                <span className="text-3xl font-semibold text-slate-900">50+</span>
+                <span className="text-sm font-medium text-slate-500 mt-1">Client Projects</span>
               </div>
             </div>
           </motion.div>

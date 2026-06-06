@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import {
+  BUSINESS_EMAIL,
+  BUSINESS_PHONE_DISPLAY,
+  GOOGLE_BUSINESS_URL,
+  SOCIAL_LINKS,
+} from '@/lib/seo';
 
 const companyLinks = [
   { label: 'About Us', href: '/about' },
   { label: 'Our Portfolio', href: '/portfolio' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'AI Website Builder', href: '/studio' },
   { label: 'Careers', href: '/careers', isHiring: true },
   { label: 'Latest Blogs', href: '/blogs' },
@@ -19,9 +26,12 @@ const serviceLinks = [
 ];
 
 const connectLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/geetanjalisoftwares/', target: '_blank' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'X (Twitter)', href: '#' },
+  { label: 'Google Business Profile', href: GOOGLE_BUSINESS_URL, target: '_blank' },
+  { label: 'Instagram', href: SOCIAL_LINKS.instagram, target: '_blank' },
+  { label: 'Facebook', href: SOCIAL_LINKS.facebook, target: '_blank' },
+  { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin, target: '_blank' },
+  { label: 'X (Twitter)', href: SOCIAL_LINKS.twitter, target: '_blank' },
+  { label: 'Pinterest', href: SOCIAL_LINKS.pinterest, target: '_blank' },
 ];
 
 const legalLinks = [
@@ -48,20 +58,25 @@ export default function SiteFooter() {
             
             <ul className="space-y-3 pt-2">
               <li>
-                <a href="mailto:geetanjalisoftwares@gmail.com" className="flex items-start gap-3 text-xs sm:text-sm text-stone-300 hover:text-white transition">
+                <a href={`mailto:${BUSINESS_EMAIL}`} className="flex items-start gap-3 text-xs sm:text-sm text-stone-300 hover:text-white transition">
                   <Mail size={16} className="text-orange-500 mt-0.5 shrink-0" />
-                  geetanjalisoftwares@gmail.com
+                  {BUSINESS_EMAIL}
                 </a>
               </li>
               <li>
                 <a href="tel:+917508657479" className="flex items-center gap-3 text-xs sm:text-sm text-stone-300 hover:text-white transition">
                   <Phone size={16} className="text-orange-500 shrink-0" />
-                  +91 7508657479
+                  {BUSINESS_PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-start gap-3 text-xs sm:text-sm text-stone-300">
                 <MapPin size={16} className="text-orange-500 shrink-0 mt-0.5" />
                 <span>Faridabad, Haryana, India</span>
+              </li>
+              <li>
+                <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex text-xs font-semibold text-orange-400 hover:text-orange-300 transition">
+                  Find us on Google
+                </a>
               </li>
             </ul>
           </div>
