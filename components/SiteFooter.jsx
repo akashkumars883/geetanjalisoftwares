@@ -29,8 +29,8 @@ const connectLinks = [
   { label: 'Google Business Profile', href: GOOGLE_BUSINESS_URL, target: '_blank' },
   { label: 'Instagram', href: SOCIAL_LINKS.instagram, target: '_blank' },
   { label: 'Facebook', href: SOCIAL_LINKS.facebook, target: '_blank' },
-  { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin, target: '_blank' },
-  { label: 'X (Twitter)', href: SOCIAL_LINKS.twitter, target: '_blank' },
+  { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin || '#', target: '_blank' },
+  { label: 'X (Twitter)', href: SOCIAL_LINKS.twitter || '#', target: '_blank' },
   { label: 'Pinterest', href: SOCIAL_LINKS.pinterest, target: '_blank' },
 ];
 

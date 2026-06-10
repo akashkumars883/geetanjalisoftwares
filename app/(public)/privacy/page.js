@@ -32,7 +32,10 @@ export default function PrivacyPolicy() {
       <div className="pt-12 sm:pt-20 pb-8 border-b border-black/5">
         <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">Legal</span>
         <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl leading-[1.15]">Privacy Policy</h1>
-        <p className="mt-4 text-sm text-slate-500">Last Updated: June 2026</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+          We believe in transparent data practices. This policy outlines how we collect, use, and safeguard your information when you interact with our services.
+        </p>
+        <p className="mt-2 text-sm text-slate-500">Last Updated: June 2026</p>
       </div>
       
       <div className="mt-12 space-y-12 text-base leading-relaxed text-slate-600">

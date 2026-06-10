@@ -29,19 +29,19 @@ export default function ServicesClient() {
             variants={fadeInUp}
             className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm"
           >
-            Services
+            Our Capabilities
           </motion.p>
           <motion.h1
             variants={fadeInUp}
             className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl leading-[1.15]"
           >
-            Services built around how modern businesses grow online.
+            Enterprise-grade digital services engineered for business growth.
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
           >
-            Explore our specialized services and choose the one that matches your next business goal.
+            From strategic web development to data-driven SEO and digital marketing — every service is built with precision, designed for scale, and backed by measurable outcomes.
           </motion.p>
         </div>
 
@@ -91,4 +91,3 @@ export default function ServicesClient() {
     </section>
   );
 }
-

@@ -223,11 +223,11 @@ ${candidateInfo.message || 'No custom message provided.'}
                 Global Talent Hub <Sparkles size={11} className="text-orange-600" />
               </p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight leading-[1.15] text-slate-900">
-                Discover Your Next <br />
-                <span className="text-slate-500">Professional Milestone</span>
+                Build your career at the <br />
+                <span className="text-slate-500">intersection of technology and design.</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
-                At Geetanjali Softwares, we match elite global requirements with world-class engineering and creative expertise. Explore a culture engineered around design excellence, high impact, and continuous learning.
+                At Geetanjali Softwares, we match elite global requirements with world-class engineering and creative expertise. We're building a team of problem-solvers who care deeply about craftsmanship, code quality, and client impact — and we'd love for you to be part of it.
               </p>
 
               {/* Core Paths (Enterprise-style) */}

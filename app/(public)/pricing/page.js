@@ -73,15 +73,15 @@ export default function PricingPage() {
       <main className="pb-24 pt-12 sm:pt-20">
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
-              Pricing
-            </p>
-            <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-6xl">
-              Website design cost in Faridabad, with clear starting points.
-            </h1>
-            <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-              Custom work still needs a custom quote, but these package anchors help you plan a realistic budget before the first call.
-            </p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
+            Pricing
+          </p>
+          <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-6xl">
+            Transparent pricing for <span className="text-slate-500">serious digital investment.</span>
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Every project starts with a clear scope and a fixed quote. These starting points help you plan a realistic budget before our first conversation — no hidden costs, no surprises.
+          </p>
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-3">

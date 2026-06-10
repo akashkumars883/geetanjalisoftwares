@@ -32,7 +32,10 @@ export default function TermsOfService() {
       <div className="pt-12 sm:pt-20 pb-8 border-b border-black/5">
         <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">Legal</span>
         <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl leading-[1.15]">Terms of Service</h1>
-        <p className="mt-4 text-sm text-slate-500">Last Updated: April 2026</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+          Clear terms that define our working relationship. We believe in fair agreements, transparent deliverables, and mutual respect throughout every engagement.
+        </p>
+        <p className="mt-2 text-sm text-slate-500">Last Updated: April 2026</p>
       </div>
       
       <div className="mt-12 space-y-12 text-base leading-relaxed text-slate-600">

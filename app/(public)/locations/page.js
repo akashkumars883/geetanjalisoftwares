@@ -67,10 +67,10 @@ export default function LocationsIndexPage() {
             Locations
           </p>
           <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
-            Services across India
+            Digital services <span className="text-slate-500">delivered across India.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            Select your city to explore localized web development and SEO support.
+            We provide enterprise-quality web development, SEO, and digital marketing solutions to businesses nationwide. Select your city to explore localized support and expertise.
           </p>
         </div>
 

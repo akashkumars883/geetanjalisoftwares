@@ -113,11 +113,11 @@ export default async function LocationPage({ params }) {
           </div>
           
           <h1 className="text-4xl font-normal tracking-tight text-slate-900 sm:text-6xl max-w-4xl mx-auto leading-[1.15]">
-            Top Website Development & SEO Company in <span className="text-orange-600">{cityName}</span>
+            Enterprise web solutions for <span className="text-orange-600">{cityName}</span> businesses
           </h1>
           
           <p className="mt-6 text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Geetanjali Softwares delivers high-performance custom website designs, responsive software development, and ROI-driven SEO campaigns designed specifically to scale businesses in {cityName}.
+            We combine strategic thinking with technical precision to deliver websites, software, and SEO campaigns that drive measurable growth for businesses in {cityName}. Built for performance, designed for impact.
           </p>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">

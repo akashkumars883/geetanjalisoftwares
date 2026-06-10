@@ -66,10 +66,10 @@ export default function ToolsPage() {
             Free Tools
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-normal leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Website and SEO tools for faster project planning.
+            Smart tools for <span className="text-slate-500">smarter digital decisions.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            Estimate your website budget, compare growth plans, and run a quick SEO audit preview before starting your project.
+            Estimate your project budget, preview your SEO performance, and make data-driven decisions before you invest. Built for business owners who want clarity before commitment.
           </p>
         </div>
       </section>

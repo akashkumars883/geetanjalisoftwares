@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 
 export default function BlogImage({ src, alt, className = '', priority = false }) {
@@ -19,24 +18,14 @@ export default function BlogImage({ src, alt, className = '', priority = false }
     );
   }
 
-  // Check if it's a relative path or an absolute URL allowed in next.config.js
-  const isExternal = src.startsWith('http') || src.startsWith('//');
-  const isSupabase = src.includes('supabase.co');
-  const isUnsplash = src.includes('unsplash.com');
-  const isPixabay = src.includes('pixabay.com');
-  const shouldSkipOptimization = !isExternal || isSupabase || isUnsplash || isPixabay;
-
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      <Image
+      <img
         src={src}
         alt={alt || 'Blog Image'}
-        fill
-        priority={priority}
-        className="object-cover transition-all duration-500"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="h-full w-full object-cover transition-all duration-500"
         onError={() => setFailed(true)}
-        unoptimized={shouldSkipOptimization}
+        loading={priority ? 'eager' : 'lazy'}
       />
     </div>
   );

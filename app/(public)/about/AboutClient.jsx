@@ -37,15 +37,14 @@ export default function AboutClient() {
             variants={fadeInUp}
             className="mt-6 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl leading-[1.15]"
           >
-            Helping businesses build a <br className="hidden sm:block" />
-            <span className="text-slate-500">confident digital presence.</span>
+            Building digital infrastructure that <br className="hidden sm:block" />
+            <span className="text-slate-500">powers business resilience.</span>
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
           >
-            We don&apos;t just build websites; we build digital systems that help businesses
-            look better, communicate clearer, and grow faster in a modern digital landscape.
+            We don't just build websites; we build digital systems that help businesses look better, communicate clearer, and grow faster in a modern digital landscape. Our approach blends strategic thinking with technical precision to deliver solutions that endure.
           </motion.p>
         </div>
       </motion.section>
@@ -90,7 +89,7 @@ export default function AboutClient() {
                 className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg"
               >
                 I started Geetanjali Softwares with a simple goal: to help businesses stop
-                &quot;blending in&quot; and start &quot;standing out&quot; online. As a solo
+                "blending in" and start "standing out" online. As a solo
                 strategist, I work directly with you to ensure every pixel, word, and campaign
                 is aligned with your business growth.
               </motion.p>
@@ -103,7 +102,7 @@ export default function AboutClient() {
                     Dedication
                   </p>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                    &quot;Direct collaboration, no middle-men. Your project is my priority.&quot;
+                    "Direct collaboration, no middle-men. Your project is my priority."
                   </p>
                 </motion.div>
                 <motion.div
@@ -114,7 +113,7 @@ export default function AboutClient() {
                     Strategy
                   </p>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                    &quot;Every solution is bespoke, built around your specific niche and goals.&quot;
+                    "Every solution is bespoke, built around your specific niche and goals."
                   </p>
                 </motion.div>
               </div>
@@ -129,4 +128,3 @@ export default function AboutClient() {
     </div>
   );
 }
-

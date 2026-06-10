@@ -157,11 +157,11 @@ export default function FreeWebsiteLandingPage() {
               </div>
 
               <h1 className="text-4xl sm:text-7xl font-semibold leading-[1.05] tracking-tight text-stone-950">
-                The Best <span className="text-orange-600">Free AI Website Builder</span> for Local Businesses
+                AI-powered websites in <span className="text-orange-600">under 60 seconds.</span>
               </h1>
 
               <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-stone-500 font-medium">
-                Scale your digital presence instantly. Our <strong>automated website maker</strong> uses AI to generate premium, mobile-ready business websites in 60 seconds.
+                Stop waiting weeks for a website. Our intelligent builder generates production-ready, mobile-optimized business websites instantly — with hosting, SSL, and SEO included out of the box.
               </p>
 
               <div className="mt-10 flex flex-col w-full sm:w-auto sm:flex-row gap-4">

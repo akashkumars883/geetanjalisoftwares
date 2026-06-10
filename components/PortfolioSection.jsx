@@ -25,7 +25,7 @@ const portfolioItems = [
     category: 'E-Commerce / UI/UX Design',
     description: 'High-speed immersive online shopping experience with an optimized checkout flow, premium product showcases, and seamless payment integration.',
     tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
-    link: '/portfolio',
+    link: 'https://modern-living.vercel.app',
     image: '/images/modern_living_ui.png',
     imageClassName: 'h-full w-full scale-[1.25] -translate-y-3 lg:scale-[1.3] lg:-translate-y-8 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.35]',
     metrics: [

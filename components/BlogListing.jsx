@@ -70,8 +70,11 @@ export default function BlogListing({ blogs }) {
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-600">Insights</span>
         </motion.div>
         <motion.h1 variants={fadeInUp} className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-slate-900 leading-[1.15]">
-          Stories that inspire <br /> digital growth.
+          Knowledge-driven insights for <br className="hidden sm:block" /><span className="text-slate-500">digital decision-makers.</span>
         </motion.h1>
+        <motion.p variants={fadeInUp} className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          Expert perspectives on web development, SEO strategy, and digital growth — designed to help you make informed business decisions and stay ahead in a competitive landscape.
+        </motion.p>
       </motion.header>
 
       {/* ── FILTER & SEARCH ROW ── */}

@@ -67,15 +67,15 @@ export default function HeroSection() {
             variants={stagger}
             className="flex flex-col items-start text-left lg:col-span-7"
           >
-            <h1 className="text-5xl font-semibold leading-[1.15] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-              Empowering Brands with scalable <span className="text-orange-600">digital marketing</span> solutions
+            <h1 className="text-4xl font-semibold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
+              Building <span className="text-orange-600">Digital Solutions</span> for Modern Businesses
             </h1>
 
             <motion.p
               variants={fadeInUp}
-              className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
+              className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
             >
-              From modern websites to digital marketing and branding, we design fast, SEO-friendly solutions that help you attract more customers and increase your revenue.
+              We help businesses establish, manage, and scale their digital operations through websites, software, and automation solutions.
             </motion.p>
 
             <motion.div
