@@ -92,23 +92,17 @@ export default function LandingPricing() {
   };
 
   return (
-    <section id="pricing" className="relative bg-slate-950 py-24">
-      {/* Background gradient */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-[#6366f1]/10 blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[250px] w-[250px] rounded-full bg-[#22c55e]/10 blur-[80px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="relative bg-gradient-to-b from-white to-slate-50 py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Transparent Pricing —{' '}
-            <span className="bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
               No Hidden Costs
             </span>
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <p className="mt-4 text-lg text-slate-500">
             Choose the plan that fits your needs. All prices include hosting + domain. Upgrade anytime.
           </p>
         </div>
@@ -120,14 +114,14 @@ export default function LandingPricing() {
               key={plan.name}
               className={`group relative flex flex-col rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 ${
                 plan.popular
-                  ? 'border-[#6366f1]/50 bg-gradient-to-b from-[#6366f1]/10 to-slate-900 shadow-2xl shadow-[#6366f1]/20'
-                  : 'border-slate-800 bg-slate-900/50 hover:border-slate-700'
+                  ? 'border-blue-200 bg-white shadow-2xl shadow-blue-500/10'
+                  : 'border-slate-200 bg-white hover:border-slate-300'
               }`}
             >
               {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#6366f1] to-[#22c55e] px-4 py-1 text-xs font-bold text-white shadow-lg">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 px-4 py-1 text-xs font-bold text-white shadow-lg">
                     🔥 Most Popular
                   </span>
                 </div>
@@ -135,13 +129,13 @@ export default function LandingPricing() {
 
               {/* Plan Header */}
               <div className="text-center">
-                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                <p className="mt-2 text-sm text-slate-400">{plan.description}</p>
+                <h3 className="text-xl font-bold text-slate-900">{plan.name}</h3>
+                <p className="mt-2 text-sm text-slate-500">{plan.description}</p>
                 <div className="mt-6 flex items-baseline justify-center gap-2">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-lg text-slate-500 line-through">{plan.originalPrice}</span>
+                  <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                  <span className="text-lg text-slate-400 line-through">{plan.originalPrice}</span>
                 </div>
-                <p className="mt-2 text-xs text-[#22c55e]">
+                <p className="mt-2 text-xs text-emerald-600">
                   Save {plan.name === 'Basic' ? '40%' : plan.name === 'Business' ? '35%' : '37%'} — Limited Time Offer
                 </p>
               </div>
@@ -151,15 +145,15 @@ export default function LandingPricing() {
                 {plan.features.map((feature) => (
                   <li key={feature.text} className="flex items-start gap-3">
                     {feature.included ? (
-                      <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                     ) : (
-                      <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     )}
-                    <span className={`text-sm ${feature.included ? 'text-slate-300' : 'text-slate-600'}`}>
+                    <span className={`text-sm ${feature.included ? 'text-slate-600' : 'text-slate-300'}`}>
                       {feature.text}
                     </span>
                   </li>
@@ -171,36 +165,32 @@ export default function LandingPricing() {
                 onClick={() => handleClick(plan.name)}
                 className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition-all duration-300 active:scale-95 ${
                   plan.popular
-                    ? 'bg-gradient-to-r from-[#6366f1] to-[#22c55e] text-white shadow-lg hover:shadow-xl hover:opacity-90'
-                    : 'border border-slate-700 bg-slate-800 text-white hover:border-[#6366f1] hover:bg-[#6366f1]/10'
+                    ? 'bg-gradient-to-r from-blue-600 to-emerald-500 text-white shadow-lg hover:shadow-xl hover:opacity-90'
+                    : 'border-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50'
                 }`}
               >
                 {plan.popular ? (
-                  <>
-                    🚀 {plan.cta}
-                  </>
+                  <>🚀 {plan.cta}</>
                 ) : (
-                  <>
-                    💬 Enquire on WhatsApp
-                  </>
+                  <>💬 Enquire on WhatsApp</>
                 )}
               </button>
 
               {/* Highlight text */}
-              <p className="mt-4 text-center text-xs text-slate-500">{plan.highlight}</p>
+              <p className="mt-4 text-center text-xs text-slate-400">{plan.highlight}</p>
             </div>
           ))}
         </div>
 
         {/* Bottom note */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-400">
             Need a custom plan?{' '}
             <a
               href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent('Hi! I need a custom website plan. Please call me back.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#818cf8] hover:text-[#6366f1]"
+              className="font-semibold text-blue-600 hover:text-blue-700"
             >
               Contact us for a tailored quote →
             </a>

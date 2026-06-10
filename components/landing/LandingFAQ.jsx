@@ -45,42 +45,42 @@ export default function LandingFAQ() {
   };
 
   return (
-    <section className="relative bg-slate-900 py-24">
+    <section className="relative bg-white py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Frequently Asked{' '}
-            <span className="bg-gradient-to-r from-[#818cf8] to-[#22c55e] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <p className="mt-4 text-lg text-slate-500">
             Everything you need to know before getting started. Still have questions? We are here to help.
           </p>
         </div>
 
         {/* FAQ List */}
-        <div className="mt-12 space-y-4">
+        <div className="mt-12 space-y-3">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`rounded-2xl border transition-all duration-300 ${
+              className={`rounded-xl border transition-all duration-300 ${
                 openIndex === index
-                  ? 'border-[#6366f1]/50 bg-[#6366f1]/5'
-                  : 'border-slate-800 bg-slate-900/50 hover:border-slate-700'
+                  ? 'border-blue-200 bg-blue-50'
+                  : 'border-slate-200 bg-white hover:border-slate-300'
               }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="flex w-full items-center justify-between px-6 py-5 text-left"
+                className="flex w-full items-center justify-between px-6 py-4 text-left"
               >
-                <span className="text-base font-semibold text-white">
+                <span className="text-sm font-semibold text-slate-800">
                   {faq.question}
                 </span>
                 <svg
                   className={`h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-300 ${
-                    openIndex === index ? 'rotate-180 text-[#818cf8]' : ''
+                    openIndex === index ? 'rotate-180 text-blue-600' : ''
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -95,8 +95,8 @@ export default function LandingFAQ() {
                   openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="px-6 pb-5">
-                  <p className="text-sm leading-relaxed text-slate-400">
+                <div className="px-6 pb-4">
+                  <p className="text-sm leading-relaxed text-slate-500">
                     {faq.answer}
                   </p>
                 </div>
