@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { sendLeadAutoReply, sendAdminNotification } from '@/lib/email-service';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const body = await request.json();

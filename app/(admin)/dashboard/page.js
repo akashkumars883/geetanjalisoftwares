@@ -66,8 +66,11 @@ export default function DashboardPage() {
           fetch('/api/analytics'),
         ]);
 
-        const leads = await leadsRes.json();
-        const views = await viewsRes.json();
+        const leadsData = await leadsRes.json().catch(() => []);
+        const viewsData = await viewsRes.json().catch(() => []);
+        
+        const leads = Array.isArray(leadsData) ? leadsData : [];
+        const views = Array.isArray(viewsData) ? viewsData : [];
 
         const totalLeads = leads.length || 0;
         
@@ -82,12 +85,19 @@ export default function DashboardPage() {
           }
         }
 
-        const totalViews = views.reduce((acc, curr) => acc + curr.view_count, 0) || 0;
-        const services = leads.map(l => l.service);
-        const popularService = services.sort((a,b) =>
-          services.filter(v => v===a).length - services.filter(v => v===b).length
-        ).pop() || 'N/A';
-        const topPage = views[0]?.page_path || '/';
+        const totalViews = views?.reduce((acc, curr) => acc + (curr.view_count || 0), 0) || 0;
+        
+        // Optimize popular service finding (O(N) instead of O(N^2))
+        const serviceCounts = leads.reduce((acc, lead) => {
+          if (lead.service) acc[lead.service] = (acc[lead.service] || 0) + 1;
+          return acc;
+        }, {});
+        
+        const popularService = Object.keys(serviceCounts).length > 0 
+          ? Object.keys(serviceCounts).reduce((a, b) => serviceCounts[a] > serviceCounts[b] ? a : b) 
+          : 'N/A';
+          
+        const topPage = views?.[0]?.page_path || '/';
 
         setStats(prev => ({ 
           ...prev, 
@@ -124,7 +134,7 @@ export default function DashboardPage() {
     fetchGrowthTip();
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
-  }, [stats.totalLeads]);
+  }, []); // Removed stats.totalLeads to prevent infinite loop
 
   const cards = [
     { label: 'Total Leads', value: stats.totalLeads, icon: <Users size={20} />, color: 'text-blue-600', bg: 'bg-blue-500/5' },
@@ -144,7 +154,7 @@ export default function DashboardPage() {
       const y = svgHeight - (pt * (svgHeight / 1000));
       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
     }).join(' ');
-  }, [WEEKLY_METRICS]);
+  }, [svgWidth, svgHeight]); // removed WEEKLY_METRICS
 
   const areaString = useMemo(() => {
     const start = `M 0 ${svgHeight}`;
@@ -155,7 +165,7 @@ export default function DashboardPage() {
     }).join(' ');
     const end = `L ${svgWidth} ${svgHeight} Z`;
     return `${start} ${line} ${end}`;
-  }, [WEEKLY_METRICS]);
+  }, [svgWidth, svgHeight]); // removed WEEKLY_METRICS
 
   const handleSaveSettings = () => {
     setSettings(prev => ({ ...prev, isEdit: false }));
