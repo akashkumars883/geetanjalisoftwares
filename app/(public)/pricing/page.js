@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata = {
@@ -70,30 +70,36 @@ export default function PricingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="pb-24 pt-12 sm:pt-20">
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
-            Pricing
-          </p>
-          <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-6xl">
-            Transparent pricing for <span className="text-slate-500">serious digital investment.</span>
-          </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            Every project starts with a clear scope and a fixed quote. These starting points help you plan a realistic budget before our first conversation — no hidden costs, no surprises.
-          </p>
+      <main className="min-h-screen bg-background pt-0 pb-24 sm:pt-4">
+        <section className="mx-auto max-w-7xl px-6 border-b border-foreground/10 pb-16">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-[1px] w-12 bg-primary"></span>
+              <span className="font-heading text-[10px] font-bold tracking-[0.3em] uppercase text-foreground/60">
+                Pricing
+              </span>
+            </div>
+            <h1 className="mt-6 font-heading text-5xl sm:text-7xl lg:text-[7rem] font-bold uppercase tracking-tighter text-foreground leading-[0.85]">
+              TRANSPARENT <br /> <span className="text-primary">INVESTMENT</span>
+            </h1>
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl font-medium">
+              Every project starts with a clear scope and a fixed quote. These starting points help you plan a realistic budget before our first conversation — no hidden costs, no surprises.
+            </p>
           </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {packages.map((item) => (
-              <article key={item.name} className="rounded-2xl border border-black/5 bg-slate-50 p-6">
-                <h2 className="text-2xl font-normal tracking-tight text-slate-900">{item.name}</h2>
-                <p className="mt-3 text-4xl font-semibold tracking-tight text-orange-600">{item.price}</p>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.description}</p>
-                <ul className="mt-6 space-y-3">
+          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+            {packages.map((item, index) => (
+              <article key={item.name} className="flex flex-col border border-foreground/10 bg-foreground/5 p-8 transition-colors hover:border-primary">
+                <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
+                  0{index + 1}. PLAN
+                </p>
+                <h2 className="font-heading text-3xl font-bold uppercase tracking-tight text-foreground">{item.name}</h2>
+                <p className="mt-4 font-heading text-5xl font-bold tracking-tight text-primary">{item.price}</p>
+                <p className="mt-6 text-base leading-relaxed text-foreground/70 border-b border-foreground/10 pb-6">{item.description}</p>
+                <ul className="mt-6 space-y-4 flex-grow">
                   {item.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-sm text-slate-700">
-                      <CheckCircle size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                    <li key={feature} className="flex gap-4 text-sm font-medium text-foreground/80">
+                      <CheckCircle size={18} className="mt-0.5 shrink-0 text-primary" />
                       {feature}
                     </li>
                   ))}
@@ -102,23 +108,31 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link href="/#contact-form" className="inline-flex items-center justify-center rounded-2xl bg-orange-600 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-orange-700">
-              Get a Fixed Quote
+          <div className="mt-16 flex flex-col gap-4 sm:flex-row">
+            <Link href="/#contact-form" className="group relative inline-flex items-center justify-center gap-4 overflow-hidden border border-foreground/20 bg-primary px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-white transition-transform duration-300 hover:scale-105 active:scale-95">
+              <span className="relative z-10 transition-colors duration-300">
+                Get a Fixed Quote
+              </span>
+              <span className="relative z-10 flex items-center justify-center transition-colors duration-300">
+                <ArrowRight size={18} />
+              </span>
             </Link>
-            <Link href="/services/website-design-development" className="inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50">
-              View Website Services
+            <Link href="/services/website-design-development" className="group relative inline-flex items-center justify-center gap-4 overflow-hidden border border-foreground/20 bg-transparent px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background">
+              <span>View Website Services</span>
             </Link>
           </div>
         </section>
 
-        <section className="mx-auto mt-20 max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-normal tracking-tight text-slate-900">Pricing Questions</h2>
-          <div className="mt-8 space-y-4 rounded-2xl border border-black/5 bg-slate-50 p-6">
+        <section className="mx-auto mt-24 max-w-4xl px-6">
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold uppercase tracking-tighter text-foreground mb-12">Pricing Questions</h2>
+          <div className="space-y-6">
             {faqs.map((item) => (
-              <details key={item.question} className="border-b border-black/5 pb-4 last:border-0 last:pb-0">
-                <summary className="cursor-pointer text-sm font-semibold text-slate-900">{item.question}</summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.answer}</p>
+              <details key={item.question} className="group border-b border-foreground/10 pb-6 last:border-0 last:pb-0">
+                <summary className="cursor-pointer font-heading text-xl font-bold uppercase tracking-tight text-foreground hover:text-primary transition-colors list-none flex justify-between items-center">
+                  {item.question}
+                  <span className="text-primary group-open:rotate-45 transition-transform duration-300">+</span>
+                </summary>
+                <p className="mt-6 text-lg leading-relaxed text-foreground/70 font-medium pl-4 border-l-2 border-primary/30">{item.answer}</p>
               </details>
             ))}
           </div>

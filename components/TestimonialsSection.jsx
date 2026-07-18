@@ -8,38 +8,34 @@ import { GOOGLE_BUSINESS_URL } from '@/lib/seo';
 const testimonials = [
   {
     quote:
-      'The website looked far more polished after the redesign, and the messaging finally felt aligned with our business.',
-    name: 'Amit Verma',
-    role: 'Service Business Owner',
+      "I had a great experience using Geetanjali Software. The interface is user-friendly, making it easy to navigate even for beginners. The software is fast, reliable, and helps simplify daily tasks efficiently. One of its best features is the excellent customer support.",
+    name: 'Akhilesh Choudhary',
+    role: 'Customer',
+    rating: 5,
   },
   {
     quote:
-      'Their digital marketing direction gave us a much clearer structure for campaigns and helped us present our offer better.',
-    name: 'Ritika Sharma',
-    role: 'Marketing Lead',
+      "I had a great experience with Geetanjali Software Agency. Their team is professional, responsive, and understands the client's requirements very well. They provide quality website development and software solutions at reasonable prices.",
+    name: 'ANISH KUMAR YT',
+    role: 'Client',
+    rating: 5,
   },
   {
     quote:
-      'The branding work made our business look more professional and consistent across every customer touchpoint.',
+      "The branding and development work made our business look incredibly professional. The team is responsive, highly technical, and delivers on time.",
     name: 'Karan Mehta',
     role: 'Founder',
-  },
-  {
-    quote:
-      'Working with Geetanjali Softwares was a game-changer for our online presence. Highly recommended!',
-    name: 'Sonal Singh',
-    role: 'E-commerce Manager',
-  },
+    rating: 5,
+  }
 ];
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="relative w-full bg-background pt-12 pb-12 sm:pt-20 sm:pb-20 overflow-hidden border-t border-foreground/10">
+      <div className="mx-auto max-w-7xl px-6">
 
         {/* Top Header Section */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
-          {/* Left Side: Heading */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-16 lg:pb-24 border-b border-foreground/10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -47,83 +43,83 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex-1 text-left"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-              Client Praise
-            </span>
-            <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
-              Voices of Success
-            </h2>
-            
-            {/* Google Reviews Trust Badge */}
-            <a
-              href={GOOGLE_BUSINESS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 transition hover:border-amber-300"
-            >
-              <div className="flex items-center gap-0.5 text-amber-500">
-                <Star size={16} fill="currentColor" className="text-amber-500" />
-                <Star size={16} fill="currentColor" className="text-amber-500" />
-                <Star size={16} fill="currentColor" className="text-amber-500" />
-                <Star size={16} fill="currentColor" className="text-amber-500" />
-                <Star size={16} fill="currentColor" className="text-amber-500" />
-              </div>
-              <span className="text-xs font-bold text-slate-700 tracking-wider">
-                See our Google reviews
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-[1px] w-12 bg-primary"></span>
+              <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-foreground/60">
+                Client Praise
               </span>
-            </a>
+            </div>
+            <h2 className="font-heading text-5xl sm:text-7xl lg:text-[7rem] font-bold uppercase tracking-tighter text-foreground leading-[0.9]">
+              VOICES OF <br /> <span className="text-primary">SUCCESS</span>
+            </h2>
           </motion.div>
 
-          {/* Right Side: Description */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 lg:max-w-xl text-left"
+            className="flex-1 lg:max-w-xl text-left pb-4"
           >
-            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-              Hear from the founders, marketing directors, and business owners who partnered with us to elevate their digital presence.
+            <p className="text-lg leading-relaxed text-foreground/70 sm:text-xl">
+              Don't just take our word for it. Hear directly from founders and business owners who have partnered with us to elevate their digital presence.
             </p>
+            <a
+              href={GOOGLE_BUSINESS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-8 inline-flex items-center gap-3 rounded-full border border-primary bg-primary/5 px-6 py-3 transition-colors hover:bg-primary"
+            >
+              <div className="flex items-center gap-1 text-primary group-hover:text-background transition-colors">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-primary group-hover:text-background transition-colors">
+                View 5.0 Google Reviews
+              </span>
+            </a>
           </motion.div>
         </div>
 
-        {/* Scrollable Container */}
-        <div className="relative mt-8 lg:mt-12">
-          <div className="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        {/* Grid Container */}
+        <div className="relative mt-16 lg:mt-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((item, idx) => (
               <motion.article
                 key={item.name}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="group flex min-w-[300px] flex-col rounded-[32px] border border-black/5 bg-slate-50/50 hover:bg-slate-50 hover:shadow-lg hover:shadow-orange-500/5 transition duration-300 p-8 sm:min-w-[400px] lg:min-w-[450px] snap-center relative overflow-hidden flex-1 justify-between text-left"
+                className="group flex flex-col justify-between border border-foreground/10 bg-foreground/5 p-8 sm:p-10 transition-all duration-500 hover:border-primary hover:bg-transparent"
               >
                 <div>
-                  <div className="mb-4 text-orange-600 font-serif text-5xl select-none opacity-20 group-hover:opacity-100 transition-opacity duration-300">&ldquo;</div>
-                  <p className="text-base leading-relaxed text-slate-600 relative z-10 font-normal">
-                    {item.quote}
+                  <div className="flex items-center gap-1 text-primary mb-8">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} size={16} fill="currentColor" />
+                    ))}
+                  </div>
+                  <p className="text-lg leading-relaxed text-foreground/80 font-normal">
+                    "{item.quote}"
                   </p>
                 </div>
-                <div className="mt-8 flex items-center gap-4 border-t border-black/5 pt-6 relative z-10">
-                  <div className="h-12 w-12 flex-shrink-0 rounded-2xl bg-orange-500/10 flex items-center justify-center text-sm font-semibold text-orange-600 uppercase border border-orange-500/10 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300">
-                    {item.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900">{item.name}</h3>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-0.5">{item.role}</p>
+
+                <div className="mt-12 flex items-center justify-between border-t border-foreground/10 pt-8">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-sm font-bold text-background transition-transform duration-500 group-hover:scale-110">
+                      {item.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-base font-bold uppercase tracking-widest text-foreground">{item.name}</h3>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary mt-1">{item.role}</p>
+                    </div>
                   </div>
                 </div>
               </motion.article>
             ))}
-          </div>
-          
-          {/* Indicator */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
-            <div className="h-1.5 w-8 rounded-full bg-orange-600 transition-all" />
-            <div className="h-1.5 w-2 rounded-full bg-orange-600/20" />
-            <div className="h-1.5 w-2 rounded-full bg-orange-600/20" />
           </div>
         </div>
 

@@ -50,39 +50,39 @@ export default function SidebarLeadForm() {
 
   if (success) {
     return (
-      <div className="rounded-[28px] border border-black/5 bg-slate-50 p-6 text-center space-y-4 shadow-sm animate-fade-in">
-        <div className="mx-auto h-12 w-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-600">
-          <CheckCircle2 size={24} />
+      <div className="border border-foreground/10 bg-foreground/5 p-8 text-center space-y-6">
+        <div className="mx-auto h-16 w-16 bg-primary/10 flex items-center justify-center text-primary">
+          <CheckCircle2 size={32} />
         </div>
         <div>
-          <h4 className="text-base font-semibold text-slate-900">Request Sent!</h4>
-          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+          <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">Request Sent!</h4>
+          <p className="text-sm text-foreground/60 mt-4 leading-relaxed font-medium">
             Thank you. We have received your project details and will connect with you via email within 24 hours.
           </p>
         </div>
         <button
           onClick={() => setSuccess(false)}
-          className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-orange-600 hover:text-slate-900 transition"
+          className="inline-flex items-center gap-2 font-heading text-[10px] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors"
         >
-          Send another inquiry <ArrowRight size={12} />
+          Send another inquiry <ArrowRight size={14} />
         </button>
       </div>
     );
   }
 
   return (
-    <div className="rounded-[28px] border border-black/5 bg-slate-50 p-5 shadow-sm sm:p-6 space-y-4">
+    <div className="border border-foreground/10 bg-foreground/5 p-6 sm:p-8 space-y-8">
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-orange-600">
+        <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">
           Free Strategy
         </p>
-        <h4 className="text-base font-semibold text-slate-900 mt-1">Accelerate Your Growth</h4>
-        <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+        <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground mt-2">Accelerate Your Growth</h4>
+        <p className="text-sm text-foreground/60 mt-4 leading-relaxed font-medium">
           Submit your goals, and get a bespoke digital strategy roadmap from our experts.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-3">
+      <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name */}
         <div>
           <input
@@ -91,7 +91,7 @@ export default function SidebarLeadForm() {
             placeholder="Your name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
+            className="w-full border-b border-foreground/20 bg-transparent py-4 text-sm text-foreground placeholder-foreground/40 outline-none transition-colors focus:border-primary focus:bg-foreground/5 px-4"
           />
         </div>
 
@@ -103,7 +103,7 @@ export default function SidebarLeadForm() {
             placeholder="Email address"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
+            className="w-full border-b border-foreground/20 bg-transparent py-4 text-sm text-foreground placeholder-foreground/40 outline-none transition-colors focus:border-primary focus:bg-foreground/5 px-4"
           />
         </div>
 
@@ -115,7 +115,7 @@ export default function SidebarLeadForm() {
             placeholder="Phone number"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
+            className="w-full border-b border-foreground/20 bg-transparent py-4 text-sm text-foreground placeholder-foreground/40 outline-none transition-colors focus:border-primary focus:bg-foreground/5 px-4"
           />
         </div>
 
@@ -124,18 +124,18 @@ export default function SidebarLeadForm() {
           <select
             value={formData.service}
             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 outline-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 appearance-none cursor-pointer shadow-sm"
+            className="w-full border-b border-foreground/20 bg-transparent py-4 text-sm text-foreground outline-none transition-colors focus:border-primary focus:bg-foreground/5 px-4 appearance-none cursor-pointer"
             style={{
-              backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+              backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'right 16px center',
               backgroundSize: '12px',
             }}
           >
-            <option value="Website Design & Development">Website Design & Development</option>
-            <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
-            <option value="Brand Strategy & Identity">Brand Strategy & Identity</option>
-            <option value="Custom Software Development">Custom Software Development</option>
+            <option className="bg-background text-foreground" value="Website Design & Development">Website Design & Development</option>
+            <option className="bg-background text-foreground" value="SEO & Digital Marketing">SEO & Digital Marketing</option>
+            <option className="bg-background text-foreground" value="Brand Strategy & Identity">Brand Strategy & Identity</option>
+            <option className="bg-background text-foreground" value="Custom Software Development">Custom Software Development</option>
           </select>
         </div>
 
@@ -147,7 +147,7 @@ export default function SidebarLeadForm() {
             placeholder="Describe your business goal..."
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full rounded-2xl border border-black/10 bg-white py-3 px-4 text-xs text-slate-900 placeholder-slate-400 outline-none resize-none transition duration-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 shadow-sm"
+            className="w-full border-b border-foreground/20 bg-transparent py-4 text-sm text-foreground placeholder-foreground/40 outline-none resize-none transition-colors focus:border-primary focus:bg-foreground/5 px-4 mt-2"
           />
         </div>
 
@@ -155,10 +155,14 @@ export default function SidebarLeadForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-600 py-3.5 px-6 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-orange-700 disabled:opacity-50 active:scale-95 shadow-sm"
+          className="group relative w-full inline-flex items-center justify-center gap-4 overflow-hidden border border-foreground/20 bg-primary px-8 py-5 font-heading text-[12px] font-bold uppercase tracking-widest text-white transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] mt-6"
         >
-          {loading ? 'Sending...' : 'Get My Free Roadmap'}
-          <Send size={12} />
+          <span className="relative z-10">{loading ? 'Sending...' : 'Get My Free Roadmap'}</span>
+          {!loading && (
+            <span className="relative z-10 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+              <ArrowRight size={14} />
+            </span>
+          )}
         </button>
       </form>
     </div>

@@ -13,7 +13,6 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// Memoize the blog fetch to share between metadata and page
 const getBlog = cache(async (slug) => {
   return await supabaseAdmin
     .from('blogs')
@@ -22,7 +21,7 @@ const getBlog = cache(async (slug) => {
     .single();
 });
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 function shouldSkipNextImageOptimization(src) {
   if (!src) return true;
@@ -83,7 +82,6 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetailPage({ params }) {
   const { slug } = await params;
 
-  // Fetch data in parallel
   const [blogRes, recentBlogsRes] = await Promise.all([
     getBlog(slug),
     supabaseAdmin
@@ -99,11 +97,11 @@ export default async function BlogDetailPage({ params }) {
 
   if (error || !blog) {
     return (
-      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 text-center">
-        <h1 className="text-3xl font-semibold text-slate-900">Article Not Found</h1>
-        <p className="text-slate-500">The article you&apos;re looking for might have been removed.</p>
-        <Link href="/blogs" className="rounded-full bg-slate-900 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-slate-800">
-          Back to Insights
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 text-center bg-background text-foreground">
+        <h1 className="font-heading text-5xl font-bold uppercase tracking-tighter">Article Not Found</h1>
+        <p className="text-foreground/70 font-medium">The article you&apos;re looking for might have been removed.</p>
+        <Link href="/blogs" className="group relative inline-flex items-center justify-center gap-4 overflow-hidden bg-primary px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-white transition-transform duration-300 hover:scale-105 active:scale-95">
+          <span className="relative z-10">Back to Insights</span>
         </Link>
       </div>
     );
@@ -138,7 +136,6 @@ export default async function BlogDetailPage({ params }) {
     mainEntityOfPage: `${SITE_URL}/blogs/${slug}`,
   };
 
-  // Extract FAQs from blog content dynamically
   let mainContent = blog.content || '';
   const faqItems = [];
   const faqHeadingIndex = mainContent.search(/<h2[^>]*>(?:Frequently Asked Questions|FAQ)<\/h2>/i);
@@ -156,285 +153,267 @@ export default async function BlogDetailPage({ params }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      
-      {/* ── BACK NAVIGATION BREADCRUMB ── */}
-      <nav className="mb-10 sm:mb-12" aria-label="Breadcrumbs">
-        <Link
-          href="/blogs"
-          className="inline-flex items-center gap-2.5 rounded-full border border-black/5 bg-slate-50 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-widest text-slate-600 transition hover:bg-slate-900 hover:text-white hover:scale-105 active:scale-95 shadow-sm"
-        >
-          <ArrowLeft size={12} />
-          Back to Articles
-        </Link>
-      </nav>
+    <div className="bg-background min-h-screen text-foreground pb-24 pt-32 sm:pt-40">
+      <div className="max-w-7xl mx-auto px-6">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+        
+        {/* ── BACK NAVIGATION ── */}
+        <nav className="mb-12" aria-label="Breadcrumbs">
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-3 border border-foreground/20 bg-transparent px-5 py-3 font-heading text-[10px] font-bold uppercase tracking-widest text-foreground transition hover:border-primary hover:text-primary active:scale-95"
+          >
+            <ArrowLeft size={14} />
+            Back to Articles
+          </Link>
+        </nav>
 
-      {/* ── PAGE GRID: article left, sidebar right ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_330px] xl:grid-cols-[1fr_380px] gap-12 lg:gap-16 xl:gap-20 items-start">
+        {/* ── PAGE GRID ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_330px] xl:grid-cols-[1fr_380px] gap-12 lg:gap-16 xl:gap-20 items-start">
 
-        {/* ────── LEFT: MAIN ARTICLE ────── */}
-        <article className="min-w-0 space-y-12 sm:space-y-16">
+          {/* ────── LEFT: MAIN ARTICLE ────── */}
+          <article className="min-w-0 space-y-12 sm:space-y-16">
 
-          {/* Header */}
-          <header className="space-y-6 sm:space-y-8">
-            <h1 className="text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
-              {blog.title}
-            </h1>
+            {/* Header */}
+            <header className="space-y-8 border-b border-foreground/10 pb-8">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tighter leading-tight text-foreground">
+                {blog.title}
+              </h1>
 
-            {/* Smaller details */}
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between pt-6 border-t border-black/5">
-              {/* Author details */}
-              <div className="flex items-center gap-3">
-                <div className="h-9 w-9 flex-shrink-0 rounded-full bg-orange-500/10 border border-orange-500/10 flex items-center justify-center text-xs font-semibold text-orange-600 uppercase shadow-sm">
-                  {founder.name.charAt(0)}
+              {/* Smaller details */}
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between pt-6 border-t border-foreground/10">
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 flex-shrink-0 bg-primary/10 flex items-center justify-center font-heading text-sm font-bold text-primary uppercase">
+                    {founder.name.charAt(0)}
+                  </div>
+                  <div>
+                    <Link href="/authors/akash" className="font-heading text-[12px] font-bold text-foreground leading-none hover:text-primary transition-colors uppercase tracking-widest">
+                      {founder.name}
+                    </Link>
+                    <p className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest mt-1.5">Founder</p>
+                  </div>
                 </div>
-                <div>
-                  <Link href="/authors/akash" className="text-xs font-semibold text-slate-900 leading-none hover:text-orange-600">
-                    {founder.name}
-                  </Link>
-                  <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1">Founder Review</p>
+
+                <div className="flex flex-wrap items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-foreground/40">
+                  <span className="bg-primary/10 px-3 py-1.5 text-primary border border-primary/20">
+                    {blog.category || 'Insights'}
+                  </span>
+                  <span suppressHydrationWarning={true} className="flex items-center gap-2">
+                    <Calendar size={12} />
+                    {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                  <span className="h-1 w-1 bg-foreground/20" />
+                  <span className="flex items-center gap-2">
+                    <Clock size={12} />
+                    {readTime} MIN READ
+                  </span>
                 </div>
               </div>
 
-              {/* Meta metrics */}
-              <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                <span className="rounded-lg bg-orange-500/10 border border-orange-500/10 px-2.5 py-1 text-orange-600 font-semibold tracking-wider">
-                  {blog.category || 'Insights'}
-                </span>
-                <span suppressHydrationWarning={true} className="flex items-center gap-1">
-                  <Calendar size={11} />
-                  {new Date(blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </span>
-                <span suppressHydrationWarning={true}>
-                  Updated {new Date(updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </span>
-                <span className="h-1 w-1 rounded-full bg-slate-200" />
-                <span className="flex items-center gap-1">
-                  <Clock size={11} />
-                  {readTime} MIN READ
-                </span>
-              </div>
-            </div>
+              {blog.excerpt && (
+                <p className="text-lg text-foreground/80 leading-relaxed border-l-[3px] border-primary pl-6 font-medium">
+                  {blog.excerpt}
+                </p>
+              )}
+            </header>
 
-            {/* Excerpt */}
-            {blog.excerpt && (
-              <p className="text-base text-slate-600 leading-relaxed border-l-[3px] border-orange-500 pl-6 sm:text-lg font-normal">
-                {blog.excerpt}
-              </p>
+            {/* Cover image */}
+            {blog.image_url && (
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-foreground/5 border border-foreground/10">
+                <BlogImage
+                  src={blog.image_url}
+                  alt={blog.title}
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
+                />
+              </div>
             )}
-          </header>
 
-          {/* Cover image */}
-          {blog.image_url && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[36px] border border-black/5 bg-slate-50 shadow-sm">
-              <BlogImage
-                src={blog.image_url}
-                alt={blog.title}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
-              />
+            {/* Body content */}
+            <div
+              className="prose prose-sm sm:prose-base lg:prose-lg max-w-none 
+                prose-headings:font-heading prose-headings:font-bold prose-headings:uppercase prose-headings:text-foreground prose-headings:tracking-tight
+                prose-headings:mt-12 prose-headings:mb-6
+                prose-p:text-foreground/80 prose-p:font-medium prose-p:leading-relaxed prose-p:mt-4 prose-p:mb-6
+                prose-a:text-primary prose-a:font-bold prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white
+                prose-strong:text-foreground prose-strong:font-bold
+                prose-blockquote:border-l-[3px] prose-blockquote:border-primary prose-blockquote:bg-foreground/5 prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:not-italic prose-blockquote:text-foreground/90
+                prose-img:border prose-img:border-foreground/10 prose-img:bg-foreground/5
+                prose-code:text-primary prose-code:bg-foreground/5 prose-code:rounded-none prose-code:px-2 prose-code:py-1
+                prose-pre:rounded-none prose-pre:bg-foreground/5 prose-pre:text-foreground prose-pre:border prose-pre:border-foreground/10
+                prose-ul:text-foreground/80 prose-ol:text-foreground/80 prose-li:my-2 prose-li:font-medium
+                prose-hr:border-foreground/10"
+              dangerouslySetInnerHTML={{ __html: mainContent }}
+            />
+
+            {/* Dynamic Interactive FAQ Accordion */}
+            {faqItems.length > 0 && (
+              <div className="mt-16 pt-12 border-t border-foreground/10">
+                <div className="max-w-2xl mb-10">
+                  <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-4">Got Questions?</p>
+                  <h2 className="font-heading text-3xl font-bold uppercase tracking-tighter text-foreground sm:text-4xl">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                
+                <div className="border border-foreground/10 bg-foreground/5 p-8 space-y-6">
+                  {faqItems.map((item, index) => (
+                    <details 
+                      key={index} 
+                      className="group border-b border-foreground/10 pb-6 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden"
+                    >
+                      <summary className="flex cursor-pointer items-center justify-between gap-4 text-foreground list-none outline-none select-none hover:text-primary transition-colors">
+                        <h3 className="font-heading text-xl font-bold uppercase tracking-tight text-left">
+                          {item.question}
+                        </h3>
+                        <span className="text-primary group-open:rotate-45 transition-transform duration-300 shrink-0">+</span>
+                      </summary>
+                      <div 
+                        className="mt-6 text-base font-medium leading-relaxed text-foreground/70 text-left pl-4 border-l-2 border-primary/30 prose-p:my-2"
+                        dangerouslySetInnerHTML={{ __html: item.answer }}
+                      />
+                    </details>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tags */}
+            {tags.length > 0 && (
+              <div className="mt-16 pt-10 border-t border-foreground/10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <Tag size={16} className="text-foreground/40 shrink-0" />
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-foreground/20 bg-transparent px-4 py-2 font-heading text-[10px] font-bold uppercase tracking-widest text-foreground/60 hover:text-primary hover:border-primary transition-colors cursor-default"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </article>
+
+          {/* ────── RIGHT: SIDEBAR ────── */}
+          <aside className="lg:sticky lg:top-32 space-y-12 border-t border-foreground/10 pt-12 lg:border-t-0 lg:pt-0 lg:pl-10">
+
+            {/* 1. Recommended Posts List */}
+            <div className="space-y-6">
+              <div className="pb-4 border-b border-foreground/10">
+                <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Read Next</p>
+                <h2 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">Recommended</h2>
+              </div>
+
+              <div className="space-y-6">
+                {(recentBlogs || []).length === 0 ? (
+                  <p className="text-sm text-foreground/40 font-medium">No recommended articles found.</p>
+                ) : (
+                  (recentBlogs || []).map((item) => (
+                    <Link
+                      key={item.id}
+                      href={`/blogs/${item.slug}`}
+                      className="group flex gap-4 transition items-center"
+                    >
+                      {/* Thumbnail */}
+                      <div className="flex-shrink-0 h-[70px] w-[70px] overflow-hidden border border-foreground/10 bg-foreground/5">
+                        {item.image_url ? (
+                          <Image
+                            src={item.image_url}
+                            alt={item.title}
+                            width={70}
+                            height={70}
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                            unoptimized={shouldSkipNextImageOptimization(item.image_url)}
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-foreground/20">
+                            <Tag size={18} strokeWidth={1.5} />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex flex-col justify-center gap-1.5 min-w-0">
+                        <span className="font-heading text-[9px] font-bold uppercase tracking-widest text-primary">
+                          {item.category || 'Insights'}
+                        </span>
+                        <h3 className="font-heading text-sm font-bold uppercase tracking-tight text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        <p suppressHydrationWarning={true} className="text-[9px] font-bold text-foreground/40 uppercase tracking-widest mt-0.5">
+                          {new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}
+                        </p>
+                      </div>
+                    </Link>
+                  ))
+                )}
+              </div>
             </div>
-          )}
 
-          {/* Body content */}
-          <div
-            className="prose prose-sm sm:prose-base lg:prose-lg max-w-none 
-              prose-headings:font-normal prose-headings:text-slate-900 prose-headings:tracking-tight
-              prose-headings:mt-10 prose-headings:mb-4
-              prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mt-3 prose-p:mb-5
-              prose-a:text-orange-600 prose-a:font-semibold prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-orange-700
-              prose-strong:text-slate-900 prose-strong:font-semibold
-              prose-blockquote:border-l-[3px] prose-blockquote:border-orange-500 prose-blockquote:bg-orange-500/5 prose-blockquote:rounded-r-2xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:not-italic
-              prose-img:rounded-[28px] prose-img:border prose-img:border-black/5 prose-img:shadow-sm
-              prose-code:text-slate-900 prose-code:bg-slate-100 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5
-              prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:text-white prose-pre:border prose-pre:border-black/10
-              prose-ul:text-slate-600 prose-ol:text-slate-600 prose-li:my-1.5
-              prose-hr:border-black/5"
-            dangerouslySetInnerHTML={{ __html: mainContent }}
-          />
+            {/* 2. Embedded Dynamic Strategy Lead Form */}
+            <div className="pt-4">
+              <SidebarLeadForm />
+            </div>
 
-          {/* Dynamic Interactive FAQ Accordion */}
-          {faqItems.length > 0 && (
-            <div className="mt-16 pt-10 border-t border-black/5">
-              <div className="max-w-2xl mb-8">
-                <p className="text-xs font-semibold uppercase tracking-wider text-orange-600">Got Questions?</p>
-                <h2 className="mt-3 text-2xl font-normal text-slate-900 tracking-tight sm:text-3xl text-left">
-                  Frequently Asked Questions
-                </h2>
+            {/* 3. Related Services Widget */}
+            <div className="space-y-6 pt-10 border-t border-foreground/10">
+              <div>
+                <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Need Support?</p>
+                <h2 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">Our Services</h2>
               </div>
               
-              <div className="rounded-[32px] border border-black/5 bg-slate-50 p-6 sm:p-8 space-y-5">
-                {faqItems.map((item, index) => (
-                  <details 
-                    key={index} 
-                    className="group border-b border-black/5 pb-5 last:border-0 last:pb-0 [&_summary::-webkit-details-marker]:hidden"
-                  >
-                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-slate-950 list-none outline-none select-none">
-                      <h3 className="text-base font-semibold text-slate-900 group-open:text-orange-600 transition duration-300 text-left">
-                        {item.question}
-                      </h3>
-                      <span className="relative h-6 w-6 shrink-0 bg-white rounded-full border border-black/5 flex items-center justify-center text-slate-500 group-open:bg-orange-600 group-open:text-white transition duration-300">
-                        <svg
-                          className="h-2.5 w-2.5 transition duration-300 group-open:-rotate-180"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </summary>
-                    <div 
-                      className="mt-3 text-sm leading-relaxed text-slate-600 text-left pl-1 pr-4 prose-p:my-1"
-                      dangerouslySetInnerHTML={{ __html: item.answer }}
-                    />
-                  </details>
-                ))}
+              <div className="flex flex-col gap-4">
+                <Link 
+                  href="/services/website-design-development" 
+                  className="group flex items-center justify-between p-5 border border-foreground/10 bg-foreground/5 hover:border-primary transition-colors"
+                >
+                  <div className="text-left">
+                    <span className="block font-heading text-sm font-bold uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">Web Development</span>
+                    <span className="block text-[10px] font-bold uppercase tracking-widest text-foreground/40 mt-1.5">Custom applications</span>
+                  </div>
+                  <ArrowLeft size={16} className="rotate-180 text-foreground/40 group-hover:text-primary transition-all group-hover:translate-x-1" />
+                </Link>
+
+                <Link 
+                  href="/services/digital-marketing/seo" 
+                  className="group flex items-center justify-between p-5 border border-foreground/10 bg-foreground/5 hover:border-primary transition-colors"
+                >
+                  <div className="text-left">
+                    <span className="block font-heading text-sm font-bold uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">SEO & Search Growth</span>
+                    <span className="block text-[10px] font-bold uppercase tracking-widest text-foreground/40 mt-1.5">Rank #1 on Google</span>
+                  </div>
+                  <ArrowLeft size={16} className="rotate-180 text-foreground/40 group-hover:text-primary transition-all group-hover:translate-x-1" />
+                </Link>
+
+                <Link 
+                  href="/services/website-design-development/website-redesign" 
+                  className="group flex items-center justify-between p-5 border border-foreground/10 bg-foreground/5 hover:border-primary transition-colors"
+                >
+                  <div className="text-left">
+                    <span className="block font-heading text-sm font-bold uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">UI/UX Redesign</span>
+                    <span className="block text-[10px] font-bold uppercase tracking-widest text-foreground/40 mt-1.5">Modern layout refresh</span>
+                  </div>
+                  <ArrowLeft size={16} className="rotate-180 text-foreground/40 group-hover:text-primary transition-all group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
-          )}
 
-          {/* Tags */}
-          {tags.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-black/5">
-              <div className="flex flex-wrap items-center gap-2">
-                <Tag size={13} className="text-slate-400 shrink-0" />
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-xl border border-black/5 bg-slate-50 px-4 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:border-black/10 transition-colors duration-200 cursor-default"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </article>
-
-        {/* ────── RIGHT: SIDEBAR ────── */}
-        <aside className="lg:sticky lg:top-24 space-y-8 border-t border-black/5 pt-10 lg:border-t-0 lg:pt-0 lg:pl-6 pb-4">
-
-          {/* 1. Recommended Posts List */}
-          <div className="space-y-5">
-            <div className="pb-4 border-b border-black/5">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">
-                Read Next
-              </p>
-              <h2 className="text-lg font-semibold text-slate-900">Recommended</h2>
-            </div>
-
-            <div className="space-y-4">
-              {(recentBlogs || []).length === 0 ? (
-                <p className="text-xs text-slate-400">No recommended articles found.</p>
-              ) : (
-                (recentBlogs || []).map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`/blogs/${item.slug}`}
-                    className="group flex gap-3 transition items-center"
-                  >
-                    {/* Thumbnail */}
-                    <div className="flex-shrink-0 h-[60px] w-[60px] rounded-2xl overflow-hidden border border-black/5 bg-slate-50">
-                      {item.image_url ? (
-                        <Image
-                          src={item.image_url}
-                          alt={item.title}
-                          width={60}
-                          height={60}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                          unoptimized={shouldSkipNextImageOptimization(item.image_url)}
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-slate-300">
-                          <Tag size={16} strokeWidth={1.5} />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Text */}
-                    <div className="flex flex-col justify-center gap-0.5 min-w-0">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-orange-600">
-                        {item.category || 'Insights'}
-                      </span>
-                      <h3 className="text-xs font-medium text-slate-900 leading-snug line-clamp-2 group-hover:text-orange-600 transition duration-300">
-                        {item.title}
-                      </h3>
-                      <p suppressHydrationWarning={true} className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">
-                        {new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}
-                      </p>
-                    </div>
-                  </Link>
-                ))
-              )}
-            </div>
-          </div>
-
-          {/* 2. Embedded Dynamic Strategy Lead Form */}
-          <div className="pt-2">
-            <SidebarLeadForm />
-          </div>
-
-          {/* 3. Related Services Widget for Interconnected Linking */}
-          <div className="space-y-4 pt-6 border-t border-black/5">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">
-                Need Support?
-              </p>
-              <h2 className="text-lg font-semibold text-slate-900">Our Services</h2>
-            </div>
-            
-            <div className="flex flex-col gap-2.5">
-              <Link 
-                href="/services/website-design-development" 
-                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
+            {/* All articles button */}
+            <div className="pt-8 border-t border-foreground/10">
+              <Link
+                href="/blogs"
+                className="group inline-flex items-center gap-3 font-heading text-[10px] font-bold uppercase tracking-widest text-foreground/60 hover:text-primary transition-colors"
               >
-                <div className="text-left">
-                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">Web Development</span>
-                  <span className="block text-[10px] text-slate-400">Custom business applications</span>
-                </div>
-                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
-              </Link>
-
-              <Link 
-                href="/services/digital-marketing/seo" 
-                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
-              >
-                <div className="text-left">
-                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">SEO & Search Growth</span>
-                  <span className="block text-[10px] text-slate-400">Rank #1 on Google results</span>
-                </div>
-                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
-              </Link>
-
-              <Link 
-                href="/services/website-design-development/website-redesign" 
-                className="group flex items-center justify-between p-3.5 rounded-2xl border border-black/5 bg-slate-50 hover:bg-slate-900 hover:text-white transition duration-300"
-              >
-                <div className="text-left">
-                  <span className="block text-xs font-semibold text-slate-900 group-hover:text-white transition-colors">UI/UX Redesigning</span>
-                  <span className="block text-[10px] text-slate-400">Modern layout & UI refresh</span>
-                </div>
-                <ArrowLeft size={12} className="rotate-180 text-slate-400 group-hover:text-white transition-all group-hover:translate-x-0.5" />
+                All Articles 
+                <ArrowLeft size={14} className="rotate-180 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-          </div>
-
-          {/* All articles button */}
-          <div className="pt-4 border-t border-black/5">
-            <Link
-              href="/blogs"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 hover:text-orange-600 transition"
-            >
-              All Articles 
-              <ArrowLeft size={13} className="rotate-180 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
     </div>
   );

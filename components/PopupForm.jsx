@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Phone, User, Mail, MessageSquare, Sparkles } from 'lucide-react';
+import { X, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +52,6 @@ export default function PopupForm() {
     setStatus('loading');
 
     try {
-      // Post to lead tracking backend API
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -66,7 +65,6 @@ export default function PopupForm() {
 
       if (!res.ok) throw new Error('Failed to send enquiry');
 
-      // Prepare professional WhatsApp message redirection
       const whatsappMsg = `Hi Geetanjali Softwares, I'm interested in your services. \n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
       const waUrl = `https://wa.me/917508657479?text=${encodeURIComponent(whatsappMsg)}`;
 
@@ -82,6 +80,8 @@ export default function PopupForm() {
     }
   };
 
+  const inputClass = "w-full rounded-none border-b border-foreground/20 bg-transparent px-0 py-3 text-base text-foreground outline-none placeholder:text-foreground/30 focus:border-primary transition-all duration-300";
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -92,134 +92,148 @@ export default function PopupForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 z-[10000] bg-slate-900/60 backdrop-blur-md"
+            className="fixed inset-0 z-[10000] bg-background/90 backdrop-blur-md"
           />
 
-          {/* Popup Container */}
+          {/* Horizontal Popup Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 30 }}
-            className="fixed inset-x-3 top-1/2 z-[10001] mx-auto max-h-[calc(100vh-24px)] max-w-[520px] -translate-y-1/2 overflow-y-auto rounded-2xl border border-white/10 bg-white shadow-2xl shadow-black/25"
+            className="fixed inset-x-4 top-1/2 z-[10001] mx-auto w-full max-w-5xl -translate-y-1/2 rounded-none border border-foreground/10 bg-background shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[80vh]"
           >
-            <button
-              onClick={handleClose}
-              className="fixed right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-slate-900 shadow-lg shadow-black/10 transition hover:bg-slate-100 active:scale-95"
-              aria-label="Close form"
-            >
-              <X size={17} />
-            </button>
-
-            <div className="relative border-b border-black/5 bg-slate-950 px-6 py-6 text-white sm:px-8">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-orange-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-orange-200">
-                <Sparkles size={12} />
-                Free Consultation
+            {/* Left Column: Branding / Pitch */}
+            <div className="hidden md:flex md:w-[45%] bg-foreground/5 relative flex-col justify-between p-12 border-r border-foreground/10 overflow-hidden">
+              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-6">
+                  <Sparkles size={12} />
+                  Free Consultation
+                </div>
+                <h3 className="font-heading text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-foreground leading-[0.9]">
+                  BUILD THE <br /> <span className="text-primary">FUTURE</span>
+                </h3>
+                <p className="mt-6 text-sm leading-relaxed text-foreground/70 font-medium max-w-sm">
+                  Whether you need an enterprise web application, a sleek landing page, or a full-scale digital marketing campaign, our engineers and strategists are ready to collaborate.
+                </p>
               </div>
-              <h3 className="mt-4 max-w-sm text-2xl font-semibold tracking-tight text-white">Tell us what you want to build.</h3>
-              <p className="mt-2 max-w-sm text-xs leading-relaxed text-white/60">
-                Share your website, SEO, or marketing requirement. We will respond with the next steps.
-              </p>
+
+              <div className="relative z-10 mt-12 space-y-4">
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                  <CheckCircle2 size={14} className="text-primary" /> Expert Consultation
+                </div>
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                  <CheckCircle2 size={14} className="text-primary" /> Project Roadmap
+                </div>
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                  <CheckCircle2 size={14} className="text-primary" /> Transparent Pricing
+                </div>
+              </div>
             </div>
 
-            {/* Form Content */}
-            <div className="p-5 sm:p-7 bg-white">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Right Column: Form Content */}
+            <div className="flex-1 p-8 sm:p-12 relative overflow-y-auto">
+              <button
+                onClick={handleClose}
+                className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-background text-foreground transition-all hover:border-primary hover:text-primary active:scale-95"
+                aria-label="Close form"
+              >
+                <X size={17} />
+              </button>
+
+              <div className="md:hidden mb-8 border-b border-foreground/10 pb-6">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-heading text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
+                  <Sparkles size={12} />
+                  Free Consultation
+                </div>
+                <h3 className="font-heading text-4xl font-bold uppercase tracking-tighter text-foreground leading-[0.9]">
+                  BUILD THE <br /> <span className="text-primary">FUTURE</span>
+                </h3>
+              </div>
+
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8 h-full justify-center">
                 
-                {/* 1. Full Name Input */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
-                  <div className="relative flex items-center">
-                    <User size={15} className="absolute left-4 text-slate-400" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2 relative group">
+                    <label className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">01. Full Name</label>
                     <input
                       type="text"
                       name="name"
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Enter your full name"
-                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
+                      placeholder="John Doe"
+                      className={inputClass}
                     />
                   </div>
-                </div>
 
-                {/* 2. Email Address Input */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
-                  <div className="relative flex items-center">
-                    <Mail size={15} className="absolute left-4 text-slate-400" />
+                  <div className="flex flex-col gap-2 relative group">
+                    <label className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">02. Email Address</label>
                     <input
                       type="email"
                       name="email"
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="e.g. name@company.com"
-                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
+                      placeholder="john@example.com"
+                      className={inputClass}
                     />
                   </div>
                 </div>
 
-                {/* 3. Phone Number Input (New Separate Field) */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Contact Number (WhatsApp)</label>
-                  <div className="relative flex items-center">
-                    <Phone size={15} className="absolute left-4 text-slate-400" />
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="e.g. +91 98765 43210"
-                      className="w-full rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
-                    />
-                  </div>
+                <div className="flex flex-col gap-2 relative group">
+                  <label className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">03. WhatsApp Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 98765 43210"
+                    className={inputClass}
+                  />
                 </div>
 
-                {/* 4. Project Goal Textarea */}
-                <div className="space-y-1 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Project Details</label>
-                  <div className="relative flex items-start">
-                    <MessageSquare size={15} className="absolute left-4 top-4 text-slate-400" />
-                    <textarea
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={3}
-                      placeholder="Briefly describe your website or marketing goals..."
-                      className="w-full resize-none rounded-xl border border-black/10 bg-slate-50 pl-11 pr-4 py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-orange-500 focus:bg-white transition-all duration-300"
-                    />
-                  </div>
+                <div className="flex flex-col gap-2 relative group">
+                  <label className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">04. Project Details</label>
+                  <textarea
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={2}
+                    placeholder="Briefly describe your goals..."
+                    className={inputClass + " resize-none"}
+                  />
                 </div>
 
-                {/* Submit CTA */}
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 py-4 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-all duration-300 hover:bg-orange-700 active:scale-[0.98] disabled:opacity-50"
-                >
-                  {status === 'loading' ? (
-                    'Submitting details...'
-                  ) : (
-                    <>
-                      <span>Get Free Proposal</span>
-                      <Send size={13} />
-                    </>
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="group relative flex w-full items-center justify-center gap-4 overflow-hidden border border-foreground/20 bg-transparent px-8 py-5 font-heading text-sm font-bold uppercase tracking-wider text-foreground transition-transform duration-300 hover:border-primary disabled:opacity-50"
+                  >
+                    <span className="relative z-10 transition-colors duration-300 group-hover:text-background">
+                      {status === 'loading' ? 'Transmitting...' : 'Get Free Proposal'}
+                    </span>
+                    <span className="relative z-10 flex items-center justify-center text-foreground transition-colors duration-300 group-hover:text-background">
+                      <ArrowRight size={18} />
+                    </span>
+                    <div className="absolute inset-0 z-0 h-full w-full scale-x-0 transform bg-primary transition-transform duration-500 origin-left group-hover:scale-x-100" />
+                  </button>
+
+                  {status === 'success' && (
+                    <div className="mt-4 border-l-2 border-primary bg-primary/5 p-3 text-xs font-heading tracking-widest uppercase text-primary text-center">
+                      ✨ Sending to WhatsApp...
+                    </div>
                   )}
-                </button>
-
-                {/* Status Logs */}
-                {status === 'success' && (
-                  <p className="text-center text-[10px] font-bold text-emerald-600 italic animate-pulse">
-                    Enquiry saved successfully! Redirecting to WhatsApp...
-                  </p>
-                )}
-                {status === 'error' && (
-                  <p className="text-center text-[10px] font-bold text-red-500 italic">
-                    Connection failed. Please verify inputs and retry.
-                  </p>
-                )}
+                  {status === 'error' && (
+                    <div className="mt-4 border-l-2 border-red-500 bg-red-500/5 p-3 text-xs font-heading tracking-widest uppercase text-red-500 text-center">
+                      ❌ Transmission failed.
+                    </div>
+                  )}
+                </div>
               </form>
             </div>
           </motion.div>

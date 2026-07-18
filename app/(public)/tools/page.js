@@ -60,15 +60,18 @@ export default function ToolsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="pb-8 pt-8 sm:pb-12 sm:pt-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
-            Free Tools
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-normal leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Smart tools for <span className="text-slate-500">smarter digital decisions.</span>
+      <section className="pb-16 pt-0 sm:pb-24 sm:pt-4 bg-background text-foreground border-b border-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 text-left">
+          <div className="flex items-center justify-start gap-3 mb-6">
+            <span className="h-[1px] w-12 bg-primary"></span>
+            <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">
+              Free Tools
+            </span>
+          </div>
+          <h1 className="mt-4 max-w-4xl font-heading text-5xl font-bold uppercase tracking-tighter text-foreground sm:text-6xl lg:text-[5rem] leading-[0.9]">
+            SMART TOOLS FOR <br /> <span className="text-primary">SMARTER DECISIONS.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground/70 font-medium">
             Estimate your project budget, preview your SEO performance, and make data-driven decisions before you invest. Built for business owners who want clarity before commitment.
           </p>
         </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import {
@@ -41,59 +43,66 @@ const legalLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 pt-16 pb-12 bg-black text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer className="border-t border-foreground/10 pt-16 pb-12 bg-background text-foreground relative z-20">
+      <div className="mx-auto max-w-7xl px-6">
         {/* Main row — brand left, links right on desktop */}
-        <div className="flex flex-col gap-12 lg:flex-row lg:justify-between">
+        <div className="flex flex-col gap-16 lg:flex-row lg:justify-between">
           {/* Left Side: Brand Identity + Contacts info */}
-          <div className="max-w-xs space-y-4">
+          <div className="max-w-sm space-y-6">
             <div>
-              <Link href="/" className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                Geetanjali <span className="font-light text-stone-400">Softwares</span>
+              <Link href="/" className="font-heading text-3xl font-bold uppercase tracking-tight text-foreground transition-colors hover:text-primary">
+                Geetanjali <span className="text-primary font-light">Softwares</span>
               </Link>
-              <p className="mt-3 text-xs sm:text-sm leading-relaxed text-stone-400">
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 Modern website design, performance-driven search optimization, and robust branding built for elite businesses that demand digital excellence.
               </p>
             </div>
             
-            <ul className="space-y-3 pt-2">
+            <ul className="space-y-4 pt-4 border-t border-foreground/10">
               <li>
-                <a href={`mailto:${BUSINESS_EMAIL}`} className="flex items-start gap-3 text-xs sm:text-sm text-stone-300 hover:text-white transition">
-                  <Mail size={16} className="text-orange-500 mt-0.5 shrink-0" />
+                <a href={`mailto:${BUSINESS_EMAIL}`} className="group flex items-center gap-3 text-sm text-foreground/70 transition-colors hover:text-primary">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/5 text-foreground transition-all duration-300 group-hover:bg-primary group-hover:text-background shrink-0">
+                    <Mail size={14} />
+                  </div>
                   {BUSINESS_EMAIL}
                 </a>
               </li>
-              <li>
-                <a href="tel:+917508657479" className="flex items-center gap-3 text-xs sm:text-sm text-stone-300 hover:text-white transition">
-                  <Phone size={16} className="text-orange-500 shrink-0" />
-                  {BUSINESS_PHONE_DISPLAY}
-                </a>
+              <li className="flex items-center gap-3 text-sm text-foreground/70">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/5 text-foreground shrink-0">
+                  <Phone size={14} />
+                </div>
+                <div className="flex gap-1 flex-wrap">
+                  <a href="tel:+917508657479" className="transition-colors hover:text-primary">
+                    {BUSINESS_PHONE_DISPLAY}
+                  </a>
+                  <span>,</span>
+                  <a href="tel:+916201231875" className="transition-colors hover:text-primary">
+                    +91 6201231875
+                  </a>
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-xs sm:text-sm text-stone-300">
-                <MapPin size={16} className="text-orange-500 shrink-0 mt-0.5" />
+              <li className="flex items-center gap-3 text-sm text-foreground/70">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/5 text-foreground shrink-0">
+                  <MapPin size={14} />
+                </div>
                 <span>Faridabad, Haryana, India</span>
-              </li>
-              <li>
-                <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex text-xs font-semibold text-orange-400 hover:text-orange-300 transition">
-                  Find us on Google
-                </a>
               </li>
             </ul>
           </div>
 
           {/* Right Side: Organized Grid Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-x-12 xl:gap-x-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-x-12 xl:gap-x-16 pt-2 lg:pt-0">
             {/* 1. Core Services Column */}
             <div>
-              <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+              <h3 className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-6">
                 Services
               </h3>
-              <nav className="flex flex-col items-start gap-3" aria-label="Footer services navigation">
+              <nav className="flex flex-col items-start gap-4" aria-label="Footer services navigation">
                 {serviceLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-xs font-semibold text-stone-300 hover:text-orange-500 transition duration-150"
+                    className="text-xs font-semibold text-foreground/70 hover:text-primary transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -103,19 +112,19 @@ export default function SiteFooter() {
 
             {/* 2. Company Column */}
             <div>
-              <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+              <h3 className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-6">
                 Company
               </h3>
-              <nav className="flex flex-col items-start gap-3" aria-label="Footer company navigation">
+              <nav className="flex flex-col items-start gap-4" aria-label="Footer company navigation">
                 {companyLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-xs font-semibold text-stone-300 hover:text-orange-500 transition duration-150 inline-flex items-center gap-1.5"
+                    className="group flex items-center gap-2 text-xs font-semibold text-foreground/70 hover:text-primary transition-colors duration-300"
                   >
                     {link.label}
                     {link.isHiring && (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-orange-500/10 text-orange-400 text-[8px] font-semibold uppercase tracking-wider border border-orange-500/20">
+                      <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 font-heading text-[8px] font-bold uppercase tracking-widest text-primary border border-primary/20 transition-colors group-hover:bg-primary group-hover:text-background">
                         Hiring
                       </span>
                     )}
@@ -126,17 +135,17 @@ export default function SiteFooter() {
 
             {/* 3. Connect Column */}
             <div>
-              <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+              <h3 className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-6">
                 Connect
               </h3>
-              <nav className="flex flex-col items-start gap-3" aria-label="Footer social links">
+              <nav className="flex flex-col items-start gap-4" aria-label="Footer social links">
                 {connectLinks.map((link) => (
                   <a 
                     key={link.label}
                     href={link.href} 
                     target={link.target}
                     rel={link.target ? "noopener noreferrer" : undefined}
-                    className="text-xs font-semibold text-stone-300 hover:text-orange-500 transition duration-150"
+                    className="text-xs font-semibold text-foreground/70 hover:text-primary transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -146,15 +155,15 @@ export default function SiteFooter() {
 
             {/* 4. Legal Column */}
             <div>
-              <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+              <h3 className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-6">
                 Legal
               </h3>
-              <nav className="flex flex-col items-start gap-3" aria-label="Footer legal links">
+              <nav className="flex flex-col items-start gap-4" aria-label="Footer legal links">
                 {legalLinks.map((link) => (
                   <Link 
                     key={link.href}
                     href={link.href} 
-                    className="text-xs font-semibold text-stone-300 hover:text-orange-500 transition duration-150"
+                    className="text-xs font-semibold text-foreground/70 hover:text-primary transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -164,29 +173,29 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        {/* Popular Locations We Serve Strip (Multi-City SEO Booster) */}
-        <div className="mt-16 border-t border-white/10 pt-8">
-          <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-500 mb-4">
+        {/* Popular Locations We Serve Strip */}
+        <div className="mt-20 border-t border-foreground/10 pt-10">
+          <h3 className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-6 text-center lg:text-left">
             Popular Locations We Serve
           </h3>
-          <div className="flex flex-wrap gap-x-4 gap-y-2.5 text-xs text-stone-400">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-3 text-[11px] text-foreground/40 font-semibold uppercase tracking-widest">
             {[
               'faridabad', 'delhi-ncr', 'patna', 'delhi', 'mumbai', 'bangalore', 'lucknow', 
               'jaipur', 'pune', 'noida', 'gurgaon', 'kolkata', 
               'chennai', 'hyderabad', 'ahmedabad', 'chandigarh', 
               'ranchi', 'bhopal', 'indore', 'kanpur', 'surat', 'guwahati'
             ].map((city, idx, arr) => {
-              const cityName = city.charAt(0).toUpperCase() + city.slice(1).replace(/-/g, ' ');
+              const cityName = city.replace(/-/g, ' ');
               return (
                 <div key={city} className="flex items-center">
                   <Link
                     href={`/locations/${city}`}
-                    className="hover:text-orange-500 transition duration-150 font-medium"
+                    className="hover:text-primary transition-colors duration-300"
                   >
                     {cityName}
                   </Link>
                   {idx < arr.length - 1 && (
-                    <span className="ml-4 text-stone-700 font-light select-none">|</span>
+                    <span className="ml-4 text-foreground/20 select-none">/</span>
                   )}
                 </div>
               );
@@ -195,12 +204,17 @@ export default function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p className="text-xs text-stone-400">
-            &copy; {new Date().getFullYear()} Geetanjali Softwares. All rights reserved.
-          </p>
-          <p className="text-xs text-stone-400 flex items-center gap-1">
-            Made with <span className="text-orange-500">♥</span> in India
+        <div className="mt-12 border-t border-foreground/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-foreground/40">
+              &copy; {new Date().getFullYear()} Geetanjali Softwares. All rights reserved.
+            </p>
+            <p className="font-heading text-[9px] font-bold uppercase tracking-widest text-foreground/30">
+              GST: 06PBVPS6923K1ZE <span className="mx-2">|</span> Udyam: UDYAM-HR-03-0157495
+            </p>
+          </div>
+          <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-foreground/40 flex items-center gap-1.5">
+            Made with <span className="text-primary text-sm leading-none">♥</span> in India
           </p>
         </div>
       </div>

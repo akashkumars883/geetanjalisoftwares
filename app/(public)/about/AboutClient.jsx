@@ -18,31 +18,31 @@ export default function AboutClient() {
   };
 
   return (
-    <div className="pt-0">
+    <div className="bg-background">
       <motion.section
         initial="initial"
         whileInView="whileInView"
         viewport={{ once: true }}
         variants={stagger}
-        className="relative py-12 sm:py-20"
+        className="relative pb-12 pt-2 sm:pb-20 sm:pt-4 border-b border-foreground/10"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <motion.p
-            variants={fadeInUp}
-            className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm"
-          >
-            About Geetanjali Softwares
-          </motion.p>
+        <div className="mx-auto max-w-7xl px-6 text-left">
+          <motion.div variants={fadeInUp} className="flex justify-start items-center gap-3 mb-6">
+            <span className="h-[1px] w-12 bg-primary"></span>
+            <span className="font-heading text-[10px] font-bold tracking-[0.3em] uppercase text-foreground/60">
+              About Geetanjali Softwares
+            </span>
+          </motion.div>
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl leading-[1.15]"
+            className="mt-6 font-heading text-5xl sm:text-7xl lg:text-[8rem] font-bold uppercase tracking-tighter text-foreground leading-[0.85]"
           >
-            Building digital infrastructure that <br className="hidden sm:block" />
-            <span className="text-slate-500">powers business resilience.</span>
+            BUILDING <br className="hidden sm:block" />
+            <span className="text-primary">RESILIENCE</span>
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
+            className="mt-10 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl font-medium"
           >
             We don't just build websites; we build digital systems that help businesses look better, communicate clearer, and grow faster in a modern digital landscape. Our approach blends strategic thinking with technical precision to deliver solutions that endure.
           </motion.p>
@@ -54,24 +54,24 @@ export default function AboutClient() {
         whileInView="whileInView"
         viewport={{ once: true, margin: "-100px" }}
         variants={stagger}
-        className="py-12 sm:py-20"
+        className="py-16 sm:py-24 bg-background"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <motion.div
               variants={fadeInUp}
-              className="relative aspect-square overflow-hidden rounded-[40px] bg-slate-100 border border-black/5"
+              className="relative aspect-square overflow-hidden bg-foreground/5 border border-foreground/10"
             >
               <Image
-                src="/images/logo.jpg"
+                src="/images/akash.jpg"
                 alt="Akash - Founder of Geetanjali Softwares"
-                width={500}
-                height={500}
+                width={600}
+                height={600}
                 className="h-full w-full object-cover grayscale hover:grayscale-0 transition duration-700"
               />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/90 p-6 backdrop-blur-xl border border-black/5 shadow-sm">
-                <p className="text-lg font-semibold text-slate-900">Akash</p>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
+              <div className="absolute bottom-6 left-6 right-6 bg-background/80 p-6 backdrop-blur-xl border border-foreground/10">
+                <p className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">Akash</p>
+                <p className="font-heading text-[10px] font-bold text-primary uppercase tracking-widest mt-2">
                   Founder & Digital Strategist
                 </p>
               </div>
@@ -80,39 +80,39 @@ export default function AboutClient() {
             <div className="max-w-xl">
               <motion.h2
                 variants={fadeInUp}
-                className="text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+                className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-foreground leading-tight"
               >
-                The Vision Behind the Work
+                THE VISION BEHIND <br /> <span className="text-primary">THE WORK</span>
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
-                className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg"
+                className="mt-8 text-lg leading-relaxed text-foreground/70"
               >
                 I started Geetanjali Softwares with a simple goal: to help businesses stop
                 "blending in" and start "standing out" online. As a solo
                 strategist, I work directly with you to ensure every pixel, word, and campaign
                 is aligned with your business growth.
               </motion.p>
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <div className="mt-12 grid gap-8 sm:grid-cols-2">
                 <motion.div
                   variants={fadeInUp}
-                  className="rounded-2xl border border-black/5 bg-slate-50 p-6 shadow-sm"
+                  className="border border-foreground/10 bg-foreground/5 p-8 transition-colors hover:border-primary"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wider text-orange-600">
-                    Dedication
+                  <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">
+                    01. Dedication
                   </p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-4 text-base text-foreground/80 leading-relaxed font-medium">
                     "Direct collaboration, no middle-men. Your project is my priority."
                   </p>
                 </motion.div>
                 <motion.div
                   variants={fadeInUp}
-                  className="rounded-2xl border border-black/5 bg-slate-50 p-6 shadow-sm"
+                  className="border border-foreground/10 bg-foreground/5 p-8 transition-colors hover:border-primary"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wider text-orange-600">
-                    Strategy
+                  <p className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">
+                    02. Strategy
                   </p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-4 text-base text-foreground/80 leading-relaxed font-medium">
                     "Every solution is bespoke, built around your specific niche and goals."
                   </p>
                 </motion.div>

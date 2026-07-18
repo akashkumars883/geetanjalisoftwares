@@ -8,41 +8,41 @@ import Link from "next/link";
 const portfolioItems = [
   {
     title: 'Automixa: AI Marketing Platform',
-    category: 'AI Platform / Web Application',
-    description: 'Autonomous AI marketing platform engineered to automate multi-channel campaigns, verify leads, and scale conversions with precision analytics.',
-    tech: ['Next.js', 'AI Logic', 'Tailwind'],
+    category: 'SaaS / Marketing Automation',
+    description: 'An AI-powered Instagram automation platform that instantly replies to comments and DMs. Designed to capture leads, deliver digital products, and grow creator audiences 24/7.',
+    tech: ['Next.js', 'Meta API', 'Tailwind'],
     link: 'https://automixa.in',
-    image: '/images/automixa_ui.png',
-    imageClassName: 'h-full w-full scale-[1.2] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.25]',
+    image: '/images/automixa_new.png',
+    imageClassName: 'h-full w-full object-cover object-top transition-transform duration-1000 ease-out',
     metrics: [
-      { label: 'Conversion Growth', value: '+180%' },
-      { label: 'Google Page Speed', value: '99/100' },
-      { label: 'Campaigns Automated', value: '15k+' }
+      { label: 'Creators Trust', value: '10,000+' },
+      { label: 'Bot Setup', value: '< 1 Min' },
+      { label: 'ROI Growth', value: 'High' }
     ]
   },
   {
-    title: 'Modern Living: Luxury E-Commerce',
-    category: 'E-Commerce / UI/UX Design',
-    description: 'High-speed immersive online shopping experience with an optimized checkout flow, premium product showcases, and seamless payment integration.',
-    tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
-    link: 'https://modern-living.vercel.app',
-    image: '/images/modern_living_ui.png',
-    imageClassName: 'h-full w-full scale-[1.25] -translate-y-3 lg:scale-[1.3] lg:-translate-y-8 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.35]',
+    title: 'Money Capital Finances',
+    category: 'Fintech / NBFC Partner Platform',
+    description: 'A comprehensive digital lending platform offering Personal, Business, and Home loans. Engineered for lightning-fast loan processing with integrated EMI calculators and priority advisory funnels.',
+    tech: ['Next.js', 'Tailwind', 'Calculators'],
+    link: 'https://www.moneycapitalfinances.com/',
+    image: '/images/money_capital.png',
+    imageClassName: 'h-full w-full object-cover object-top transition-transform duration-1000 ease-out',
     metrics: [
-      { label: 'Sales Uplift', value: '+240%' },
-      { label: 'Page Load Speed', value: '0.8s' },
-      { label: 'Monthly Revenue', value: '₹45L+' }
+      { label: 'Loan Processing', value: '10x Faster' },
+      { label: 'Banking Partners', value: '15+' },
+      { label: 'Client Trust', value: '100%' }
     ]
   }
 ];
 
 export default function PortfolioSection() {
   return (
-    <section id="portfolio" className="relative w-full bg-transparent pt-8 pb-6 sm:pt-12 sm:pb-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="relative w-full bg-background pt-12 pb-12 sm:pt-20 sm:pb-20 overflow-hidden border-t border-foreground/10">
+      <div className="mx-auto max-w-7xl px-6">
 
         {/* Top Header Section */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-12">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 pb-16 lg:pb-24 border-b border-foreground/10">
           {/* Left Side: Heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -51,11 +51,14 @@ export default function PortfolioSection() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex-1 text-left"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-              Our Work
-            </span>
-            <h2 className="mt-3 text-3xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-7xl">
-              Selected Masterpieces
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-[1px] w-12 bg-primary"></span>
+              <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-foreground/60">
+                Our Work
+              </span>
+            </div>
+            <h2 className="font-heading text-5xl sm:text-7xl lg:text-[7rem] font-bold uppercase tracking-tighter text-foreground leading-[0.9]">
+              SELECTED <br /> MASTERPIECES
             </h2>
           </motion.div>
 
@@ -65,16 +68,16 @@ export default function PortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 lg:max-w-xl text-left"
+            className="flex-1 lg:max-w-xl text-left pb-4"
           >
-            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="text-lg leading-relaxed text-foreground/70 sm:text-xl">
               We partner with ambitious brands to create digital platforms that captivate users and drive growth. Here are two of our benchmark case studies.
             </p>
           </motion.div>
         </div>
 
         {/* 2-Column Portfolio Showcase */}
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:mt-16 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-16 grid grid-cols-1 gap-16 lg:mt-24 lg:grid-cols-2 lg:gap-12">
           {portfolioItems.map((item, index) => (
             <motion.div
               key={index}
@@ -88,10 +91,10 @@ export default function PortfolioSection() {
                 href={item.link}
                 target={item.link.startsWith('http') ? '_blank' : '_self'}
                 rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                className="relative block w-full overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] lg:aspect-[16/10]"
+                className="relative block w-full overflow-hidden bg-foreground/5 aspect-[4/3] lg:aspect-[4/3]"
               >
                 {/* Image */}
-                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                <div className="absolute inset-0 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -99,46 +102,46 @@ export default function PortfolioSection() {
                   />
                 </div>
 
-                {/* Hover Arrow Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm opacity-0 transition-all duration-500 group-hover:opacity-100">
-                  <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-orange-600 text-white shadow-2xl transition-transform duration-500 scale-50 group-hover:scale-100">
-                    <ArrowUpRight className="h-8 w-8 sm:h-9 sm:w-9" strokeWidth={2} />
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-sm opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-background transition-transform duration-500 scale-50 group-hover:scale-100">
+                    <ArrowUpRight className="h-10 w-10" strokeWidth={1.5} />
                   </div>
                 </div>
               </a>
 
               {/* Item Details */}
-              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
-                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
+              <div className="mt-8 flex flex-col gap-4">
+                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <span className="font-heading text-xs font-bold uppercase tracking-widest text-primary">
                     {item.category}
                   </span>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {item.tech.map(t => (
-                      <span key={t} className="rounded-full border border-black/10 px-3 py-1 text-[10px] font-semibold text-slate-600 uppercase tracking-wider sm:text-xs">
+                      <span key={t} className="border border-foreground/20 px-3 py-1 font-heading text-[10px] font-bold text-foreground/70 uppercase tracking-widest">
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <h3 className="text-xl font-normal tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+                <h3 className="font-heading text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl transition-colors group-hover:text-primary">
                   {item.title}
                 </h3>
               </div>
 
-              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-lg">
+              <p className="mt-4 text-base leading-relaxed text-foreground/60 sm:text-lg">
                 {item.description}
               </p>
 
               {/* Client Metrics stats grid */}
-              <div className="mt-6 grid grid-cols-3 gap-4 border-t border-black/5 pt-6">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6 border-t border-foreground/10 pt-8">
                 {item.metrics.map((metric, mIdx) => (
                   <div key={mIdx}>
-                    <span className="block text-2xl font-bold tracking-tight text-orange-600 sm:text-3xl">
+                    <span className="block font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
                       {metric.value}
                     </span>
-                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mt-1">
+                    <span className="block text-[10px] font-semibold uppercase tracking-widest text-foreground/40 mt-2">
                       {metric.label}
                     </span>
                   </div>
@@ -150,12 +153,18 @@ export default function PortfolioSection() {
         </div>
 
         {/* Footer View All CTA */}
-        <div className="mt-16 flex justify-center sm:mt-20">
+        <div className="mt-20 flex justify-center sm:mt-24">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-8 py-4 text-sm font-semibold text-slate-900 transition-colors hover:border-orange-600 hover:bg-orange-600 hover:text-white shadow-sm"
+            className="group relative inline-flex items-center justify-center gap-4 overflow-hidden rounded-full border border-foreground/20 bg-transparent px-10 py-5 font-heading text-sm font-bold uppercase tracking-wider text-foreground transition-transform duration-300 hover:border-primary hover:scale-105 active:scale-95"
           >
-            View All Masterpieces <ArrowUpRight size={18} />
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-background">
+              View All Masterpieces
+            </span>
+            <span className="relative z-10 flex items-center justify-center text-foreground transition-colors duration-300 group-hover:text-background">
+              <ArrowUpRight size={18} />
+            </span>
+            <div className="absolute inset-0 z-0 h-full w-full scale-x-0 transform bg-primary transition-transform duration-500 origin-left group-hover:scale-x-100" />
           </Link>
         </div>
 

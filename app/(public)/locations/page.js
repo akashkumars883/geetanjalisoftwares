@@ -60,29 +60,39 @@ function toCityName(slug) {
 
 export default function LocationsIndexPage() {
   return (
-    <section className="pb-20 pt-6 sm:pt-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-600 sm:text-sm">
-            Locations
-          </p>
-          <h1 className="mt-4 text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl">
-            Digital services <span className="text-slate-500">delivered across India.</span>
+    <section className="pb-20 pt-0 sm:pt-4 bg-background min-h-screen">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-5xl border-b border-foreground/10 pb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-[1px] w-12 bg-primary"></span>
+            <span className="font-heading text-[10px] font-bold tracking-[0.3em] uppercase text-primary">
+              Locations
+            </span>
+          </div>
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-foreground leading-tight">
+            Digital services <br /> <span className="text-primary">across India.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 font-medium">
             We provide enterprise-quality web development, SEO, and digital marketing solutions to businesses nationwide. Select your city to explore localized support and expertise.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cities.map((city) => (
             <Link
               key={city}
               href={`/locations/${city}`}
-              className="rounded-3xl border border-black/5 bg-slate-50 px-6 py-5 text-slate-900 transition hover:-translate-y-0.5 hover:border-orange-500/30 hover:bg-white"
+              className="group flex flex-col border border-foreground/10 bg-foreground/5 p-8 transition-colors hover:border-primary"
             >
-              <div className="text-lg font-semibold">{toCityName(city)}</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <div className="mb-4">
+                <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary">
+                  Region
+                </span>
+              </div>
+              <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-tight text-foreground transition-colors group-hover:text-primary">
+                {toCityName(city)}
+              </h2>
+              <div className="mt-4 pt-6 border-t border-foreground/10 text-xs font-semibold uppercase tracking-wider text-foreground/60">
                 Web Development • SEO
               </div>
             </Link>

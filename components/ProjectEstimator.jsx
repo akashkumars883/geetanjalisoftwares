@@ -14,7 +14,8 @@ import {
   Clock,
   Sparkles,
   HelpCircle,
-  AlertCircle
+  AlertCircle,
+  ArrowRight
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -286,32 +287,35 @@ Client Mobile Contact: ${phone}`;
   };
 
   return (
-    <section id="estimator" className="py-24 relative overflow-hidden bg-transparent">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.03),transparent_50%)]" />
+    <section id="estimator" className="py-24 relative overflow-hidden bg-background">
       
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <div className="mx-auto max-w-7xl px-6 relative">
         
         {/* Title Bar */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-600">
-            <Calculator size={13} />
-            Budget Estimator
-          </span>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-black sm:text-4xl text-center">
-            Estimate Your Custom Project Cost
+        <div className="text-center max-w-3xl mx-auto mb-16 border-b border-foreground/10 pb-12">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-[1px] w-8 bg-primary"></span>
+            <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+              <Calculator size={14} />
+              Budget Estimator
+            </span>
+            <span className="h-[1px] w-8 bg-primary"></span>
+          </div>
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-foreground mb-6">
+            ESTIMATE YOUR <br /> <span className="text-primary">PROJECT COST</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-stone-500 max-w-xl mx-auto leading-relaxed text-center">
+          <p className="text-lg leading-relaxed text-foreground/70 font-medium">
             Configure website packages, growth marketing retainers, or super-saver combos to view your estimated price dynamically.
           </p>
         </div>
 
         {/* Categories Tab Selector bar */}
-        <div className="flex justify-center max-w-md mx-auto bg-slate-200/50 p-1.5 rounded-2xl mb-12">
+        <div className="flex justify-center max-w-lg mx-auto bg-foreground/5 p-1.5 mb-16 border border-foreground/10">
           <button
             type="button"
             onClick={() => handleTrackChange('web')}
-            className={`flex-1 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-              activeTrack === 'web' ? 'bg-white text-slate-900 shadow-sm' : 'text-stone-600 hover:text-black'
+            className={`flex-1 py-3 px-4 font-heading text-[10px] font-bold uppercase tracking-widest transition-colors ${
+              activeTrack === 'web' ? 'bg-primary text-white' : 'text-foreground hover:text-primary'
             }`}
           >
             Website Dev
@@ -319,8 +323,8 @@ Client Mobile Contact: ${phone}`;
           <button
             type="button"
             onClick={() => handleTrackChange('seo')}
-            className={`flex-1 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-              activeTrack === 'seo' ? 'bg-white text-slate-900 shadow-sm' : 'text-stone-600 hover:text-black'
+            className={`flex-1 py-3 px-4 font-heading text-[10px] font-bold uppercase tracking-widest transition-colors ${
+              activeTrack === 'seo' ? 'bg-primary text-white' : 'text-foreground hover:text-primary'
             }`}
           >
             SEO plans
@@ -328,38 +332,40 @@ Client Mobile Contact: ${phone}`;
           <button
             type="button"
             onClick={() => handleTrackChange('combos')}
-            className={`flex-1 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-              activeTrack === 'combos' ? 'bg-white text-slate-900 shadow-sm' : 'text-stone-600 hover:text-black'
+            className={`flex-1 py-3 px-4 font-heading text-[10px] font-bold uppercase tracking-widest transition-colors ${
+              activeTrack === 'combos' ? 'bg-primary text-white' : 'text-foreground hover:text-primary'
             }`}
           >
-            Combo Bundles
+            Bundles
           </button>
         </div>
 
         {/* Configurator Box Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch max-w-6xl mx-auto">
           
           {/* Left panel: Plan selector cards & options */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="lg:col-span-8 space-y-12">
             
             {/* 1. Selecting Plan Card options */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {activeTrack === 'web' && webPlans.map((wp) => (
                 <button
                   key={wp.id}
                   type="button"
                   onClick={() => setSelectedPlanId(wp.id)}
-                  className={`p-5 rounded-3xl border-2 text-left transition-all ${
+                  className={`p-6 border text-left transition-colors flex flex-col justify-between ${
                     selectedPlanId === wp.id 
-                      ? 'bg-white border-black text-slate-900 shadow-lg' 
-                      : 'bg-white border-black/5 hover:bg-slate-100 text-slate-700'
+                      ? 'bg-primary/5 border-primary shadow-sm' 
+                      : 'bg-foreground/5 border-foreground/10 hover:border-primary'
                   }`}
                 >
-                  <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === wp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
+                  <span className={`font-heading text-[10px] font-bold uppercase tracking-widest ${selectedPlanId === wp.id ? 'text-primary' : 'text-foreground/50'}`}>
                     Rs {wp.price.toLocaleString('en-IN')}
                   </span>
-                  <h4 className="font-semibold text-sm mt-3 text-left">{wp.name}</h4>
-                  <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === wp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
+                  <div className="mt-6 mb-4">
+                    <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">{wp.name}</h4>
+                  </div>
+                  <p className="text-xs font-medium leading-relaxed text-foreground/60 border-t border-foreground/10 pt-4">
                     {wp.tagline}
                   </p>
                 </button>
@@ -370,17 +376,19 @@ Client Mobile Contact: ${phone}`;
                   key={sp.id}
                   type="button"
                   onClick={() => setSelectedPlanId(sp.id)}
-                  className={`p-5 rounded-3xl border-2 text-left transition-all ${
+                  className={`p-6 border text-left transition-colors flex flex-col justify-between ${
                     selectedPlanId === sp.id 
-                      ? 'bg-white border-black text-slate-900 shadow-lg' 
-                      : 'bg-white border-black/5 hover:bg-slate-100 text-slate-700'
+                      ? 'bg-primary/5 border-primary shadow-sm' 
+                      : 'bg-foreground/5 border-foreground/10 hover:border-primary'
                   }`}
                 >
-                  <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === sp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
+                  <span className={`font-heading text-[10px] font-bold uppercase tracking-widest ${selectedPlanId === sp.id ? 'text-primary' : 'text-foreground/50'}`}>
                     Rs {sp.price.toLocaleString('en-IN')}/mo
                   </span>
-                  <h4 className="font-semibold text-sm mt-3 text-left">{sp.name}</h4>
-                  <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === sp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
+                  <div className="mt-6 mb-4">
+                    <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">{sp.name}</h4>
+                  </div>
+                  <p className="text-xs font-medium leading-relaxed text-foreground/60 border-t border-foreground/10 pt-4">
                     {sp.tagline}
                   </p>
                 </button>
@@ -391,17 +399,19 @@ Client Mobile Contact: ${phone}`;
                   key={cp.id}
                   type="button"
                   onClick={() => setSelectedPlanId(cp.id)}
-                  className={`p-5 rounded-3xl border-2 text-left transition-all ${
+                  className={`p-6 border text-left transition-colors flex flex-col justify-between ${
                     selectedPlanId === cp.id 
-                      ? 'bg-white border-black text-slate-900 shadow-lg' 
-                      : 'bg-white border-black/5 hover:bg-slate-100 text-slate-700'
+                      ? 'bg-primary/5 border-primary shadow-sm' 
+                      : 'bg-foreground/5 border-foreground/10 hover:border-primary'
                   }`}
                 >
-                  <span className={`text-[10px] font-semibold uppercase tracking-wider ${selectedPlanId === cp.id ? 'text-orange-400' : 'text-orange-600 bg-orange-500/5 px-2.5 py-0.5 rounded-full'}`}>
+                  <span className={`font-heading text-[10px] font-bold uppercase tracking-widest ${selectedPlanId === cp.id ? 'text-primary' : 'text-foreground/50'}`}>
                     Rs {cp.price.toLocaleString('en-IN')}
                   </span>
-                  <h4 className="font-semibold text-sm mt-3 text-left">{cp.name}</h4>
-                  <p className={`text-[11px] mt-1 leading-normal text-left ${selectedPlanId === cp.id ? 'text-slate-900/60' : 'text-stone-500'}`}>
+                  <div className="mt-6 mb-4">
+                    <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">{cp.name}</h4>
+                  </div>
+                  <p className="text-xs font-medium leading-relaxed text-foreground/60 border-t border-foreground/10 pt-4">
                     {cp.tagline}
                   </p>
                 </button>
@@ -410,30 +420,30 @@ Client Mobile Contact: ${phone}`;
 
             {/* 2. Custom Rate Card Add-ons Selector */}
             {activeTrack !== 'seo' && (
-              <div className="p-6 sm:p-8 rounded-[40px] bg-white border border-black/[0.03] space-y-6 text-left">
-                <h3 className="text-base font-semibold text-black text-left flex items-center gap-2">
-                  <Layers size={18} className="text-orange-500" />
-                  Customize Package with Addons
+              <div className="p-8 bg-foreground/5 border border-foreground/10 space-y-8 text-left">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground flex items-center gap-3">
+                  <Layers size={24} className="text-primary" />
+                  Package Addons
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-black/[0.03]">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-6 border-t border-foreground/10">
                   
                   {/* Extra pages */}
-                  <div className="space-y-2 text-left">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Add Extra Pages (Rs 1500/pg)</span>
-                    <div className="flex items-center gap-3">
+                  <div className="space-y-4 text-left">
+                    <span className="font-heading text-[10px] uppercase font-bold tracking-widest text-foreground/50 block">Extra Pages (Rs 1500/pg)</span>
+                    <div className="flex items-center gap-4 bg-background border border-foreground/20 p-1">
                       <button
                         type="button"
                         onClick={() => setExtraPagesCount(prev => Math.max(0, prev - 1))}
-                        className="h-8 w-8 rounded-lg bg-slate-100 border hover:bg-slate-200 font-semibold text-slate-900"
+                        className="h-10 w-10 bg-foreground/5 hover:bg-primary hover:text-white transition-colors font-heading text-lg font-bold text-foreground"
                       >
                         -
                       </button>
-                      <span className="text-xs font-semibold text-black w-6 text-center">{extraPagesCount}</span>
+                      <span className="font-heading text-base font-bold text-foreground w-8 text-center">{extraPagesCount}</span>
                       <button
                         type="button"
                         onClick={() => setExtraPagesCount(prev => prev + 1)}
-                        className="h-8 w-8 rounded-lg bg-slate-100 border hover:bg-slate-200 font-semibold text-slate-900"
+                        className="h-10 w-10 bg-foreground/5 hover:bg-primary hover:text-white transition-colors font-heading text-lg font-bold text-foreground"
                       >
                         +
                       </button>
@@ -441,35 +451,44 @@ Client Mobile Contact: ${phone}`;
                   </div>
 
                   {/* Logo Design inclusion */}
-                  <div className="space-y-2 text-left flex flex-col justify-center">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Logo Design Concept (+Rs 3,500)</span>
-                    <div className="flex items-center gap-2 mt-1">
+                  <div className="space-y-4 text-left flex flex-col justify-start">
+                    <span className="font-heading text-[10px] uppercase font-bold tracking-widest text-foreground/50 block">Logo Design (+Rs 3,500)</span>
+                    <label className="flex items-center gap-3 cursor-pointer group mt-2">
+                      <div className={`h-6 w-6 border transition-colors flex items-center justify-center ${includeLogo ? 'bg-primary border-primary text-white' : 'border-foreground/20 bg-background group-hover:border-primary'}`}>
+                        {includeLogo && <Check size={14} strokeWidth={3} />}
+                      </div>
                       <input
                         type="checkbox"
                         checked={includeLogo}
                         onChange={(e) => setIncludeLogo(e.target.checked)}
-                        className="h-4 w-4 rounded border-black/10 text-orange-600 accent-orange-600 cursor-pointer"
+                        className="hidden"
                         id="logo-addon"
                       />
-                      <label htmlFor="logo-addon" className="text-xs font-semibold text-stone-600 cursor-pointer">
-                        Include Custom Logo
-                      </label>
-                    </div>
+                      <span className="font-heading text-xs font-bold uppercase tracking-widest text-foreground/70 group-hover:text-primary transition-colors">
+                        Add Logo
+                      </span>
+                    </label>
                   </div>
 
                   {/* Maintenance Support months */}
-                  <div className="space-y-2 text-left">
-                    <span className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider text-left block">Support/Maintenance (Rs 1500/mo)</span>
+                  <div className="space-y-4 text-left">
+                    <span className="font-heading text-[10px] uppercase font-bold tracking-widest text-foreground/50 block">Maintenance (Rs 1500/mo)</span>
                     <select
                       value={maintenanceMonths}
                       onChange={(e) => setMaintenanceMonths(Number(e.target.value))}
-                      className="w-full bg-white border rounded-xl py-2 px-3 text-xs text-stone-700 outline-none cursor-pointer"
+                      className="w-full bg-background border border-foreground/20 py-3 px-4 font-heading text-xs font-bold uppercase tracking-widest text-foreground outline-none cursor-pointer focus:border-primary appearance-none"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'right 16px center',
+                        backgroundSize: '12px',
+                      }}
                     >
-                      <option value={0}>No maintenance</option>
-                      <option value={1}>1 Month Support</option>
-                      <option value={3}>3 Months Support</option>
-                      <option value={6}>6 Months Support</option>
-                      <option value={12}>1 Year Maintenance</option>
+                      <option className="bg-background text-foreground" value={0}>None</option>
+                      <option className="bg-background text-foreground" value={1}>1 Month</option>
+                      <option className="bg-background text-foreground" value={3}>3 Months</option>
+                      <option className="bg-background text-foreground" value={6}>6 Months</option>
+                      <option className="bg-background text-foreground" value={12}>1 Year</option>
                     </select>
                   </div>
 
@@ -478,15 +497,15 @@ Client Mobile Contact: ${phone}`;
             )}
 
             {/* 3. Package Inclusions checkboard list */}
-            <div className="p-6 sm:p-8 rounded-[40px] bg-white border border-black/[0.03] text-left">
-              <h3 className="text-xs font-semibold text-black uppercase tracking-wider mb-4 text-left">Package Inclusions Checklist</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="p-8 bg-foreground/5 border border-foreground/10 text-left">
+              <h3 className="font-heading text-[10px] font-bold text-primary uppercase tracking-widest mb-6">Package Inclusions Checklist</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                 {plan.features.map((feat, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-left">
-                    <div className="h-4 w-4 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="text-emerald-600" size={10} />
+                  <div key={idx} className="flex items-start gap-3 text-left">
+                    <div className="h-5 w-5 bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 border border-primary/20 text-primary">
+                      <Check size={12} strokeWidth={3} />
                     </div>
-                    <span className="text-xs text-stone-600 text-left">{feat}</span>
+                    <span className="text-sm font-medium text-foreground/80 leading-relaxed">{feat}</span>
                   </div>
                 ))}
               </div>
@@ -495,82 +514,83 @@ Client Mobile Contact: ${phone}`;
           </div>
 
           {/* Right panel: Summary, Price displays, & Lead form */}
-          <div className="lg:col-span-4 rounded-[40px] bg-slate-900 border border-black/5 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(249,115,22,0.15),transparent_60%)]" />
+          <div className="lg:col-span-4 bg-primary border border-foreground/10 text-white p-8 flex flex-col justify-between relative overflow-hidden h-fit sticky top-24">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--tw-gradient-stops))] from-background/20 via-transparent to-transparent opacity-50" />
             
-            <div className="relative space-y-6 text-left">
+            <div className="relative space-y-8 text-left z-10">
               <div>
-                <span className="inline-flex items-center gap-1 rounded bg-orange-600 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white">
+                <span className="inline-flex items-center gap-2 bg-background px-3 py-1 font-heading text-[9px] font-bold uppercase tracking-widest text-foreground">
                   {plan.period === 'Month' ? 'Monthly Plan' : plan.period === 'Saver Package' ? 'Saver Bundle' : 'Fixed Cost'}
                 </span>
-                <h3 className="text-lg font-semibold text-white mt-2 text-left">{plan.name}</h3>
-                <p className="text-[11px] text-white/55 mt-0.5 text-left">{plan.tagline}</p>
+                <h3 className="font-heading text-3xl font-bold uppercase tracking-tight text-white mt-6 text-left">{plan.name}</h3>
+                <p className="text-sm font-medium text-white/70 mt-2 leading-relaxed">{plan.tagline}</p>
               </div>
 
               {/* Exact pricing summary */}
-              <div className="py-5 border-y border-white/10 space-y-1.5 text-left">
-                <span className="text-[10px] uppercase text-white/45 tracking-wider block text-left">Your Estimated Quotation</span>
-                <div className="text-3xl font-semibold text-white text-left">
+              <div className="py-8 border-y border-white/20 space-y-3 text-left">
+                <span className="font-heading text-[10px] uppercase font-bold text-white/50 tracking-widest block text-left">Estimated Quotation</span>
+                <div className="font-heading text-5xl font-bold tracking-tighter text-white text-left">
                   Rs {totalEstimate.toLocaleString('en-IN')}
-                  {plan.period === 'Month' && <span className="text-sm text-white/45 font-medium"> / Month</span>}
+                  {plan.period === 'Month' && <span className="text-2xl text-white/50">/MO</span>}
                 </div>
-                <div className="text-[10px] text-orange-400 font-semibold flex items-center gap-1.5 text-left pt-1">
-                  <Clock size={11} /> Est. Delivery: {plan.timeline}
+                <div className="font-heading text-[10px] text-background font-bold uppercase tracking-widest flex items-center gap-2 text-left pt-4">
+                  <Clock size={12} /> EST. DELIVERY: {plan.timeline}
                 </div>
               </div>
 
               {/* Booking Request Lead Capture */}
               {!submitted ? (
-                <form onSubmit={handleLeadSubmit} className="space-y-3 pt-2">
-                  <div className="text-left">
-                    <h4 className="text-xs font-semibold text-white uppercase tracking-wider text-left">Request Rates Copy</h4>
-                    <p className="text-[10px] text-white/45 mt-0.5 text-left">Get a detailed PDF brochure sent to your phone!</p>
+                <form onSubmit={handleLeadSubmit} className="space-y-4 pt-2">
+                  <div className="text-left mb-6">
+                    <h4 className="font-heading text-xl font-bold text-white uppercase tracking-tight text-left">Request Quotation</h4>
+                    <p className="text-xs font-medium text-white/60 mt-2 text-left">Get a detailed PDF brochure sent to your phone!</p>
                   </div>
 
                   <input
                     type="text"
                     required
-                    placeholder="Full Name *"
+                    placeholder="Full Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
+                    className="w-full border-b border-white/30 bg-transparent py-4 text-sm font-medium text-white outline-none focus:border-white placeholder-white/40 transition-colors px-2"
                   />
 
                   <input
                     type="email"
                     required
-                    placeholder="Email Address *"
+                    placeholder="Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
+                    className="w-full border-b border-white/30 bg-transparent py-4 text-sm font-medium text-white outline-none focus:border-white placeholder-white/40 transition-colors px-2"
                   />
 
                   <input
                     type="tel"
                     required
-                    placeholder="Mobile Contact *"
+                    placeholder="Mobile Contact"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/10 py-2.5 px-3.5 text-xs text-white outline-none focus:border-orange-500/40 placeholder-white/35"
+                    className="w-full border-b border-white/30 bg-transparent py-4 text-sm font-medium text-white outline-none focus:border-white placeholder-white/40 transition-colors px-2"
                   />
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full rounded-xl bg-orange-600 hover:bg-orange-700 py-3 px-4 text-xs font-semibold text-white shadow-lg transition active:scale-[0.98] disabled:opacity-50"
+                    className="group w-full flex items-center justify-center gap-4 bg-background py-5 px-6 font-heading text-xs font-bold uppercase tracking-widest text-foreground transition-transform active:scale-[0.98] disabled:opacity-50 mt-4"
                   >
-                    {submitting ? 'Processing quote...' : 'Confirm Quote & Contact'}
+                    <span className="relative z-10">{submitting ? 'PROCESSING...' : 'CONFIRM QUOTE'}</span>
+                    {!submitting && <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />}
                   </button>
                 </form>
               ) : (
-                <div className="py-6 text-center space-y-4 animate-scale-up">
-                  <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 mx-auto">
-                    <CheckCircle size={20} />
+                <div className="py-12 text-center space-y-6 animate-scale-up">
+                  <div className="h-16 w-16 bg-background flex items-center justify-center text-foreground mx-auto">
+                    <CheckCircle size={32} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-white text-center">Quote successfully registered!</h4>
-                    <p className="text-[10px] text-white/55 max-w-xs mx-auto mt-1 leading-relaxed text-center">
-                      Our growth executive has received your specific package configurations and will reach out on {phone} to finalize!
+                    <h4 className="font-heading text-2xl font-bold uppercase tracking-tight text-white text-center">Quote Registered!</h4>
+                    <p className="text-sm font-medium text-white/70 max-w-xs mx-auto mt-4 leading-relaxed text-center">
+                      Our growth executive has received your specific package configurations and will reach out on <strong className="text-white">{phone}</strong> to finalize!
                     </p>
                   </div>
                 </div>
@@ -578,8 +598,8 @@ Client Mobile Contact: ${phone}`;
             </div>
 
             {/* Trust disclaimer */}
-            <div className="pt-6 border-t border-white/10 text-[10px] text-white/45 leading-relaxed text-left flex items-start gap-2">
-              <Lock size={12} className="text-orange-500 shrink-0 mt-0.5" />
+            <div className="pt-8 border-t border-white/20 font-heading text-[9px] font-bold uppercase tracking-widest text-white/50 leading-relaxed text-left flex items-start gap-3 relative z-10">
+              <Lock size={14} className="text-background shrink-0" />
               <span className="text-left">
                 50% advance to begin. Rest 50% on delivery before handover. Google citation results dynamic in 60-90 days.
               </span>

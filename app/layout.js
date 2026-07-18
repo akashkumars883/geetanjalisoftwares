@@ -3,8 +3,9 @@ import Script from "next/script";
 
 import { supabase } from "@/lib/supabase";
 import { Toaster } from "sonner";
-import { Outfit } from "next/font/google";
+import { Outfit, Space_Grotesk } from "next/font/google";
 import CookieConsent from "@/components/CookieConsent";
+import SmoothScroll from "@/components/SmoothScroll";
 import {
   BUSINESS_NAME,
   BUSINESS_PHONE,
@@ -18,6 +19,12 @@ import {
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
   display: "swap",
 });
 
@@ -39,7 +46,7 @@ export async function generateMetadata() {
         metadataBase,
         title: {
           default: data.site_title.slice(0, 60),
-          template: "%s",
+          template: "%s | Geetanjali Softwares",
         },
         description: (data.site_description || "").slice(0, 160),
         authors: [owner],
@@ -88,7 +95,7 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18228295735"></script>
@@ -204,8 +211,10 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-VYQ9HPXHVZ');
           `}
         </Script>
-        {children}
-        <CookieConsent />
+        <SmoothScroll>
+          {children}
+          <CookieConsent />
+        </SmoothScroll>
       </body>
     </html>
   );

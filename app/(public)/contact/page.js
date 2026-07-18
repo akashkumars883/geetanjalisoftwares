@@ -1,4 +1,4 @@
-﻿import ContactFormSection from '@/components/ContactFormSection';
+import ContactFormSection from '@/components/ContactFormSection';
 import { SITE_URL } from '@/lib/seo';
 
 export const metadata = {
@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-background pt-0">
       <ContactFormSection />
     </div>
   );

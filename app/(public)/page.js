@@ -1,18 +1,17 @@
 import ContactFormSection from "@/components/ContactFormSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
 import HeroSection from "@/components/HeroSection";
-import MarqueeSection from "@/components/MarqueeSection";
 import WhoWeAreSection from "@/components/WhoWeAreSection";
-import WebsiteBuilderCTA from "@/components/WebsiteBuilderCTA";
 import PortfolioSection from "@/components/PortfolioSection";
 import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import SEOSimulator from "@/components/SEOSimulator";
 import { SITE_URL, localBusinessSchema, organizationSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "Website Development & SEO Company in Faridabad | Geetanjali Softwares",
+  title: {
+    absolute: "Website Development & SEO Company in Faridabad | Geetanjali Softwares",
+  },
   description:
     "Geetanjali Softwares is the leading website development company and SEO agency in Faridabad & Delhi NCR. We provide custom web design, custom software development, and ROI-driven SEO solutions.",
   keywords:
@@ -102,13 +101,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
-      <MarqueeSection />
       <WhoWeAreSection />
       <ServicesSection />
-      <WebsiteBuilderCTA />
       <WhyChooseUs />
       <PortfolioSection />
-      <SEOSimulator />
       <ContactFormSection />
       <TestimonialsSection />
       <FinalCtaSection />
