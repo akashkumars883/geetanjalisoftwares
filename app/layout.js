@@ -55,6 +55,9 @@ export async function generateMetadata() {
         icons: {
           icon: "/favicon.ico",
         },
+        verification: {
+          google: "O3JtfcqMXo0kjwRW_X6JXgiskuC86Ra4vsJo9mZ1T0c",
+        },
       };
     }
   } catch (error) {
@@ -89,6 +92,9 @@ export async function generateMetadata() {
     },
     icons: {
       icon: "/favicon.ico",
+    },
+    verification: {
+      google: "O3JtfcqMXo0kjwRW_X6JXgiskuC86Ra4vsJo9mZ1T0c",
     },
   };
 }
