@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 const SERVICES_LINKS = [
   { label: 'Website Development', href: '/services/website-design-development' },
@@ -71,17 +72,10 @@ export default function Navbar() {
             {/* Premium Logo Icon */}
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 p-[1.5px] shadow-md shadow-orange-600/10 transition-all duration-300 group-hover:scale-105 group-hover:shadow-orange-600/20">
               <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-background transition-colors duration-300">
-                <svg
-                  className="h-5 w-5 text-orange-600 transition-transform duration-500 group-hover:rotate-[15deg]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+                <Logo
+                  size={20}
+                  className="text-orange-600 transition-transform duration-500 group-hover:rotate-[360deg]"
+                />
               </div>
             </div>
 
