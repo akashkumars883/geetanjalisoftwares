@@ -67,27 +67,14 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="group relative z-50 flex items-center gap-3 uppercase"
+            className="group relative z-50 flex flex-col uppercase"
           >
-            {/* Premium Logo Icon */}
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 p-[1.5px] shadow-md shadow-orange-600/10 transition-all duration-300 group-hover:scale-105 group-hover:shadow-orange-600/20">
-              <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-background transition-colors duration-300">
-                <Logo
-                  size={20}
-                  className="text-orange-600 transition-transform duration-500 group-hover:rotate-[360deg]"
-                />
-              </div>
-            </div>
-
-            {/* Logo Text */}
-            <div className="flex flex-col">
-              <span className="font-heading text-xl font-bold leading-none tracking-widest text-foreground transition-colors duration-300 group-hover:text-orange-600 md:text-2xl">
-                Geetanjali
-              </span>
-              <span className="mt-1 text-[0.55rem] font-semibold leading-none tracking-[0.45em] text-neutral-500 transition-colors duration-300 group-hover:text-foreground md:text-[0.6rem]">
-                Softwares
-              </span>
-            </div>
+            <span className="font-heading text-2xl font-black leading-none tracking-wider bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-90 md:text-3xl">
+              Geetanjali
+            </span>
+            <span className="mt-1 text-[0.55rem] font-bold leading-none tracking-[0.45em] text-neutral-500 transition-colors duration-300 group-hover:text-foreground md:text-[0.65rem]">
+              Softwares
+            </span>
           </Link>
 
           {/* Hamburger Menu Button */}
