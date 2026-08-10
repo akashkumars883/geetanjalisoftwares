@@ -66,14 +66,34 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="relative z-50 flex flex-col uppercase"
+            className="group relative z-50 flex items-center gap-3 uppercase"
           >
-            <span className="font-heading text-2xl font-bold leading-none tracking-widest text-orange-600 md:text-3xl">
-              Geetanjali
-            </span>
-            <span className="mt-1 text-[0.55rem] font-medium leading-none tracking-[0.4em] transition-colors duration-300 md:text-[0.65rem] text-foreground">
-              Softwares
-            </span>
+            {/* Premium Logo Icon */}
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 p-[1.5px] shadow-md shadow-orange-600/10 transition-all duration-300 group-hover:scale-105 group-hover:shadow-orange-600/20">
+              <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-background transition-colors duration-300">
+                <svg
+                  className="h-5 w-5 text-orange-600 transition-transform duration-500 group-hover:rotate-[15deg]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Logo Text */}
+            <div className="flex flex-col">
+              <span className="font-heading text-xl font-bold leading-none tracking-widest text-foreground transition-colors duration-300 group-hover:text-orange-600 md:text-2xl">
+                Geetanjali
+              </span>
+              <span className="mt-1 text-[0.55rem] font-semibold leading-none tracking-[0.45em] text-neutral-500 transition-colors duration-300 group-hover:text-foreground md:text-[0.6rem]">
+                Softwares
+              </span>
+            </div>
           </Link>
 
           {/* Hamburger Menu Button */}
