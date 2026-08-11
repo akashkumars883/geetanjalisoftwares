@@ -26,7 +26,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative flex h-auto sm:h-screen w-full flex-col justify-start overflow-hidden bg-background pt-0 pb-20 sm:pt-4 sm:pb-12">
+    <section className="relative flex h-auto sm:h-screen w-full flex-col justify-start overflow-hidden bg-background pt-8 pb-20 sm:pt-16 md:pt-24 lg:pt-36 sm:pb-12">
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <motion.div

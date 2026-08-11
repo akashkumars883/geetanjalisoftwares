@@ -1,0 +1,48 @@
+# Geetanjali Softwares
+
+> Technology & Growth Partner engineering digital futures with custom websites, high-performance web applications, SEO, and growth-oriented digital marketing.
+
+## Core Offerings
+
+### 1. Custom Website Design & Development
+We design and develop fast, secure, mobile-responsive business websites and landing pages optimized for maximum lead conversion.
+- Custom Business Websites
+- Professional Website Redesign
+- E-commerce Development (Custom & Shopify)
+- WordPress Development & Custom CMS setups
+- Single/Multi-page Landing Pages for Campaigns
+
+### 2. Search Engine Optimization (SEO) & Search Growth
+We deploy advanced organic search strategies to help brands rank higher on Google, capture high-intent search traffic, and drive leads.
+- On-page & Technical SEO optimization
+- Keyword Research & Strategy
+- Content Marketing & Topical Authority building
+- Local SEO & Google Business Profile optimization (focusing on Faridabad, Delhi-NCR, Noida, Gurgaon, and Delhi)
+
+### 3. Custom Web Applications
+For requirements that go beyond static pages, we build high-performance web tools, dashboards, and custom backend APIs.
+- Next.js and Supabase Web Apps
+- API Integration & Automation
+- Custom database schemas & user systems
+
+### 4. Digital Marketing & Paid Acquisition
+We plan and execute marketing campaigns across multiple paid search channels, optimizing for cost-per-lead (CPL) and return on ad spend (ROAS).
+- Google Ads PPC Management
+- Social Media Marketing (Instagram, LinkedIn, Facebook, X)
+
+---
+
+## Primary Navigation & Sitemap Paths
+
+All paths are relative to the base domain: `https://www.geetanjalisoftwares.in`
+
+- **Homepage**: `/` (Start projects, CTA form, core introduction)
+- **About**: `/about` (Company details, mission, and focus)
+- **Services**: `/services` (Detailed listing of development and marketing services)
+- **Portfolio**: `/portfolio` (Case studies and previous project showcases)
+- **Pricing**: `/pricing` (Transparent cost structures for projects and plans)
+- **Tools**: `/tools` (Free utility tools built for clients and visitors)
+- **Blogs**: `/blogs` (SEO and growth guides, industry news, tech articles)
+- **Contact**: `/contact` (Get in touch, location details, query forms)
+- **Careers**: `/careers` (Join the engineering and marketing team)
+- **Studio**: `https://studio.geetanjalisoftwares.in` (Our digital builder environment)
