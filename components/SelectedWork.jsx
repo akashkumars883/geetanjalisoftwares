@@ -81,12 +81,13 @@ export default function SelectedWork() {
           </h2>
         </div>
 
-        {/* Asymmetric Asymmetric Grid Layout */}
+        {/* Asymmetric Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {projects.map((project, index) => (
-            <article
+            <Link
               key={index}
-              className={`group relative w-full overflow-hidden rounded-md border border-stone-100 hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer ${project.gridClass}`}
+              href={project.href}
+              className={`group relative w-full overflow-hidden rounded-xl border border-stone-100 hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer block ${project.gridClass}`}
             >
               {/* Background Image */}
               <img
@@ -98,23 +99,24 @@ export default function SelectedWork() {
               />
 
               {/* Initial Gradient Overlay (Bottom dark fade to read title) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-all duration-500 md:group-hover:opacity-0" />
 
-              {/* Initial Title Display (Visible by default, fades on hover) */}
-              <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex items-end justify-between transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
-                <div className="space-y-1">
+              {/* Initial Title Display (Visible by default on mobile, fades on hover on desktop) */}
+              <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex items-end justify-between transition-all duration-500 md:group-hover:opacity-0 md:group-hover:translate-y-4">
+                <div className="space-y-1.5 max-w-[85%]">
                   <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">
                     {project.category}
                   </span>
-                  <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight">{project.title}</h3>
+                  <p className="text-xs text-zinc-300 line-clamp-2 md:hidden pt-0.5 font-light">{project.description}</p>
                 </div>
-                <span className="h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center">
-                  <ArrowUpRight className="h-4 w-4" />
+                <span className="h-9 w-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black transition-colors">
+                  <ArrowUpRight className="h-4.5 w-4.5" />
                 </span>
               </div>
 
-              {/* Hover Overlay Content (Slides up/fades in on hover) */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 space-y-4 translate-y-8 group-hover:translate-y-0 z-20 text-left">
+              {/* Desktop Hover Overlay Content */}
+              <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 space-y-4 translate-y-8 md:group-hover:translate-y-0 z-20 text-left pointer-events-none">
                 {/* Header inside Hover State */}
                 <div className="flex items-center justify-between text-white border-b border-white/10 pb-2">
                   <div className="space-y-0.5">
@@ -123,13 +125,12 @@ export default function SelectedWork() {
                     </span>
                     <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
                   </div>
-                  <Link
-                    href={project.href}
+                  <span
                     aria-label={`View case study for ${project.title}`}
-                    className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
+                    className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-105 transition-transform"
                   >
                     <ArrowUpRight className="h-4 w-4" />
-                  </Link>
+                  </span>
                 </div>
 
                 {/* Description */}
@@ -150,7 +151,7 @@ export default function SelectedWork() {
                   ))}
                 </ul>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

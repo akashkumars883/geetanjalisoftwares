@@ -128,6 +128,8 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveDropdown("services")}
               >
                 <button
+                  type="button"
+                  onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")}
                   className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
                 >
                   Services
@@ -141,6 +143,8 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveDropdown("solutions")}
               >
                 <button
+                  type="button"
+                  onClick={() => setActiveDropdown(activeDropdown === "solutions" ? null : "solutions")}
                   className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
                 >
                   Solutions
@@ -175,8 +179,9 @@ export default function Navbar() {
 
             {/* Hamburger Icon */}
             <button
+              type="button"
               onClick={() => setIsMobileOpen(true)}
-              className="md:hidden p-2 text-stone-800 hover:text-black transition-colors focus:outline-none"
+              className="md:hidden p-2 text-stone-800 hover:text-black transition-colors focus:outline-none cursor-pointer"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -199,6 +204,7 @@ export default function Navbar() {
                         <Link
                           key={i}
                           href={item.href}
+                          onClick={() => setActiveDropdown(null)}
                           className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors hover:translate-x-1 duration-200 transform inline-block"
                         >
                           {item.name}
@@ -228,6 +234,7 @@ export default function Navbar() {
                         <Link
                           key={i}
                           href={item.href}
+                          onClick={() => setActiveDropdown(null)}
                           className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors hover:translate-x-1 duration-200 transform inline-block"
                         >
                           {item.name}
@@ -268,6 +275,7 @@ export default function Navbar() {
             
             {/* Close button */}
             <button
+              type="button"
               onClick={() => setIsMobileOpen(false)}
               className="p-2 text-stone-800 hover:text-black focus:outline-none"
             >
@@ -288,14 +296,18 @@ export default function Navbar() {
             {/* Services Accordion (Mobile) */}
             <div className="border-b border-stone-50 pb-2">
               <button
-                onClick={() => toggleMobileTab("services")}
-                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-1.5 focus:outline-none text-left"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleMobileTab("services");
+                }}
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-lg px-1 transition-colors"
               >
                 <span>Services</span>
-                <ChevronDown className={`h-4.5 w-4.5 transition-transform ${mobileActiveTab === "services" ? "rotate-180 text-orange-600" : ""}`} />
+                <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileActiveTab === "services" ? "rotate-180 text-orange-600" : ""}`} />
               </button>
               {mobileActiveTab === "services" && (
-                <div className="pl-4 pt-3 flex flex-col gap-4">
+                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-xl p-3 my-1">
                   {servicesMenu.map((group, idx) => (
                     <div key={idx} className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
@@ -304,7 +316,7 @@ export default function Navbar() {
                           key={i}
                           href={item.href}
                           onClick={() => setIsMobileOpen(false)}
-                          className="text-sm font-semibold text-stone-600 hover:text-black"
+                          className="text-sm font-semibold text-stone-700 hover:text-orange-600 py-1"
                         >
                           {item.name}
                         </Link>
@@ -318,14 +330,18 @@ export default function Navbar() {
             {/* Solutions Accordion (Mobile) */}
             <div className="border-b border-stone-50 pb-2">
               <button
-                onClick={() => toggleMobileTab("solutions")}
-                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-1.5 focus:outline-none text-left"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleMobileTab("solutions");
+                }}
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-lg px-1 transition-colors"
               >
                 <span>Solutions</span>
-                <ChevronDown className={`h-4.5 w-4.5 transition-transform ${mobileActiveTab === "solutions" ? "rotate-180 text-orange-600" : ""}`} />
+                <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileActiveTab === "solutions" ? "rotate-180 text-orange-600" : ""}`} />
               </button>
               {mobileActiveTab === "solutions" && (
-                <div className="pl-4 pt-3 flex flex-col gap-4">
+                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-xl p-3 my-1">
                   {solutionsMenu.map((group, idx) => (
                     <div key={idx} className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
@@ -334,7 +350,7 @@ export default function Navbar() {
                           key={i}
                           href={item.href}
                           onClick={() => setIsMobileOpen(false)}
-                          className="text-sm font-semibold text-stone-600 hover:text-black"
+                          className="text-sm font-semibold text-stone-700 hover:text-orange-600 py-1"
                         >
                           {item.name}
                         </Link>

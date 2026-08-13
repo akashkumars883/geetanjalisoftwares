@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
@@ -15,6 +16,7 @@ export default function LayoutWrapper({ children }) {
 
   return (
     <SmoothScrollProvider>
+      <CustomCursor />
       <Navbar />
       <div className="flex-1 flex flex-col">{children}</div>
       <Footer />
