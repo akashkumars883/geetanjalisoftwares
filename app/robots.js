@@ -2,15 +2,18 @@ export default function robots() {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/dashboard/', '/leads/', '/settings/', '/api/', '/diag/', '/login'],
+        userAgent: "*",
+        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        disallow: ["/api/", "/_next/", "/admin/"],
       },
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'CCBot', 'Google-Extended'],
-        allow: '/',
-      }
+        userAgent: "Googlebot",
+        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        disallow: ["/api/", "/_next/"],
+        crawlDelay: 2,
+      },
     ],
-    sitemap: 'https://www.geetanjalisoftwares.in/sitemap.xml',
-  }
+    sitemap: "https://geetanjalisoftwares.com/sitemap.xml",
+    host: "https://geetanjalisoftwares.com",
+  };
 }

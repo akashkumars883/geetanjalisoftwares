@@ -1,82 +1,102 @@
-import { supabase } from '@/lib/supabase';
-import { services } from '@/lib/services';
+import { getBlogPosts } from "@/lib/blogData";
+import { PORTFOLIO_PROJECTS } from "@/lib/portfolioData";
 
 export default async function sitemap() {
-  const baseUrl = 'https://www.geetanjalisoftwares.in';
-  const studioUrl = 'https://studio.geetanjalisoftwares.in';
+  const BASE_URL = "https://geetanjalisoftwares.com";
+  const now = new Date().toISOString();
 
-  // Fetch blogs from Supabase
-  const { data: blogs } = await supabase
-    .from('blogs')
-    .select('slug, updated_at, created_at')
-    .eq('is_published', true);
-
-  const blogUrls = (blogs || []).map((blog) => ({
-    url: `${baseUrl}/blogs/${blog.slug}`,
-    lastModified: new Date(blog.updated_at || blog.created_at),
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
-
-  // Map services to URLs
-  const serviceUrls = services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
-
-  const staticUrls = [
-    '',
-    '/about',
-    '/services',
-    '/contact',
-    '/portfolio',
-    '/pricing',
-    '/tools',
-    '/blogs',
-    '/authors/akash',
-    '/locations',
-    '/careers',
-    '/privacy',
-    '/terms',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: route === '' ? 1 : 0.8,
-  }));
-
-  const studioEntry = {
-    url: studioUrl,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 1,
-  };
-
-  // Programmatic Cities list for Multi-City Local SEO Indexing
-  const targetCities = [
-    'faridabad', 'delhi-ncr', 'delhi', 'noida', 'gurgaon'
+  // Static core pages
+  const staticPages = [
+    { url: BASE_URL, priority: 1.0, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/about`, priority: 0.8, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/case-studies`, priority: 0.85, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/pricing`, priority: 0.7, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/contact`, priority: 0.9, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "daily" },
+    { url: `${BASE_URL}/privacy-policy`, priority: 0.5, changeFrequency: "yearly" },
+    { url: `${BASE_URL}/terms-of-service`, priority: 0.5, changeFrequency: "yearly" },
+    { url: `${BASE_URL}/refund-policy`, priority: 0.5, changeFrequency: "yearly" },
+    { url: `${BASE_URL}/sitemap`, priority: 0.6, changeFrequency: "monthly" },
   ];
 
-  const locationUrls = targetCities.map((city) => ({
-    url: `${baseUrl}/locations/${city}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
+  // Case Study pages
+  const caseStudyPages = PORTFOLIO_PROJECTS.map((project) => ({
+    url: `${BASE_URL}/case-studies/${project.slug}`,
     priority: 0.8,
+    changeFrequency: "monthly",
   }));
 
-  // Fetch all generated user websites from Supabase
-  const { data: userWebsites } = await supabase
-    .from('user_websites')
-    .select('subdomain, updated_at, created_at');
+  // Fetch ALL blog posts directly from Supabase (Includes current & all future published blogs)
+  let blogPosts = [];
+  try {
+    blogPosts = await getBlogPosts();
+  } catch (e) {
+    console.error("Error loading blog posts for sitemap:", e);
+  }
 
-  const userWebsiteUrls = (userWebsites || []).map((site) => ({
-    url: `https://${site.subdomain}.geetanjalisoftwares.in`,
-    lastModified: new Date(site.updated_at || site.created_at),
-    changeFrequency: 'weekly',
+  const blogPages = blogPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    priority: 0.8,
+    changeFrequency: "weekly",
+  }));
+
+  // Services pages
+  const servicesSlugs = [
+    "business-website",
+    "web-applications",
+    "landing-pages",
+    "ecommerce",
+    "branding",
+    "seo",
+    "local-seo",
+    "ecommerce-seo",
+    "technical-seo",
+    "content-strategist",
+    "ai-chatbot",
+    "business-automation",
+    "crm-custom-software",
+    "api-integration",
+  ];
+
+  const servicePages = servicesSlugs.map((slug) => ({
+    url: `${BASE_URL}/services/${slug}`,
     priority: 0.9,
+    changeFrequency: "monthly",
   }));
 
-  return [...staticUrls, studioEntry, ...serviceUrls, ...blogUrls, ...locationUrls, ...userWebsiteUrls];
+  // Solutions pages
+  const solutionsSlugs = [
+    "ecommerce-retail",
+    "healthcare-medical",
+    "real-estate",
+    "fintech-finance",
+    "edtech-education",
+    "startups-mvp",
+    "smb",
+    "enterprise",
+    "customer-portals",
+    "inventory-systems",
+    "business-intelligence",
+    "cloud-saas",
+  ];
+
+  const solutionPages = solutionsSlugs.map((slug) => ({
+    url: `${BASE_URL}/solutions/${slug}`,
+    priority: 0.85,
+    changeFrequency: "monthly",
+  }));
+
+  // Combine all and add lastModified
+  const allPages = [
+    ...staticPages,
+    ...caseStudyPages,
+    ...blogPages,
+    ...servicePages,
+    ...solutionPages,
+  ].map((page) => ({
+    ...page,
+    lastModified: now,
+  }));
+
+  return allPages;
 }

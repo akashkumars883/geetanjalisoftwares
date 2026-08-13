@@ -1,95 +1,54 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactCompiler: true,
   images: {
-    domains: [
-      'juvkrpmrmjhhbnhxuwmd.supabase.co',
-      'images.unsplash.com',
-      'pixabay.com',
-    ],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'juvkrpmrmjhhbnhxuwmd.supabase.co',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
       {
-        protocol: 'https',
-        hostname: '*.supabase.co',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "plus.unsplash.com",
       },
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.googleusercontent.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.cloudinary.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.imgur.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'pixabay.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "*.supabase.co",
       },
     ],
   },
-
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
-          },
-        ],
-      },
-    ];
-  },
-
   async redirects() {
     return [
       {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'geetanjalisoftwares.in' }],
-        destination: 'https://www.geetanjalisoftwares.in/:path*',
+        source: "/blogs",
+        destination: "/blog",
         permanent: true,
       },
-    ]
+      {
+        source: "/blogs/:slug*",
+        destination: "/blog/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/portfolio",
+        destination: "/case-studies",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/:slug*",
+        destination: "/case-studies/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/privacy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
+      {
+        source: "/terms",
+        destination: "/terms-of-service",
+        permanent: true,
+      },
+    ];
   },
 };
 

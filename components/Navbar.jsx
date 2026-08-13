@@ -1,185 +1,375 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import Logo from '@/components/Logo';
-
-const SERVICES_LINKS = [
-  { label: 'Website Development', href: '/services/website-design-development' },
-  { label: 'Digital Marketing', href: '/services/digital-marketing' },
-  { label: 'SEO', href: '/services/digital-marketing/seo' },
-  { label: 'Google Ads', href: '/services/digital-marketing/google-ads-ppc' },
-];
-
-const SOLUTIONS_LINKS = [
-  { label: 'Small Businesses', href: '/solutions/small-businesses' },
-  { label: 'Healthcare', href: '/solutions/healthcare' },
-  { label: 'Education', href: '/solutions/education' },
-  { label: 'Real Estate', href: '/solutions/real-estate' },
-];
-
-const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '#', subLinks: SERVICES_LINKS },
-  { label: 'Solutions', href: '#', subLinks: SOLUTIONS_LINKS },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'services', 'solutions', or null
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mobileActiveTab, setMobileActiveTab] = useState(null); // 'services', 'solutions', or null
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
 
+  // Monitor scroll height to toggle crisp shadow
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-      // Reset dropdown when menu closes
-      setTimeout(() => setOpenDropdown(null), 500);
-    }
-  }, [isOpen]);
+  const servicesMenu = [
+    {
+      title: "Development",
+      items: [
+        { name: "Business Website", href: "/services/business-website" },
+        { name: "Web Applications", href: "/services/web-applications" },
+        { name: "Landing Pages", href: "/services/landing-pages" },
+        { name: "E-Commerce", href: "/services/ecommerce" },
+      ],
+    },
+    {
+      title: "Growth",
+      items: [
+        { name: "SEO", href: "/services/seo" },
+        { name: "Local SEO", href: "/services/local-seo" },
+        { name: "Ecommerce SEO Service", href: "/services/ecommerce-seo" },
+        { name: "Technical SEO Services", href: "/services/technical-seo" },
+        { name: "Content Strategist", href: "/services/content-strategist" },
+      ],
+    },
+    {
+      title: "Technology",
+      items: [
+        { name: "AI Chatbot", href: "/services/ai-chatbot" },
+        { name: "Business Automation", href: "/services/business-automation" },
+        { name: "CRM / Custom Software", href: "/services/crm-custom-software" },
+        { name: "API Integration", href: "/services/api-integration" },
+      ],
+    },
+  ];
 
-  const toggleDropdown = (label) => {
-    setOpenDropdown(openDropdown === label ? null : label);
+  const solutionsMenu = [
+    {
+      title: "Industries",
+      items: [
+        { name: "E-Commerce & Retail", href: "/solutions/ecommerce-retail" },
+        { name: "Healthcare & Medical", href: "/solutions/healthcare-medical" },
+        { name: "Real Estate & Property", href: "/solutions/real-estate" },
+        { name: "FinTech & Finance", href: "/solutions/fintech-finance" },
+        { name: "EdTech & Education", href: "/solutions/edtech-education" },
+      ],
+    },
+    {
+      title: "Business Size",
+      items: [
+        { name: "Startups & MVPs", href: "/solutions/startups-mvp" },
+        { name: "Small & Medium Business", href: "/solutions/smb" },
+        { name: "Enterprise Solutions", href: "/solutions/enterprise" },
+      ],
+    },
+    {
+      title: "Custom Systems",
+      items: [
+        { name: "Customer Portals", href: "/solutions/customer-portals" },
+        { name: "Inventory Systems", href: "/solutions/inventory-systems" },
+        { name: "Business Intelligence", href: "/solutions/business-intelligence" },
+        { name: "Cloud SaaS Platforms", href: "/solutions/cloud-saas" },
+      ],
+    },
+  ];
+
+  const toggleMobileTab = (tab) => {
+    setMobileActiveTab(mobileActiveTab === tab ? null : tab);
   };
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md py-4' : 'bg-transparent py-6'
-          }`}
+      <nav 
+        className={`fixed top-0 left-0 w-full z-50 px-6 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-stone-200/60 ${
+          isScrolled 
+            ? "py-3.5 shadow-sm" 
+            : "py-4.5"
+        }`}
+        onMouseLeave={() => setActiveDropdown(null)}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className="group relative z-50 flex flex-col uppercase"
-          >
-            <span className="font-heading text-2xl font-black leading-none tracking-wider bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-90 md:text-3xl">
-              Geetanjali
-            </span>
-            <span className="mt-1 text-[0.55rem] font-bold leading-none tracking-[0.45em] text-neutral-500 transition-colors duration-300 group-hover:text-foreground md:text-[0.65rem]">
-              Softwares
-            </span>
-          </Link>
+        {/* Navbar Container */}
+        <div className="max-w-7xl mx-auto flex items-center justify-between relative">
+          {/* Left Brand Logo & Menu Items */}
+          <div className="flex items-center gap-10">
+            {/* Logo Only */}
+            <Link href="/" className="flex items-center group">
+              <div className="h-9.5 w-9.5 overflow-hidden group-hover:scale-105 transition-transform duration-300 relative">
+                <img
+                  src="/logo.png"
+                  alt="Geetanjali Softwares Logo"
+                  className="h-full w-full object-contain -rotate-12 transition-all duration-300"
+                />
+              </div>
+            </Link>
 
-          {/* Hamburger Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`group relative z-50 flex h-12 w-12 flex-col items-center justify-center gap-[6px] rounded-full bg-background transition-colors hover:border-primary focus:outline-none ${isOpen ? 'bg-primary border-primary' : ''}`}
-            aria-label="Toggle Menu"
-          >
-            <span
-              className={`h-[2px] transition-all duration-300 ${isOpen ? 'w-6 translate-y-[8px] rotate-45 bg-background' : 'w-8 bg-foreground group-hover:w-6 group-hover:bg-primary'
-                }`}
-            />
-            <span
-              className={`h-[2px] transition-all duration-300 ${isOpen ? 'w-0 opacity-0 bg-background' : 'w-8 bg-foreground group-hover:bg-primary'
-                }`}
-            />
-            <span
-              className={`h-[2px] transition-all duration-300 ${isOpen ? 'w-6 -translate-y-[8px] -rotate-45 bg-background' : 'w-8 bg-foreground group-hover:w-10 group-hover:bg-primary'
-                }`}
-            />
-          </button>
-        </div>
-      </header>
+            {/* Desktop Menu Items */}
+            <div className="hidden md:flex items-center gap-6.5">
+              <Link
+                href="/"
+                className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors"
+              >
+                Home
+              </Link>
 
-      {/* Full Screen Overlay Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, clipPath: 'circle(0% at 100% 0)' }}
-            animate={{ opacity: 1, clipPath: 'circle(150% at 100% 0)' }}
-            exit={{ opacity: 0, clipPath: 'circle(0% at 100% 0)' }}
-            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 flex flex-col bg-background px-6 pt-32 pb-24 text-foreground lg:px-12 overflow-y-auto scrollbar-hide"
-          >
-            <nav className="mx-auto flex w-full max-w-7xl flex-col gap-3 md:gap-6 mt-auto mb-auto">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 50, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.2, ease: 'easeOut' }}
-                  className="flex flex-col"
+              {/* Services Mega Link */}
+              <div 
+                className="relative py-2"
+                onMouseEnter={() => setActiveDropdown("services")}
+              >
+                <button
+                  className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
                 >
-                  {link.subLinks ? (
-                    <>
-                      <button
-                        onClick={() => toggleDropdown(link.label)}
-                        className="group flex items-center justify-between w-full md:justify-start gap-4 font-heading text-4xl font-bold uppercase tracking-tighter md:text-7xl"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span className="text-lg font-light text-foreground/50 md:text-2xl">
-                            0{i + 1}
-                          </span>
-                          <span className="transition-transform duration-500 group-hover:translate-x-6 hover:text-orange-600">
-                            {link.label}
-                          </span>
-                        </div>
-                        <ChevronDown
-                          size={32}
-                          className={`transition-transform duration-300 md:ml-8 ${openDropdown === link.label ? 'rotate-180 text-orange-600' : 'text-foreground/50'}`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {openDropdown === link.label && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="flex flex-col gap-3 pl-12 md:pl-20 pt-4 overflow-hidden"
-                          >
-                            {link.subLinks.map((sub) => (
-                              <Link
-                                key={sub.label}
-                                href={sub.href}
-                                onClick={() => setIsOpen(false)}
-                                className="text-xl md:text-3xl font-heading uppercase font-medium text-foreground/70 hover:text-orange-600 transition-colors"
-                              >
-                                {sub.label}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="group flex items-center gap-4 font-heading text-4xl font-bold uppercase tracking-tighter md:text-7xl"
-                    >
-                      <span className="text-lg font-light text-foreground/50 md:text-2xl">
-                        0{i + 1}
-                      </span>
-                      <span className="transition-transform duration-500 group-hover:translate-x-6 hover:text-orange-600">
-                        {link.label}
-                      </span>
-                    </Link>
-                  )}
-                </motion.div>
+                  Services
+                  <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${activeDropdown === "services" ? "rotate-180 text-orange-600" : ""}`} />
+                </button>
+              </div>
+
+              {/* Solutions Mega Link */}
+              <div 
+                className="relative py-2"
+                onMouseEnter={() => setActiveDropdown("solutions")}
+              >
+                <button
+                  className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
+                >
+                  Solutions
+                  <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${activeDropdown === "solutions" ? "rotate-180 text-orange-600" : ""}`} />
+                </button>
+              </div>
+
+              {[
+                { name: "Case Studies", href: "/case-studies" },
+                { name: "Pricing", href: "/pricing" },
+                { name: "About", href: "/about" },
+              ].map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-semibold text-stone-700 hover:text-orange-600 transition-colors"
+                >
+                  {link.name}
+                </Link>
               ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Right Action Button (Desktop) & Hamburger (Mobile) */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/contact"
+              className="hidden md:inline-flex px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shadow-sm hover:scale-[1.02]"
+            >
+              Start a Project
+            </Link>
+
+            {/* Hamburger Icon */}
+            <button
+              onClick={() => setIsMobileOpen(true)}
+              className="md:hidden p-2 text-stone-800 hover:text-black transition-colors focus:outline-none"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Floating Mega Dropdown Panel for Services (Desktop) */}
+          {activeDropdown === "services" && (
+            <div 
+              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-2xl text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
+              onMouseEnter={() => setActiveDropdown("services")}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {servicesMenu.map((column, idx) => (
+                  <div key={idx} className="flex flex-col gap-4 text-left">
+                    <h4 className="text-xs font-bold text-orange-600 uppercase tracking-widest border-b border-stone-100 pb-2">
+                      {column.title}
+                    </h4>
+                    <div className="flex flex-col gap-3">
+                      {column.items.map((item, i) => (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors hover:translate-x-1 duration-200 transform inline-block"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Floating Mega Dropdown Panel for Solutions (Desktop) */}
+          {activeDropdown === "solutions" && (
+            <div 
+              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-2xl text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
+              onMouseEnter={() => setActiveDropdown("solutions")}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {solutionsMenu.map((column, idx) => (
+                  <div key={idx} className="flex flex-col gap-4 text-left">
+                    <h4 className="text-xs font-bold text-orange-600 uppercase tracking-widest border-b border-stone-100 pb-2">
+                      {column.title}
+                    </h4>
+                    <div className="flex flex-col gap-3">
+                      {column.items.map((item, i) => (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors hover:translate-x-1 duration-200 transform inline-block"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Blurred screen backdrop behind the open mobile menu */}
+      {isMobileOpen && (
+        <div 
+          className="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-50 md:hidden animate-fade-in"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
+      {/* Slide-down Mobile Menu from the top */}
+      {isMobileOpen && (
+        <div className="fixed top-0 left-0 w-full bg-white z-50 md:hidden shadow-2xl border-b border-stone-100 animate-slide-down max-h-[90vh] overflow-y-auto">
+          {/* Header inside open menu (with logo and close button) */}
+          <div className="flex items-center justify-between py-5 px-6 border-b border-stone-100">
+            {/* Logo */}
+            <Link href="/" onClick={() => setIsMobileOpen(false)} className="flex items-center">
+              <div className="h-9.5 w-9.5 overflow-hidden relative">
+                <img
+                  src="/logo.png"
+                  alt="Geetanjali Softwares Logo"
+                  className="h-full w-full object-contain -rotate-12"
+                />
+              </div>
+            </Link>
+            
+            {/* Close button */}
+            <button
+              onClick={() => setIsMobileOpen(false)}
+              className="p-2 text-stone-800 hover:text-black focus:outline-none"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Menu Items List */}
+          <div className="flex flex-col gap-5 py-6 px-6 text-left">
+            <Link
+              href="/"
+              onClick={() => setIsMobileOpen(false)}
+              className="text-base font-bold text-stone-800 py-1.5 border-b border-stone-50"
+            >
+              Home
+            </Link>
+
+            {/* Services Accordion (Mobile) */}
+            <div className="border-b border-stone-50 pb-2">
+              <button
+                onClick={() => toggleMobileTab("services")}
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-1.5 focus:outline-none text-left"
+              >
+                <span>Services</span>
+                <ChevronDown className={`h-4.5 w-4.5 transition-transform ${mobileActiveTab === "services" ? "rotate-180 text-orange-600" : ""}`} />
+              </button>
+              {mobileActiveTab === "services" && (
+                <div className="pl-4 pt-3 flex flex-col gap-4">
+                  {servicesMenu.map((group, idx) => (
+                    <div key={idx} className="flex flex-col gap-2">
+                      <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
+                      {group.items.map((item, i) => (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          onClick={() => setIsMobileOpen(false)}
+                          className="text-sm font-semibold text-stone-600 hover:text-black"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Solutions Accordion (Mobile) */}
+            <div className="border-b border-stone-50 pb-2">
+              <button
+                onClick={() => toggleMobileTab("solutions")}
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-1.5 focus:outline-none text-left"
+              >
+                <span>Solutions</span>
+                <ChevronDown className={`h-4.5 w-4.5 transition-transform ${mobileActiveTab === "solutions" ? "rotate-180 text-orange-600" : ""}`} />
+              </button>
+              {mobileActiveTab === "solutions" && (
+                <div className="pl-4 pt-3 flex flex-col gap-4">
+                  {solutionsMenu.map((group, idx) => (
+                    <div key={idx} className="flex flex-col gap-2">
+                      <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
+                      {group.items.map((item, i) => (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          onClick={() => setIsMobileOpen(false)}
+                          className="text-sm font-semibold text-stone-600 hover:text-black"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {[
+              { name: "Case Studies", href: "/case-studies" },
+              { name: "Pricing", href: "/pricing" },
+              { name: "About", href: "/about" },
+            ].map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMobileOpen(false)}
+                className="text-base font-bold text-stone-800 py-1.5 border-b border-stone-50"
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <Link
+              href="/contact"
+              onClick={() => setIsMobileOpen(false)}
+              className="w-full text-center py-3.5 rounded-full bg-black text-white font-bold text-sm hover:bg-zinc-800 mt-2 shadow-md transition-colors"
+            >
+              Start a Project
+            </Link>
+          </div>
+        </div>
+      )}
     </>
   );
 }

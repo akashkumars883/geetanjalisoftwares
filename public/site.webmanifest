@@ -1,0 +1,21 @@
+{
+  "name": "Geetanjali Softwares",
+  "short_name": "GeetanjaliSW",
+  "description": "Custom software development, AI chatbots, web applications, and technical SEO services for businesses in India and globally.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ea580c",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

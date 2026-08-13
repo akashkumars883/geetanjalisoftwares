@@ -1,0 +1,99 @@
+# Geetanjali Softwares – Comprehensive LLM Blueprint & Documentation
+
+> Full Technical Specification, Architecture Blueprints, Service Matrices, and API Information for AI Agents and Crawlers.
+
+---
+
+## 1. Organization Overview
+
+- **Legal Entity**: Geetanjali Softwares
+- **Headquarters**: India (Serving clients in North America, Europe, Asia-Pacific, and Australia)
+- **Primary Domain**: https://geetanjalisoftwares.com
+- **Contact Email**: geetanjalisoftwares@gmail.com
+- **Mobile / WhatsApp**: +91 6201231875 / +91 7508657479
+
+---
+
+## 2. Technology Stack & Engineering Standards
+
+### Frontend Engineering
+- **Framework**: Next.js (App Router, Server Components, SSG, ISR, Turbopack)
+- **UI Architecture**: React 19, TypeScript, Tailwind CSS, Lucide Icons, Framer Motion
+- **Performance Targets**: Lighthouse Scores > 95/100, LCP < 1.2s, CLS = 0, FID/INP < 50ms
+
+### Backend & Cloud Infrastructure
+- **Serverless & Edge Compute**: Next.js Edge Runtime, Vercel Functions, AWS Lambda
+- **Databases**: PostgreSQL, Supabase, ClickHouse (Columnar Analytics), Redis (Caching)
+- **Vector Search & AI RAG**: Qdrant, Pinecone, Pgvector, OpenAI Embeddings (`text-embedding-3-small`)
+- **LLM APIs**: OpenAI GPT-4o/GPT-4o-mini, Anthropic Claude 3.5 Sonnet, Custom Function Calling Routers
+
+### Code Quality & Security Standards
+- **IP Ownership**: 100% full intellectual property transfer to clients upon milestone settlement
+- **Security Audits**: SSL/TLS 1.3 encryption, SOC2/HIPAA compliance guidelines, WCAG 2.1 AAA accessibility standards
+- **Zero Lock-in**: Clean, modular, fully documented source code with strict ESLint / TypeScript rules
+
+---
+
+## 3. Service Matrices & Deliverables
+
+### A. Business Website Development
+- **URL**: https://geetanjalisoftwares.com/services/business-website
+- **Scopes**:
+  1. *Local Presence & Local SEO*: Google Business Profile sync, neighborhood schema markup, review widgets.
+  2. *India-Wide Scale*: UPI gateway integrations (Razorpay, Paytm), multi-city edge caches, regional language UI.
+  3. *Global Enterprise Architecture*: Global CDN edge distribution, hreflang tag setups, multi-currency calculators.
+
+### B. Web Application Development
+- **URL**: https://geetanjalisoftwares.com/services/web-applications
+- **Deliverables**: Multi-role user authentication, real-time WebSocket telemetry, serverless API routers, automated CI/CD deployment pipelines.
+
+### C. AI Chatbots & Autonomous Automation
+- **URL**: https://geetanjalisoftwares.com/services/ai-chatbot
+- **Deliverables**: Semantic documentation RAG indexing, scoped REST API function execution, human agent escalation handoffs, 24/7 ticket deflection.
+
+### D. Custom CRM Software
+- **URL**: https://geetanjalisoftwares.com/services/crm-custom-software
+- **Deliverables**: Multi-stage lead scoring, custom WhatsApp/Email webhooks, director analytics dashboards, zero per-seat subscription overheads.
+
+### E. Headless E-Commerce
+- **URL**: https://geetanjalisoftwares.com/services/ecommerce
+- **Deliverables**: Sub-second page navigations, Shopify Storefront API GraphQL integrations, customized checkout steps, dynamic product schema.
+
+### F. Corporate Branding & Visual Identity
+- **URL**: https://geetanjalisoftwares.com/services/branding
+- **Deliverables**: Figma design token libraries, vector logo variants (SVG/PNG), brand guidelines PDF, typography pairings, color specifications.
+
+---
+
+## 4. Case Studies & Technical Impact
+
+### 1. Vesper CRM (`/case-studies/vesper-crm`)
+- **Client**: Vesper Properties Group (Commercial Real Estate)
+- **Impact Metrics**: -85% Lead Response Time, 320+ Active Agents, +42% Deals Closed / Quarter
+- **Tech**: Next.js, Node.js, PostgreSQL, WhatsApp Webhooks
+
+### 2. Aether AI (`/case-studies/aether-ai`)
+- **Client**: Aether Tech Global (SaaS Platform)
+- **Impact Metrics**: 68% Support Deflection Rate, 12-second Average Resolution Time, 4.9/5 CSAT
+- **Tech**: OpenAI API, Qdrant Vector Search, FastAPI, Python
+
+### 3. Apex Commerce (`/case-studies/apex-commerce`)
+- **Client**: Apex Retail International (D2C Brand)
+- **Impact Metrics**: 99/100 Lighthouse Performance, +210% Organic Search Traffic, +3.4% Mobile Conversion Rate
+- **Tech**: Next.js App Router, Shopify Storefront API, GraphQL, Tailwind CSS
+
+---
+
+## 5. Site Navigation Directory
+
+- Email: geetanjalisoftwares@gmail.com
+- Mobile / WhatsApp: +91 6201231875 / +91 7508657479
+- Website Inquiry: https://geetanjalisoftwares.com/contact
+- Case Studies Showcase: https://geetanjalisoftwares.com/case-studies
+- Engineering Blog: https://geetanjalisoftwares.com/blog
+- Pricing & Estimates: https://geetanjalisoftwares.com/pricing
+- Contact Consultation: https://geetanjalisoftwares.com/contact
+- HTML Sitemap: https://geetanjalisoftwares.com/sitemap
+- XML Sitemap Index: https://geetanjalisoftwares.com/sitemap.xml
+- llms.txt Summary: https://geetanjalisoftwares.com/llms.txt
+- llms-full.txt: https://geetanjalisoftwares.com/llms-full.txt

@@ -1,228 +1,94 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import 'quill/dist/quill.snow.css';
-import { compressImage } from '@/utils/imageUtils';
+import { useRef } from "react";
+import { 
+  Heading1, 
+  Heading2, 
+  Heading3, 
+  Bold, 
+  Italic, 
+  List, 
+  ListOrdered, 
+  Quote, 
+  Code, 
+  Link as LinkIcon, 
+  Image as ImageIcon 
+} from "lucide-react";
 
-export default function RichTextEditor({ value, onChange }) {
-  const containerRef = useRef(null);
-  const quillRef = useRef(null);
-  const isUpdatingRef = useRef(false);
-  const onChangeRef = useRef(onChange);
-  const initialValueRef = useRef(value);
+export default function RichTextEditor({ value, onChange, placeholder = "Write your content here...", rows = 14 }) {
+  const textareaRef = useRef(null);
 
-  // Keep onChangeRef updated with the latest prop
-  useEffect(() => {
-    onChangeRef.current = onChange;
-  }, [onChange]);
+  const insertFormat = (prefix, suffix = "", defaultText = "Text Here") => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (typeof window === 'undefined' || !container || quillRef.current) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end) || defaultText;
 
-    // Dynamically import Quill only on the client
-    const initQuill = async () => {
-      const { default: Quill } = await import('quill');
-      
-      if (!containerRef.current) return;
+    const replacement = `${prefix}${selectedText}${suffix}`;
+    const newValue = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
 
-      const quill = new Quill(containerRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: {
-            container: [
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-              [{ font: [] }],
-              ['bold', 'italic', 'underline', 'strike'],
-              [{ color: [] }, { background: [] }],
-              [{ script: 'sub' }, { script: 'super' }],
-              ['blockquote', 'code-block'],
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
-              ['link', 'image', 'video'],
-              ['clean'],
-            ],
-            handlers: {
-              image: () => {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-                input.click();
+    onChange(newValue);
 
-                input.onchange = async () => {
-                  const file = input.files[0];
-                  if (!file) return;
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + prefix.length, start + prefix.length + selectedText.length);
+    }, 0);
+  };
 
-                  try {
-                    // 1. Compress the image before uploading
-                    const compressedBlob = await compressImage(URL.createObjectURL(file));
-                    const fileName = `optimized-${Date.now()}-${Math.random().toString(36).substring(7)}.jpg`;
-                    const optimizedFile = new File([compressedBlob], fileName, { type: 'image/jpeg' });
-
-                    const formData = new FormData();
-                    formData.append('file', optimizedFile);
-
-                    const res = await fetch('/api/upload', {
-                      method: 'POST',
-                      body: formData
-                    });
-
-                    if (!res.ok) {
-                      const contentType = res.headers.get('content-type');
-                      if (contentType && contentType.includes('application/json')) {
-                        const errorData = await res.json();
-                        throw new Error(errorData.error || 'Upload failed');
-                      } else {
-                        const textError = await res.text();
-                        throw new Error(`Server Error (${res.status}): ${textError.slice(0, 50)}...`);
-                      }
-                    }
-
-                    const { url } = await res.json();
-                    
-                    const range = quill.getSelection(true);
-                    quill.insertEmbed(range.index, 'image', url);
-                    quill.setSelection(range.index + 1);
-                  } catch (error) {
-                    console.error('Quill image upload error:', error);
-                    alert(`Failed to upload image: ${error.message}`);
-                  }
-                };
-              }
-            }
-          },
-        },
-      });
-
-      quillRef.current = quill;
-
-      // Set initial content
-      if (initialValueRef.current) {
-        quill.root.innerHTML = initialValueRef.current;
-      }
-
-      // Listen for text changes
-      quill.on('text-change', () => {
-        if (!isUpdatingRef.current) {
-          const html = quill.root.innerHTML;
-          if (onChangeRef.current) {
-            onChangeRef.current(html === '<p><br></p>' ? '' : html);
-          }
-        }
-      });
-    };
-
-    initQuill();
-
-    return () => {
-      if (quillRef.current) {
-        // Quill doesn't have a formal destroy method in v2, but we can clear the container
-        const toolbar = container?.previousSibling;
-        if (toolbar && toolbar.nodeType === 1 && toolbar.classList.contains('ql-toolbar')) {
-          toolbar.remove();
-        }
-        quillRef.current = null;
-      }
-    };
-  }, []); // Only run once on mount
-
-  // Update content from props if changed externally
-  useEffect(() => {
-    if (quillRef.current && value !== quillRef.current.root.innerHTML) {
-      isUpdatingRef.current = true;
-      quillRef.current.root.innerHTML = value || '';
-      isUpdatingRef.current = false;
-    }
-  }, [value]);
+  const toolbarButtons = [
+    { label: "H1", icon: Heading1, action: () => insertFormat("\n# ", "\n", "Heading 1"), title: "Main Heading (H1)" },
+    { label: "H2", icon: Heading2, action: () => insertFormat("\n## ", "\n", "Section Heading"), title: "Subheading (H2)" },
+    { label: "H3", icon: Heading3, action: () => insertFormat("\n### ", "\n", "Subsection Title"), title: "Minor Heading (H3)" },
+    { type: "divider" },
+    { label: "Bold", icon: Bold, action: () => insertFormat("**", "**", "Bold Text"), title: "Bold" },
+    { label: "Italic", icon: Italic, action: () => insertFormat("*", "*", "Italic Text"), title: "Italic" },
+    { type: "divider" },
+    { label: "Bullet List", icon: List, action: () => insertFormat("\n- ", "\n- Item 2\n- Item 3", "List Item 1"), title: "Bullet List" },
+    { label: "Numbered List", icon: ListOrdered, action: () => insertFormat("\n1. ", "\n2. Item 2\n3. Item 3", "First Item"), title: "Numbered List" },
+    { type: "divider" },
+    { label: "Quote", icon: Quote, action: () => insertFormat("\n> ", "\n", "Important Quote or Key Insight"), title: "Blockquote" },
+    { label: "Code", icon: Code, action: () => insertFormat("\n```javascript\n", "\n```", "// Code snippet here"), title: "Code Block" },
+    { label: "Link", icon: LinkIcon, action: () => insertFormat("[", "](https://geetanjalisoftwares.com)", "Clickable Link Text"), title: "Hyperlink" },
+    { label: "Image", icon: ImageIcon, action: () => insertFormat("![", "](https://images.unsplash.com/photo-1498050108023-c5249f4df085)", "Image Description"), title: "Embed Image" },
+  ];
 
   return (
-    <div className="rich-text-editor-container">
-      <style>{`
-        .ql-toolbar.ql-snow {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          border-radius: 20px 20px 0 0;
-          border: 1px solid rgba(0,0,0,0.05) !important;
-          background: #fbfbfb;
-          padding: 12px !important;
-          border-top-width: 1px !important;
-        }
-        .ql-container.ql-snow {
-          border-radius: 0 0 20px 20px;
-          border: 1px solid rgba(0,0,0,0.05) !important;
-          min-height: 350px;
-          font-family: inherit;
-          font-size: 15px;
-        }
-        .ql-editor {
-          min-height: 350px;
-          padding: 24px !important;
-          line-height: 1.6;
-        }
-        .ql-editor img {
-          max-width: 100%;
-          height: auto;
-          display: block;
-          margin: 10px auto;
-          border-radius: 12px;
-          cursor: pointer;
-        }
-        .ql-editor.ql-blank::before {
-          font-style: normal;
-          color: rgba(0,0,0,0.2);
-          left: 24px !important;
-        }
-        .ql-snow.ql-toolbar button:hover,
-        .ql-snow .ql-toolbar button:hover,
-        .ql-snow.ql-toolbar button:focus,
-        .ql-snow .ql-toolbar button:focus,
-        .ql-snow.ql-toolbar button.ql-active,
-        .ql-snow .ql-toolbar button.ql-active,
-        .ql-snow.ql-toolbar .ql-picker-label:hover,
-        .ql-snow .ql-toolbar .ql-picker-label:hover,
-        .ql-snow.ql-toolbar .ql-picker-label.ql-active,
-        .ql-snow .ql-toolbar .ql-picker-label.ql-active,
-        .ql-snow.ql-toolbar .ql-picker-item:hover,
-        .ql-snow .ql-toolbar .ql-picker-item:hover,
-        .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
-        .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-          color: #f97316 !important;
-        }
-        .ql-snow.ql-toolbar button:hover .ql-stroke,
-        .ql-snow .ql-toolbar button:hover .ql-stroke,
-        .ql-snow.ql-toolbar button:focus .ql-stroke,
-        .ql-snow .ql-toolbar button:focus .ql-stroke,
-        .ql-snow.ql-toolbar button.ql-active .ql-stroke,
-        .ql-snow .ql-toolbar button.ql-active .ql-stroke,
-        .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
-        .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
-        .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
-        .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
-        .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
-        .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
-        .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
-        .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
-          stroke: #f97316 !important;
-        }
-        .ql-snow.ql-toolbar button:hover .ql-fill,
-        .ql-snow .ql-toolbar button:hover .ql-fill,
-        .ql-snow.ql-toolbar button:focus .ql-fill,
-        .ql-snow .ql-toolbar button:focus .ql-fill,
-        .ql-snow.ql-toolbar button.ql-active .ql-fill,
-        .ql-snow .ql-toolbar button.ql-active .ql-fill,
-        .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
-        .ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
-        .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
-        .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
-        .ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
-        .ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
-        .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
-        .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill {
-          fill: #f97316 !important;
-        }
-      `}</style>
-      <div ref={containerRef} />
+    <div className="w-full border border-stone-200 rounded-xl overflow-hidden bg-stone-50">
+      {/* Editor Formatting Toolbar */}
+      <div className="p-2.5 bg-stone-100/90 border-b border-stone-200 flex flex-wrap items-center gap-1.5 selection:bg-none">
+        {toolbarButtons.map((btn, index) => {
+          if (btn.type === "divider") {
+            return <div key={index} className="h-4 w-px bg-stone-300 mx-1" />;
+          }
+
+          const Icon = btn.icon;
+          return (
+            <button
+              key={btn.label}
+              type="button"
+              onClick={btn.action}
+              title={btn.title}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-semibold text-stone-700 hover:text-black hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer shadow-xs active:scale-95"
+            >
+              <Icon className="h-3.5 w-3.5 text-stone-600" />
+              <span className="text-[11px]">{btn.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Textarea Input */}
+      <textarea
+        ref={textareaRef}
+        required
+        rows={rows}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full bg-white p-4 text-xs font-mono text-stone-900 focus:outline-none transition-colors resize-y leading-relaxed"
+      />
     </div>
   );
 }

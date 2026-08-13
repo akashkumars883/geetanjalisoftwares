@@ -1,48 +1,59 @@
 # Geetanjali Softwares
 
-> Technology & Growth Partner engineering digital futures with custom websites, high-performance web applications, SEO, and growth-oriented digital marketing.
+> Custom Software Development, AI Automation, Web Applications & Technical SEO Engineering Company.
 
-## Core Offerings
+Geetanjali Softwares is an IT consulting and software engineering firm based in India, serving startups, growing SMBs, and global enterprises. We design, build, and optimize high-performance web applications, autonomous AI chatbots, custom CRM platforms, headless e-commerce storefronts, and search engine visibility systems.
 
-### 1. Custom Website Design & Development
-We design and develop fast, secure, mobile-responsive business websites and landing pages optimized for maximum lead conversion.
-- Custom Business Websites
-- Professional Website Redesign
-- E-commerce Development (Custom & Shopify)
-- WordPress Development & Custom CMS setups
-- Single/Multi-page Landing Pages for Campaigns
+## Core Capabilities
 
-### 2. Search Engine Optimization (SEO) & Search Growth
-We deploy advanced organic search strategies to help brands rank higher on Google, capture high-intent search traffic, and drive leads.
-- On-page & Technical SEO optimization
-- Keyword Research & Strategy
-- Content Marketing & Topical Authority building
-- Local SEO & Google Business Profile optimization (focusing on Faridabad, Delhi-NCR, Noida, Gurgaon, and Delhi)
+- **Custom Web Application Engineering**: Next.js App Router, React.js, TypeScript, Node.js, serverless architectures, and real-time telemetry.
+- **AI & Automation Systems**: Autonomous LLM support agents, RAG vector search (Qdrant/Pinecone), OpenAI/Claude API integrations, and workflow pipelines.
+- **Bespoke Enterprise CRMs**: Custom database schemas (PostgreSQL/Supabase), lead allocation webhooks, and full data ownership with zero per-seat licensing fees.
+- **Headless E-Commerce**: Sub-second page loads, custom checkout integrations, and high Core Web Vitals performance.
+- **Technical SEO & Growth**: Built-in JSON-LD schemas, automated sitemaps, OpenGraph metadata, and Core Web Vitals optimization.
 
-### 3. Custom Web Applications
-For requirements that go beyond static pages, we build high-performance web tools, dashboards, and custom backend APIs.
-- Next.js and Supabase Web Apps
-- API Integration & Automation
-- Custom database schemas & user systems
+## Primary Services
 
-### 4. Digital Marketing & Paid Acquisition
-We plan and execute marketing campaigns across multiple paid search channels, optimizing for cost-per-lead (CPL) and return on ad spend (ROAS).
-- Google Ads PPC Management
-- Social Media Marketing (Instagram, LinkedIn, Facebook, X)
+- [Business Website Development](https://geetanjalisoftwares.com/services/business-website): Local SEO, India national scale, and global enterprise setups.
+- [Web Application Engineering](https://geetanjalisoftwares.com/services/web-applications): Custom React and Next.js cloud platforms.
+- [AI Chatbots & Automation](https://geetanjalisoftwares.com/services/ai-chatbot): Autonomous support agents and workflow deflection.
+- [Custom CRM Software](https://geetanjalisoftwares.com/services/crm-custom-software): Tailored business CRM & internal tool suites.
+- [Headless E-Commerce](https://geetanjalisoftwares.com/services/ecommerce): Decoupled storefronts for speed and conversions.
+- [Corporate Branding](https://geetanjalisoftwares.com/services/branding): Visual identity systems, Figma design tokens, and UI kits.
+- [Technical SEO Services](https://geetanjalisoftwares.com/services/technical-seo): Speed audits, schema markup, and search rankings.
 
----
+## Industry Solutions
 
-## Primary Navigation & Sitemap Paths
+- [E-Commerce & Retail](https://geetanjalisoftwares.com/solutions/ecommerce-retail)
+- [Healthcare & Medical](https://geetanjalisoftwares.com/solutions/healthcare-medical)
+- [Real Estate Tech](https://geetanjalisoftwares.com/solutions/real-estate)
+- [FinTech & Finance](https://geetanjalisoftwares.com/solutions/fintech-finance)
+- [Startups & MVPs](https://geetanjalisoftwares.com/solutions/startups-mvp)
+- [Cloud & SaaS Platforms](https://geetanjalisoftwares.com/solutions/cloud-saas)
 
-All paths are relative to the base domain: `https://www.geetanjalisoftwares.in`
+## Featured Case Studies
 
-- **Homepage**: `/` (Start projects, CTA form, core introduction)
-- **About**: `/about` (Company details, mission, and focus)
-- **Services**: `/services` (Detailed listing of development and marketing services)
-- **Portfolio**: `/portfolio` (Case studies and previous project showcases)
-- **Pricing**: `/pricing` (Transparent cost structures for projects and plans)
-- **Tools**: `/tools` (Free utility tools built for clients and visitors)
-- **Blogs**: `/blogs` (SEO and growth guides, industry news, tech articles)
-- **Contact**: `/contact` (Get in touch, location details, query forms)
-- **Careers**: `/careers` (Join the engineering and marketing team)
-- **Studio**: `https://studio.geetanjalisoftwares.in` (Our digital builder environment)
+- [Vesper CRM](https://geetanjalisoftwares.com/case-studies/vesper-crm): Real estate broker automation system.
+- [Aether AI](https://geetanjalisoftwares.com/case-studies/aether-ai): Autonomous customer support agent platform.
+- [Apex Commerce](https://geetanjalisoftwares.com/case-studies/apex-commerce): High-speed headless storefront.
+
+## Technical Resources & Navigation
+
+- [Case Studies Showcase](https://geetanjalisoftwares.com/case-studies): Featured case studies and metric outcomes.
+- [Engineering Blog](https://geetanjalisoftwares.com/blog): Software blueprints, AI guides, and technical SEO tutorials.
+- [Pricing & Estimates](https://geetanjalisoftwares.com/pricing): Transparent estimation tiers.
+- [HTML Sitemap](https://geetanjalisoftwares.com/sitemap): Full site directory.
+- [XML Sitemap Index](https://geetanjalisoftwares.com/sitemap.xml): Search engine crawler index.
+
+## Legal & Compliance
+
+- [Privacy Policy](https://geetanjalisoftwares.com/privacy-policy)
+- [Terms of Service](https://geetanjalisoftwares.com/terms-of-service)
+- [Cancellation & Refund Policy](https://geetanjalisoftwares.com/refund-policy)
+
+## Contact & Project Consultations
+
+- Email: geetanjalisoftwares@gmail.com
+- Mobile / WhatsApp: +91 6201231875 / +91 7508657479
+- Website Inquiry: https://geetanjalisoftwares.com/contact
+- Response Time: Within 24 hours guaranteed
