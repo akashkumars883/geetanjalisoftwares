@@ -58,7 +58,7 @@ export default function SelectedWork() {
     <section 
       id="portfolio"
       aria-labelledby="portfolio-heading"
-      className="py-16 bg-white border-b border-stone-100 relative z-10"
+      className="py-10 bg-white border-b border-stone-100 relative z-10"
     >
       {/* Portfolio Schema Markup */}
       <script
@@ -68,7 +68,7 @@ export default function SelectedWork() {
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="max-w-3xl text-left mb-16 space-y-3">
+        <div className="max-w-3xl text-left mb-8 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Featured Case Studies
           </div>

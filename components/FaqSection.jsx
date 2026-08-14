@@ -31,14 +31,14 @@ export default function FaqSection({
   };
 
   return (
-    <section className="py-20 bg-stone-50 border-t border-stone-200/80 relative z-10 px-6 text-left">
+    <section className="py-10 bg-stone-50 border-t border-stone-200/80 relative z-10 px-6 text-left">
       {/* FAQ Schema for Google SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-5xl mx-auto space-y-8">
         {/* Header Block */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">

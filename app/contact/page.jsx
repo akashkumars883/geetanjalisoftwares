@@ -107,14 +107,14 @@ const contactDetails = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 text-left">
+    <main className="min-h-screen bg-white pt-16 text-left">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
 
       {/* Hero */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Contact Us
@@ -130,7 +130,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Grid */}
-      <section className="py-16 bg-white px-6">
+      <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Contact Info */}
           <div className="lg:col-span-5 space-y-8">

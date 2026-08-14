@@ -113,9 +113,9 @@ export default function AdminBlogsPage() {
       {/* Blogs Table */}
       <div className="bg-white border border-stone-200 rounded-xl overflow-hidden">
         {loading ? (
-          <div className="text-center py-16 text-xs text-stone-500">Loading blog entries...</div>
+          <div className="text-center py-10 text-xs text-stone-500">Loading blog entries...</div>
         ) : filteredBlogs.length === 0 ? (
-          <div className="text-center py-16 space-y-3">
+          <div className="text-center py-10 space-y-3">
             <p className="text-sm text-stone-600 font-light">No articles match your search query.</p>
             <button
               onClick={() => setSearchTerm("")}

@@ -49,8 +49,8 @@ const PRICING_FAQS = [
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 text-left">
-      <section className="py-16 bg-stone-50 border-b border-stone-100 px-6">
+    <main className="min-h-screen bg-white pt-16 text-left">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Transparent Pricing

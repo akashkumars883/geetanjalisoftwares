@@ -59,14 +59,14 @@ export default function EcommerceSeoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white pt-24 text-left selection:bg-orange-500/20 selection:text-orange-900">
+    <main className="min-h-screen bg-white pt-16 text-left selection:bg-orange-500/20 selection:text-orange-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       {/* Header Area */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <ShoppingBag className="h-3.5 w-3.5 text-orange-600" /> Services / E-Commerce SEO Agency
@@ -82,7 +82,7 @@ export default function EcommerceSeoPage() {
       </section>
 
       {/* Description Grid */}
-      <section className="py-16 bg-white border-b border-stone-100 px-6">
+      <section className="py-10 bg-white border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-6 space-y-6">
             <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-stone-900 leading-tight">
@@ -137,7 +137,7 @@ export default function EcommerceSeoPage() {
       />
 
       {/* CTA */}
-      <section className="py-16 bg-stone-50 px-6">
+      <section className="py-10 bg-stone-50 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="space-y-4 max-w-2xl">

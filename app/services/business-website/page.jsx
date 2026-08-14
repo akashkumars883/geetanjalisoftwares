@@ -102,14 +102,14 @@ export default function BusinessWebsitePage() {
   };
 
   return (
-    <main className="min-h-screen bg-white pt-24 text-left selection:bg-orange-500/20 selection:text-orange-900">
+    <main className="min-h-screen bg-white pt-16 text-left selection:bg-orange-500/20 selection:text-orange-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
 
       {/* Hero Header Section */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <Code className="h-3.5 w-3.5 text-orange-600" /> Services / Website Development Company
@@ -125,7 +125,7 @@ export default function BusinessWebsitePage() {
       </section>
 
       {/* Market Scopes Grid */}
-      <section className="py-16 bg-white border-b border-stone-100 px-6">
+      <section className="py-10 bg-white border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="max-w-3xl space-y-3">
             <h2 className="text-3xl sm:text-4xl font-normal tracking-tight text-stone-900">
@@ -172,7 +172,7 @@ export default function BusinessWebsitePage() {
       </section>
 
       {/* Action Card */}
-      <section className="py-16 bg-stone-50 px-6">
+      <section className="py-10 bg-stone-50 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="space-y-4 max-w-2xl">

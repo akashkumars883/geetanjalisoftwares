@@ -43,9 +43,9 @@ export default function TermsOfServicePage() {
   const lastUpdated = "August 13, 2026";
 
   return (
-    <main className="min-h-screen bg-white pt-24 text-left">
+    <main className="min-h-screen bg-white pt-16 text-left">
       {/* Header */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <FileText className="h-3.5 w-3.5 text-orange-600" /> Legal Terms
@@ -60,7 +60,7 @@ export default function TermsOfServicePage() {
       </section>
 
       {/* Content Body */}
-      <section className="py-16 bg-white px-6">
+      <section className="py-10 bg-white px-6">
         <div className="max-w-4xl mx-auto space-y-10 text-stone-600 text-sm sm:text-base leading-relaxed font-light">
           <section className="space-y-4">
             <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-stone-900">

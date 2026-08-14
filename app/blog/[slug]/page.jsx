@@ -117,13 +117,13 @@ export default async function BlogPostPage({ params }) {
   };
 
   return (
-    <main className="min-h-screen bg-white pt-28 pb-20 text-left selection:bg-orange-500/20 selection:text-orange-900">
+    <main className="min-h-screen bg-white pt-16 pb-10 text-left selection:bg-orange-500/20 selection:text-orange-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
 
-      <article className="max-w-4xl mx-auto px-6 space-y-10">
+      <article className="max-w-4xl mx-auto px-6 space-y-6">
         
         {/* Back Link */}
         <div>
@@ -136,7 +136,7 @@ export default async function BlogPostPage({ params }) {
         </div>
 
         {/* Article Header */}
-        <header className="space-y-6 border-b border-stone-200 pb-10">
+        <header className="space-y-6 border-b border-stone-200 pb-6">
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-600/20 text-xs font-bold uppercase tracking-wider text-orange-600">
               <Tag className="h-3 w-3" /> {post.category || "Engineering"}

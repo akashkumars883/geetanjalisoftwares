@@ -98,7 +98,7 @@ export default function EditBlogPage({ params }) {
 
   if (loading) {
     return (
-      <div className="py-20 text-center text-stone-500 text-xs font-light">
+      <div className="py-10 text-center text-stone-500 text-xs font-light">
         Loading article details for editing...
       </div>
     );

@@ -51,9 +51,9 @@ const CASE_STUDY_FAQS = [
 
 export default function CaseStudiesPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 text-left selection:bg-orange-500/20 selection:text-orange-900">
+    <main className="min-h-screen bg-white pt-16 text-left selection:bg-orange-500/20 selection:text-orange-900">
       {/* Hero Section */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <Briefcase className="h-3.5 w-3.5 text-orange-600" /> Featured Case Studies
@@ -69,7 +69,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Tabs & Projects Grid (Client Component) */}
-      <section className="py-12 bg-white px-6">
+      <section className="py-8 bg-white px-6">
         <div className="max-w-7xl mx-auto">
           <PortfolioFilterClient />
         </div>
@@ -83,7 +83,7 @@ export default function CaseStudiesPage() {
       />
 
       {/* CTA Section */}
-      <section className="py-16 bg-white px-6">
+      <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />

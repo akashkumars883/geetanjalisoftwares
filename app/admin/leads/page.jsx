@@ -63,9 +63,9 @@ export default function AdminLeadsPage() {
       {/* Inquiries Table / Grid */}
       <div className="bg-white border border-stone-200 rounded-xl overflow-hidden">
         {loading ? (
-          <div className="text-center py-16 text-xs text-stone-500">Loading incoming inquiries...</div>
+          <div className="text-center py-10 text-xs text-stone-500">Loading incoming inquiries...</div>
         ) : filteredInquiries.length === 0 ? (
-          <div className="text-center py-16 space-y-3">
+          <div className="text-center py-10 space-y-3">
             <Inbox className="h-8 w-8 text-stone-300 mx-auto" />
             <p className="text-sm text-stone-600 font-light">No client inquiries found yet.</p>
           </div>

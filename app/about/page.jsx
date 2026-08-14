@@ -109,14 +109,14 @@ const technologies = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 text-left">
+    <main className="min-h-screen bg-white pt-16 text-left">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
       {/* Hero Section */}
-      <section className="py-20 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             About Geetanjali Softwares
@@ -132,7 +132,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white border-b border-stone-100 px-6">
+      <section className="py-10 bg-white border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
@@ -149,7 +149,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-16 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-bold text-orange-600 uppercase tracking-wider">
@@ -191,7 +191,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Principles */}
-      <section className="py-16 bg-white border-b border-stone-100 px-6">
+      <section className="py-10 bg-white border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="space-y-4 max-w-2xl">
             <h2 className="text-3xl sm:text-4xl font-normal tracking-tight text-stone-900">
@@ -217,7 +217,7 @@ export default function AboutPage() {
       </section>
 
       {/* Technology Stack Grid */}
-      <section className="py-16 bg-stone-50 border-b border-stone-100 px-6">
+      <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="space-y-2">
             <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-stone-900">Technologies We Master</h2>
@@ -244,7 +244,7 @@ export default function AboutPage() {
       />
 
       {/* CTA */}
-      <section className="py-16 bg-white px-6">
+      <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />

@@ -48,7 +48,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#09090b] text-white border-t border-white/5 py-16 px-6 relative z-10">
+    <footer className="bg-[#09090b] text-white border-t border-white/5 py-10 px-6 relative z-10">
       <div className="max-w-7xl mx-auto space-y-12">
 
         {/* Top Section: Brand + Navigation Links + Subscribe */}

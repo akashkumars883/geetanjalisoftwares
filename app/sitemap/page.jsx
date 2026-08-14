@@ -71,9 +71,9 @@ export default async function HtmlSitemapPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white pt-24 text-left">
+    <main className="min-h-screen bg-white pt-16 text-left">
       {/* Page Header */}
-      <section className="py-16 bg-white px-6">
+      <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <Globe className="h-3.5 w-3.5 text-orange-600" /> Site Index & Directory

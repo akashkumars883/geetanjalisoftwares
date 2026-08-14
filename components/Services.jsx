@@ -66,7 +66,7 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="py-16 bg-white border-b border-stone-100 relative z-10"
+      className="py-10 bg-white border-b border-stone-100 relative z-10"
     >
       {/* Schema Markup for Crawlers */}
       <script
