@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, User, ArrowUpRight, Tag } from "lucide-react";
-import { getBlogPosts } from "@/lib/blogData";
+import { getBlogPosts, getBlogPostBySlug } from "@/lib/blogData";
 
 export const dynamicParams = true;
-export const revalidate = 0;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -15,8 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const posts = await getBlogPosts();
-  const post = posts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
   
   if (!post) {
     return { title: "Article Not Found – Geetanjali Softwares" };
@@ -83,14 +82,14 @@ function formatArticleContent(content = "") {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const posts = await getBlogPosts();
-  const post = posts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = posts.filter((p) => p.slug !== slug).slice(0, 2);
+  const allPosts = await getBlogPosts();
+  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 2);
   const formattedContent = formatArticleContent(post.content);
 
   const blogPostingSchema = {

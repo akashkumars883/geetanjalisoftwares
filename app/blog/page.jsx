@@ -4,8 +4,7 @@ import { getBlogPosts } from "@/lib/blogData";
 import BlogFilterClient from "@/components/BlogFilterClient";
 import FaqSection from "@/components/FaqSection";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata = {
   title: "Engineering Blog & Digital Growth Insights",

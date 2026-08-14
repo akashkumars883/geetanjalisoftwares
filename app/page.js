@@ -10,7 +10,7 @@ import FaqSection from "@/components/FaqSection";
 import ContactForm from "@/components/ContactForm";
 import { FadeIn } from "@/components/FadeIn";
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 const HOMEPAGE_FAQS = [
   {
