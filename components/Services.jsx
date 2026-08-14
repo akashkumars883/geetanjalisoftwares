@@ -92,9 +92,10 @@ export default function Services() {
         {/* Services 4 in a Row Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category, index) => (
-            <article
+            <Link
               key={index}
-              className="group relative h-[430px] w-full overflow-hidden rounded-md border border-stone-100 hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer"
+              href={category.href}
+              className="group relative h-[430px] w-full overflow-hidden rounded-md border border-stone-100 hover:shadow-2xl transition-all duration-300 flex flex-col justify-end cursor-pointer block"
             >
               {/* Background Image */}
               <img
@@ -106,28 +107,24 @@ export default function Services() {
               />
 
               {/* Initial Gradient Overlay (Bottom dark fade to read title) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-all duration-500 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-all duration-500 md:group-hover:opacity-0" />
 
-              {/* Initial Title Display (Visible by default, fades on hover) */}
-              <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex items-center justify-between transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+              {/* Initial Title Display (Visible by default, fades on hover on desktop) */}
+              <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex items-center justify-between transition-all duration-500 md:group-hover:opacity-0 md:group-hover:translate-y-4 text-left">
                 <h3 className="text-xl font-bold tracking-tight">{category.title}</h3>
-                <span className="h-8 w-8 rounded-md bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center">
+                <span className="h-8 w-8 rounded-md bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </div>
 
-              {/* Hover Overlay Content (Slides up/fades in on hover) */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 space-y-4 translate-y-8 group-hover:translate-y-0 z-20 text-left">
+              {/* Hover Overlay Content (Slides up/fades in on hover on desktop) */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 space-y-4 translate-y-8 md:group-hover:translate-y-0 z-20 text-left">
                 {/* Header inside Hover State */}
                 <div className="flex items-center justify-between text-white border-b border-white/10 pb-2">
                   <h3 className="text-xl font-bold tracking-tight">{category.title}</h3>
-                  <Link
-                    href={category.href}
-                    aria-label={`Learn more about our ${category.title} services`}
-                    className="h-8 w-8 rounded-md bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
-                  >
+                  <span className="h-8 w-8 rounded-md bg-white text-black flex items-center justify-center shrink-0">
                     <ArrowUpRight className="h-4 w-4" />
-                  </Link>
+                  </span>
                 </div>
 
                 {/* Description */}
@@ -135,7 +132,7 @@ export default function Services() {
                   {category.description}
                 </p>
 
-                {/* Sub-services Pills (Semantic list format for SEO crawlers) */}
+                {/* Sub-services Pills */}
                 <ul className="flex flex-wrap gap-1.5 pt-1">
                   {category.items.map((item, i) => (
                     <li key={i}>
@@ -148,7 +145,7 @@ export default function Services() {
                   ))}
                 </ul>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
