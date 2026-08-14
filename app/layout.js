@@ -225,6 +225,10 @@ export default function RootLayout({ children }) {
       className={`${spaceGrotesk.variable} h-full antialiased bg-white`}
     >
       <head>
+        <link rel="icon" href="/logo.png" sizes="any" type="image/png" />
+        <link rel="shortcut icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+
         {/* Google Analytics GA4 */}
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
