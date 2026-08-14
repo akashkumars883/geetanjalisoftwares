@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, User, ArrowUpRight, Tag } from "lucide-react";
 import { getBlogPosts } from "@/lib/blogData";
 
+export const dynamicParams = true;
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({

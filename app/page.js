@@ -10,6 +10,8 @@ import FaqSection from "@/components/FaqSection";
 import ContactForm from "@/components/ContactForm";
 import { FadeIn } from "@/components/FadeIn";
 
+export const revalidate = 0;
+
 const HOMEPAGE_FAQS = [
   {
     question: "What core services does Geetanjali Softwares specialize in?",

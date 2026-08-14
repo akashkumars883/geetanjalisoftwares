@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 
 // Helper function to notify all subscribers about a newly published blog
@@ -94,6 +95,17 @@ export async function POST(request) {
       notifiedCount = await notifySubscribers(newBlog.title, newBlog.slug, newBlog.excerpt);
     }
 
+    // Revalidate Next.js cache so the live site updates immediately
+    try {
+      revalidatePath("/blog");
+      if (newBlog.slug) revalidatePath(`/blog/${newBlog.slug}`);
+      revalidatePath("/");
+      revalidatePath("/sitemap.js");
+      revalidatePath("/sitemap");
+    } catch (e) {
+      console.warn("Revalidation warning:", e?.message);
+    }
+
     return NextResponse.json({ 
       success: true, 
       blog: data?.[0] || newBlog,
@@ -137,6 +149,18 @@ export async function PUT(request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    // Revalidate Next.js cache so the live site updates immediately
+    try {
+      revalidatePath("/blog");
+      if (slug) revalidatePath(`/blog/${slug}`);
+      if (data?.[0]?.slug) revalidatePath(`/blog/${data[0].slug}`);
+      revalidatePath("/");
+      revalidatePath("/sitemap.js");
+      revalidatePath("/sitemap");
+    } catch (e) {
+      console.warn("Revalidation warning:", e?.message);
+    }
+
     // Notify subscribers if article changed to published
     if (is_published) {
       await notifySubscribers(title || "Updated Blog Article", slug || "article", excerpt || "");
@@ -166,6 +190,16 @@ export async function DELETE(request) {
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Revalidate Next.js cache so the live site updates immediately
+    try {
+      revalidatePath("/blog");
+      revalidatePath("/");
+      revalidatePath("/sitemap.js");
+      revalidatePath("/sitemap");
+    } catch (e) {
+      console.warn("Revalidation warning:", e?.message);
     }
 
     return NextResponse.json({ success: true, message: "Blog deleted successfully" });
