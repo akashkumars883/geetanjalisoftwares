@@ -48,7 +48,27 @@ export default function PortfolioFilterClient() {
             key={index}
             className="group bg-stone-50 border border-stone-200/80 rounded-2xl overflow-hidden hover:border-stone-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="p-8 space-y-6 flex-1 flex flex-col justify-between text-left">
+            {project.image && (
+              <div className="w-full h-48 overflow-hidden bg-stone-100 relative">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {project.websiteUrl && (
+                  <a
+                    href={project.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-black transition-all flex items-center gap-1 border border-white/20"
+                  >
+                    Live Site <ArrowUpRight className="h-3 w-3 text-orange-400" />
+                  </a>
+                )}
+              </div>
+            )}
+
+            <div className="p-6 space-y-6 flex-1 flex flex-col justify-between text-left">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-600/10 px-2.5 py-1 rounded-full border border-orange-600/20">
@@ -57,7 +77,7 @@ export default function PortfolioFilterClient() {
                   <span className="text-xs font-semibold text-stone-400">{project.year}</span>
                 </div>
 
-                <h2 className="text-2xl font-bold tracking-tight text-stone-900 group-hover:text-orange-600 transition-colors">
+                <h2 className="text-xl font-bold tracking-tight text-stone-900 group-hover:text-orange-600 transition-colors">
                   <Link href={`/case-studies/${project.slug}`}>
                     {project.title}
                   </Link>
@@ -89,13 +109,27 @@ export default function PortfolioFilterClient() {
                   ))}
                 </div>
 
-                <Link
-                  href={`/case-studies/${project.slug}`}
-                  className="w-full inline-flex items-center justify-between px-5 py-3 rounded-xl bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
-                >
-                  <span>Read Case Study</span>
-                  <ArrowUpRight className="h-4 w-4 text-orange-400 group-hover/btn:translate-x-0.5 transition-transform" />
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/case-studies/${project.slug}`}
+                    className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
+                  >
+                    <span>Case Study</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 text-orange-400 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </Link>
+
+                  {project.websiteUrl && (
+                    <a
+                      href={project.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-orange-600 text-white hover:bg-orange-700 transition-colors text-xs font-semibold shrink-0"
+                    >
+                      <span>Live Website</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </article>

@@ -91,7 +91,7 @@ export default async function CaseStudyDetailPage({ params }) {
           </p>
 
           {/* Client & Metadata Info Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 p-6 rounded-2xl bg-stone-50 border border-stone-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 rounded-2xl bg-stone-50 border border-stone-200">
             <div>
               <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Client</div>
               <div className="text-sm font-bold text-stone-900">{project.client}</div>
@@ -100,12 +100,46 @@ export default async function CaseStudyDetailPage({ params }) {
               <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Industry</div>
               <div className="text-sm font-bold text-stone-900">{project.industry}</div>
             </div>
-            <div className="col-span-2 sm:col-span-1">
+            <div>
               <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Year</div>
               <div className="text-sm font-bold text-stone-900">{project.year}</div>
             </div>
+            {project.websiteUrl && (
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Live Website</div>
+                <a
+                  href={project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-orange-600 hover:underline inline-flex items-center gap-1 mt-1"
+                >
+                  Visit Site <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            )}
           </div>
         </header>
+
+        {/* Featured Case Study Preview Banner Image */}
+        {project.image && (
+          <div className="w-full h-64 sm:h-96 rounded-2xl overflow-hidden border border-stone-200 shadow-sm relative group">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {project.websiteUrl && (
+              <a
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-black/80 backdrop-blur-md text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-black transition-all shadow-lg border border-white/20"
+              >
+                Visit Live Website <ArrowUpRight className="h-3.5 w-3.5 text-orange-500" />
+              </a>
+            )}
+          </div>
+        )}
 
         {/* Key Metrics Banner */}
         <section className="p-8 rounded-2xl bg-stone-900 text-white space-y-4">
