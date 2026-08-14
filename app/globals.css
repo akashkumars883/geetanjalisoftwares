@@ -29,15 +29,7 @@ html, body {
   scroll-padding-top: 5rem;
 }
 
-/* Custom black dot cursor on background; default normal browser pointer on links */
-@media (min-width: 768px) and (hover: hover) {
-  body {
-    cursor: none;
-  }
-  a, button, input, select, textarea, [role="button"], a *, button *, .cursor-pointer, .cursor-pointer * {
-    cursor: pointer !important;
-  }
-}
+
 
 
 
