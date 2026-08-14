@@ -133,7 +133,7 @@ export async function PUT(request) {
       ...(category && { category }),
       ...(author && { author }),
       ...(excerpt && { excerpt }),
-      ...(image_url && { image_url }),
+      ...(image_url !== undefined && { image_url }),
       ...(content !== undefined && { content }),
       ...(is_published !== undefined && { is_published }),
       ...(tags && { tags }),
