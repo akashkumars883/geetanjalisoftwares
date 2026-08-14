@@ -42,7 +42,7 @@ export default async function Blog() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Block */}
         <div className="max-w-3xl text-left mb-8 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Our Blog
           </div>
           <h2 
@@ -59,7 +59,7 @@ export default async function Blog() {
           {posts.map((post, index) => (
             <article
               key={post.id || index}
-              className="group bg-white border border-stone-200/80 rounded-xl overflow-hidden hover:border-stone-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white border border-stone-200/80 rounded-md overflow-hidden hover:border-stone-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               {/* Image Box */}
               <div className="relative h-48 w-full overflow-hidden bg-stone-50 rounded-t-xl">

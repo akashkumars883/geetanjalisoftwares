@@ -67,7 +67,7 @@ export default async function CaseStudyDetailPage({ params }) {
         <div>
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-black transition-colors bg-stone-100 px-4 py-2 rounded-full"
+            className="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-black transition-colors bg-stone-100 px-4 py-2 rounded-md"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Case Studies
           </Link>
@@ -76,7 +76,7 @@ export default async function CaseStudyDetailPage({ params }) {
         {/* Case Study Header */}
         <header className="space-y-6 border-b border-stone-200 pb-10">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-600/20 text-xs font-bold uppercase tracking-wider text-orange-600">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-orange-600/10 border border-orange-600/20 text-xs font-bold uppercase tracking-wider text-orange-600">
               {project.category}
             </span>
             <span className="text-xs font-semibold text-stone-500">{project.year}</span>
@@ -91,7 +91,7 @@ export default async function CaseStudyDetailPage({ params }) {
           </p>
 
           {/* Client & Metadata Info Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 rounded-2xl bg-stone-50 border border-stone-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 rounded-md bg-stone-50 border border-stone-200">
             <div>
               <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Client</div>
               <div className="text-sm font-bold text-stone-900">{project.client}</div>
@@ -122,7 +122,7 @@ export default async function CaseStudyDetailPage({ params }) {
 
         {/* Featured Case Study Preview Banner Image */}
         {project.image && (
-          <div className="w-full h-64 sm:h-96 rounded-2xl overflow-hidden border border-stone-200 shadow-sm relative group">
+          <div className="w-full h-64 sm:h-96 rounded-md overflow-hidden border border-stone-200 shadow-sm relative group">
             <img
               src={project.image}
               alt={project.title}
@@ -133,7 +133,7 @@ export default async function CaseStudyDetailPage({ params }) {
                 href={project.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-black/80 backdrop-blur-md text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-black transition-all shadow-lg border border-white/20"
+                className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-black/80 backdrop-blur-md text-white text-xs font-bold px-5 py-2.5 rounded-md hover:bg-black transition-all shadow-lg border border-white/20"
               >
                 Visit Live Website <ArrowUpRight className="h-3.5 w-3.5 text-orange-500" />
               </a>
@@ -142,13 +142,13 @@ export default async function CaseStudyDetailPage({ params }) {
         )}
 
         {/* Key Metrics Banner */}
-        <section className="p-8 rounded-2xl bg-stone-900 text-white space-y-4">
+        <section className="p-8 rounded-md bg-stone-900 text-white space-y-4">
           <h3 className="text-xs font-bold uppercase tracking-widest text-orange-400 flex items-center gap-2">
             <BarChart3 className="h-4 w-4" /> Measured Impact & Key Results
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
             {project.metrics.map((metric, i) => (
-              <div key={i} className="p-4 rounded-xl bg-white/10 border border-white/10 text-center">
+              <div key={i} className="p-4 rounded-md bg-white/10 border border-white/10 text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">{metric.value}</div>
                 <div className="text-xs text-stone-300 font-medium pt-1">{metric.label}</div>
               </div>
@@ -165,7 +165,7 @@ export default async function CaseStudyDetailPage({ params }) {
               <Building2 className="h-6 w-6 text-orange-600" />
               The Challenge
             </h2>
-            <div className="p-6 rounded-xl bg-stone-50 border border-stone-200 text-stone-600 text-sm sm:text-base leading-relaxed">
+            <div className="p-6 rounded-md bg-stone-50 border border-stone-200 text-stone-600 text-sm sm:text-base leading-relaxed">
               {project.challenge.trim().split("\n\n").map((para, i) => (
                 <p key={i} className="mb-3 last:mb-0">{para}</p>
               ))}
@@ -178,7 +178,7 @@ export default async function CaseStudyDetailPage({ params }) {
               <Cpu className="h-6 w-6 text-orange-600" />
               Engineering Solution
             </h2>
-            <div className="p-6 rounded-xl bg-white border border-stone-200 text-stone-600 text-sm sm:text-base leading-relaxed">
+            <div className="p-6 rounded-md bg-white border border-stone-200 text-stone-600 text-sm sm:text-base leading-relaxed">
               {project.solution.trim().split("\n\n").map((para, i) => (
                 <p key={i} className="mb-3 last:mb-0">{para}</p>
               ))}
@@ -193,7 +193,7 @@ export default async function CaseStudyDetailPage({ params }) {
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {project.keyFeatures.map((feat, i) => (
-                <li key={i} className="p-4 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm font-semibold text-stone-800 flex items-start gap-3">
+                <li key={i} className="p-4 rounded-md bg-stone-50 border border-stone-200 text-xs sm:text-sm font-semibold text-stone-800 flex items-start gap-3">
                   <CheckCircle2 className="h-4 w-4 text-orange-600 shrink-0 mt-0.5" />
                   <span>{feat}</span>
                 </li>
@@ -206,7 +206,7 @@ export default async function CaseStudyDetailPage({ params }) {
             <h3 className="text-sm font-bold uppercase tracking-wider text-stone-500">Technologies Used</h3>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, i) => (
-                <span key={i} className="px-4 py-2 rounded-full text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-800">
+                <span key={i} className="px-4 py-2 rounded-md text-xs font-semibold bg-stone-100 border border-stone-200 text-stone-800">
                   {tag}
                 </span>
               ))}
@@ -217,7 +217,7 @@ export default async function CaseStudyDetailPage({ params }) {
 
         {/* Footer CTA & Related Projects */}
         <footer className="pt-10 border-t border-stone-200 space-y-12">
-          <div className="p-8 rounded-2xl bg-black text-white flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="p-8 rounded-md bg-black text-white flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 max-w-lg text-left">
               <h3 className="text-xl font-bold text-white">Want similar results for your business?</h3>
               <p className="text-xs text-zinc-400 font-light">
@@ -226,7 +226,7 @@ export default async function CaseStudyDetailPage({ params }) {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
             >
               Start Project Discussion
               <ArrowUpRight className="h-4 w-4" />
@@ -242,7 +242,7 @@ export default async function CaseStudyDetailPage({ params }) {
                   <Link
                     key={i}
                     href={`/case-studies/${rel.slug}`}
-                    className="p-6 rounded-2xl bg-stone-50 border border-stone-200 hover:border-stone-400 transition-all space-y-3 block group"
+                    className="p-6 rounded-md bg-stone-50 border border-stone-200 hover:border-stone-400 transition-all space-y-3 block group"
                   >
                     <span className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">{rel.category}</span>
                     <h4 className="text-lg font-bold text-stone-900 group-hover:text-orange-600 transition-colors">{rel.title}</h4>

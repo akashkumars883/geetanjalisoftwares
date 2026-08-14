@@ -38,9 +38,9 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-10">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-8 rounded-xl border border-stone-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-8 rounded-md border border-stone-200">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 text-orange-600 font-bold text-[10px] uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-orange-600/10 text-orange-600 font-bold text-[10px] uppercase tracking-wider">
             <Sparkles className="h-3 w-3" /> Dashboard Overview
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">
@@ -53,7 +53,7 @@ export default function AdminDashboardPage() {
 
         <Link
           href="/admin/blogs/new"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shrink-0"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shrink-0"
         >
           <PlusCircle className="h-4 w-4" /> Write New Article
         </Link>
@@ -61,10 +61,10 @@ export default function AdminDashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="p-6 rounded-xl bg-white border border-stone-200 space-y-3">
+        <div className="p-6 rounded-md bg-white border border-stone-200 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Total Articles</span>
-            <div className="h-9 w-9 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700">
+            <div className="h-9 w-9 rounded-md bg-stone-100 flex items-center justify-center text-stone-700">
               <FileText className="h-5 w-5" />
             </div>
           </div>
@@ -74,10 +74,10 @@ export default function AdminDashboardPage() {
           <p className="text-xs text-stone-500 font-light">Total articles in database</p>
         </div>
 
-        <div className="p-6 rounded-xl bg-white border border-stone-200 space-y-3">
+        <div className="p-6 rounded-md bg-white border border-stone-200 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Published Blogs</span>
-            <div className="h-9 w-9 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
+            <div className="h-9 w-9 rounded-md bg-green-50 text-green-600 flex items-center justify-center">
               <CheckCircle2 className="h-5 w-5" />
             </div>
           </div>
@@ -87,10 +87,10 @@ export default function AdminDashboardPage() {
           <p className="text-xs text-stone-500 font-light">Live on website sitemap &amp; blog page</p>
         </div>
 
-        <div className="p-6 rounded-xl bg-white border border-stone-200 space-y-3">
+        <div className="p-6 rounded-md bg-white border border-stone-200 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Draft Articles</span>
-            <div className="h-9 w-9 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+            <div className="h-9 w-9 rounded-md bg-orange-50 text-orange-600 flex items-center justify-center">
               <Clock className="h-5 w-5" />
             </div>
           </div>
@@ -100,10 +100,10 @@ export default function AdminDashboardPage() {
           <p className="text-xs text-stone-500 font-light">Unpublished drafts</p>
         </div>
 
-        <div className="p-6 rounded-xl bg-white border border-stone-200 space-y-3">
+        <div className="p-6 rounded-md bg-white border border-stone-200 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Lead Inquiries</span>
-            <div className="h-9 w-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="h-9 w-9 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center">
               <Inbox className="h-5 w-5" />
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Blogs Section */}
-      <div className="bg-white border border-stone-200 rounded-xl p-6 space-y-6">
+      <div className="bg-white border border-stone-200 rounded-md p-6 space-y-6">
         <div className="flex items-center justify-between border-b border-stone-100 pb-4">
           <div>
             <h2 className="text-lg font-bold text-stone-900">Recent Blog Posts</h2>
@@ -136,7 +136,7 @@ export default function AdminDashboardPage() {
             <p className="text-sm text-stone-600">No blog posts found in database.</p>
             <Link
               href="/admin/blogs/new"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-black text-white"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-xs font-bold bg-black text-white"
             >
               Create Your First Blog Post
             </Link>
@@ -159,17 +159,17 @@ export default function AdminDashboardPage() {
                       {blog.title}
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2.5 py-1 rounded-full bg-stone-100 text-stone-600 font-semibold text-[10px]">
+                      <span className="px-2.5 py-1 rounded-md bg-stone-100 text-stone-600 font-semibold text-[10px]">
                         {blog.category || "Engineering"}
                       </span>
                     </td>
                     <td className="py-3.5 px-4">
                       {blog.is_published !== false ? (
-                        <span className="px-2.5 py-1 rounded-full bg-green-100 text-green-800 font-bold text-[10px]">
+                        <span className="px-2.5 py-1 rounded-md bg-green-100 text-green-800 font-bold text-[10px]">
                           Published
                         </span>
                       ) : (
-                        <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-bold text-[10px]">
+                        <span className="px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 font-bold text-[10px]">
                           Draft
                         </span>
                       )}

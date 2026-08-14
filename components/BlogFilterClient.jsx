@@ -51,7 +51,7 @@ export default function BlogFilterClient({ initialPosts }) {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-md text-xs font-semibold transition-all cursor-pointer ${
                 selectedCategory === cat
                   ? "bg-stone-900 text-white shadow-sm"
                   : "bg-stone-100 text-stone-600 hover:bg-stone-200"
@@ -69,7 +69,7 @@ export default function BlogFilterClient({ initialPosts }) {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-stone-50 border border-stone-200 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-stone-400 transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-md bg-stone-50 border border-stone-200 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-stone-400 transition-colors"
           />
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function BlogFilterClient({ initialPosts }) {
             {paginatedPosts.map((post, index) => (
               <article
                 key={post.id || index}
-                className="group bg-white border border-stone-200/80 rounded-xl overflow-hidden hover:border-stone-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white border border-stone-200/80 rounded-md overflow-hidden hover:border-stone-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Blog Card Header Image */}
                 <div className="relative h-48 w-full overflow-hidden bg-stone-100 border-b border-stone-100 rounded-t-xl">
@@ -138,7 +138,7 @@ export default function BlogFilterClient({ initialPosts }) {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-full border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-semibold cursor-pointer"
+                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-md border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-semibold cursor-pointer"
                 >
                   <ChevronLeft className="h-4 w-4" /> Previous
                 </button>
@@ -148,7 +148,7 @@ export default function BlogFilterClient({ initialPosts }) {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`h-8 w-8 rounded-full font-bold text-xs transition-all cursor-pointer ${
+                      className={`h-8 w-8 rounded-md font-bold text-xs transition-all cursor-pointer ${
                         currentPage === page
                           ? "bg-orange-600 text-white shadow-sm"
                           : "bg-stone-100 text-stone-600 hover:bg-stone-200"
@@ -162,7 +162,7 @@ export default function BlogFilterClient({ initialPosts }) {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-full border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-semibold cursor-pointer"
+                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-md border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-semibold cursor-pointer"
                 >
                   Next <ChevronRight className="h-4 w-4" />
                 </button>
@@ -171,7 +171,7 @@ export default function BlogFilterClient({ initialPosts }) {
           )}
         </div>
       ) : (
-        <div className="text-center py-10 space-y-3 bg-stone-50 rounded-2xl border border-stone-200">
+        <div className="text-center py-10 space-y-3 bg-stone-50 rounded-md border border-stone-200">
           <p className="text-base font-semibold text-stone-800">No articles found matching &quot;{searchQuery}&quot;</p>
           <p className="text-xs text-stone-500">Try searching for different keywords or select another category filter.</p>
         </div>

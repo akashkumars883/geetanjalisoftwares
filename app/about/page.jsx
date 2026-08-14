@@ -118,7 +118,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             About Geetanjali Softwares
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight text-stone-900 leading-[1.1] max-w-5xl">
@@ -136,8 +136,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
-              <div key={i} className="text-left space-y-3 p-6 bg-stone-50 rounded-xl border border-stone-100">
-                <div className="h-10 w-10 rounded-lg bg-white border border-stone-100 flex items-center justify-center">
+              <div key={i} className="text-left space-y-3 p-6 bg-stone-50 rounded-md border border-stone-100">
+                <div className="h-10 w-10 rounded-md bg-white border border-stone-100 flex items-center justify-center">
                   {stat.icon}
                 </div>
                 <div className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{stat.value}</div>
@@ -167,7 +167,7 @@ export default function AboutPage() {
           </div>
 
           {/* Feature Highlight Box */}
-          <div className="p-8 rounded-xl bg-white border border-stone-100 space-y-6 shadow-sm">
+          <div className="p-8 rounded-md bg-white border border-stone-100 space-y-6 shadow-sm">
             <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
               <Rocket className="h-5 w-5 text-orange-600" />
               Why Businesses Choose Us
@@ -204,8 +204,8 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {coreValues.map((value, i) => (
-              <div key={i} className="p-6 rounded-xl bg-stone-50 border border-stone-100 space-y-4">
-                <div className="h-10 w-10 rounded-lg bg-white border border-stone-100 flex items-center justify-center">
+              <div key={i} className="p-6 rounded-md bg-stone-50 border border-stone-100 space-y-4">
+                <div className="h-10 w-10 rounded-md bg-white border border-stone-100 flex items-center justify-center">
                   {value.icon}
                 </div>
                 <h3 className="text-lg font-bold text-stone-900">{value.title}</h3>
@@ -227,7 +227,7 @@ export default function AboutPage() {
             {technologies.map((tech, i) => (
               <span 
                 key={i} 
-                className="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-stone-200 text-stone-700 shadow-sm"
+                className="px-4 py-2 rounded-md text-xs font-semibold bg-white border border-stone-200 text-stone-700 shadow-sm"
               >
                 {tech}
               </span>
@@ -246,8 +246,8 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="bg-black text-white rounded-md p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-md blur-3xl pointer-events-none" />
             <div className="space-y-3 max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Have a project in mind?</h2>
               <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
@@ -256,7 +256,7 @@ export default function AboutPage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
             >
               Get Free Technical Consultation
               <ArrowRight className="h-4 w-4" />

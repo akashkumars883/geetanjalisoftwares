@@ -31,7 +31,7 @@ export default function AdminLayout({ children }) {
           <div className="space-y-8 p-6">
             {/* Admin Brand */}
             <div className="flex items-center gap-3 border-b border-stone-100 pb-5">
-              <div className="h-9 w-9 rounded-xl bg-orange-600/10 border border-orange-600/20 flex items-center justify-center text-orange-600 font-bold">
+              <div className="h-9 w-9 rounded-md bg-orange-600/10 border border-orange-600/20 flex items-center justify-center text-orange-600 font-bold">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <div>
@@ -49,7 +49,7 @@ export default function AdminLayout({ children }) {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                    className={`flex items-center gap-3 px-3.5 py-2.5 rounded-md text-xs font-semibold transition-all ${
                       isActive
                         ? "bg-black text-white"
                         : "text-stone-600 hover:text-black hover:bg-stone-100"
@@ -68,7 +68,7 @@ export default function AdminLayout({ children }) {
             <Link
               href="/"
               target="_blank"
-              className="flex items-center gap-2.5 text-xs font-semibold text-stone-600 hover:text-black px-3.5 py-2 rounded-lg hover:bg-stone-100 transition-colors"
+              className="flex items-center gap-2.5 text-xs font-semibold text-stone-600 hover:text-black px-3.5 py-2 rounded-md hover:bg-stone-100 transition-colors"
             >
               <Globe className="h-4 w-4" />
               <span>View Live Website</span>
@@ -79,7 +79,7 @@ export default function AdminLayout({ children }) {
                 localStorage.removeItem("geetanjali_admin_auth");
                 window.location.href = "/admin";
               }}
-              className="w-full flex items-center gap-2.5 text-xs font-semibold text-red-600 hover:bg-red-50 px-3.5 py-2 rounded-lg transition-colors cursor-pointer"
+              className="w-full flex items-center gap-2.5 text-xs font-semibold text-red-600 hover:bg-red-50 px-3.5 py-2 rounded-md transition-colors cursor-pointer"
             >
               <LogOut className="h-4 w-4" />
               <span>Log Out Admin</span>

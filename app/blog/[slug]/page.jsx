@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }) {
         <div>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-black transition-colors bg-stone-100 px-4 py-2 rounded-full"
+            className="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-black transition-colors bg-stone-100 px-4 py-2 rounded-md"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to All Articles
           </Link>
@@ -137,7 +137,7 @@ export default async function BlogPostPage({ params }) {
         {/* Article Header */}
         <header className="space-y-6 border-b border-stone-200 pb-6">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-600/20 text-xs font-bold uppercase tracking-wider text-orange-600">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-orange-600/10 border border-orange-600/20 text-xs font-bold uppercase tracking-wider text-orange-600">
               <Tag className="h-3 w-3" /> {post.category || "Engineering"}
             </span>
             <span className="text-xs text-stone-500 flex items-center gap-1">
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }) {
           {/* Author & Date Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-stone-100">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 font-bold text-xs uppercase">
+              <div className="h-10 w-10 rounded-md bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 font-bold text-xs uppercase">
                 <User className="h-5 w-5 text-orange-600" />
               </div>
               <div>
@@ -174,11 +174,11 @@ export default async function BlogPostPage({ params }) {
 
         {/* Article Cover Image Banner */}
         {post.image && (
-          <div className="relative w-full h-[320px] sm:h-[420px] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 shadow-sm">
+          <div className="relative w-full h-[320px] sm:h-[420px] rounded-md overflow-hidden bg-stone-100 border border-stone-200 shadow-sm">
             <img
               src={post.image}
               alt={post.imageAlt || post.title}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-md"
             />
           </div>
         )}
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }) {
 
         {/* Footer Share & CTA */}
         <footer className="pt-10 border-t border-stone-200 space-y-10">
-          <div className="p-8 rounded-2xl bg-black text-white flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="p-8 rounded-md bg-black text-white flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 max-w-lg text-left">
               <h3 className="text-xl font-bold text-white">Need a custom software engineering solution?</h3>
               <p className="text-xs text-zinc-400 font-light">
@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }) {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
             >
               Get Technical Consultation
               <ArrowUpRight className="h-4 w-4" />
@@ -216,13 +216,13 @@ export default async function BlogPostPage({ params }) {
                   <Link
                     key={i}
                     href={`/blog/${related.slug}`}
-                    className="p-5 rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 hover:shadow-lg transition-all space-y-4 block group"
+                    className="p-5 rounded-md bg-stone-50 border border-stone-200 hover:border-stone-300 hover:shadow-lg transition-all space-y-4 block group"
                   >
-                    <div className="relative h-44 w-full overflow-hidden bg-stone-100 rounded-xl border border-stone-200/60">
+                    <div className="relative h-44 w-full overflow-hidden bg-stone-100 rounded-md border border-stone-200/60">
                       <img
                         src={related.image}
                         alt={related.imageAlt || related.title}
-                        className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="w-full h-full object-cover rounded-md group-hover:scale-105 transition-transform duration-500 ease-out"
                         loading="lazy"
                       />
                     </div>

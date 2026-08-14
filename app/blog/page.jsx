@@ -61,7 +61,7 @@ export default async function BlogListingPage() {
       {/* Header Section */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <BookOpen className="h-3.5 w-3.5 text-orange-600" /> Engineering Blog & Insights
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight text-stone-900 leading-[1.1] max-w-5xl">
@@ -74,17 +74,17 @@ export default async function BlogListingPage() {
         </div>
       </section>
 
-      {/* Featured Article Section (Original Height Layout + rounded-xl image) */}
+      {/* Featured Article Section (Original Height Layout + rounded-md image) */}
       {featuredPost && (
         <section className="py-8 bg-white border-b border-stone-100 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="bg-stone-50 border border-stone-200/80 rounded-xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center hover:border-stone-300 transition-all shadow-sm">
+            <div className="bg-stone-50 border border-stone-200/80 rounded-md p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center hover:border-stone-300 transition-all shadow-sm">
               <div className="lg:col-span-7 space-y-4 text-left">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-600/20 text-[10px] font-bold uppercase tracking-wider text-orange-600">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-orange-600/10 border border-orange-600/20 text-[10px] font-bold uppercase tracking-wider text-orange-600">
                     <Sparkles className="h-3 w-3" /> Featured Article
                   </span>
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-stone-200/60 text-stone-700 font-semibold text-[10px] uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-stone-200/60 text-stone-700 font-semibold text-[10px] uppercase tracking-wider">
                     <Tag className="h-3 w-3" /> {featuredPost.category}
                   </span>
                 </div>
@@ -110,7 +110,7 @@ export default async function BlogListingPage() {
 
                   <Link
                     href={`/blog/${featuredPost.slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shadow-md shrink-0"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shadow-md shrink-0"
                   >
                     Read Full Article
                     <ArrowUpRight className="h-4 w-4" />
@@ -118,12 +118,12 @@ export default async function BlogListingPage() {
                 </div>
               </div>
 
-              {/* Featured Image Container with rounded-xl */}
-              <div className="lg:col-span-5 h-64 sm:h-72 w-full rounded-xl overflow-hidden bg-stone-100 border border-stone-200/80 shadow-sm relative group">
+              {/* Featured Image Container with rounded-md */}
+              <div className="lg:col-span-5 h-64 sm:h-72 w-full rounded-md overflow-hidden bg-stone-100 border border-stone-200/80 shadow-sm relative group">
                 <img
                   src={featuredPost.image}
                   alt={featuredPost.imageAlt || featuredPost.title}
-                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover rounded-md group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
               </div>
             </div>

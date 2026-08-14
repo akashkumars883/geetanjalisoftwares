@@ -71,7 +71,7 @@ export default function CustomCursor() {
       {/* Custom black dot cursor for background; fades out on links so normal browser cursor shows */}
       <div
         ref={dotRef}
-        className={`fixed top-0 left-0 w-3.5 h-3.5 -mt-1.75 -ml-1.75 rounded-full bg-black border border-white/80 shadow-md pointer-events-none transition-opacity duration-150 ease-out ${
+        className={`fixed top-0 left-0 w-3.5 h-3.5 -mt-1.75 -ml-1.75 rounded-md bg-black border border-white/80 shadow-md pointer-events-none transition-opacity duration-150 ease-out ${
           isHovered ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         style={{

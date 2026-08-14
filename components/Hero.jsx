@@ -49,14 +49,14 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold tracking-wider bg-white text-black hover:bg-zinc-200 transition-all shadow-lg hover:scale-105"
+            className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md text-sm font-bold tracking-wider bg-white text-black hover:bg-zinc-200 transition-all shadow-lg hover:scale-105"
           >
             Start a Project
             <ArrowRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/case-studies"
-            className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-bold tracking-wider border border-white/30 text-white hover:bg-white/10 transition-all hover:scale-105"
+            className="inline-flex items-center justify-center px-7 py-3.5 rounded-md text-sm font-bold tracking-wider border border-white/30 text-white hover:bg-white/10 transition-all hover:scale-105"
           >
             View Work
           </Link>

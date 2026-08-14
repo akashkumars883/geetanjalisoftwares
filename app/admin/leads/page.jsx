@@ -44,7 +44,7 @@ export default function AdminLeadsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-stone-200">
+      <div className="flex items-center gap-4 bg-white p-4 rounded-md border border-stone-200">
         <div className="relative flex-1">
           <Search className="h-4 w-4 text-stone-400 absolute left-3.5 top-3" />
           <input
@@ -52,7 +52,7 @@ export default function AdminLeadsPage() {
             placeholder="Search inquiries by client name, email, or service..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-stone-50 border border-stone-200 rounded-xl pl-10 pr-4 py-2 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-black transition-colors"
+            className="w-full bg-stone-50 border border-stone-200 rounded-md pl-10 pr-4 py-2 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-black transition-colors"
           />
         </div>
         <div className="text-xs font-semibold text-stone-500 shrink-0">
@@ -61,7 +61,7 @@ export default function AdminLeadsPage() {
       </div>
 
       {/* Inquiries Table / Grid */}
-      <div className="bg-white border border-stone-200 rounded-xl overflow-hidden">
+      <div className="bg-white border border-stone-200 rounded-md overflow-hidden">
         {loading ? (
           <div className="text-center py-10 text-xs text-stone-500">Loading incoming inquiries...</div>
         ) : filteredInquiries.length === 0 ? (
@@ -87,7 +87,7 @@ export default function AdminLeadsPage() {
                   {/* Row Top */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-100 pb-3">
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-orange-600/10 border border-orange-600/20 flex items-center justify-center text-orange-600 font-bold text-sm">
+                      <div className="h-9 w-9 rounded-md bg-orange-600/10 border border-orange-600/20 flex items-center justify-center text-orange-600 font-bold text-sm">
                         {item.name ? item.name.charAt(0).toUpperCase() : "U"}
                       </div>
                       <div>
@@ -105,7 +105,7 @@ export default function AdminLeadsPage() {
                       <span className="inline-flex items-center gap-1 font-light">
                         <Calendar className="h-3 w-3" /> {formattedDate}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-green-100 text-green-800 font-bold text-[10px]">
+                      <span className="px-2.5 py-0.5 rounded-md bg-green-100 text-green-800 font-bold text-[10px]">
                         {item.status || "New Lead"}
                       </span>
                     </div>
@@ -114,12 +114,12 @@ export default function AdminLeadsPage() {
                   {/* Metadata Chips */}
                   <div className="flex flex-wrap items-center gap-2">
                     {item.service && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-stone-100 text-stone-700 font-semibold text-[11px]">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-stone-100 text-stone-700 font-semibold text-[11px]">
                         <Tag className="h-3 w-3 text-stone-400" /> {item.service}
                       </span>
                     )}
                     {item.budget && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-stone-100 text-stone-700 font-semibold text-[11px]">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-stone-100 text-stone-700 font-semibold text-[11px]">
                         <DollarSign className="h-3 w-3 text-stone-400" /> Budget: {item.budget}
                       </span>
                     )}
@@ -127,7 +127,7 @@ export default function AdminLeadsPage() {
 
                   {/* Message Body */}
                   {item.message && (
-                    <div className="p-4 rounded-xl bg-stone-50 border border-stone-100 text-xs text-stone-700 font-light leading-relaxed">
+                    <div className="p-4 rounded-md bg-stone-50 border border-stone-100 text-xs text-stone-700 font-light leading-relaxed">
                       "{item.message}"
                     </div>
                   )}
@@ -136,7 +136,7 @@ export default function AdminLeadsPage() {
                   <div className="flex justify-end pt-1">
                     <a
                       href={`mailto:${item.email}?subject=Regarding Your Project Inquiry - Geetanjali Softwares`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-black text-white text-xs font-semibold hover:bg-zinc-800 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-black text-white text-xs font-semibold hover:bg-zinc-800 transition-colors"
                     >
                       <Mail className="h-3.5 w-3.5" /> Reply to Client Email
                     </a>

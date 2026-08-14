@@ -47,7 +47,7 @@ export default function RefundPolicyPage() {
       {/* Header */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <RefreshCw className="h-3.5 w-3.5 text-orange-600" /> Client Guarantee & Terms
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-stone-900 leading-[1.1]">
@@ -113,7 +113,7 @@ export default function RefundPolicyPage() {
             <p>
               To cancel a project or request a refund evaluation, please send an official written request to your account manager or reach out directly to:
             </p>
-            <div className="p-6 rounded-xl bg-stone-50 border border-stone-100 space-y-2">
+            <div className="p-6 rounded-md bg-stone-50 border border-stone-100 space-y-2">
               <p className="text-stone-900 font-bold">Geetanjali Softwares Support</p>
               <p className="text-stone-600 text-sm">Email: geetanjalisoftwares@gmail.com</p>
               <p className="text-stone-600 text-sm">Response Time: Within 24-48 business hours</p>

@@ -69,7 +69,7 @@ export default function SelectedWork() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl text-left mb-8 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Featured Live Projects
           </div>
           <h2 
@@ -86,7 +86,7 @@ export default function SelectedWork() {
           {projects.map((project, index) => (
             <article
               key={index}
-              className="group bg-stone-50 border border-stone-200/80 rounded-2xl overflow-hidden hover:border-stone-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="group bg-stone-50 border border-stone-200/80 rounded-md overflow-hidden hover:border-stone-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Image Banner */}
               <div className="w-full h-52 overflow-hidden bg-stone-100 relative">
@@ -100,7 +100,7 @@ export default function SelectedWork() {
                     href={project.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-black transition-all flex items-center gap-1 border border-white/20 shadow-md"
+                    className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-md hover:bg-black transition-all flex items-center gap-1 border border-white/20 shadow-md"
                   >
                     Live Site <ArrowUpRight className="h-3 w-3 text-orange-400" />
                   </a>
@@ -110,7 +110,7 @@ export default function SelectedWork() {
               {/* Card Body */}
               <div className="p-6 space-y-5 flex-1 flex flex-col justify-between text-left">
                 <div className="space-y-3">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-600/10 px-2.5 py-1 rounded-full border border-orange-600/20 inline-block">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-600/10 px-2.5 py-1 rounded-md border border-orange-600/20 inline-block">
                     {project.category}
                   </span>
 
@@ -142,7 +142,7 @@ export default function SelectedWork() {
                   <div className="flex items-center gap-2">
                     <Link
                       href={project.href}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-md bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
                     >
                       <span>Case Study</span>
                       <ArrowUpRight className="h-3.5 w-3.5 text-orange-400 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -153,7 +153,7 @@ export default function SelectedWork() {
                         href={project.websiteUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-orange-600 text-white hover:bg-orange-700 transition-colors text-xs font-semibold shrink-0"
+                        className="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-md bg-orange-600 text-white hover:bg-orange-700 transition-colors text-xs font-semibold shrink-0"
                       >
                         <span>Visit Site</span>
                         <ArrowUpRight className="h-3.5 w-3.5" />

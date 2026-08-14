@@ -55,7 +55,7 @@ export default function ServicePage() {
       {/* Header Area */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Services Catalog
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight text-stone-900 leading-[1.1] max-w-5xl">
@@ -85,9 +85,9 @@ export default function ServicePage() {
           </div>
 
           {/* Right Block: Benefits Checklist Card */}
-          <div className="lg:col-span-6 bg-stone-50 border border-stone-100 rounded-xl p-8 space-y-6">
+          <div className="lg:col-span-6 bg-stone-50 border border-stone-100 rounded-md p-8 space-y-6">
             <div className="flex items-center gap-4">
-              <div className="h-10 w-10 rounded-lg bg-white border border-stone-100 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-md bg-white border border-stone-100 flex items-center justify-center">
                 <Cpu className="h-6 w-6 text-orange-600" />
               </div>
               <div className="text-sm font-bold text-stone-800 uppercase tracking-wider">
@@ -129,8 +129,8 @@ export default function ServicePage() {
       {/* Contact Trigger Block */}
       <section className="py-10 bg-stone-50 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="bg-black text-white rounded-md p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-orange-600/10 rounded-md blur-3xl pointer-events-none" />
             <div className="space-y-4 max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 Ready to deploy your customized system?
@@ -141,7 +141,7 @@ export default function ServicePage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
             >
               Consult an Engineer
               <ArrowRight className="h-4 w-4" />

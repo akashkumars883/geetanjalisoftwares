@@ -47,7 +47,7 @@ export default function TermsOfServicePage() {
       {/* Header */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <FileText className="h-3.5 w-3.5 text-orange-600" /> Legal Terms
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-stone-900 leading-[1.1]">
@@ -96,7 +96,7 @@ export default function TermsOfServicePage() {
             <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-stone-900">
               4. Intellectual Property & Code Ownership
             </h2>
-            <div className="p-6 rounded-xl bg-stone-50 border border-stone-100 space-y-3">
+            <div className="p-6 rounded-md bg-stone-50 border border-stone-100 space-y-3">
               <h3 className="text-base font-bold text-stone-900">Full IP Transfer Upon Settlement</h3>
               <p className="text-sm text-stone-700">
                 Upon final payment of all agreed project milestone fees, Geetanjali Softwares assigns and transfers to Client all custom source code, application assets, designs, and intellectual property developed explicitly for the Client project.

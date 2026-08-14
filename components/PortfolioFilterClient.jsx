@@ -30,7 +30,7 @@ export default function PortfolioFilterClient() {
           <button
             key={cat.value}
             onClick={() => setSelectedCategory(cat.value)}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
               selectedCategory === cat.value
                 ? "bg-stone-900 text-white shadow-sm"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200"
@@ -46,7 +46,7 @@ export default function PortfolioFilterClient() {
         {filteredProjects.map((project, index) => (
           <article
             key={index}
-            className="group bg-stone-50 border border-stone-200/80 rounded-2xl overflow-hidden hover:border-stone-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group bg-stone-50 border border-stone-200/80 rounded-md overflow-hidden hover:border-stone-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             {project.image && (
               <div className="w-full h-48 overflow-hidden bg-stone-100 relative">
@@ -60,7 +60,7 @@ export default function PortfolioFilterClient() {
                     href={project.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-black transition-all flex items-center gap-1 border border-white/20"
+                    className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-md hover:bg-black transition-all flex items-center gap-1 border border-white/20"
                   >
                     Live Site <ArrowUpRight className="h-3 w-3 text-orange-400" />
                   </a>
@@ -71,7 +71,7 @@ export default function PortfolioFilterClient() {
             <div className="p-6 space-y-6 flex-1 flex flex-col justify-between text-left">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-600/10 px-2.5 py-1 rounded-full border border-orange-600/20">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-600/10 px-2.5 py-1 rounded-md border border-orange-600/20">
                     {project.category}
                   </span>
                   <span className="text-xs font-semibold text-stone-400">{project.year}</span>
@@ -89,7 +89,7 @@ export default function PortfolioFilterClient() {
 
                 <div className="grid grid-cols-3 gap-2 pt-2 border-t border-stone-200/60">
                   {project.metrics.map((metric, i) => (
-                    <div key={i} className="text-center p-2 rounded-lg bg-white border border-stone-200/60">
+                    <div key={i} className="text-center p-2 rounded-md bg-white border border-stone-200/60">
                       <div className="text-sm font-bold text-stone-900">{metric.value}</div>
                       <div className="text-[9px] text-stone-500 font-medium truncate">{metric.label}</div>
                     </div>
@@ -112,7 +112,7 @@ export default function PortfolioFilterClient() {
                 <div className="flex items-center gap-2">
                   <Link
                     href={`/case-studies/${project.slug}`}
-                    className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
+                    className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-md bg-stone-900 text-white hover:bg-black transition-colors text-xs font-semibold group/btn"
                   >
                     <span>Case Study</span>
                     <ArrowUpRight className="h-3.5 w-3.5 text-orange-400 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -123,7 +123,7 @@ export default function PortfolioFilterClient() {
                       href={project.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-orange-600 text-white hover:bg-orange-700 transition-colors text-xs font-semibold shrink-0"
+                      className="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-md bg-orange-600 text-white hover:bg-orange-700 transition-colors text-xs font-semibold shrink-0"
                     >
                       <span>Live Website</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />

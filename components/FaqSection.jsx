@@ -41,7 +41,7 @@ export default function FaqSection({
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header Block */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <HelpCircle className="h-3.5 w-3.5 text-orange-600" /> FAQ
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-stone-900 leading-tight">
@@ -59,7 +59,7 @@ export default function FaqSection({
             return (
               <div
                 key={index}
-                className={`bg-white border rounded-2xl transition-all duration-300 overflow-hidden ${
+                className={`bg-white border rounded-md transition-all duration-300 overflow-hidden ${
                   isOpen
                     ? "border-stone-300 shadow-md"
                     : "border-stone-200/80 hover:border-stone-300"
@@ -74,7 +74,7 @@ export default function FaqSection({
                     {faq.question}
                   </span>
                   <div
-                    className={`h-8 w-8 rounded-full border border-stone-200 flex items-center justify-center text-stone-600 shrink-0 transition-transform duration-300 ${
+                    className={`h-8 w-8 rounded-md border border-stone-200 flex items-center justify-center text-stone-600 shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180 bg-orange-600 text-white border-orange-600" : "bg-stone-50"
                     }`}
                   >

@@ -117,7 +117,7 @@ export default function CorporateBrandingPage() {
       {/* Hero Header Section */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <Palette className="h-3.5 w-3.5 text-orange-600" /> Services / Corporate Branding
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight text-stone-900 leading-[1.1] max-w-5xl">
@@ -146,11 +146,11 @@ export default function CorporateBrandingPage() {
             {pillars.map((pillar, index) => (
               <article
                 key={index}
-                className="bg-stone-50 border border-stone-100 rounded-2xl p-8 flex flex-col justify-between hover:border-stone-300 hover:shadow-xl transition-all duration-300"
+                className="bg-stone-50 border border-stone-100 rounded-md p-8 flex flex-col justify-between hover:border-stone-300 hover:shadow-xl transition-all duration-300"
               >
                 <div className="space-y-6">
                   {/* Icon */}
-                  <div className="h-12 w-12 rounded-xl bg-white border border-stone-100 flex items-center justify-center">
+                  <div className="h-12 w-12 rounded-md bg-white border border-stone-100 flex items-center justify-center">
                     {pillar.icon}
                   </div>
 
@@ -199,7 +199,7 @@ export default function CorporateBrandingPage() {
               "Iconography & Pattern Assets",
               "100% Full IP Transfer Rights",
             ].map((item, i) => (
-              <div key={i} className="p-4 rounded-xl bg-white border border-stone-200 text-xs font-semibold text-stone-800 flex items-center gap-3">
+              <div key={i} className="p-4 rounded-md bg-white border border-stone-200 text-xs font-semibold text-stone-800 flex items-center gap-3">
                 <ShieldCheck className="h-4 w-4 text-orange-600 shrink-0" />
                 <span>{item}</span>
               </div>
@@ -219,7 +219,7 @@ export default function CorporateBrandingPage() {
       {/* CTA Section */}
       <section className="py-10 bg-white px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+          <div className="bg-black text-white rounded-md p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="space-y-4 max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 Ready to elevate your corporate brand identity?
@@ -230,7 +230,7 @@ export default function CorporateBrandingPage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
             >
               Request Branding Consultation
               <ArrowRight className="h-4 w-4" />

@@ -55,7 +55,7 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
   ];
 
   return (
-    <div className="w-full border border-stone-200 rounded-xl overflow-hidden bg-stone-50">
+    <div className="w-full border border-stone-200 rounded-md overflow-hidden bg-stone-50">
       {/* Editor Formatting Toolbar */}
       <div className="p-2.5 bg-stone-100/90 border-b border-stone-200 flex flex-wrap items-center gap-1.5 selection:bg-none">
         {toolbarButtons.map((btn, index) => {
@@ -70,7 +70,7 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
               type="button"
               onClick={btn.action}
               title={btn.title}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-semibold text-stone-700 hover:text-black hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer shadow-xs active:scale-95"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-white border border-stone-200 text-xs font-semibold text-stone-700 hover:text-black hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer shadow-xs active:scale-95"
             >
               <Icon className="h-3.5 w-3.5 text-stone-600" />
               <span className="text-[11px]">{btn.label}</span>

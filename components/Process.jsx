@@ -27,7 +27,7 @@ export default function Process() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Block */}
         <div className="max-w-3xl text-left mb-8 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold uppercase tracking-wider text-orange-500">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-bold uppercase tracking-wider text-orange-500">
             Our Process
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-white leading-tight">
@@ -41,14 +41,14 @@ export default function Process() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="group relative bg-[#121214] border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300 flex flex-col justify-between h-[250px] text-left"
+              className="group relative bg-[#121214] border border-white/5 rounded-md p-8 hover:border-white/20 transition-all duration-300 flex flex-col justify-between h-[250px] text-left"
             >
               {/* Number and Hover Indicator */}
               <div className="flex items-center justify-between">
                 <span className="text-4xl font-extrabold text-white/10 group-hover:text-orange-500 transition-colors duration-300">
                   {step.num}
                 </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-white/10 group-hover:bg-orange-500 transition-colors duration-300" />
+                <span className="h-1.5 w-1.5 rounded-md bg-white/10 group-hover:bg-orange-500 transition-colors duration-300" />
               </div>
 
               {/* Title & Desc */}

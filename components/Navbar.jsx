@@ -172,7 +172,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               href="/contact"
-              className="hidden md:inline-flex px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shadow-sm hover:scale-[1.02]"
+              className="hidden md:inline-flex px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-all shadow-sm hover:scale-[1.02]"
             >
               Start a Project
             </Link>
@@ -190,7 +190,7 @@ export default function Navbar() {
           {/* Floating Mega Dropdown Panel for Services (Desktop) */}
           {activeDropdown === "services" && (
             <div 
-              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-2xl text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
+              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-md text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
               onMouseEnter={() => setActiveDropdown("services")}
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -220,7 +220,7 @@ export default function Navbar() {
           {/* Floating Mega Dropdown Panel for Solutions (Desktop) */}
           {activeDropdown === "solutions" && (
             <div 
-              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-2xl text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
+              className="absolute top-full left-0 w-full bg-white border border-stone-200/80 rounded-md text-stone-800 py-10 px-12 shadow-2xl transition-all duration-350 transform opacity-100 translate-y-3"
               onMouseEnter={() => setActiveDropdown("solutions")}
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -301,13 +301,13 @@ export default function Navbar() {
                   e.preventDefault();
                   toggleMobileTab("services");
                 }}
-                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-lg px-1 transition-colors"
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-md px-1 transition-colors"
               >
                 <span>Services</span>
                 <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileActiveTab === "services" ? "rotate-180 text-orange-600" : ""}`} />
               </button>
               {mobileActiveTab === "services" && (
-                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-xl p-3 my-1">
+                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-md p-3 my-1">
                   {servicesMenu.map((group, idx) => (
                     <div key={idx} className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
@@ -335,13 +335,13 @@ export default function Navbar() {
                   e.preventDefault();
                   toggleMobileTab("solutions");
                 }}
-                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-lg px-1 transition-colors"
+                className="w-full flex items-center justify-between text-base font-bold text-stone-800 py-2.5 focus:outline-none text-left cursor-pointer active:bg-stone-50 rounded-md px-1 transition-colors"
               >
                 <span>Solutions</span>
                 <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileActiveTab === "solutions" ? "rotate-180 text-orange-600" : ""}`} />
               </button>
               {mobileActiveTab === "solutions" && (
-                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-xl p-3 my-1">
+                <div className="pl-4 pt-3 pb-2 flex flex-col gap-4 bg-stone-50/50 rounded-md p-3 my-1">
                   {solutionsMenu.map((group, idx) => (
                     <div key={idx} className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{group.title}</span>
@@ -379,7 +379,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsMobileOpen(false)}
-              className="w-full text-center py-3.5 rounded-full bg-black text-white font-bold text-sm hover:bg-zinc-800 mt-2 shadow-md transition-colors"
+              className="w-full text-center py-3.5 rounded-md bg-black text-white font-bold text-sm hover:bg-zinc-800 mt-2 shadow-md transition-colors"
             >
               Start a Project
             </Link>

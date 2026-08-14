@@ -61,7 +61,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Block */}
         <div className="max-w-3xl text-left mb-8 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             Testimonials
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-stone-900 leading-tight">
@@ -96,7 +96,7 @@ export default function Testimonials() {
                     {/* Author metadata */}
                     <div className="flex items-center gap-4 pt-2">
                       {/* Avatar Initials */}
-                      <div className="h-10 w-10 rounded-full bg-stone-100 border border-stone-200/80 flex items-center justify-center font-bold text-xs text-stone-700 uppercase">
+                      <div className="h-10 w-10 rounded-md bg-stone-100 border border-stone-200/80 flex items-center justify-center font-bold text-xs text-stone-700 uppercase">
                         {item.author.split(" ").map(n => n[0]).join("")}
                       </div>
                       <div className="space-y-0.5">
@@ -121,7 +121,7 @@ export default function Testimonials() {
                 key={idx}
                 onClick={() => handleDotClick(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                className={`h-2 rounded-md transition-all duration-300 focus:outline-none cursor-pointer ${
                   idx === activeIndex
                     ? "w-8 bg-orange-600"
                     : "w-2 bg-stone-200 hover:bg-stone-350"

@@ -68,7 +68,7 @@ export default function LocalSeoServicePage() {
       {/* Header Area */}
       <section className="py-10 bg-stone-50 border-b border-stone-100 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             <MapPin className="h-3.5 w-3.5 text-orange-600" /> Services / Local SEO Agency
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight text-stone-900 leading-[1.1] max-w-5xl">
@@ -96,9 +96,9 @@ export default function LocalSeoServicePage() {
             </p>
           </div>
 
-          <div className="lg:col-span-6 bg-stone-50 border border-stone-100 rounded-xl p-8 space-y-6">
+          <div className="lg:col-span-6 bg-stone-50 border border-stone-100 rounded-md p-8 space-y-6">
             <div className="flex items-center gap-4">
-              <div className="h-10 w-10 rounded-lg bg-white border border-stone-100 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-md bg-white border border-stone-100 flex items-center justify-center">
                 <Compass className="h-6 w-6 text-orange-600" />
               </div>
               <div className="text-sm font-bold text-stone-800 uppercase tracking-wider">
@@ -139,7 +139,7 @@ export default function LocalSeoServicePage() {
       {/* CTA */}
       <section className="py-10 bg-stone-50 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-black text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+          <div className="bg-black text-white rounded-md p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="space-y-4 max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 Want to rank #1 on local search maps?
@@ -150,7 +150,7 @@ export default function LocalSeoServicePage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-md text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-lg"
             >
               Get Local SEO Audit
               <ArrowRight className="h-4 w-4" />

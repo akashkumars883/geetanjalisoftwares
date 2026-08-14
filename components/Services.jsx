@@ -77,7 +77,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Block */}
         <div className="max-w-3xl text-left mb-6 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-50 border border-stone-100 text-[11px] font-bold uppercase tracking-wider text-stone-600">
             What We Do
           </div>
           <h2
@@ -111,7 +111,7 @@ export default function Services() {
               {/* Initial Title Display (Visible by default, fades on hover) */}
               <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex items-center justify-between transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
                 <h3 className="text-xl font-bold tracking-tight">{category.title}</h3>
-                <span className="h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center">
+                <span className="h-8 w-8 rounded-md bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </div>
@@ -124,7 +124,7 @@ export default function Services() {
                   <Link
                     href={category.href}
                     aria-label={`Learn more about our ${category.title} services`}
-                    className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
+                    className="h-8 w-8 rounded-md bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
                   >
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
@@ -140,7 +140,7 @@ export default function Services() {
                   {category.items.map((item, i) => (
                     <li key={i}>
                       <span
-                        className="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 border border-white/10 text-zinc-200"
+                        className="inline-flex px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-white/10 border border-white/10 text-zinc-200"
                       >
                         {item}
                       </span>

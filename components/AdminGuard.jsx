@@ -47,10 +47,10 @@ export default function AdminGuard({ children }) {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-stone-50 flex items-center justify-center px-6 py-12 text-left selection:bg-orange-500/20">
-        <div className="max-w-md w-full bg-white border border-stone-200 rounded-xl p-8 space-y-8">
+        <div className="max-w-md w-full bg-white border border-stone-200 rounded-md p-8 space-y-8">
           {/* Logo & Header */}
           <div className="space-y-3 text-center">
-            <div className="h-12 w-12 rounded-xl bg-orange-600/10 border border-orange-600/20 flex items-center justify-center mx-auto text-orange-600">
+            <div className="h-12 w-12 rounded-md bg-orange-600/10 border border-orange-600/20 flex items-center justify-center mx-auto text-orange-600">
               <KeyRound className="h-6 w-6" />
             </div>
             <h1 className="text-2xl font-bold text-stone-900 tracking-tight">Admin Portal Handoff</h1>
@@ -73,7 +73,7 @@ export default function AdminGuard({ children }) {
                   placeholder="Enter passcode (default: admin123)"
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  className={`w-full bg-stone-50 border rounded-xl px-4 py-3 text-sm text-stone-900 placeholder-stone-400 focus:outline-none transition-colors ${
+                  className={`w-full bg-stone-50 border rounded-md px-4 py-3 text-sm text-stone-900 placeholder-stone-400 focus:outline-none transition-colors ${
                     error ? "border-red-500 bg-red-50/20" : "border-stone-200 focus:border-black"
                   }`}
                 />
@@ -88,7 +88,7 @@ export default function AdminGuard({ children }) {
 
             <button
               type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-full text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-md text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-colors cursor-pointer"
             >
               Sign In to Admin Dashboard
               <ArrowRight className="h-4 w-4" />
