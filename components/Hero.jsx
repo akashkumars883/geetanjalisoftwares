@@ -7,19 +7,15 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[85vh] md:min-h-[90vh] overflow-hidden bg-white flex items-center justify-center text-center px-6 pt-16 pb-16 md:pt-20 md:pb-12">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover blur-[10px]"
-      >
-        <source src="/hero-bg.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      {/* Black gradient overlay scoped strictly to the video element */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/80 pointer-events-none" />
+      {/* Sleek Dark Lining Pattern Background */}
+      <div className="absolute inset-0 bg-stone-950">
+        {/* Crisp Linear Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
+        
+        {/* Soft Ambient Glow Orbs */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-orange-600/20 blur-[130px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-indigo-600/15 blur-[140px] rounded-full pointer-events-none" />
+      </div>
 
       {/* Hero Content with Framer Motion Entrance */}
       <div className="relative z-10 max-w-4xl flex flex-col items-center gap-6">
